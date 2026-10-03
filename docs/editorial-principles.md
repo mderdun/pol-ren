@@ -16,21 +16,24 @@ Rules marked **(MD)** were stated or decided by the editor. The rest were propos
 
 Every piece is published as a critical edition and a performance edition.
 
-1. **The score is identical in both.** Pitch, note values, barring, voice names, editorial signs and incipits do not change. The performance edition simplifies the paratext only. No reduced values, no transposition, no modern barring, no piano reduction, no stripping of editorial signs. "There's literally no reason to baby the performer." (MD, *Nunc scio*)
-2. **Exception: chiavette.** Where high clefs make the written pitch a notational convention, the performance edition may be printed at the period's transposition, and the critical edition stays at written pitch. *Vox in Rama* is printed a fifth down (MD, *Vox*). The exception must be argued from period evidence in the critical edition.
+1. **The score is the same in both.** Note values, barring, voice names and editorial signs do not change. The performance edition simplifies the paratext. No reduced values, no modern barring, no piano reduction, no stripping of editorial signs. "There's literally no reason to baby the performer." (MD, *Nunc scio*)
+2. **Pitch is the one exception.** The critical edition stays at written pitch. The performance edition may be transposed when the written pitch does not suit a modern SATB choir, and its clefs follow the new ranges (an Altus in the octave treble clef becomes a treble clef). The masthead says so in one line, and a transposed edition drops the incipits, which would show the source's pitch.
+   - *High clefs (chiavette)*: transpose by the period's own interval, argued from period theory in the critical edition. *Vox in Rama* goes a fifth down. (MD, *Vox*)
+   - *Low clefs (chiavi naturali)*: no period rule asks for upward transposition; written pitch fixed only the relation between the voices, and the pitch was set by the director or the organ. Choose the interval from the voice ranges, by the time each voice spends in its comfortable range, not by its extremes alone. *Już się zmierzka* goes a minor third up. (MD, 3 Oct 2026)
 3. **Editorial suggestions** that go beyond the source (an octave drop at a final, say) appear only in the performance edition, as small notes in round brackets, explained in one sentence. (MD, *Vox*)
 4. **Final editions contain no working material.** No scripts, statistics, "consulted" remarks, notes to self or status flags. The research record lives in this repository (issues and `notes/`). (MD, *Bogurodzica*, *Nunc scio*)
 5. **Gaps.** Name only gaps in the primary sources (a lost print, an unseen facsimile, an uncollated witness), in one sentence in the Sources section. Unseen secondary literature is not listed; it goes to the issue tracker. (MD, 3 Oct 2026)
 
 ## 3. Sources and sigla
 
-1. **Base text** is the earliest complete witness that can be read. Where that is a facsimile of a lost source, the facsimile is the base and the lost source keeps its own siglum (*Zmierzka*: A lost, F facsimile).
-2. **Sigla** are short capitals, set as small capitals. Use a letter for the source's own name or shelfmark (T = Tenor primi chori; K = Kraków BJ 1619). Where older literature numbers sources differently, follow the shelfmark and say why in one sentence. (*Bogurodzica*)
-3. **Collated editions** get sigla too (PWM, K, M, R, N), listed separately under "Editions collated".
-4. **Derivative editions.** Where two modern editions agree in every note, including accidentals the source lacks, they share a parent and count as one witness. Say so. (*Vox*)
-5. **Recordings** may be collated for accidentals and underlay "as heard", with a siglum (P = Schola Gregoriana Pragensis, *Plaude*). The edition's reading still rests on the source and the counterpoint, not on the recording. (*Plaude*)
-6. **Lost voices.** Where only some voices survive in the source, the title page and method state which voices come from the source and which from modern editions. (*Vox*)
-7. **Earlier readings.** When an editor's change (Perz, say) is weighed against the source, each critical note ends with a verdict in small capitals: SOURCE RESTORED or [EDITOR] ACCEPTED. (*Nunc scio*)
+1. **Sigla** of sources and editions are set in a thin ring (one letter) or rounded frame (several), so that a source A is never read as the word "a" and never confused with the voice A. Voice abbreviations are plain small capitals. (MD, 3 Oct 2026)
+2. **Base text** is the earliest complete witness that can be read. Where that is a facsimile of a lost source, the facsimile is the base and the lost source keeps its own siglum (*Zmierzka*: A lost, F facsimile).
+3. **Choosing sigla.** Short capitals. Use a letter for the source's own name or shelfmark (T = Tenor primi chori; K = Kraków BJ 1619). Where older literature numbers sources differently, follow the shelfmark and say why in one sentence. (*Bogurodzica*)
+4. **Collated editions** get sigla too (PWM, K, M, R, N), listed separately under "Editions collated".
+5. **Derivative editions.** Where two modern editions agree in every note, including accidentals the source lacks, they share a parent and count as one witness. Say so. (*Vox*)
+6. **Recordings** may be collated for accidentals and underlay "as heard", with a siglum (P = Schola Gregoriana Pragensis, *Plaude*). The edition's reading still rests on the source and the counterpoint, not on the recording. (*Plaude*)
+7. **Lost voices.** Where only some voices survive in the source, the title page and method state which voices come from the source and which from modern editions. (*Vox*)
+8. **Earlier readings.** When an editor's change (Perz, say) is weighed against the source, each critical note ends with a verdict in small capitals: SOURCE RESTORED or [EDITOR] ACCEPTED. (*Nunc scio*)
 
 ## 4. Pitch
 
@@ -44,11 +47,16 @@ Every piece is published as a critical edition and a performance edition.
 
 1. **Unreduced values.** Note values are those of the source. Where the source is an organ tablature that halves its vocal model, double them. (MD, *Nunc scio*: "doubled is sensible and feels more appropriate")
 2. **Bar = breve** under cut-C. Bar numbers count breves, including both endings of a repeat. (*Nunc scio*, *Zmierzka*, *Plaude*)
-3. **Mensurstriche.** Bar lines run between the staves only. A note that crosses a bar line keeps its single value; the edition adds no ties. (MD endorsed, *Nunc scio*)
-4. **Mensuration sign** as printed in the source. If the source has none, print none. If the edition supplies one, say so.
+3. **Mensurstriche.** Bar lines run between the staves only, drawn light (a grey hairline) so that the score reads as parts first and as a timed score second. A note that crosses a bar line keeps its single value; the edition adds no ties. Section, repeat and final bar lines keep full weight. (MD, *Nunc scio*; lightened 3 Oct 2026)
+4. **Mensuration sign** as printed in the source. Where the source has none (a tablature, an unclefed manuscript), the edition may supply one and says in the method that it is editorial. The score must read without it: the light bar lines carry the time for those who want it. (MD, 3 Oct 2026)
 5. **Incipits** before each staff give the source's clef, sign and first note wherever a mensural source gives them. None where the source is a tablature, unclefed or lost.
 6. **Ambitus** of each voice after the clef.
-7. **Final notes** keep the source's value. A longa that must end with the other voices but enters late is scaled to its real length (*Vox*). A maxima in one voice only may be given as a longa, with a note.
+7. **Longs.** A long at a final is the period's way of saying what a modern editor says with a fermata: hold until all voices have finished. So:
+   - Print the source's long at every final: the end of the piece, and the end of a section, a *pars* or a repeated half where the source marks the break.
+   - Add no fermata over a long. Print a fermata (corona) only where the source has one.
+   - A long inside a phrase is a measured value, not a hold. Print it as such.
+   - A long that must end with the other voices but enters late is scaled to its real length (*Vox*). A maxima in one voice only may be given as a long, with a note.
+   (MD, 3 Oct 2026)
 
 ## 6. Clefs and voice names
 
@@ -107,7 +115,7 @@ Every piece is published as a critical edition and a performance edition.
 11. **Source guides.** Where the source prints text in blocks, use its spacing (gaps mark melismas) and the voice whose text fits note for note. (*Zmierzka*)
 12. **Departures** from the theorists that the source itself shows are kept and noted. (*Vox*)
 13. **Lower voices** that are editorially texted may skip words to keep long notes, as long as their text makes sense alone. Divide notes only where text requires it, mark the division with a dashed tie, and avoid movement before the penultimate bar at a final cadence. (MD, *Plaude*)
-14. **Strophic songs.** Stanza 1 under the notes; later stanzas printed after the score, with the instruction to take stanza 1's notes syllable for syllable. *Open question, see section 15.*
+14. **Strophic songs.** Underlay as many stanzas as the music needs. Where the underlay is the same in every stanza, stanza 1 goes under the notes and the rest follow the score. Where a later stanza needs different underlay (a different stress pattern, an extra syllable, a melisma that would fall on a weak syllable), that stanza goes under the notes too. Weigh how the piece is usually performed: if most performances sing one or two stanzas, those two matter most. (MD, 3 Oct 2026; *Zmierzka* has one underlaid stanza)
 15. Theorists are cited by paraphrase; direct quotation is not needed. (MD, *Nunc scio*)
 
 ## 11. Text
@@ -116,7 +124,7 @@ Every piece is published as a critical edition and a performance edition.
 2. **Old Polish**: modern spelling and punctuation, old sounds and forms kept (*zmierzka*, *naszem*, *wszytki*, *swoję*, *jenż*). Do not modernise to *zmierzcha*, *naszym*, *On*. (MD, *Zmierzka*)
 3. **Diplomatic text** in the critical edition keeps the source's spelling and line division (ſ kept, abbreviations unexpanded).
 4. **Translation** is literal, line by line. Archaic English only where the source language is liturgical verse (*Bogurodzica*).
-5. **Pronunciation** is given as a table (spelling, sound, example), never as a paragraph. (MD, *Nunc scio*) Latin follows Polish usage of the period; Polish follows modern pronunciation of the old forms.
+5. **Pronunciation** lives in one series guide (`guides/pronunciation`), not in each edition. An edition notes only what is peculiar to its text (a word that needs a gloss, an option the text invites) and points to the guide. Defaults: Polish Latin for Latin texts; modern pronunciation of the old forms for Polish. (MD, 3 Oct 2026) Tables, never paragraphs. (MD, *Nunc scio*)
 6. **Spellings of the source** are kept in lemmata and in the edited text where they are not errors (*confidencium*, *misericordie*). (*Plaude*)
 
 ## 12. Chant
@@ -132,7 +140,7 @@ Every piece is published as a critical edition and a performance edition.
 
 **Critical edition**: Title page, colophon and contents, Introduction (the piece, composer, poet, context), Sources, Editorial method, Text and translation, [Facsimile], Score, Critical notes, Literature.
 
-**Performance edition**: Masthead and a two-line headnote, Score, then one page: Text and translation, Pronunciation (if not Polish), For rehearsal (words, stanzas, pitch and voices, tempo, the score's signs), colophon line.
+**Performance edition**: Masthead (with a pitch line if transposed), Score, stanzas after the score, then Text and translation and For rehearsal (the song, the words, stanzas, pitch and voices, tempo, the score's signs), colophon line. No context before the music: setting the scene is the director's job, and the rehearsal notes give them what they need for it. (MD, 3 Oct 2026)
 
 1. Context is welcome in both: "enough paratext for both performers and critical readers". (MD) In the performance edition it is limited to what changes how one sings.
 2. Distinguish verified citations from the editor's own readings. Write "my own reading" where no published study makes the link. (*Zmierzka*)
@@ -141,17 +149,19 @@ Every piece is published as a critical edition and a performance edition.
 ## 14. Names, attribution, rights
 
 1. **Composer's name in Polish first**, the Latin form after it. (MD, *Plaude*)
-2. **Editor**: Mikołaj Derduń, with ń. (MD, *Zmierzka*)
-3. **Series**: Polish Early Music, numbered in order of first edition.
-4. **Licence**: editorial text, scores and sources under CC BY 4.0; build code under MIT. The music is public domain. Facsimile images only where their holder's terms allow (Leipzig and Polona images are public domain).
-5. **Edition numbering**: "First edition, 2026". Corrections that change readings make a new edition; typographic fixes do not.
+2. **Title and subtitle.**
+   - *Title*: the work's title in its main source (a heading, a rubric, a table of contents), in the source's language. If the source gives none, the incipit.
+   - *Subtitle*: if the title is not the incipit, the incipit (*Modlitwa gdy dziatki spać idą* / *Już się zmierzka*). If the title is the incipit, the work's liturgical or functional designation in the source's language (*Vox in Rama* / *Communio in festo SS. Innocentium*). If neither applies, no subtitle (*Bogurodzica*).
+   - Alternative titles go in the introduction. The collection or print a piece belongs to goes in the source line. Scoring goes in the forces line ("for four voices"), never in the subtitle.
+3. **Editor**: Mikołaj Derduń, with ń. (MD, *Zmierzka*)
+4. **Series**: Polish Early Music, numbered in order of first edition.
+5. **Licence**: editorial text, scores and sources under CC BY 4.0; build code under MIT. The music is public domain. Facsimile images only where their holder's terms allow (Leipzig and Polona images are public domain).
+6. **Edition numbering**: "First edition, 2026". Corrections that change readings make a new edition; typographic fixes do not.
 
-## 15. Open questions
+## 15. Decided 3 October 2026
 
-These came out of collating the five editions and need a decision before the resets.
-
-1. **Stanza underlay.** The standing preference is two stanzas under the notes so singers can learn the underlay. *Zmierzka* tried it and returned to one. Is one stanza now the rule, or was *Zmierzka* an exception?
-2. **Finals in *Plaude*.** The source's final longs were printed as breves. Rule 5.7 would restore longae.
-3. **Mensuration sign in *Nunc scio*.** The tablature has none; the edition supplies cut-C. Rule 5.4 would either drop it or mark it editorial (it is currently marked in the method).
-4. ***Bogurodzica* title page** has no editor's name and the gabc header has "Derdun". The reset fixes both.
-5. **Voice** of editorial judgement. *Plaude* uses "I"; the others use "here" and "this edition". The house style (docs/house-style.md) proposes "I" for judgements and impersonal wording for method.
+1. Strophic underlay: rule 10.14 (not fixed at one or two stanzas).
+2. Longs: rule 5.7. *Plaude euge* restores the source's longs at the end of each ending and drops its editorial fermata.
+3. Mensuration signs: rule 5.4. *Nunc scio vere* keeps its cut-C, marked editorial in the method.
+4. Voice: "I" for the editor's judgements and readings, impersonal wording for method.
+5. Performance pitch: rule 2.2. *Już się zmierzka* performance edition a minor third up, Altus in treble clef.

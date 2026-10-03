@@ -10,6 +10,9 @@
 \version "2.24.0"
 
 %% ------------------------------------------------------------ type
+%% Staff size: 17 in critical editions, 19 in performance editions.
+#(set-global-staff-size
+   (if (eq? (ly:parser-lookup 'prPerformance) #t) 19 17))
 \paper {
   #(define fonts
      (make-pango-font-tree "Junicode" "Junicode" "DejaVu Sans Mono"
@@ -81,6 +84,14 @@ voiceSetup = {
   \autoBeamOff
 }
 
+%% ------------------------------------------------------------ Mensurstriche
+#(define pr-mensurstrich-grey (rgb-color 0.58 0.58 0.58))
+#(define (pr-mensurstrich? grob) (member (ly:grob-property grob 'glyph-name) '("|" "-span|")))
+#(define (pr-mensurstrich-color grob)
+   (if (pr-mensurstrich? grob) pr-mensurstrich-grey black))
+#(define (pr-mensurstrich-thickness grob)
+   (if (pr-mensurstrich? grob) 1.0 1.9))
+
 %% ------------------------------------------------------------ contexts
 \layout {
   \context { \Score
@@ -103,6 +114,11 @@ voiceSetup = {
   }
   \context { \StaffGroup
     \override SystemStartBracket.collapse-height = #4
+    %% Mensurstriche are drawn light: a hairline in grey, so the score reads
+    %% as parts first and as a timed score second. Section, repeat and final
+    %% bar lines keep full weight.
+    \override SpanBar.color = #pr-mensurstrich-color
+    \override SpanBar.hair-thickness = #pr-mensurstrich-thickness
   }
   \context { \Staff
     %% Mensurstriche: bar lines between the staves, never through a note.
@@ -110,7 +126,7 @@ voiceSetup = {
     \consists "Ambitus_engraver"
     \override InstrumentName.self-alignment-X = #RIGHT
     \override InstrumentName.font-size = #0.6
-    \override InstrumentName.padding = #1.6
+    \override InstrumentName.padding = #2.4
     \override AccidentalSuggestion.font-size = #-1.5
     \override AccidentalSuggestion.parenthesized = ##f
     \override Ambitus.X-offset = #0.6
@@ -135,3 +151,57 @@ vname =
         instrumentName = \markup \smallCaps #long
         shortInstrumentName = \markup \smallCaps #short
       } #})
+
+%% ------------------------------------------------------------ the score
+%% An edition's score.ly calls \prScore with one \prStaff per voice. The same
+%% file serves both editions. A performance edition at another pitch sets,
+%% before including score.ly:
+%%   prPerformance = ##t
+%%   prTranspose = { d f }        % from, to
+%%   prKey = { \key f \dorian }
+%% and gives per-voice performance clefs in \prStaff. Incipits are dropped in
+%% a transposed edition (they would show the source's pitch).
+
+#(define (pr-lookup sym default)
+   (let ((v (ly:parser-lookup sym))) (if (null? v) default v)))
+#(define (pr-transposed?) (not (null? (ly:parser-lookup 'prTranspose))))
+
+prMens = {
+  \override Staff.TimeSignature.style = #'mensural
+  \override NoteHead.style = #'petrucci
+  \time 2/2
+}
+
+%% \prStaff long short incipit clef perf-clef notes words
+%%   incipit: music for the incipit staff (clef, sign, first note), or {} for none
+%%   perf-clef: clef in a transposed performance edition ("" = same as clef)
+prStaff =
+#(define-music-function (long short inc clef pclef notes words)
+   (string? string? ly:music? string? string? ly:music? ly:music?)
+   (let* ((transposed (pr-transposed?))
+          (tr (and transposed (ly:music-property (ly:parser-lookup 'prTranspose) 'elements)))
+          (from (and tr (ly:music-property (car tr) 'pitch)))
+          (to (and tr (ly:music-property (cadr tr) 'pitch)))
+          (useclef (if (and transposed (not (string-null? pclef))) pclef clef))
+          (key (pr-lookup 'prKey #{ #}))
+          (sign (pr-lookup 'prSign "timesig.C22"))
+          (vname (string-downcase long))
+          (music (if transposed #{ \transpose #from #to #notes #} notes))
+          (incipit (if (or transposed (null? (ly:music-property inc 'elements)))
+                       #{ #}
+                       #{ \incipit { \prMens #inc } #})))
+     #{ <<
+          \new Staff \with \vname #long #short {
+            $incipit
+            \clef #useclef $key
+            \time 2/1
+            $(if (string-null? sign) #{ \omit Staff.TimeSignature #} #{ \mensSign #sign #})
+            \voiceSetup
+            \new Voice = #vname $music
+          }
+          \new Lyrics \lyricsto #vname $words
+        >> #}))
+
+prScore =
+#(define-music-function (staves) (ly:music?)
+   #{ \new StaffGroup $staves #})

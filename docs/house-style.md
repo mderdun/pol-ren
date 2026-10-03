@@ -2,118 +2,121 @@
 
 How the Polish Early Music editions look and read. The editorial rules are in `editorial-principles.md`; this file covers design and language.
 
-The model is the sixteenth-century partbook, read with modern eyes: black and red, one good typeface, generous margins, decoration only where a printer of 1550 would have put it, and nothing a singer has to decode. Ornament marks structure (a new part, a title, a rubric). It never carries information.
+The model is the sixteenth-century partbook, read with modern eyes: black and red, one good typeface, clear margins, decoration only where a printer of 1550 would have put it, and nothing a singer has to decode. Ornament marks structure (a new part, a title, a rubric). It never carries information.
 
-## 1. One page-maker
+## 1. One place for design
 
-LaTeX (LuaLaTeX, class `house/latex/pol-ren.cls`) sets every page of every edition: titles, prose, tables, running heads, page breaks. LilyPond and Gregorio only engrave music.
+Every design decision lives in two files:
 
-- **Polyphony.** `lilypond-book` turns each `\lilypondfile` into one graphic per system. LaTeX places the systems and breaks pages between them, so headings, stanzas and notes around a score obey the same rules as the prose.
-- **Chant.** `gregoriotex` sets chant directly inside the same class.
-- **Shared style.** `house/lilypond/pol-ren.ily` holds every engraving decision. An edition's `score.ly` includes it and sets nothing about type or page.
+- `house/latex/pol-ren.cls`: pages, type, colour, headings, title pages, tables, stanza layout, sigla, running heads.
+- `house/lilypond/pol-ren.ily`: engraving, staff size, Mensurstriche, editorial signs, the score builder (`\prScore`, `\prStaff`) and performance transposition.
 
-This is what lets a Gregorio edition and a LilyPond edition share one design.
+LaTeX (LuaLaTeX) sets every page. LilyPond, through `lilypond-book`, and Gregorio only engrave music into it. `lilypond-book` hands LaTeX one graphic per system, so LaTeX breaks pages between systems and headings, stanzas and notes around a score obey the same rules as the prose. A chant edition and a polyphonic one share one design.
+
+Edition and guide files hold content only: text, sigla, notes, the music data, and a one-line choice of pitch for a transposed performance edition. `tools/lint.sh` rejects layout commands in them (spacing, sizes, colour, staff sizes, LilyPond overrides). To change the design, edit the two house files and run `make`; every edition and guide is rebuilt from them.
 
 ## 2. Page
 
-| | Critical | Performance |
+One page for every single edition and guide, critical or performance: A4, symmetric margins (20 mm sides, 17 mm top, 23 mm bottom), text block 170 × 257 mm. Running heads alternate: composer on even pages, piece on odd, folio outside. These documents are short and printed loose, so they do not get book margins.
+
+| | Critical, guide | Performance |
 |---|---|---|
-| Paper | A4, two-sided | A4, one-sided |
-| Margins | inner 24, top 24, outer 36, bottom 37 mm | 18, 16, 18, 20 mm |
-| Text block | 150 × 236 mm | 174 × 261 mm |
-| Body | 11/14.4 pt | 11/14 pt |
+| Body | 11 pt, leading 1.13 (the long measure needs it) | 11 pt, leading 1.06 |
 | Staff size | 17 | 19 |
 | Gregorio staff | 18 | 21 |
 
-The critical page follows book proportions (inner < top < outer < bottom). The performance page gives the music room and keeps a margin to hold.
+**Anthologies** (option `anthology`) get book margins (inner 24, top 24, outer 36, bottom 37 mm) and open each part on a recto, with an ornament on any blank verso.
 
 ## 3. Type
 
-**Junicode 2** throughout, music text included. It was chosen for *Bogurodzica* because it covers Old Polish and medieval Latin (ł ę ą ǫ ſ ē), and kept for the series.
+**Junicode 2** throughout, music text and IPA included. Accidentals in prose (♭ ♮ ♯) come from TeX Gyre Pagella, since Junicode has none.
 
 | Element | Setting |
 |---|---|
 | Body | Junicode Regular 11 pt, old-style figures, justified, microtype |
 | Italic | Translations, titles of works, foreign words in English prose, editorial text, run-in subheads |
-| Small capitals | Section heads, running heads, sigla, voice names, verdicts, column heads. Letter-spaced 9% when standing alone |
-| Expanded capitals | Composer's name on the title page only (Junicode Exp) |
+| Small capitals | Section heads, running heads (composer), voice names and abbreviations, verdicts, column heads. Letter-spaced when standing alone |
+| Expanded capitals | Composer's name on a title page only (Junicode Exp) |
 | Bold | Not used. Emphasis is italic; labels are small capitals |
-| Figures | Old-style in prose; lining tabular in apparatus columns and folios |
-| Lyrics | Junicode, about 10.5 pt at staff 17 |
-| Accidentals in prose | ♭ ♮ ♯ from TeX Gyre Pagella (Junicode has none) |
+| Figures | Old-style in prose; lining in apparatus columns and folios |
+| IPA | Upright in square brackets |
 
-## 4. Colour
+## 4. Sigla
+
+A siglum of a source or edition is set in small capitals inside a thin ring (one letter) or a rounded frame (several letters). The frame says "this is a source", so a source A never reads as the word "a" or as the Altus. Voice abbreviations (C, A, T, B) stay plain small capitals.
+
+## 5. Colour
 
 Black, and one red: **#9A1E1E**, a rubricator's red.
 
-Red is used for: the series line, the fleuron that opens a part, the initial letter of the introduction, stanza numbers, liturgical rubrics in a score (*Antiphona*, *Psalmus*), the chant initial and annotation, the thin rule of the title-page frame.
+Red is used for: the series line, the fleuron that opens a part, the drop initial of the first section, stanza numbers, liturgical rubrics over a score, the chant initial and annotation, the thin rule of the title-page frame.
 
-Red is never used for: notes, accidentals, editorial signs, sigla, anything a reader needs. A black-and-white photocopy must lose nothing.
+Red is never used for notes, accidentals, editorial signs, sigla, or anything a reader needs. A black-and-white photocopy must lose nothing.
 
-At most a few red marks per spread.
-
-## 5. Ornament
+## 6. Ornament
 
 | Mark | Glyph | Where |
 |---|---|---|
-| Fleuron | ❦ red | Opens each part of the critical edition (Text, Score, Critical notes); title page |
-| Leaf | ❧ red | Centre of a blank verso |
-| Middle dot | · red | Separator in running heads and edition lines |
-| Thick-and-thin rule | 1.1 pt black + 0.35 pt red | Top and bottom of the critical title page |
-| Initial | 3-line red drop capital | First word of the Introduction only; the rest of the word in small capitals |
+| Fleuron | ❦ red | Opens each part of a critical edition (Text, Critical notes); title page |
+| Leaf | ❧ red | Centre of a blank verso (anthologies) |
+| Middle dot | · red | Separator in the series line |
+| Thick-and-thin rule | 1.1 pt black and 0.35 pt red | Top and bottom of a title page |
+| Initial | 3-line red drop capital | First word of the first section only; the rest of the word in small capitals |
 
 Nothing else. No borders around music, no tinted boxes, no icons.
 
-## 6. Headings and breaks
+## 7. Headings and breaks
 
-- **Section head**: centred spaced small capitals, 2.1 lines above, 0.9 below.
-- **Subhead**: italic, run into the paragraph, closed with a full stop.
-- **Part opening** (critical only): new recto, red fleuron, section head.
-- **A heading never ends a page.** Every head reserves room for at least three lines after it; otherwise it moves to the next page. (Editor's rule.)
+- **Section head**: centred spaced small capitals. **Subhead**: italic, run into the paragraph, closed with a full stop.
+- **A heading never ends a page.** Every head reserves room for several lines after it, or moves to the next page. (Editor's rule.)
 - No widows or orphans. Paragraphs indent 1.2 em, except after a heading. No space between paragraphs.
-- **Critical edition** may break generously: the title page stands alone, and Text, Score and Critical notes each begin on a recto. A blank verso carries the leaf ornament.
-- **Performance edition** has no blank pages. Page turns fall at the end of a section or stanza, or in a rest of at least a breve in every voice. A piece of four pages or fewer should need no turn in the middle of a phrase.
+- **Critical edition**: the title page stands alone; its verso carries the contents (generated from the section heads) and the colophon. Text, Score and Critical notes each start a new page.
+- **Performance edition**: no blank pages. Blocks that should not split (the stanzas after a score, the rehearsal notes with their heading) are kept whole and move to the next page if they do not fit.
 - A repeated section starts and ends on its own system.
 
-## 7. The two editions
+## 8. The two editions
 
-**Critical.** Title page (series and number, composer, title, subtitle, forces, poet, "Critical edition", source line, editor, edition and year) between thick-and-thin rules. Verso: contents and colophon with licence. Then preface sections, text, score with its own heading, critical notes and literature. Running heads: verso composer · title; recto section.
+**Critical.** Title page between thick-and-thin rules: series and number, composer, title, subtitle, fleuron, forces, poet, "Critical edition", source line, editor, edition and year. Verso: contents and colophon with licence. Then the preface sections, text, score with its own heading, critical notes and literature.
 
-**Performance.** No title page. A masthead at the top of page 1 (series · Performance edition, title, subtitle, poet left, composer right) and a headnote of one or two italic lines that set the scene. The score starts on page 1. After the score, one page: text and translation, pronunciation, "For rehearsal" notes in two columns, and a one-line colophon at the foot. Running head: composer · title, folio right.
+**Performance.** No title page. A masthead at the top of page 1: series and "Performance edition", title, subtitle, poet left and composer right, and one italic line if the score is transposed. No context before the music: setting the scene belongs to the director and to the rehearsal notes. The score starts on page 1, with the stanzas after it. Then Text and translation and the For rehearsal notes in two columns, with a one-line colophon at the foot.
 
-## 8. Score
+**Guide.** As a critical edition without music: title page, contents and colophon, then prose and tables.
+
+**Titles and subtitles** follow the rule in `editorial-principles.md` §14: title from the source; subtitle the incipit, or the liturgical designation if the title is the incipit; scoring in the forces line.
+
+## 9. Score
 
 - Voice names in small capitals, abbreviated after the first system (C. A. T. B.).
-- Incipit with original clef, sign and first note; then the modern clef and the ambitus; then the mensuration sign.
-- Mensurstriche between the staves. Bar numbers in small italic at the start of each system only.
+- Incipit with original clef, sign and first note (omitted in a transposed performance edition); then the modern clef and the ambitus; then the mensuration sign.
+- **Mensurstriche** as grey hairlines between the staves, so the parts read first and the bar lines are there for whoever wants them. Section, repeat and final bar lines are black and full weight.
+- Bar numbers in small italic at the start of each system only.
 - Editorial accidentals small, above the note.
 - Rubrics red italic, left-aligned over the system.
-- The score heading in the critical edition repeats title and subtitle, with poet left and composer right.
-- Stanzas after the score: up to three abreast, red stanza numbers.
+- In the critical edition the score has its own heading: title, subtitle, poet left, composer right.
+- **Stanzas after the score**: centred, two abreast, the widest stanza setting both column widths. An odd last stanza is centred below. Red stanza numbers hang in the left margin of each stanza.
 
-## 9. Tables and lists
+## 10. Tables and lists
 
-- No vertical rules. One rule under the column heads (booktabs `\midrule`). Column heads in spaced small capitals.
-- **Critical notes**: three columns, bar | voice | note. Bar numbers in lining figures. Pitches in Helmholtz notation, c′ = middle C, roman. A note ends with its verdict in small capitals where a reading is weighed.
-- **Sources**: siglum in a hanging column of small capitals; base text marked *Base text*.
-- **Literature**: author-first, hanging indent, short; grouped (Sources and editions / Theory / Studies) only when the list is long.
-- **Text and translation**: two columns (text, italic translation) or, in the critical edition, three (diplomatic, transcription, translation). Stanza numbers red.
-- **Pronunciation**: spelling (italic) | sound | as in.
+- No vertical rules. One rule under the column heads. Column heads in spaced small capitals.
+- **Critical notes**: three columns, bar | voice | note. Bar numbers in lining figures; voices as plain small capitals; sigla framed. Pitches in Helmholtz notation, c′ = middle C, roman. A note ends with its verdict in small capitals where a reading is weighed.
+- **Sources**: siglum in a hanging column; base text marked *Base text*.
+- **Literature**: author first, hanging indent; grouped only when the list is long.
+- **Text and translation**: two columns (text, italic translation) or, in the critical edition, three (diplomatic, transcription, translation). Red stanza numbers.
+- **Pronunciation**: in the series guide, as tables (spelling | sound | example; for Latin, spelling | Polish Latin | Roman | example).
 
-## 10. Language
+## 11. Language
 
 The prose is academic in what it claims and plain in how it says it. Argue from first principles, the sources and the counterpoint; for performers, from what happens in rehearsal.
 
 **Voice and register**
 
 - Short declarative sentences. One idea per sentence. Active voice; name who did it ("Perz joins the notes", not "the notes are joined").
-- "I" for the editor's judgements and readings ("I take b natural here"; "the parallel is my own reading"). Impersonal for method ("Bar lines run between the staves").
+- "I" for the editor's judgements and readings ("I take b natural here"; "the parallel is my own reading"). Impersonal wording for method ("Bar lines run between the staves").
 - State a reading, then the reason. No hedging stacks. "Probably" once, where it is true.
-- No puffery or mood words: not "beautiful", "haunting", "pivotal", "rich tapestry". Describe the music: its range, its cadences, what the Tenor does.
-- No em dashes. Commas and full stops; parentheses only for references and glosses.
-- Colons only before a list or a quotation.
-- Every claim verified or cut. Unverified material does not go in to be flagged; it goes to the issue tracker.
-- The performance edition speaks to singers: what to sing, how fast, what the signs mean, what the words say. Nothing about how the edition was made beyond one line.
+- No puffery or mood words: not "beautiful", "haunting", "pivotal". Describe the music: its range, its cadences, what the Tenor does.
+- No em dashes. Commas and full stops; parentheses only for references and glosses. Colons only before a list or a quotation.
+- Every claim verified or cut. Unverified material goes to the issue tracker, not into the edition.
+- The performance edition speaks to singers and directors: what to sing, how fast, what the signs mean, what the words say, and enough about the piece to rehearse it with understanding. Nothing about how the edition was made beyond one line.
 
 **Terms** (use these, not their synonyms)
 
@@ -123,16 +126,16 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 | base text | copy text |
 | critical notes | commentary, apparatus (in headings) |
 | editorial | ed., added |
-| semibreve, minim, semiminim, fusa, breve, longa | whole note, half note |
+| semibreve, minim, semiminim, fusa, breve, long | whole note, half note |
 | Mensurstriche | bar lines (when the distinction matters) |
 | cadence, clausula | resolution |
 | underlay | text setting, lyrics |
 | written pitch | original pitch |
-| Cantus, Altus, Tenor, Bassus | soprano, alto (except when talking about modern choirs) |
+| Cantus, Altus, Tenor, Bassus | soprano, alto (except about modern choirs) |
 
 **Conventions**
 
-- British spelling (-ise). Dates "c.\,1550–1556", "fl. 1604–1611", "after 1452". En dash in ranges.
+- British spelling (-ise). Dates "c. 1550–1556", "fl. 1604–1611", "after 1452". En dash in ranges.
 - Single curly quotation marks, double inside. Quotations in their own language, roman, in quotation marks; a translation follows in parentheses when needed.
 - Titles of works in italic; Polish and Latin titles in the source's form.
 - References in prose: "bar 29, Altus". In critical notes: "29 | A".

@@ -14,15 +14,10 @@
 \begin{document}
 \maketitlepage
 
-\colophon[{\spacedsc{Contents}\par
-  \begin{tabular}{@{}l@{\hspace{3em}}r@{}}
-  Introduction & \lnum{\pageref{s:intro}}\\ Sources & \lnum{\pageref{s:src}}\\ Editorial method & \lnum{\pageref{s:meth}}\\
-  Text and translation & \lnum{\pageref{s:text}}\\ Score & \lnum{\pageref{s:score}}\\ Critical notes & \lnum{\pageref{s:notes}}\\
-  Literature & \lnum{\pageref{s:lit}}
-  \end{tabular}\par\vspace{18mm}}]
+\colophon
 
 %% ================================================================ PREFACE
-\section*{Introduction}\label{s:intro}
+\section*{Introduction}
 
 \initial{M}{odlitwa gdy dziatki spać idą} (‘A prayer when the children go to
 sleep’) is an evening hymn in four six-line stanzas by Andrzej Trzecieski the
@@ -63,7 +58,7 @@ second edition of Jan Seklucjan’s \la{Catechismus} (Königsberg, 1549) closes
 with a \pl{Nauka dziecinna}, a teaching for children, which tells them how to
 begin and end the day:
 
-\begin{quote}\small
+\begin{quote}
 ‘Idąc spać mają dać dobrą noc swoim starszym, a niż się układą, mają się
 naprzód przeżegnać … [i] te modlitwę mogą przydać: Wszechmogący Ojcze
 niebieski, dziękujem Tobie … iżeś nas tego dnia raczył we zdrowiu zachować
@@ -101,7 +96,7 @@ translators of the Brest Bible (1563). He knew Wacław well. He wrote verses in
 praise of him for the \la{Lamentationes} (1553) and, after the composer’s
 death, an elegy, \la{De obitu Venceslai Samotulini}.
 
-\section*{Sources}\label{s:src}
+\section*{Sources}
 
 \begin{sigla}
 \siglum{A} \pl{Modlitwa gdy dźyatki śpáć idą.} W Krákowye v Łázárzá
@@ -110,14 +105,14 @@ death, an elegy, \la{De obitu Venceslai Samotulini}.
   facing Tenor (A2r); Bassus (A2v) facing Altus (A3r); stanzas 1–3 (A3v);
   stanza 4 and ‘Dokończenye’ (A4r). Clefs C1, C3, C4, F4; cut-C in every voice;
   no signature, no accidentals. No copy known.
-\siglum{F} Facsimile of A: ‘z Pierwodruku wznowiła Kazimiera Przyborowska.
+\siglum{F} Facsimile of \sig{A}: ‘z Pierwodruku wznowiła Kazimiera Przyborowska.
   Warszawa. 1880 r.’ Warsaw, Biblioteka Narodowa, Podr.SD Mag.F I.6, on
   Polona. A redrawn copy, not a photograph. \textit{Base text.}
 \siglum{S} Jan Seklucjan, \pl{Pieśni chrześcijańskie dawniejsze i nowe}
   (Königsberg, 1559), p.\,115: the tune alone.
 \end{sigla}
 
-\noindent The print itself is lost, and F is a hand-drawn copy of it. S has
+\noindent The print itself is lost, and \sig{F} is a hand-drawn copy of it. \sig{S} has
 not yet been collated. Editions collated:
 
 \begin{sigla}
@@ -129,30 +124,32 @@ not yet been collated. Editions collated:
 \siglum{M} Maia McCormick, \pl{Modlitwa, gdy dziatki spać idą} (2024).
 \end{sigla}
 
-\noindent PWM, K and M agree in every note with F, apart from the places
+\noindent \sig{PWM}, \sig{K} and \sig{M} agree in every note with \sig{F}, apart from the places
 listed in the critical notes.
 
-\section*{Editorial method}\label{s:meth}
+\section*{Editorial method}
 
-\subsection{Pitch, values and barring} As in A: final D, no signature, no
-reduction of note values. A bar is one breve, the tactus of cut-C. Bar lines
-are drawn between the staves only, so that none cuts through a note; a note
-that runs across one keeps its single value, and no ties are added. The
-incipit before each staff gives the clef, sign and first note of A, and the
-range of each voice follows it. The final notes are longae, as in A.
+\subsection{Pitch, values and barring} As in \sig{A}: final D, no signature, no
+reduction of note values, and the print’s cut-C. A bar is one breve, the
+tactus of cut-C. Light bar lines run between the staves only, so that none
+cuts through a note; a note that runs across one keeps its single value, and
+no ties are added. They serve ensemble and rehearsal, and the parts can be
+read past them. The
+incipit before each staff gives the clef, sign and first note of \sig{A}, and the
+range of each voice follows it. The final notes are longae, as in \sig{A}, and are held until all voices have finished; no fermata is added.
 
-\subsection{Clefs and voices} The voice names are those of A. Altus and Tenor
+\subsection{Clefs and voices} The voice names are those of \sig{A}. Altus and Tenor
 use the octave-transposing treble clef. Written ranges: Cantus c′–d″, Altus
 d–a′, Tenor d–e′, Bassus G–a.
 
-\subsection{Accidentals} A prints none, so every accidental here is editorial.
+\subsection{Accidentals} \sig{A} prints none, so every accidental here is editorial.
 They stand above the note and apply to that note only. They are limited to
 the five cadences where a major sixth opens to an octave (bars 2, 4, 9, 19
 and 29).
 
-\subsection{Underlay} A prints each voice’s text as a block under the staff,
-so the underlay is editorial. Three things in A guide it. The Tenor’s text
-fits its notes exactly, one syllable to a note. Where A spaces the words of
+\subsection{Underlay} \sig{A} prints each voice’s text as a block under the staff,
+so the underlay is editorial. Three things in \sig{A} guide it. The Tenor’s text
+fits its notes exactly, one syllable to a note. Where \sig{A} spaces the words of
 the Cantus and Bassus apart, it leaves room for a melisma. The line breaks of
 the other voices give only a rough guide. Elsewhere the underlay follows the
 rules of this series: no new syllable on a semiminim, except straight after a
@@ -160,70 +157,70 @@ dotted minim, or on a fusa; a repeated note takes a new syllable where the
 text allows; the last syllable of a line falls on its cadence note. Where
 these leave a choice, the syllable goes where the Tenor has the same word.
 
-\subsection{Text} A prints four stanzas and ‘Dokończenye’, with no Amen. All
+\subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’, with no Amen. All
 four are sung to the same music. Stanza 1 is underlaid; stanzas 2–4 follow
 the score. Old Polish verse counts syllables, eight to the line with a break
 after the fourth, so the later stanzas take the notes of stanza 1 syllable for
 syllable. The transcription uses modern spelling and punctuation but keeps
 the old sounds and forms: \pl{zmierzka, naszem, strażem, nawięcej, wszytki,
 swoję, Jesu, raczysz, wszej, jenż}. The diplomatic text keeps the spelling
-and line division of A, with ſ, and ē unexpanded.
+and line division of \sig{A}, with ſ, and ē unexpanded.
 
 %% ================================================================ TEXT
-\opensection{Text and translation}\label{s:text}
+\opensection{Text and translation}
 
 \begin{dipltextcols}
 & \colhead{A, fols. A3v–A4r} & \colhead{transcription} & \colhead{translation}\\[0.6em]
-\stanzanumber{1} & \cell{\diplOne} & \cell{\stanzaOne} & \cell{\transOne}\\[1.1em]
-\stanzanumber{2} & \cell{\diplTwo} & \cell{\stanzaTwo} & \cell{\transTwo}\\[1.1em]
-\stanzanumber{3} & \cell{\diplThree} & \cell{\stanzaThree} & \cell{\transThree}\\[1.1em]
-\stanzanumber{4} & \cell{\diplFour} & \cell{\stanzaFour} & \cell{\transFour}\\
+\stanzanumber{1} & \lines{\diplOne} & \lines{\stanzaOne} & \lines{\transOne}\\[1.1em]
+\stanzanumber{2} & \lines{\diplTwo} & \lines{\stanzaTwo} & \lines{\transTwo}\\[1.1em]
+\stanzanumber{3} & \lines{\diplThree} & \lines{\stanzaThree} & \lines{\transThree}\\[1.1em]
+\stanzanumber{4} & \lines{\diplFour} & \lines{\stanzaFour} & \lines{\transFour}\\
 \end{dipltextcols}
 
 %% ================================================================ SCORE
-\cleardoublepage
-\runninghead{Score}
-\scorehead\label{s:score}
-\lilypondfile[staffsize=17,noindent]{music/score.ly}
-\laterstanzas
+\scorehead
+\lilypondfile[noindent]{music/score.ly}
+\begin{stanzas}
+\stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
+\end{stanzas}
 
 %% ================================================================ NOTES
-\opensection{Critical notes}\label{s:notes}
+\opensection{Critical notes}
 
-\noindent PWM, K and M transpose up a minor third, halve the values, bar in
+\noindent \sig{PWM}, \sig{K} and \sig{M} transpose up a minor third, halve the values, bar in
 4/4 and use a signature of three flats. Their readings are given here at the
 pitch and in the values of this edition. Bar numbers agree in all four.
 
 \begin{apparatus}
-\cn{1–2}{A}{PWM splits the dotted minim f′ so that ‘się’ has a note of its
-  own. A has one dotted minim; ‘się’ falls on the following e′.}
-\cn{4}{C}{PWM raises the semiminim g′ as well as the cadential minim. Only the
-  minim is raised here, as in K and M.}
-\cn{8–10}{A, T}{M exchanges the two parts, ‘for tessitura’. A has the
+\cn{1–2}{A}{\sig{PWM} splits the dotted minim f′ so that ‘się’ has a note of its
+  own. \sig{A} has one dotted minim; ‘się’ falls on the following e′.}
+\cn{4}{C}{\sig{PWM} raises the semiminim g′ as well as the cadential minim. Only the
+  minim is raised here, as in \sig{K} and \sig{M}.}
+\cn{8–10}{A, T}{\sig{M} exchanges the two parts, ‘for tessitura’. \sig{A} has the
   semiminims c′ b a g and the descent f e d in the Altus.}
-\cn{8–9}{A}{PWM, K: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
+\cn{8–9}{A}{\sig{PWM}, \sig{K}: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
   ‘o’ on e, so that ‘pomoc’ falls with the Cantus and Tenor.}
-\cn{12–13}{C, B}{Parallel fifths d′–g′ over g–c. They stand in A.}
-\cn{15–17}{C}{PWM, K, M: ‘złych’ on the semiminim g′, bar 17. Here on a′,
+\cn{12–13}{C, B}{Parallel fifths d′–g′ over g–c. They stand in \sig{A}.}
+\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on a′,
   bar 16, in step with the Altus.}
-\cn{23}{A}{K, M: ‘-cej’ on the second semiminim a. Here on b, straight after
+\cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on b, straight after
   the dotted minim.}
-\cn{27–29}{C}{PWM, K, M put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′, ‘swej’ d′,
-  ‘chy-’ e′, ‘-tro-’ d′. A leaves a gap after ‘Vżywá’, which keeps the e′
+\cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′, ‘swej’ d′,
+  ‘chy-’ e′, ‘-tro-’ d′. \sig{A} leaves a gap after ‘Vżywá’, which keeps the e′
   within the melisma; the line then moves with Tenor and Bassus.}
-\cn{28}{A}{M: ‘ją’ on the second semiminim c′. Here on d′, straight after the
+\cn{28}{A}{\sig{M}: ‘ją’ on the second semiminim c′. Here on d′, straight after the
   dotted minim.}
-\cn{29}{A}{PWM, K and M flatten b (\la{una nota super la}). Left as in A:
+\cn{29}{A}{\sig{PWM}, \sig{K} and \sig{M} flatten b (\la{una nota super la}). Left as in \sig{A}:
   b\fl\ would sound a tritone against e′ in the Cantus, and b is the sixth
   degree of the D mode. Singers who prefer the flat may take it.
   \verdict{A kept.}}
-\cn{30}{B}{A has a maxima, given as a longa to match the other voices.}
-\cn{text}{}{PWM: ‘zmierzcha’, ‘naszym stróżem’. K, M: ‘naszym strażem’;
-  M ‘zmierzcha’. All three print ‘On’ with a capital. A: ‘zmyerzka’,
+\cn{30}{B}{\sig{A} has a maxima, given as a longa to match the other voices.}
+\cn{text}{}{\sig{PWM}: ‘zmierzcha’, ‘naszym stróżem’. \sig{K}, \sig{M}: ‘naszym strażem’;
+  \sig{M} ‘zmierzcha’. All three print ‘On’ with a capital. \sig{A}: ‘zmyerzka’,
   ‘nássem strażem’, ‘nawyęcey’, ‘on’.}
 \end{apparatus}
 
-\section*{Literature}\label{s:lit}
+\section*{Literature}
 
 \begin{literature}
 \lit Leszczyńska, Agnieszka. ‘Piosnka nadobna dla dziatek. Z myślą

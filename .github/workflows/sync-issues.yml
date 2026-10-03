@@ -1,6 +1,6 @@
 name: Sync tracker issues
-# Opens any issue in tracker/issues.json whose title does not exist yet.
-# Never edits or closes issues, so it is safe to run again.
+# tracker/issues.json is the source of truth for issue titles, bodies,
+# labels and open/closed state. Comments are never touched.
 on:
   push:
     branches: [main]
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create labels and missing issues
+      - name: Labels, issues, state
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -24,10 +24,20 @@ jobs:
             gh label create "$(jq -r .name <<<"$l")" --repo "$REPO" \
               --color "$(jq -r .color <<<"$l")" --description "$(jq -r .description <<<"$l")" --force
           done
-          existing="$(gh issue list --repo "$REPO" --state all --limit 500 --json title --jq '.[].title')"
+          gh issue list --repo "$REPO" --state all --limit 500 --json number,title,state > existing.json
           jq -c '.issues[]' tracker/issues.json | while read -r i; do
-            t="$(jq -r .title <<<"$i")"
-            if grep -Fxq "$t" <<<"$existing"; then echo "exists: $t"; continue; fi
-            args=(); for lab in $(jq -r '.labels[] | @base64' <<<"$i"); do args+=(--label "$(base64 -d <<<"$lab")"); done
-            gh issue create --repo "$REPO" --title "$t" --body "$(jq -r .body <<<"$i")" "${args[@]}"
+            t="$(jq -r .title <<<"$i")"; body="$(jq -r .body <<<"$i")"
+            want="$(jq -r '.state // "open"' <<<"$i")"
+            args=(); for lab in $(jq -r '.labels[] | @base64' <<<"$i"); do args+=(--add-label "$(base64 -d <<<"$lab")"); done
+            n="$(jq -r --arg t "$t" '.[] | select(.title==$t) | .number' existing.json | head -1)"
+            if [ -z "$n" ]; then
+              cargs=(); for lab in $(jq -r '.labels[] | @base64' <<<"$i"); do cargs+=(--label "$(base64 -d <<<"$lab")"); done
+              url="$(gh issue create --repo "$REPO" --title "$t" --body "$body" "${cargs[@]}")"; n="${url##*/}"
+              echo "created #$n $t"
+            else
+              gh issue edit "$n" --repo "$REPO" --body "$body" "${args[@]}" >/dev/null; echo "updated #$n $t"
+            fi
+            have="$(gh issue view "$n" --repo "$REPO" --json state --jq .state)"
+            if [ "$want" = closed ] && [ "$have" = OPEN ]; then gh issue close "$n" --repo "$REPO" --reason completed; fi
+            if [ "$want" = open ] && [ "$have" = CLOSED ]; then gh issue reopen "$n" --repo "$REPO"; fi
           done

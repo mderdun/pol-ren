@@ -5,52 +5,54 @@
 \title[Już się zmierzka]{Modlitwa gdy dziatki spać idą}
 \subtitle{Już się zmierzka}
 \poet{Andrzej Trzecieski}
+\pitchline{A minor third above the printed pitch}
 \edition{First edition}{2026}
-\headnote{An evening prayer for the household, Kraków, early 1550s.
-  The Tenor sings the hymn tune; the other voices keep it company.}
 
 \begin{document}
 \makemasthead
-\lilypondfile[staffsize=19,noindent]{music/score.ly}
-\laterstanzas
+\lilypondfile[noindent]{music/score-performance.ly}
+\begin{stanzas}
+\stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
+\end{stanzas}
 
-\clearpage
 \section*{Text and translation}
 
 \begin{textcols}
-\stanzanumber{1} & \cell{\stanzaOne} & \cell{\transOne}\\[0.9em]
-\stanzanumber{2} & \cell{\stanzaTwo} & \cell{\transTwo}\\[0.9em]
-\stanzanumber{3} & \cell{\stanzaThree} & \cell{\transThree}\\[0.9em]
-\stanzanumber{4} & \cell{\stanzaFour} & \cell{\transFour}\\
+\stanzanumber{1} & \lines{\stanzaOne} & \lines{\transOne}\\[0.9em]
+\stanzanumber{2} & \lines{\stanzaTwo} & \lines{\transTwo}\\[0.9em]
+\stanzanumber{3} & \lines{\stanzaThree} & \lines{\transThree}\\[0.9em]
+\stanzanumber{4} & \lines{\stanzaFour} & \lines{\transFour}\\
 \end{textcols}
 
-\section*{For rehearsal}
 \begin{rehearsal}
-\pnote{The words} Luther’s Small Catechism taught children to commend
+\pnote{The song} An evening prayer for the household, printed in Kraków in
+the early 1550s. Luther’s Small Catechism taught children to commend
 themselves at bedtime into God’s hands and to ask for his angel against the
 enemy. Polish Lutherans translated that prayer, and Trzecieski’s stanzas
-3 and 4 follow it almost clause by clause; his first stanza recalls Compline,
-the old night office. Sing the old forms as printed (\pl{zmierzka, naszem
-strażem, nawięcej, wszytki, swoję, Jesu}) with modern pronunciation.
+3 and 4 follow it almost clause by clause. His first stanza recalls Compline,
+the old night office.
+
+\pnote{The words} Sing the old forms as printed (\pl{zmierzka, naszem
+strażem, nawięcej, wszytki, swoję, Jesu}) with modern pronunciation; the
+series pronunciation guide gives the sounds and the historical options.
 \pl{Ześli} in stanza 3 means ‘send’.
 
-\pnote{Stanzas} All four go to the same music. Stanza 1 is under the notes.
-For stanzas 2–4, give each syllable the notes its counterpart has in
-stanza 1.
+\pnote{Stanzas} All four go to the same music, and most performances sing
+one or two. Stanza 1 is under the notes. For later stanzas, give each
+syllable the notes its counterpart has in stanza 1.
 
-\pnote{Pitch and voices} Written ranges: Cantus c′–d″, Altus d–a′, Tenor
-d–e′, Bassus G–a. At written pitch the piece suits men with a high Cantus, or
-a choir of low voices. A mixed choir will usually sing it a minor third
-higher. Choose the pitch for the singers; the notation does not change.
+\pnote{Pitch and voices} The score is a minor third above the print, for
+sopranos, altos, tenors and basses. The Tenor carries the hymn tune, one note
+to each syllable; the other voices move around it. To sing at the printed
+pitch (men with a high Cantus, or low voices), use the critical edition.
 
 \pnote{Tempo} A minim of about 66–80, felt two to the semibreve and four to
 the bar. Keep the semiminim runs light.
 
-\pnote{The score} Note values and pitch are those of the 1550s print. A bar is
-one breve. Bar lines run between the staves only, so a note that crosses one
-is held for its full value. The small staff before each voice shows the
-original clef and first note. Sharps above the staff are editorial.
-
+\pnote{The score} Note values are those of the 1550s print. A bar is one
+breve. The light bar lines run between the staves only, so a note that
+crosses one is held for its full value. Accidentals above the staff are
+editorial.
 \end{rehearsal}
 \footcolophon
 \end{document}

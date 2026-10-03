@@ -1,26 +1,38 @@
 #!/usr/bin/env bash
-# Build one or more editions:  tools/build.sh juz-sie-zmierzka [critical|performance]
-# Requires: LilyPond 2.24 (with lilypond-book), LuaLaTeX, Gregorio 6, Junicode 2.
+# Build editions and guides from the shared house style.
+#   tools/build.sh                     everything
+#   tools/build.sh juz-sie-zmierzka    one edition (both kinds)
+#   tools/build.sh juz-sie-zmierzka critical
+# Requires LilyPond 2.24 (lilypond-book), LuaLaTeX with gregoriotex and
+# polyglossia, Junicode 2, TeX Gyre Pagella.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-slug="$1"; kinds="${2:-critical performance}"
-src="$ROOT/editions/$slug"
-out="$src/build"
-mkdir -p "$out" "$src/pdf"
-export TEXINPUTS="$ROOT/house/latex//:$src//:"
-for kind in $kinds; do
-  f="$slug-$kind"
-  if [ -f "$src/$f.lytex" ]; then
-    (cd "$src" && lilypond-book --pdf --latex-program=lualatex \
-        --include="$ROOT/house/lilypond" --include="$src/music" \
-        --output="$out" "$f.lytex" >/dev/null)
-    (cd "$out" && lualatex -interaction=nonstopmode -halt-on-error "$f.tex" >/dev/null \
-               && lualatex -interaction=nonstopmode -halt-on-error "$f.tex" >/dev/null)
-  else  # chant-only editions: plain .tex with gregoriotex
-    (cd "$src" && lualatex -interaction=nonstopmode -halt-on-error \
-        -output-directory="$out" "$f.tex" >/dev/null \
-        && lualatex -interaction=nonstopmode -halt-on-error -output-directory="$out" "$f.tex" >/dev/null)
-  fi
-  cp "$out/$f.pdf" "$src/pdf/"
-  echo "built editions/$slug/pdf/$f.pdf ($(pdfinfo "$src/pdf/$f.pdf" | awk '/^Pages/{print $2}') pp.)"
-done
+"$ROOT/tools/lint.sh" || { echo "fix lint first"; exit 1; }
+build_dir() {  # $1 = directory, $2 = optional kind filter
+  local src="$1" out="$1/build" name; mkdir -p "$out" "$src/pdf"
+  export TEXINPUTS="$ROOT/house/latex//:$src//:"
+  for f in "$src"/*.lytex "$src"/*.tex; do
+    [ -e "$f" ] || continue
+    name="$(basename "${f%.*}")"
+    case "$name" in text|*-text) continue;; esac
+    [ -n "${2:-}" ] && [[ "$name" != *"-$2" ]] && continue
+    if [[ "$f" == *.lytex ]]; then
+      (cd "$src" && lilypond-book --pdf --latex-program=lualatex \
+         --include="$ROOT/house/lilypond" --include="$src/music" \
+         --output="$out" "$name.lytex" >"$out/$name.book.log" 2>&1) \
+         || { tail -20 "$out/$name.book.log"; exit 1; }
+    else
+      cp "$f" "$out/"
+    fi
+    (cd "$out" && for i in 1 2; do lualatex -interaction=nonstopmode -halt-on-error "$name.tex" >/dev/null \
+       || { grep -A5 '^!' "$name.log"; exit 1; }; done)
+    cp "$out/$name.pdf" "$src/pdf/"
+    echo "built ${src#$ROOT/}/pdf/$name.pdf ($(pdfinfo "$src/pdf/$name.pdf" | awk '/^Pages/{print $2}') pp.)"
+  done
+}
+if [ $# -eq 0 ]; then
+  for d in "$ROOT"/editions/*/ "$ROOT"/guides/*/; do [ -d "$d" ] && build_dir "${d%/}"; done
+else
+  d="$ROOT/editions/$1"; [ -d "$d" ] || d="$ROOT/guides/$1"
+  build_dir "$d" "${2:-}"
+fi

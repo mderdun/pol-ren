@@ -3,8 +3,13 @@
 %% One class sets every page of every edition. LilyPond (through
 %% lilypond-book) and Gregorio only engrave music into it.
 %%
-%%   \documentclass[critical]{pol-ren}     two-sided book page, title page
-%%   \documentclass[performance]{pol-ren}  one-sided, score first
+%%   \documentclass[critical]{pol-ren}     title page, preface, score, notes
+%%   \documentclass[performance]{pol-ren}  masthead, score first, one page of notes
+%%   \documentclass[guide]{pol-ren}        a series guide (title page, prose)
+%%   add [anthology] for a bound collection: book margins, parts open on rectos
+%%
+%% Every design decision lives in this file and in house/lilypond/pol-ren.ily.
+%% Edition files hold content only (tools/lint.sh checks this).
 %%
 %% Compile with LuaLaTeX. See docs/house-style.md for the rules this encodes.
 
@@ -12,15 +17,16 @@
 \ProvidesClass{pol-ren}[2026/10/03 Polish Early Music house style]
 
 \newif\ifpr@critical \pr@criticaltrue
-\DeclareOption{critical}{\pr@criticaltrue}
-\DeclareOption{performance}{\pr@criticalfalse}
+\newif\ifpr@anthology \pr@anthologyfalse
+\def\pr@kind{Critical edition}
+\DeclareOption{critical}{\pr@criticaltrue\def\pr@kind{Critical edition}}
+\DeclareOption{performance}{\pr@criticalfalse\def\pr@kind{Performance edition}}
+\DeclareOption{guide}{\pr@criticaltrue\def\pr@kind{Guide}}
+\DeclareOption{anthology}{\pr@anthologytrue}
 \ProcessOptions\relax
 
-\ifpr@critical
-  \LoadClass[a4paper,11pt,twoside]{article}
-\else
-  \LoadClass[a4paper,11pt,oneside]{article}
-\fi
+%% Two-sided in every case, so running heads alternate composer / piece.
+\LoadClass[a4paper,11pt,twoside]{article}
 
 %% ------------------------------------------------------------ packages
 \RequirePackage{iftex}
@@ -41,6 +47,7 @@
 \RequirePackage{lettrine}
 \RequirePackage{etoolbox}
 \RequirePackage{multicol}
+\RequirePackage{tikz}
 \RequirePackage[hidelinks]{hyperref}
 
 %% ------------------------------------------------------------ colour
@@ -69,12 +76,23 @@
 
 %% Spaced small capitals (running heads, section heads, labels).
 \newcommand\spacedsc[1]{\textls[90]{\textsc{#1}}}
-%% Siglum: capitals set as small capitals, upright.
-\newcommand\sig[1]{{\upshape\addfontfeatures{Letters={SmallCaps,UppercaseSmallCaps}}#1}}
+%% Siglum of a source or edition: small capitals in a thin ring (one letter)
+%% or a rounded frame (several), so that A never reads as the word "a".
+%% Voice abbreviations (C, A, T, B) are plain small capitals: \voice{A}.
+\newcommand\pr@scap[1]{{\upshape\addfontfeatures{Letters={SmallCaps,UppercaseSmallCaps},Numbers=Lining}#1}}
+\ExplSyntaxOn
+\NewDocumentCommand\sig{m}{
+  \int_compare:nNnTF { \tl_count:n {#1} } = { 1 }
+    { \tikz[baseline=(s.base)] \node[draw, line~width=0.32pt, circle,
+        inner~sep=0pt, minimum~size=1.12em, font=\small](s){\pr@scap{#1}}; }
+    { \tikz[baseline=(s.base)] \node[draw, line~width=0.32pt, rounded~corners=0.5em,
+        inner~xsep=0.3em, inner~ysep=0pt, minimum~height=1.12em, font=\small](s){\pr@scap{#1}}; }
+}
+\ExplSyntaxOff
+\newcommand\voice[1]{\pr@scap{#1}}
 %% Polish, Latin and German text runs.
 \newcommand\pl[1]{\textpolish{\itshape #1}}
 \newcommand\la[1]{\textlatin{\itshape #1}}
-%% Pitch: c′ = middle c. \p{c'} → c′
 %% Accidentals in prose (Junicode has no music signs).
 \newfontfamily\accfont{TeX Gyre Pagella}[Scale=0.92]
 \newcommand\fl{{\accfont\raisebox{0.15ex}{♭}}}
@@ -82,16 +100,17 @@
 \newcommand\sh{{\accfont\raisebox{0.15ex}{♯}}}
 
 %% ------------------------------------------------------------ page
-\ifpr@critical
-  %% Text block 150 × 236 mm; margins inner < top < outer < bottom.
+\ifpr@anthology
+  %% Bound collections: book margins, inner < top < outer < bottom.
   \geometry{a4paper, inner=24mm, outer=36mm, top=24mm, bottom=37mm,
-            headsep=7mm, footskip=12mm, marginparwidth=24mm}
-  \linespread{1.07}           % 11/14.4
+            headsep=7mm, footskip=12mm}
+  \linespread{1.07}
 \else
-  %% Wider block for larger music; still a margin to hold.
-  \geometry{a4paper, left=18mm, right=18mm, top=16mm, bottom=20mm,
-            headsep=5mm, footskip=9mm}
-  \linespread{1.04}
+  %% Single editions: one full, symmetric page for every kind.
+  %% Text block 170 × 257 mm. The long measure gets extra leading.
+  \geometry{a4paper, left=20mm, right=20mm, top=17mm, bottom=23mm,
+            headsep=5mm, footskip=10mm}
+  \ifpr@critical\linespread{1.13}\else\linespread{1.06}\fi
 \fi
 
 \setlength\parindent{1.2em}
@@ -105,27 +124,18 @@
 \fancypagestyle{pr@plain}{\fancyhf{}\renewcommand\headrulewidth{0pt}}
 \newcommand\pr@shorttitle{}
 \newcommand\pr@shortcomposer{}
-\newcommand\pr@section{}
-\newcommand\runninghead[1]{\gdef\pr@section{#1}}
-\ifpr@critical
-  \fancypagestyle{pr@body}{%
-    \fancyhf{}\renewcommand\headrulewidth{0pt}%
-    \fancyhead[LE]{\small\lnum{\thepage}}%
-    \fancyhead[RO]{\small\lnum{\thepage}}%
-    \fancyhead[CE]{\small\spacedsc{\pr@shortcomposer}\enspace\red{\ornfont ·}\enspace\textit{\pr@shorttitle}}%
-    \fancyhead[CO]{\small\spacedsc{\pr@section}}}
-\else
-  \fancypagestyle{pr@body}{%
-    \fancyhf{}\renewcommand\headrulewidth{0pt}%
-    \fancyhead[R]{\small\lnum{\thepage}}%
-    \fancyhead[L]{\small\spacedsc{\pr@shortcomposer}\enspace\red{\ornfont ·}\enspace\textit{\pr@shorttitle}}}
-\fi
+%% Running heads: composer on even pages, piece on odd; folio outside.
+\fancypagestyle{pr@body}{%
+  \fancyhf{}\renewcommand\headrulewidth{0pt}%
+  \fancyhead[LE,RO]{\small\lnum{\thepage}}%
+  \fancyhead[CE]{\small\spacedsc{\pr@shortcomposer}}%
+  \fancyhead[CO]{\small\textit{\pr@shorttitle}}}
 \pagestyle{pr@body}
 
 %% Section: centred spaced small capitals; never left at the foot of a page.
 \titleformat{\section}[block]
   {\Needspace{6\baselineskip}\centering\normalsize}{}{0pt}
-  {\spacedsc{#1}\gdef\pr@section{#1}}
+  {\spacedsc{#1}\addcontentsline{toc}{section}{#1}}
 \titlespacing*{\section}{0pt}{2.1\baselineskip}{0.9\baselineskip}
 %% Subsection: italic run-in, closed by a full stop.
 \titleformat{\subsection}[runin]
@@ -133,17 +143,21 @@
 \titlespacing*{\subsection}{\parindent}{0.5\baselineskip}{0.5em}
 \setcounter{secnumdepth}{0}
 
-%% A part opens with a red fleuron and a centred head (critical edition only).
+%% A part opens on a new page with a red fleuron and a centred head.
+%% Only anthologies open parts on a recto.
 \newcommand\fleuron{\par\medskip{\centering\red{\ornfont\large ❦}\par}\medskip}
 \newcommand\dinkus{\par\smallskip{\centering\red{\ornfont ·\quad·\quad·}\par}\smallskip}
 \newcommand\part@open[1]{%
-  \ifpr@critical\cleardoublepage\else\clearpage\fi
+  \ifpr@anthology\cleardoublepage\else\clearpage\fi
   \fleuron\section*{#1}}
 \let\opensection\part@open
 
 %% Blank versos left by \cleardoublepage carry a small ornament.
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \hbox{}\vfill{\centering\red{\ornfont ❧}\par}\vfill\thispagestyle{pr@plain}\newpage\fi\fi}
+
+%% Block quotations: a size down, indented both sides.
+\renewenvironment{quote}{\par\small\list{}{\leftmargin=2em\rightmargin=2em\topsep=0.5\baselineskip}\item\relax}{\endlist}
 
 %% ------------------------------------------------------------ initials
 \renewcommand\LettrineFontHook{\color{rubric}}
@@ -155,6 +169,7 @@
 %% ------------------------------------------------------------ title data
 \newcommand\series[1]{\gdef\pr@series{#1}}            \series{Polish Early Music}
 \newcommand\seriesno[1]{\gdef\pr@seriesno{#1}}        \seriesno{}
+\def\pr@composer{}\def\pr@composerdates{}
 \newcommand\composer[2][]{\gdef\pr@composer{#2}\gdef\pr@shortcomposer{#2}\gdef\pr@composerdates{#1}}
 \newcommand\composeralt[1]{\gdef\pr@composeralt{#1}}  \composeralt{}
 \newcommand\poet[1]{\gdef\pr@poet{#1}}                \poet{}
@@ -167,7 +182,9 @@
 \edition{First edition}{2026}
 \newcommand\repository[1]{\gdef\pr@repo{#1}}          \repository{github.com/mderdun/pol-ren}
 \newcommand\slug[1]{\gdef\pr@slug{#1}}                \slug{}
-\newcommand\headnote[1]{\gdef\pr@headnote{#1}}        \headnote{}
+%% Performance editions at a pitch other than the source's say so here.
+\newcommand\pitchline[1]{\gdef\pr@pitchline{#1}}      \pitchline{}
+\newcommand\shortcomposer[1]{\gdef\pr@shortcomposer{#1}}
 
 %% ------------------------------------------------------------ title page
 %% Critical edition: a title page and a colophon verso.
@@ -177,7 +194,7 @@
     \pr@doublerule\par\vspace{4mm}
     {\small\red{\spacedsc{\pr@series}}\ifx\pr@seriesno\@empty\else\enspace\red{\lnum{\pr@seriesno}}\fi\par}
     \vspace{34mm}
-    {\expfont\large\textls[120]{\MakeUppercase{\pr@composer}}\par}
+    \ifx\pr@composer\@empty\else{\expfont\large\textls[120]{\MakeUppercase{\pr@composer}}\par}\fi
     \ifx\pr@composerdates\@empty\else\vspace{1.5mm}{\small\pr@composerdates\par}\fi
     \ifx\pr@composeralt\@empty\else\vspace{1mm}{\small\itshape\pr@composeralt\par}\fi
     \vspace{12mm}
@@ -189,16 +206,17 @@
     {\normalsize\pr@forces\par}
     \ifx\pr@poet\@empty\else{\normalsize words by \pr@poet\par}\fi
     \vfill
-    {\small\spacedsc{Critical edition}\par}
+    {\small\spacedsc{\pr@kind}\par}
     \vspace{2mm}
     \ifx\pr@sourceline\@empty\else{\small\itshape\pr@sourceline\par}\fi
     \vspace{6mm}
-    {\normalsize edited by \pr@editor\par}
+    {\normalsize \ifx\pr@kind\pr@guidekind by\else edited by\fi\ \pr@editor\par}
     \vspace{22mm}
     {\small\pr@editionno\enspace\red{\ornfont ·}\enspace\lnum{\pr@editiondate}\par}
     \vspace{4mm}\pr@doublerule[flip]\par
   \end{center}
   \clearpage}
+\def\pr@guidekind{Guide}
 %% Thick-and-thin rule, as on the title pages of printed partbooks.
 \newcommand\pr@doublerule[1][]{%
   \ifx\relax#1\relax
@@ -207,23 +225,28 @@
     \textcolor{rubric}{\rule{\textwidth}{0.35pt}}\\[-0.55\baselineskip]\rule{\textwidth}{1.1pt}%
   \fi}
 
+%% Contents, generated from the section heads (no subsections).
+\setcounter{tocdepth}{1}
+\renewcommand*\l@section[2]{\par\noindent\hbox to 72mm{#1\hfil\lnum{#2}}\par}
 \newcommand\colophon[1][]{%
   \thispagestyle{pr@plain}%
+  \vspace*{12mm}
+  {\small\noindent\spacedsc{Contents}\par\vspace{2mm}\@starttoc{toc}\par}
   \vspace*{\fill}
   {\small\raggedright
    \setlength\parskip{0.6\baselineskip}%
    #1\par
    \spacedsc{\pr@series}\ifx\pr@seriesno\@empty\else\enspace\lnum{\pr@seriesno}\fi.
-   \pr@composer, \textit{\pr@title}. \pr@editionno, \lnum{\pr@editiondate}.
-   Edited by \pr@editor.\par
-   This edition is free. The editorial text, the score and its source
+   \ifx\pr@composer\@empty\else\pr@composer, \fi\textit{\pr@title}. \pr@editionno, \lnum{\pr@editiondate}.
+   \ifx\pr@kind\pr@guidekind By\else Edited by\fi\ \pr@editor.\par
+   This \ifx\pr@kind\pr@guidekind guide\else edition\fi\ is free. The text, any music and the source
    files are released under the Creative Commons Attribution 4.0
    International licence (CC~BY~4.0): you may copy, perform, record,
    adapt and publish them, for any purpose, provided you name the editor.
-   The music itself is in the public domain.\par
+   \ifx\pr@kind\pr@guidekind\else The music itself is in the public domain.\fi\par
    Source files, corrections and later editions:
    \url{https://\pr@repo}\ifx\pr@slug\@empty\else\,/\,\texttt{\small editions/\pr@slug}\fi.\par
-   Set in Junicode. Music engraved with LilyPond; chant with Gregorio.\par}
+   Set in Junicode\ifx\pr@kind\pr@guidekind\else; music engraved with LilyPond and Gregorio\fi.\par}
   \clearpage}
 
 %% Performance edition: a masthead at the top of the first page; the
@@ -242,15 +265,13 @@
    \ifx\pr@poet\@empty\else\pr@poet\fi &
    \spacedsc{\pr@composer}\ifx\pr@composerdates\@empty\else\ \pr@composerdates\fi
    \end{tabularx}\par}
-  \ifx\pr@headnote\@empty\else
-    \vspace{2mm}
-    {\centering\begin{minipage}{0.86\textwidth}\centering\small\itshape
-       \pr@headnote\end{minipage}\par}
-  \fi
+  \ifx\pr@pitchline\@empty\else
+    \vspace{1mm}{\centering\footnotesize\itshape\pr@pitchline\par}\fi
   \vspace{4mm}}
 
 %% Score heading inside the critical edition (title page already given).
 \newcommand\scorehead[1][]{%
+  \clearpage\addcontentsline{toc}{section}{Score}%
   \begin{center}
     \ifx\relax#1\relax\else{\small\red{\itshape #1}\par}\vspace{2mm}\fi
     {\Large\pr@title\par}
@@ -260,13 +281,14 @@
    \ifx\pr@poet\@empty\else\pr@poet\fi & \spacedsc{\pr@composer}\end{tabularx}\par}
   \vspace{3mm}}
 
+
 %% Colophon line at the foot of the last page of a performance edition.
 \newcommand\footcolophon{%
   \par\vfill
   {\footnotesize\noindent\rule{\textwidth}{0.3pt}\par\vspace{1mm}\noindent
    \pr@composer, \textit{\pr@title}. Performance edition, \pr@editionno\
    (\lnum{\pr@editiondate}), edited by \pr@editor. The score is that of the
-   critical edition. CC~BY~4.0: free to copy and perform; name the editor.
+   critical edition\ifx\pr@pitchline\@empty\else, transposed\fi. CC~BY~4.0: free to copy and perform; name the editor.
    \url{https://\pr@repo}.\par}}
 
 %% ------------------------------------------------------------ music
@@ -296,7 +318,7 @@
                        >{\raggedright\arraybackslash}p{\dimexpr\textwidth-6em-4\tabcolsep\relax}@{}}
    \spacedsc{bar} & \spacedsc{voice} & \spacedsc{note}\\ \midrule\endhead}
   {\end{longtable}\par}
-\newcommand\cn[3]{\lnum{#1} & \sig{#2} & #3\\[0.25em]}
+\newcommand\cn[3]{\lnum{#1} & \voice{#2} & #3\\[0.25em]}
 %% Verdict at the end of a note: small capitals, not bold.
 \newcommand\verdict[1]{\textsc{#1}}
 
@@ -319,7 +341,62 @@
    \begin{longtable}{@{}p{1.8em}p{0.315\textwidth}@{\hspace{0.025\textwidth}}p{0.295\textwidth}@{\hspace{0.025\textwidth}}>{\itshape}p{\dimexpr0.34\textwidth-1.8em\relax}@{}}}
   {\end{longtable}\par}
 \newcommand\stanzanumber[1]{\red{\lnum{#1}}}
+%% Verse lines inside one table cell: \lines{line\\ line\\ ...}
+\newcommand\lines[1]{\begin{tabular}[t]{@{}l@{}}#1\end{tabular}}
+
+%% Stanzas printed after a score: centred, two abreast; an odd last stanza
+%% is centred below. Columns share the width of the widest stanza.
+%%   \begin{stanzas} \stanza{2}{line\\ line ...} \stanza{3}{...} \end{stanzas}
+\newsavebox\pr@stbox \newsavebox\pr@stleft
+\newlength\pr@stmax \newcount\pr@stn \newcount\pr@sti
+\newcommand\pr@stanzabox[2]{\begin{tabular}[t]{@{}l@{}}\llap{\stanzanumber{#1}\enspace}#2\end{tabular}}
+\newenvironment{stanzas}[1][\small]
+  {\par\vspace{5mm}#1\gdef\pr@stlist{}\global\pr@stn=0
+   \def\stanza##1##2{\global\advance\pr@stn by 1
+     \g@addto@macro\pr@stlist{\pr@do{##1}{##2}}}}
+  {\global\pr@stmax=0pt
+   \def\pr@do##1##2{\sbox\pr@stbox{\pr@stanzabox{##1}{##2}}%
+     \ifdim\wd\pr@stbox>\pr@stmax\global\pr@stmax=\wd\pr@stbox\fi}%
+   \pr@stlist
+   \global\pr@sti=0
+   \par\noindent\begin{minipage}{\linewidth}%   never split across pages
+   \def\pr@do##1##2{\global\advance\pr@sti by 1
+     \ifodd\pr@sti
+       \ifnum\pr@sti=\pr@stn
+         \par{\centering\makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}\par}%
+       \else
+         \global\sbox\pr@stleft{\makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}}%
+       \fi
+     \else
+       \par{\centering\usebox\pr@stleft\hspace{4em}%
+         \makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}\par}\vspace{0.9\baselineskip}%
+     \fi}%
+   \pr@stlist\par\end{minipage}\par}
 \newcommand\colhead[1]{{\upshape\footnotesize\spacedsc{#1}}}
+
+%% IPA, upright in square brackets: \ipa{ˈmat.ka}
+\newcommand\ipa[1]{{\upshape[#1]}}
+%% Sound tables for the pronunciation guide.
+%%   soundtable: spelling | sound | example
+%%   latintable: spelling | Polish Latin | Roman | example
+\newenvironment{soundtable}
+  {\par\small\setlength\LTpre{0.5\baselineskip}\setlength\LTpost{0.5\baselineskip}%
+   \renewcommand\arraystretch{1.2}%
+   \begin{longtable}{@{}>{\itshape\raggedright\arraybackslash}p{34mm}
+                       >{\raggedright\arraybackslash}p{62mm}
+                       >{\raggedright\arraybackslash}p{\dimexpr\textwidth-96mm-4\tabcolsep\relax}@{}}
+   \colhead{spelling} & \colhead{sound} & \colhead{example}\\ \midrule\endhead}
+  {\end{longtable}\par}
+\newenvironment{latintable}
+  {\par\small\setlength\LTpre{0.5\baselineskip}\setlength\LTpost{0.5\baselineskip}%
+   \renewcommand\arraystretch{1.2}%
+   \begin{longtable}{@{}>{\itshape\raggedright\arraybackslash}p{30mm}
+                       >{\raggedright\arraybackslash}p{24mm}
+                       >{\raggedright\arraybackslash}p{30mm}
+                       >{\raggedright\arraybackslash}p{\dimexpr\textwidth-84mm-6\tabcolsep\relax}@{}}
+   \colhead{spelling} & \colhead{polish latin} & \colhead{roman} & \colhead{example}\\ \midrule\endhead}
+  {\end{longtable}\par}
+\newcommand\tablegroup[1]{\multicolumn{3}{@{}l}{\footnotesize\spacedsc{#1}}\\[0.2em]}
 
 %% Pronunciation: spelling | sound | as in.
 \newenvironment{pronunciation}
@@ -328,7 +405,11 @@
   {\end{tabular}\par}
 
 %% Rehearsal notes: two columns on the wide performance page.
-\newenvironment{rehearsal}{\par\setlength\columnsep{8mm}\begin{multicols}{2}\raggedcolumns}{\end{multicols}}
+%% Kept whole with its heading: if it does not fit, it starts a new page.
+\newenvironment{rehearsal}
+  {\par\noindent\begin{minipage}{\linewidth}\section*{For rehearsal}%
+   \setlength\columnsep{8mm}\begin{multicols}{2}\raggedcolumns}
+  {\end{multicols}\end{minipage}\par}
 %% Performance notes: short run-in labels in italic.
 \newcommand\pnote[1]{\par\smallskip\noindent\textit{#1.}\enspace}
 
