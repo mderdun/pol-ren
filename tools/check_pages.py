@@ -10,7 +10,7 @@ For each page, measures how far down the text block the ink reaches
     change, and the per-score breaks need resetting;
   - a page whose ink runs into the bottom margin (overfull).
 Only pages with music are judged (prose pages end short by design before
-a new part); the last page is not judged. Exit status is always 0;
+a new part); the last page is only checked for being nearly empty. Exit status is always 0;
 this is a report, not a gate.
 """
 import subprocess, sys, tempfile, os, glob
@@ -38,6 +38,8 @@ def check(pdf):
         n = len(pages)
         for i, p in enumerate(pages, 1):
             top, bot, music = ink_rows(p)
+            if i == n and n > 1 and top is not None and (bot - TOP) / (BOTTOM - TOP) < 0.12 and not music:
+                out.append(f'  p.{i}: last page nearly empty (an overflow from p.{i-1}?)')
             if top is None or not music or i == n:
                 continue
             fill = (bot - TOP) / (BOTTOM - TOP)
