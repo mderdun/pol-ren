@@ -24,7 +24,6 @@ house/lilypond/pol-ren.ily     all engraving style and the score builder (LilyPo
 editions/<piece>/              content only: text, music data, built PDFs (pdf/)
 guides/<guide>/                series guides
 archive/2026-10-first-editions the first editions as delivered, before the reset
-tracker/issues.json            source gaps and work items (synced to Issues)
 tools/build.sh                 build script
 ```
 
@@ -43,7 +42,7 @@ Design lives only in `house/`. Edition files hold content; `tools/lint.sh` rejec
 
 ## Corrections and gaps
 
-Known gaps in the sources are open issues labelled *source gap*. `tracker/issues.json` is the source of truth for the tracker: a GitHub Action creates, updates and closes issues to match it. Corrections are welcome as issues. A correction that changes a reading makes a new edition; typographic fixes do not.
+Known gaps in the sources are open issues labelled *source gap*. Corrections are welcome as issues. A correction that changes a reading makes a new edition; typographic fixes do not.
 
 ## Licence
 
