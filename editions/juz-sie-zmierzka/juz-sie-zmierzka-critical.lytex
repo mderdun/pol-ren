@@ -172,8 +172,9 @@ text allows; the last syllable of a line falls on its cadence note. Where
 these leave a choice, the words decide. The syllable that carries a line
 takes its melisma or its high point (\pl{PO-moc, CZAR-tów, chy-TRO-ści});
 a light word such as \pl{o} or \pl{nas} takes one or two notes. The voices
-do not always change syllable together: in bars 28–29 the Cantus reaches
-\pl{chy-tro-} a minim after the Tenor and Bassus.
+do not always change syllable together. At the two main cadences the Cantus
+comes a minim after the Tenor and Bassus: \pl{nas o-bro-} in bars 19–20,
+\pl{chy-tro-} in bars 28–29.
 
 \subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’ (‘The end’), with no Amen. All
 four are sung to the same music. Old Polish verse counts syllables, eight to
@@ -227,9 +228,12 @@ pitch and in the values of this edition. Bar numbers agree in all four.
 \cn{8–9}{A}{\sig{PWM}, \sig{K}: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
   ‘o’ on e, so that ‘pomoc’ falls with the Cantus and Tenor.}
 \cn{12–13}{C, B}{Parallel fifths d′–g′ over g–c. They stand in \sig{A}.}
-\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on b′,
-  bar 16. ‘Czar-’ then takes the leap c′–c″ and the run down from it, and
-  ‘-tów’ the dotted minim e′; in stanza 2 ‘wiecz-’ takes c′ and ‘-ny’ the run.}
+\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on c″,
+  bar 16, the semiminim straight after the dotted minim of ‘od’. ‘Czar-’ takes
+  the leap c′–c″ and the run down from it, and ‘-tów’ the dotted minim e′ and
+  the semiminim after it, so that ‘nas o-bro-’ falls on g′ a′ g\sh′ as ‘chy-tro-’
+  does at the final cadence. In stanza 2 ‘wiecz-’ takes c′, ‘-ny’ the run, and
+  ‘spra-’ the semibreve a′.}
 \cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on b, straight after
   the dotted minim.}
 \cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′ and
