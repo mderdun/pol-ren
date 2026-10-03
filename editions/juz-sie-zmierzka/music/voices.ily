@@ -9,7 +9,7 @@ cantusNotes = {
   a'\breve |                    % 1
   a'1 g'1 |                     % 2
   f'2 a'2 c''2. b'4 |           % 3
-  a'4 g'4 a'1 \fi gis'2 |       % 4
+  a'4 g'4\optSharp a'1 \fi gis'2 | % 4
   a'1 a'2 c''1                  % 5  (c'' runs into 6)
   b'4 a'4 g'1 |                 % 6
   f'2 a'1 g'4 f'4 |             % 7
@@ -24,7 +24,7 @@ cantusNotes = {
   c''4 b'2 a'1 |                % 16
   g'4 f'4 e'4 d'4 c'2 c''2 |    % 17
   b'4 a'4 g'4 f'4 e'2. f'4 |    % 18
-  g'2 a'1 \fi gis'2 |           % 19
+  g'2 a'1 g'2 |                 % 19
   a'\breve |                    % 20
   e'\breve |                    % 21
   e'1 f'1 |                     % 22

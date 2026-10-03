@@ -157,9 +157,10 @@ use the octave-transposing treble clef. Written ranges: Cantus c′–d″, Altu
 d–a′, Tenor d–e′, Bassus G–a.
 
 \subsection{Accidentals} \sig{A} prints none, so every accidental here is editorial.
-They stand above the note and apply to that note only. They are limited to
-the five cadences where a major sixth opens to an octave (bars 2, 4, 9, 19
-and 29), with one optional flat (bar 29, Altus). An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
+They stand above the note and apply to that note only. They raise the
+cadences where a sixth opens to an octave, in bars 2, 4, 9 and 29. The fifth
+such cadence, bar 19, is left as printed. Two signs are optional: a sharp in
+bar 4 (Cantus) and a flat in bar 29 (Altus). An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
 
 \subsection{Underlay} \sig{A} prints each voice’s text as a block under the staff,
 so the underlay is editorial. Three things in \sig{A} guide it. The Tenor’s text
@@ -221,8 +222,10 @@ pitch and in the values of this edition. Bar numbers agree in all four.
 \begin{apparatus}
 \cn{1–2}{A}{\sig{PWM} splits the dotted minim f′ so that ‘się’ has a note of its
   own. \sig{A} has one dotted minim; ‘się’ falls on the following e′.}
-\cn{4}{C}{\sig{PWM} raises the semiminim g′ as well as the cadential minim. Only the
-  minim is raised here, as in \sig{K} and \sig{M}.}
+\cn{4}{C}{\sig{PWM} raises the semiminim g′ as well as the cadential minim; \sig{K} and
+  \sig{M} raise the minim only. Here the minim is raised and the semiminim has
+  an optional sharp. It is a lower neighbour to a′, and raising it anticipates
+  the cadence two notes later.}
 \cn{8–10}{A, T}{\sig{M} exchanges the two parts, ‘for tessitura’. \sig{A} has the
   semiminims c′ b a g and the descent f e d in the Altus.}
 \cn{8–9}{A}{\sig{PWM}, \sig{K}: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
@@ -234,6 +237,9 @@ pitch and in the values of this edition. Bar numbers agree in all four.
   the semiminim after it, so that ‘nas o-bro-’ falls on g′ a′ g\sh′ as ‘chy-tro-’
   does at the final cadence. In stanza 2 ‘wiecz-’ takes c′, ‘-ny’ the run, and
   ‘spra-’ the semibreve a′.}
+\cn{19}{C}{g′ left as printed. The minor sixth b–g′ opening to the octave gives a
+  softer close at the middle of the stanza than the raised cadences around
+  it. Singers who want every cadence alike may raise it.}
 \cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on b, straight after
   the dotted minim.}
 \cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′ and
