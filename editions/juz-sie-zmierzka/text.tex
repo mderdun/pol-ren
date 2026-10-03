@@ -1,0 +1,28 @@
+%% Text of all four stanzas, shared by both editions.
+
+\newcommand\diplOne{Iuż ſye zmyerzka nádchodźi noc/\\ Poprośmy Bogá o pomoc/\\ Aby on náſſym ſtrażem był/\\ Od złych czártow nas obronił/\\ Ktorzy nawyęcey wćyemnośći/\\ Vżywáyą ſwey chytrośći.}
+\newcommand\diplTwo{Yeſu Kryſte Pánye miły/\\ Tyś wſſytki pyekyelne śiły/\\ Przez męke ſwoyę poráźił/\\ A nam wyeczny pokoy ſpráwił/\\ Ráczyſz miłośyerny Pánye/\\ Wyſłyſſeć náſſe wołánye.}
+\newcommand\diplThree{Ześli Anyołá ſwyętego/\\ Aby mocą boſtwá twego/\\ Przed duſſnemi przećiwniki/\\ Bronił nas twe ſłużebniki/\\ Y záchował przez wſſey ſzkody/\\ Od káżdey nagłey przygody.}
+\newcommand\diplFour{Tobyeć wſſycko poruczamy/\\ Coż kolwye w ſwey mocy mamy/\\ Coś nam vżyczył złáſki ſwey/\\ Nyech to będźye wopyece twey/\\ Yenż z Oycem y zduchē ſwyętym\\ Yeſteś Krolem wyekuiſtym.\\[0.3em] Dokończenye.}
+
+\newcommand\stanzaOne{Już się zmierzka, nadchodzi noc,\\ poprośmy Boga o pomoc,\\ aby on naszem strażem był,\\ od złych czartów nas obronił,\\ którzy nawięcej w ciemności\\ używają swej chytrości.}
+\newcommand\stanzaTwo{Jesu Kryste, Panie miły,\\ tyś wszytki piekielne siły\\ przez mękę swoję poraził,\\ a nam wieczny pokój sprawił.\\ Raczysz, miłosierny Panie,\\ wysłyszeć nasze wołanie.}
+\newcommand\stanzaThree{Ześli anioła świętego,\\ aby mocą bóstwa twego\\ przed dusznemi przeciwniki\\ bronił nas, twe służebniki,\\ i zachował przez wszej szkody\\ od każdej nagłej przygody.}
+\newcommand\stanzaFour{Tobieć wszytko poruczamy,\\ cożkolwie w swej mocy mamy;\\ coś nam użyczył z łaski swej,\\ niech to będzie w opiece twej,\\ jenż z Ojcem i z Duchem Świętym\\ jesteś Królem wiekuistym.}
+
+\newcommand\transOne{Dusk is falling, night is coming;\\ let us ask God for help,\\ that he may be our guard\\ and defend us from the evil devils,\\ who most of all in the dark\\ put their cunning to use.}
+\newcommand\transTwo{Jesus Christ, dear Lord,\\ by your passion you struck down\\ all the powers of hell\\ and won us eternal peace.\\ Deign, merciful Lord,\\ to hear our cry.}
+\newcommand\transThree{Send a holy angel,\\ that by the might of your godhead\\ he may defend us, your servants,\\ from the enemies of the soul,\\ and keep us without any harm\\ from every sudden mishap.}
+\newcommand\transFour{To you we commend\\ whatever we hold in our power;\\ what you have lent us of your grace,\\ let it be in your care,\\ who with the Father and the Holy Spirit\\ are King everlasting.}
+
+%% A stanza cell: lines inside one table cell.
+\newcommand\cell[1]{\begin{tabular}[t]{@{}l@{}}#1\end{tabular}}
+
+%% Stanzas 2–4 under the score, three abreast.
+\newcommand\laterstanzas{%
+  \par\vspace{5mm}{\small\noindent
+  \begin{tabular}{@{}l@{\,}l@{\hspace{1.5em}}l@{\,}l@{\hspace{1.5em}}l@{\,}l@{}}
+  \stanzanumber{2} & \cell{\stanzaTwo} &
+  \stanzanumber{3} & \cell{\stanzaThree} &
+  \stanzanumber{4} & \cell{\stanzaFour}
+  \end{tabular}\par}}

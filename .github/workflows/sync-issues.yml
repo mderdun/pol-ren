@@ -1,0 +1,33 @@
+name: Sync tracker issues
+# Opens any issue in tracker/issues.json whose title does not exist yet.
+# Never edits or closes issues, so it is safe to run again.
+on:
+  push:
+    branches: [main]
+    paths: [tracker/issues.json]
+  workflow_dispatch:
+permissions:
+  issues: write
+  contents: read
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create labels and missing issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -e
+          jq -c '.labels[]' tracker/issues.json | while read -r l; do
+            gh label create "$(jq -r .name <<<"$l")" --repo "$REPO" \
+              --color "$(jq -r .color <<<"$l")" --description "$(jq -r .description <<<"$l")" --force
+          done
+          existing="$(gh issue list --repo "$REPO" --state all --limit 500 --json title --jq '.[].title')"
+          jq -c '.issues[]' tracker/issues.json | while read -r i; do
+            t="$(jq -r .title <<<"$i")"
+            if grep -Fxq "$t" <<<"$existing"; then echo "exists: $t"; continue; fi
+            args=(); for lab in $(jq -r '.labels[] | @base64' <<<"$i"); do args+=(--label "$(base64 -d <<<"$lab")"); done
+            gh issue create --repo "$REPO" --title "$t" --body "$(jq -r .body <<<"$i")" "${args[@]}"
+          done

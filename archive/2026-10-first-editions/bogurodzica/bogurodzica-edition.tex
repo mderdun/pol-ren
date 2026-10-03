@@ -1,0 +1,435 @@
+% Bogurodzica: working edition of stanzas 1–2 with melody
+% Build:  gregorio bogurodzica.gabc   (writes bogurodzica.gtex)
+%         lualatex bogurodzica-edition.tex   (run twice; needs GregorioTeX 6 and the Junicode font)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm,top=2cm,bottom=2.4cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Junicode}[Path=/usr/share/fonts/opentype/junicode/,Extension=.otf,UprightFont=*-Regular,ItalicFont=*-Italic,BoldFont=*-SmBold,BoldItalicFont=*-SmBoldItalic,Numbers=OldStyle]
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+\setotherlanguage{polish}
+\usepackage{microtype}
+\usepackage{gregoriotex}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\definecolor{rubric}{RGB}{160,30,30}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\linespread{1.08}
+
+% ---- Gregorio settings -----------------------------------------------------
+\gresetinitiallines{1}
+\grechangestyle{initial}{\fontsize{40}{40}\selectfont}
+\grechangestaffsize{19}
+\grechangedim{baselineskip}{60pt plus 5pt minus 5pt}{scalable}
+\grechangestyle{annotation}{\small\color{rubric}}
+
+\newcommand{\sig}[1]{\textup{\textsc{\MakeLowercase{#1}}}}          % siglum
+\newcommand{\pl}[1]{\foreignlanguage{polish}{\textit{#1}}}
+\newcommand{\dipl}[1]{\foreignlanguage{polish}{\textup{#1}}}
+\newcommand{\lem}[1]{\foreignlanguage{polish}{#1}\,\textbf{]}}
+\newcommand{\pn}[1]{\textsc{#1}}            % pitch string
+\newcommand{\sect}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+
+\title{\textsc{Bogurodzica}\\[0.3em]
+  \large The two oldest stanzas and their melody\\
+  \normalsize A critical edition in square notation (GregorioTeX), with apparatus}
+\author{Edited from Kraków, Biblioteka Jagiellońska, MS 1619}
+\date{Working edition, October 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}\small
+\begin{minipage}{0.86\textwidth}
+\textit{Status.} Working critical edition. The melody follows the oldest notated
+witness, Kraków, BJ 1619. I collated it neume by neume against the
+high-resolution Polona facsimile and against Chybiński's reading (1907); they
+agree in every pitch. Variants from three later musical witnesses come at
+second hand, from Chybiński's comparative examples. Readings of the standard
+edition (Woronczak, Ostrowska \& Feicht 1962) are cited from Marek Adamiec's
+digital transcriptions based on it and from two 1962 reviews. Points that only
+the printed 1962 volume can settle are flagged \textbf{[W1962]}.
+\end{minipage}
+\end{center}
+
+% ============================================================================
+\sect{Edition}
+
+\input{bogurodzica.gtex}
+
+\vspace{0.4em}
+{\footnotesize Editorial bar lines (the source has no divisiones). Final
+\textit{mora vocis} only at the end of each stanza. Neume grouping follows
+\sig{K}: climacus on \pl{-dzi-} of \pl{Bogurodzica}, porrectus on \pl{-wi-},
+three separate puncta on \pl{-dzi-na} of \pl{Gospodzina}.}
+
+% ----------------------------------------------------------------------------
+\newpage
+\subsection*{Text}
+
+\begin{multicols}{2}\small
+\textbf{Diplomatic} (BJ 1619, after Łoś 1922; \dipl{ǫ} = nasal vowel)\\[0.3em]
+\dipl{Bogv rodzicza dzewicza bogem slawena maria\\
+Vtwego syna gospodzina matko swolena maria\\
+Sziszczi nam spwczi nam kyrieleyson}\\[0.4em]
+\dipl{Twego dzela krzcziczela boszicze\\
+Vslisz glosi naplen misli czlowecze\\
+Slisz modlitwǫ yǫsz nosimi\\
+A dacz raczi gegosz prosimi\\
+a naswecze zbozni pobith\\
+posziwocze raski pzbith ky'eleyson}
+
+\columnbreak
+\textbf{Critical (normalised, after Woronczak)}\\[0.3em]
+\pl{Bogurodzica dziewica, Bogiem sławiena Maryja,\\
+u twego syna Gospodzina matko zwolena, Maryja!\\
+Zyszczy nam, spuści nam. Kirielejson.}\\[0.4em]
+\pl{Twego dziela Krzciciela, Bożyce,\\
+usłysz głosy, napełń myśli człowiecze.\\
+Słysz modlitwę, jąż nosimy,\\
+a dać raczy, jegoż prosimy:\\
+a na świecie zbożny pobyt,\\
+po żywocie rajski przebyt. Kirielejson.}
+\end{multicols}
+
+{\footnotesize Pilat (1879) reads \sig{K} differently in four places:
+\dipl{slavena}, \dipl{O dacz}, \dipl{prosimy}, \dipl{przebith}. The facsimile
+supports Łoś at \dipl{prosimi} and \dipl{pzbith}. For \dipl{A/O dacz} see the
+palaeographical notes. The score keeps the modern seven-syllable underlay
+\pl{Ky-ri-e e-le-i-son}.\par}
+
+\textbf{Translation.} \textit{Mother of God, Virgin glorified by God, Mary!
+Chosen Mother, Mary, win for us from thy Son the Lord, send down to us. Kyrie
+eleison.} \textit{For thy Baptist's sake, Son of God, hear our voices, fulfil
+the thoughts of men. Hear the prayer we bring, and deign to grant what we ask:
+on earth a godly life, after life a dwelling in paradise. Kyrie eleison.}
+
+% ============================================================================
+\sect{Sources and sigla}
+
+\textit{Warning on sigla.} Older literature numbers the Kraków copies the
+other way round. Pilat (1879) and Kalina (1880) call BJ 408 ``Kraków~I'' (it
+was then dated 1408) and the notated BJ 1619 ``Kraków~II''. Łoś (1922) and
+later scholars reverse this. To avoid the clash this edition uses
+shelfmark-based sigla.
+
+\subsection*{Musical witnesses}
+\begin{description}[leftmargin=2.6em,style=nextline,itemsep=0.35em,font=\normalfont]
+\item[\sig{K}] \emph{Kraków, Biblioteka Jagiellońska, MS 1619} (\emph{base
+  text}). Added on the back flyleaf of a copy of Latin sermons made by Maciej of
+  Grochów, vicar of Kcynia (hence the ``Kcynia copy''). Woronczak dates it
+  before 1408; it is usually given as c.\,1407. Stanzas 1--2 only, with music
+  throughout, in seven systems. Each musical section opens with a decorated
+  initial: \pl{B(ogu)}, \pl{U (twego)}, \pl{Z(yszczy)}; \pl{T(wego)},
+  \pl{U(słysz)}, \pl{S(łysz)}, \pl{A (dać)} (Kalina). Gothic chant notation of
+  the German--Messine (``Hufnagel'') type, with C and F clefs and no custodes.
+  For staff lines, clefs and doubtful notes see the palaeographical notes.
+  Interlinear Latin in red in system~5 (\textit{virtualis ingressus \dots}) is
+  a later addition.
+\item[\sig{K70}] \emph{Kraków, Biblioteka Jagiellońska, manuscript dated
+  1570} (shelfmark not given by Chybiński \textbf{[W1962]}). Late
+  ``popularised'' form that tends towards B\,flat before cadences on~a;
+  Chybiński counts seven cases.
+\item[\sig{Gn}] \emph{Gniezno cathedral tradition}. Chybiński cites a Gniezno
+  manuscript that agrees with \sig{K70} in the opening phrase. Kalina describes
+  the ``Gniezno authentic'' melody, printed in \emph{Przyjaciel Ludu} (Leszno)
+  4, no.~46 (1838), p.~364. It covers the whole text, uses smaller note values
+  and sharps, and was ``still sung in Gniezno'' in 1880.
+\item[\sig{W}] \emph{Warsaw, library of the Literati Chapel at St John's
+  church, MS 998 D}. In mensural notation, so it is the only witness with
+  explicit rhythm. Chybiński treats it as the best of the later sources. Its
+  present whereabouts need checking \textbf{[W1962]}.
+\item[\sig{Cz}] \emph{Częstochowa (Jasna Góra), manuscript of the late 15th
+  century}. The manuscript is lost and survives in a drawing reproduced by
+  Woronczak (online in Adamiec's edition). Five-line staves carry notation for
+  the first two lines of stanza~1 only, with a short neumed passage further
+  down. Kalina reports variants in its first five notes, at the end of the first
+  half-period, and in some middle notes. It has no music for \pl{zyszczy nam,
+  spuści nam}. Chybiński dismissed it.
+\item[\sig{Z}] \emph{Warsaw, Zamoyski Library, MS 1152} (1672). Mensural.
+  Chybiński dismissed it as badly written and noted that it transmits the
+  same version as \sig{K70}, which writes it more correctly.
+\item[\sig{L}] \emph{Latin translation \emph{Dei genitrix illibata}} (early 16th
+  century per Woronczak; text in Adamiec). Its melody is edited by Feicht 1975,
+  pp.~187, 189, and is cited here from Flotzinger.
+\end{description}
+
+\subsection*{Text witnesses collated for stanzas 1--2}
+\begin{description}[leftmargin=2.6em,style=nextline,itemsep=0.25em,font=\normalfont]
+\item[\sig{K408}] Kraków, BJ MS 408, f.~87\textsuperscript{v}, added in the
+  early 15th century to a codex of 1408 (\emph{Decisiones Rotae}). Stanzas
+  1--14, no music.
+\item[\sig{Wa}] Warsaw, Biblioteka Narodowa, from Holy Cross (Łysiec), second
+  half of the 15th century (c.\,1456). 19 stanzas.
+\item[\sig{Cz}] Częstochowa, as above.
+\item[\sig{K3}] Kraków, manuscript of the first half of the 16th century
+  (Pilat's ``Kraków III''), with 23 stanzas.
+\item[\sig{Ł}] Jan Łaski, \emph{Commune incliti Poloniae Regni privilegium}
+  (Kraków: J.\,Haller, 1506), printed in the \emph{Registrum} as \emph{prima
+  omnium devotissima \dots\ cantio}, attributed to St Adalbert. \emph{Text
+  only}: the facsimile shows no notation.
+\item[\sig{M}] Mateusz z Kościana, 1543 (Gniezno group).
+\item[\sig{H}] Herburt, 1570. \quad \sig{S}~Skarga, \emph{Żywoty świętych}, 1579.
+\end{description}
+Readings of \sig{K408}, \sig{Wa}, \sig{Cz}, \sig{K3}, \sig{M}, \sig{H} and
+\sig{S} are taken from Pilat's synoptic table (1879, table~7), checked against
+Woronczak's normalised transcriptions where these exist.
+
+% ============================================================================
+\sect{Editorial principles}
+\begin{enumerate}[itemsep=0.2em]
+\item \textbf{Base text.} \sig{K} throughout. Three readings of the melody were
+  compared: the facsimile, Chybiński's transcription, and the standard modern
+  transcription (the version circulated with the tempo marking
+  \textit{Uroczyście}). All three agree in every pitch.
+\item \textbf{Pitch.} Transcribed at the pitch fixed by \sig{K}'s clefs: final
+  D, ambitus C--d$'$, mode~1 (Chybiński). With a C clef on the fourth line, the
+  gabc letters \texttt{c d e f g h i j k} equal C D E F G a b c$'$ d$'$. No
+  flats are supplied. The only b (\pl{spuś-ci}) is natural, and the B-flats of
+  \sig{K70} belong to a later layer.
+\item \textbf{Rhythm.} \sig{K} has no rhythmic notation, so the score is
+  unmeasured square notation. The mensural reading of \sig{W} and Chybiński's
+  duple-metre reconstruction are reported but not adopted.
+\item \textbf{Text.} A normalised form of \sig{K} following Woronczak's
+  transcription. This edition keeps \pl{u} at the start of 1.2, as \sig{K}
+  does and as its notes require. Woronczak's reconstructed text of the
+  original song omits it. Note also \pl{dziela} (`for the sake of', not
+  \pl{dzieła}), \pl{zyszczy} (not \pl{ziści}) and \pl{Bożyce}.
+\item \textbf{Bar lines} are editorial and mark the verse structure.
+\end{enumerate}
+
+% ============================================================================
+\sect{Musical apparatus}
+
+{\small
+Pitch names: C D E F G a b c$'$ d$'$; hyphens join notes sung on one syllable.
+Readings of \sig{K70} and \sig{W} are taken from Chybiński's modern-notation
+comparative examples (1907, pp.~30--41). Rhythm is left out and only pitch
+content is given. ``(?!)'' marks places Chybiński himself flagged as
+corrupt.\par}
+
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}p{0.9cm}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{11.6cm}@{}}
+\toprule
+\textbf{Loc.} & \textbf{Lemma} & \textbf{Readings}\\
+\midrule\endhead
+\multicolumn{3}{@{}l}{\textit{Stanza 1}}\\
+1.1 & \pl{Bogurodzica} & \sig{K} D C F E-D-C D \quad \sig{K70}, \sig{Gn} D D-C F E-C-E D \quad \sig{W} D C F E D \quad \sig{L} has D-C where \sig{K} has E-D-C on \pl{-dzi-} (Flotzinger)\\
+1.2 & \pl{dziewica} & \sig{K} F G-F-G a \quad \sig{K70} F G b\,flat a \quad \sig{W} F G a\\
+1.3 & \pl{Bogiem sławiena} & \sig{K} c$'$ d$'$ c$'$ a-G-F F \quad \sig{K70} \textbf{b} d$'$ c$'$ a-G F (?!) \quad \sig{W} c$'$ d$'$ c$'$ a F\\
+1.4 & \pl{Maryja} & \sig{K} F-G-a-G E-C D \quad \sig{K70} F-a-G-E C E D (?!) \quad \sig{W} F a G E D D (?!)\\
+1.5 & \pl{U twego syna} & \sig{K} d$'$ c$'$ a-G-F G-F-G a \quad \sig{K70} \textit{om.} d$'$ c$'$; a G F G b\,flat a a (alternatively a G F F G b\,flat a) \quad \sig{W} \textit{om.} d$'$ c$'$; simplified four-note form beginning on a \quad \sig{L} a-a on \textit{Apud} (Flotzinger, who suggests the same repeated a for \pl{U twe-})\\
+1.6 & \pl{Gospodzina} & \sig{K} c$'$ d$'$ c$'$\,a\,G F \quad \sig{K70} c$'$ d$'$ c$'$ a-G F \quad \sig{W} c$'$ d$'$ c$'$ a F\\
+1.7 & \pl{Matko} & \sig{K} c$'$ a-G-F \quad \sig{K70} c$'$ a-G (?!) \quad \sig{W} c$'$ a\\
+1.8 & \pl{zwolena, Maryja} & as 1.4 in all witnesses (Chybiński)\\
+1.9 & \pl{Zyszczy nam} & \sig{K} F G-F-G a \quad \sig{K70} F G b\,flat a \quad \sig{W} F G a\\
+1.10 & \pl{spuści nam} & \sig{K} c$'$ b\,natural d$'$ \quad \sig{K70} c$'$ b\,natural d$'$ d$'$ (?!) \quad \sig{W} = \sig{K}\\
+1.11 & \pl{Kyrie} & \sig{K} c$'$ a G-F \quad \sig{K70}, \sig{W} c$'$ a F\\
+\midrule
+\multicolumn{3}{@{}l}{\textit{Stanza 2}}\\
+2.1 & \pl{Twego dziela Krzciciela} & \sig{K} D-E D-C F G E C D \quad \sig{K70} D D-C F F G G E E C D D (?!; ``agrees with \sig{K} but badly written'') \quad \sig{W} D D-C F G E C-E D\\
+2.2 & \pl{Bożyce} & as 1.4 in all witnesses (``repeated for the fifth time'')\\
+2.3 & \pl{usłysz głosy} & \sig{K} a G-F G-F-G a \quad \sig{K70} a G-F G b\,flat a \quad \sig{W} a G-F G a a\\
+2.4 & \pl{napełń myśli człowiecze} & \sig{K} D C F G E C D \quad \sig{K70}, \sig{W} read \pl{napełnij}, with a consequent rhythmic change; Chybiński gives no pitches\\
+2.5 & \pl{Słysz modlitwę, jąż nosimy} & \sig{K} C F G E-D-E C D E D \quad \sig{K70} \emph{different melody}, split into two halves: C G a b\,flat a a \,\textbar\, D D C C F F E D \quad \sig{W} \emph{different}: C F G a (fermata) \,\textbar\, D D C F G a a, ending on the confinalis a (rejected by Chybiński)\\
+2.6 & \pl{a dać raczy} & \sig{K} a G-F G-F-G a \quad \sig{K70} a G F G b\,flat a a (?!)\\
+2.7 & \pl{jegoż prosimy} & \sig{K} D-E D-C F G a \quad \sig{K70} D D-C F G b\,flat a\\
+2.8 & \pl{a na świecie zbożny pobyt} & \sig{K} c$'$ a c$'$ G c$'$ a-G-F G-F-G a \quad \sig{K70} c$'$ b\,natural c$'$ d$'$ G G c$'$ a G G b\,flat a \quad \sig{W} a c$'$ d$'$ G G c$'$ a F G a a\\
+2.9 & \pl{po żywocie rajski przebyt} & \sig{K} a c$'$ d$'$ G c$'$ a-G-F G-F-G a (from \pl{raj-} on, identical to 2.8) \quad \sig{K70} a b\,flat c$'$ d$'$ G \textbar\ c$'$ a F F b\,flat a \quad \sig{W} a c$'$ d$'$ G c$'$ a F G a a\\
+2.10 & \pl{Kyrieleison} & \sig{K} a G F F-G-a-G E D D \quad \sig{K70}, \sig{W} ``of no significance'' (Chybiński, no readings)\\
+\bottomrule
+\end{longtable}
+
+\sect{Textual apparatus (stanzas 1--2)}
+
+{\small Lemma in normalised form. Variants are normalised unless the spelling
+matters; purely orthographic differences are ignored. Sigla as above.\par}
+
+\begin{longtable}{@{}p{0.9cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{11.5cm}@{}}
+\toprule
+\textbf{Loc.} & \textbf{Lemma} & \textbf{Variants}\\
+\midrule\endhead
+1.1 & \pl{Bogu rodzica} & \sig{K} \sig{K408} \quad \pl{Boga rodzica} \sig{Wa} \sig{Cz} \sig{K3} \sig{Ł} \sig{M} \sig{H} \sig{S}\\
+1.1 & \pl{sławiena} & \sig{K} \sig{K408} \quad \pl{sławiona} \sig{Wa} \sig{Cz} \sig{K3} \sig{Ł} \sig{M} \sig{H} \sig{S}\\
+1.2 & \pl{U twego} & \sig{K} \sig{Wa} \sig{Cz} \sig{K3} \sig{Ł} \sig{H} \sig{S} \quad \pl{W twego} \sig{K408} \sig{M} \quad \pl{Twego} Woronczak's reconstructed text (editorial)\\
+1.2 & \pl{Gospodzina} & \sig{K} \sig{K408} \sig{Wa} \sig{Cz} \sig{Ł} \sig{M} \quad \pl{gospodina} \sig{K3} \quad \pl{Gospodynia} \sig{H} \quad \pl{hospodyna} \sig{S}\\
+1.2 & \pl{zwolena} & \sig{K} \sig{K408} \quad \pl{zwolona} \sig{Wa} \sig{Ł} \sig{M} \sig{H} \sig{S} \quad \pl{zbolenia} \sig{Cz} \quad \pl{zwolienia} \sig{K3}\\
+1.3 & \pl{Zyszczy \dots\ spuści nam} & \sig{K} \sig{K408} \sig{Wa} \sig{Ł} \quad \pl{zyszczysz \dots\ spuszczysz} \sig{Cz} \quad \pl{zyszczy \dots\ spust winam} \sig{K3} \sig{M} \quad \pl{ziścisz \dots\ spuścisz} \sig{H} \quad \pl{ziści \dots\ spuści} \sig{S}\\
+\midrule
+2.1 & \pl{Twego dziela} & \sig{K} \sig{K408} \sig{Wa} \sig{Cz} \quad \pl{Twego syna} \sig{K3} \sig{Ł} \sig{M} \sig{H} \sig{S}\\
+2.1 & \pl{Krzciciela} & all except \quad \pl{zbawiciela} \sig{M} \quad \pl{[Kr]ziciela zbawiciela} \sig{K3}\\
+2.1 & \pl{Bożyce} & \sig{K} (\dipl{boszicze}) \sig{K408} (\dipl{bozide} Pilat) \quad \pl{zbożnica} \sig{Wa} \sig{Cz} \quad \pl{zbożny czas} \sig{Ł} \sig{H} \sig{S} \quad \pl{zbożnika} \sig{M}\\
+2.2 & \pl{napełń} & \sig{K} \quad \pl{napełni} \sig{K408} \sig{Wa} \sig{Cz} \sig{K3} \sig{Ł} \sig{M} \sig{H} \sig{S}\\
+2.3 & \pl{jąż nosimy} & \sig{K} \sig{K408} \sig{Wa} \quad \pl{jenżeć nosimy} \sig{Cz} \quad \pl{jenże (cię) prosimy} \sig{Ł} \sig{M} \sig{H} \sig{S}\\
+2.4 & \pl{A dać raczy} & \sig{K} (Łoś, Kalina, Woronczak; \pl{O dać} Pilat) \sig{Wa} \quad \pl{Oddać raczy} \sig{K408} \sig{M} \quad \pl{O dać} \sig{Cz} \quad \pl{O o dać} \sig{Ł} \quad \pl{O o daci} \sig{H} \quad \pl{To dać} \sig{S}\\
+2.5 & \pl{a na świecie} & \sig{K} \sig{K408} \quad \pl{daj na świecie} \sig{Wa} \sig{Cz} \sig{Ł} \sig{H} \sig{S} \quad \pl{daj nam na świecie} \sig{M} \quad \pl{dai na świecie dobry} \sig{K3}\\
+2.5--6 & \pl{pobyt \dots\ przebyt} & \pl{pobytk \dots\ przybytk} \sig{Wa} (Woronczak; Pilat reads \dipl{przebythk})\\
+2.6 & \pl{rajski} & \dipl{raski} \sig{K}\\
+refr. & \pl{Kirielejson} & \dipl{kyrieleyson} \sig{K} (st.\,2 abbreviated \dipl{ky'eleyson}) \quad \dipl{kyon} \sig{Cz} \quad \dipl{kyeon} \sig{Wa} \quad \pl{Kyrie eleison} \sig{M} \sig{H} \sig{S}\\
+\bottomrule
+\end{longtable}
+
+\subsection*{Notes}
+\begin{description}[leftmargin=1.2em,itemsep=0.25em,font=\normalfont\itshape]
+\item[1.1] \dipl{Bogv rodzicza} (\sig{K}, \sig{K408}) is two words: the
+  dative \pl{Bogu} is used in a genitive sense (Łoś). Pilat preferred
+  \pl{Boga rodzica}, the form in the 1410 \emph{Chronica conflictus} and in
+  Długosz. \pl{Sławiena} and \pl{zwolena} are Old Polish forms without the
+  \textit{e}\,>\,\textit{o} change, not necessarily Czechisms (Łoś, Kalina).
+\item[1.2] \pl{U}: \sig{K} has two separate puncta d$'$ c$'$ here, which
+  confirms a syllable before \pl{twe-} (Chybiński). The later musical
+  witnesses \sig{K70} and \sig{W} lack both the syllable's notes and the
+  octave leap.
+\item[1.3] Kalina takes \pl{spust winam} in \sig{K3} and \sig{M} as proof of
+  a shared exemplar for those two texts.
+\item[2.1] \pl{dziela} (= \pl{dla}, `for the sake of'). Łoś saw this
+  archaism as the main linguistic argument for a 13th-century date. Its
+  replacement by \pl{syna} in the printed tradition, and by \pl{dzieła} in
+  some modern editions, are both misunderstandings of it. \pl{Bożyce} is the
+  vocative of \pl{bożyc}, `son of God'.
+\item[2.4] On the decorated initial of \sig{K} see the palaeographical notes.
+\end{description}
+
+% ============================================================================
+\sect{Palaeographical notes on \sig{K}}
+
+These notes come from my collation of the Polona facsimile, 3293\,$\times$\,4699\,px.
+
+\begin{itemize}[itemsep=0.25em]
+\item \textbf{Staves and clefs.} System~1 has four ruled lines above the text:
+  a C clef on the top line and an F clef on the second line from the bottom.
+  The later systems have five ruled lines (Chybiński). The lowest of these
+  also serves as the text baseline, which is why Kalina called the notation
+  four-line. In system~2 the clef moves: after \pl{Gospodzina} a C clef is
+  drawn on the middle line for \pl{Matko}, and before \pl{zwolena} an F clef
+  restores the original position. Chybiński noted that the clefs are clearest
+  ``at the beginning of the third and a third of the way from the end of the
+  second system''. Read with these clefs, \pl{Matko} gives c$'$ a-G-F, as in
+  every transcription.
+\item \textbf{Faint or invisible notes.} The C on \pl{-gu-} (1.1) is very
+  faded but traceable just above the text. The C on \pl{-pełń} (2.2) cannot be
+  seen; only one punctum (D) stands over \dipl{naplen}. The first a of the
+  final \pl{Kyrie} is faint. The ink blots over \pl{dziela} (system~4) and
+  after \pl{a} (system~6) are stains, not notes. Everywhere else the reading
+  is secure.
+\item \textbf{Neume groups.} Over \pl{-dzi-na} of \pl{Gospodzina} the a and G
+  are written close together and the F stands apart. This supports the
+  underlay c$'$ a-G \,\textbar\, F rather than a single climacus.
+\item \textbf{The initial of \pl{A dać raczy}.} It has the same design as the
+  \pl{U} of \pl{Usłysz} two systems earlier: a dotted bowl on the left and a
+  hatched box on the right. It is unlike the \pl{U} of \pl{U twego}. This may
+  explain why Pilat read \dipl{O dacz}, while Kalina, Łoś and Woronczak read
+  \dipl{A}. The later tradition splits the same way (\pl{O dać} \sig{Cz};
+  \pl{O o dać} \sig{Ł}, \sig{H}). The notes are unaffected.
+\item \textbf{The later hand.} Chybiński saw a cruder neume hand from \pl{A dać
+  raczy} onwards. In the facsimile the puncta in systems~6--7 are larger and
+  more widely spaced, but the forms are the same, and the pitches are clear
+  once the staff slant is allowed for.
+\end{itemize}
+
+% ============================================================================
+\sect{Commentary}
+
+\textbf{Form.} Each stanza has three parts, two parallel lines followed by a
+contrasting third and the refrain (Łoś). The melody is built by varying a small
+stock of phrases. Surzyński (1891) labelled four of them \emph{a--d}. Pikulik
+(2005) shows that Surzyński's fifth, \pl{Kyrieleison} motif is a variant of
+\emph{d}. Flotzinger (1997/2005) set the phrases out in parallel. In his
+account the whole melody can be traced back to the first line, which is built
+almost symmetrically around a high point c$'$--d$'$--c$'$. Perz (2005) called
+the procedure \emph{centonate}. The edition shows the main correspondences: the
+cadence \pl{Maryja}\,=\,\pl{zwolena}\,=\,\pl{Maryja}\,=\,\pl{Bożyce}
+(F-G-a-G E-C D); \pl{dziewica}\,=\,\pl{zyszczy nam}\,=\,\pl{usłysz
+głosy}\,=\,\pl{a dać raczy}; \pl{Twego dziela Krzciciela}\,=\,\pl{napełń
+myśli człowiecze}; and the repeat of the second half of \pl{a na świecie zbożny pobyt} in
+\pl{po żywocie rajski przebyt}.
+
+\textbf{Mode.} The final is D throughout, with cadences on a and F. Chybiński
+weighed the hypolydian (sixth) mode, final F, because of the F-cadences on
+\pl{sławiena}, \pl{Gospodzina}, \pl{Matko}, \pl{Kyrie}, and the lower fourth
+C--F, but concluded for mode~1. B is avoided except once, on \pl{spuści}, at
+the melodic peak.
+
+\textbf{The octave leap.} \pl{Maryja} ends on D and \pl{U twego} begins on
+d$'$. Pikulik argues that this leap could not occur before the 12th, and
+properly the 13th, century. The later witnesses \sig{K70} and \sig{W} drop the
+opening d$'$--c$'$ and so avoid the leap. That is most simply read as later
+smoothing.
+
+\textbf{Problem loci in \sig{K}.} (1)~\pl{Gospodzina}: Chybiński stresses that
+the three puncta over the last two syllables do \emph{not} form a climacus,
+since the first two are written apart from the third. They are printed here as
+separate puncta (\texttt{j/h/g}). The spacing in the facsimile supports the
+underlay \pl{-dzi-} c$'$-a-G, \pl{-na} F. (2)~The change of neume hand at \pl{A dać raczy}
+makes the end of stanza~2 the least secure part of the source; the
+correspondence with stanza~1 is the main control there. (3)~\pl{Kyrieleison}:
+the underlay of seven syllables is modern. If the refrain was sung in five
+(\pl{Ky-rie-e-lej-son}), the melisma F-G-a-G belongs with \pl{-e-} and E D D
+with \pl{-lej-son}.
+
+\textbf{Origins and date: positions in the literature.}
+\begin{itemize}[itemsep=0.15em]
+\item \emph{Attribution to St Adalbert} (d.\,997) is first found in 15th- and
+  16th-century sources, among them Łaski 1506. It is rejected by all modern
+  scholarship.
+\item \emph{Two melodies by different authors} (Kalina 1880, on
+  the analysis of Fr Bażański). Kalina
+  separated a ``bright, periodic'' first part (stanza~1) from a ``gloomier''
+  second part that he took to be Eastern in character. He found no link with
+  the Czech \emph{Hospodine, pomiluj ny} (Prague, Univ. Lib. 10 E 2, f.~20).
+  Feicht's 1962 analysis superseded this.
+\item \emph{Late 13th century}, on linguistic and metrical grounds (Łoś 1922).
+  Chybiński and Feicht place it at the turn of the 13th and 14th centuries.
+\item \emph{Kyrie trope}: Woronczak (1952) identified the opening phrase with
+  the Holy Saturday litany \emph{Kyrie} in the Graz gradual MS 807. Ostrowska
+  added a neumed Minden source of 1024--27. Flotzinger (2005) shows that the
+  agreement covers only the first phrase. He adds that the Graz MS was in fact
+  written at St Nicholas, Passau, c.\,1170, and rejects the trope
+  interpretation.
+\item \emph{13th-century cento} built from litany, sequence and
+  trouvère-style turns (Pikulik 2005). Feicht (1962) found a ``striking similarity''
+  between the opening phrase and Jehan de Braine's \emph{Par desous l'ombre
+  d'un bois}, one of many parallels he assembled (Gołos 1962). He concluded
+  that the melody is homogeneous and the work of a trained musician.
+\item \emph{Late 14th century, south-eastern Poland, with Czech mediation}
+  (Flotzinger 2005). This rests on the Deesis structure of the text and on the
+  Slavonic-rite foundations at Prague (Emaus, 1346), Oleśnica (1380) and
+  Kraków (1390).
+\item \emph{Ruthenian origin} (Shchurat 1906; Kuzminskyi 2017). This is a
+  minority view. It is listed for completeness and is not adopted here.
+\end{itemize}
+
+% ============================================================================
+\sect{Bibliography}
+{\small
+\begin{description}[leftmargin=1.5em,itemsep=0.15em,font=\normalfont]
+\item Chmiel, A. ``Uwagi archiwalno-paleograficzne nad pieśnią \emph{Bogurodzica} w rękopisie Biblioteki Jagiell. nr 1619.'' \emph{Rozprawy Wydziału Filologicznego AU} 40 (1904). [with facsimile; not seen]
+\item Chybiński, A. \emph{``Bogurodzica'' pod względem historyczno-muzycznym}. Kraków, 1907 (offprint from \emph{Przegląd Powszechny} 94--95). RCIN, open access.
+\item Dąbrówka, A. ``Matka pieśni polskich.'' \emph{Pamiętnik Literacki} 96/2 (2005).
+\item Feicht, H. ``Wstęp muzykologiczny.'' In \emph{Bogurodzica}, ed. J. Woronczak. Wrocław, 1962. [not seen]
+\item Feicht, H. \emph{Studia nad muzyką polskiego średniowiecza}. Opera musicologica 1. Kraków: PWM, 1975. [not seen; pp. 187--89 for the Latin version]
+\item Flotzinger, R. ``Zur \emph{Bogurodzica}-Frage.'' \emph{Context of Musicology} 1 (Poznań, 1997): 15--19. Polish trans. ``Jeszcze o kwestii \emph{Bogurodzicy}.'' \emph{Pamiętnik Literacki} 96/2 (2005): 7--10.
+\item Jachimecki, Z. \emph{Muzyka polska w rozwoju historycznym}, vol.~1/1. Kraków, 1948.
+\item Adamiec, M., ed. \emph{Bogurodzica}. Wirtualna Biblioteka Literatury Polskiej, Uniwersytet Gdański. \url{https://literat.ug.edu.pl/bgrdzc/} (transcriptions after Woronczak 1962; facsimiles of BJ 1619, Łaski 1506 and the lost Częstochowa copy).
+\item Gołos, J. [G. S. Golos]. Review of Woronczak et al., \emph{Bogurodzica}. \emph{The Polish Review} 7/4 (1962): 84--85; also \emph{Notes} 2nd ser. 20/1 (1962--63): 71--72.
+\item Kalina, A. \emph{Rozbiór krytyczny pieśni ``Bogarodzica''}. Lwów: W. Spasowicz, 1880.
+\item Korolko, M. \emph{Średniowieczna pieśń religijna polska}. Wrocław, 1980.
+\item Kuzminskyi, I. ``History of the Origin of the \emph{Bogurodzica} Song.'' \emph{Lietuvos muzikologija} 18 (2017): 147--161.
+\item Łoś, J., ed. \emph{Bogurodzica. Pierwszy polski hymn narodowy}. Lublin, 1922. (Wikisource transcription.)
+\item Pilat, R. \emph{Pieśń ``Bogarodzica''. I. Restytucyja}. Kraków: Druk. Uniw. Jagiellońskiego, 1879.
+\item Perz, M. ``Polskie `posłowie' do uwag Rudolfa Flotzingera.'' \emph{Pamiętnik Literacki} 96/2 (2005): 11.
+\item Pikulik, J. ``Co melodia \emph{Bogurodzicy} mówi nam o czasie powstania pieśni.'' \emph{Pamiętnik Literacki} 96/2 (2005): 13--15.
+\item Stäblein, B. ``Litanei.'' \emph{MGG} 8 (1960), cols. 993--95.
+\item Surzyński, J. \emph{Polskie pieśni Kościoła katolickiego od najdawniejszych czasów do końca XVI stulecia}. Poznań, 1891.
+\item Urbańczyk, S. ``Das altpolnische Lied \emph{Bogurodzica} im Vergleich mit der altkirchenslawischen und alttschechischen Lyrik.'' \emph{Annales Instituti Slavici} II/2 (Wiesbaden, 1970).
+\item Woronczak, J. ``Tropy i sekwencje w literaturze polskiej do połowy XVI wieku.'' \emph{Pamiętnik Literacki} 43 (1952): 353--54.
+\item Woronczak, J., ed.; Ostrowska, E. (linguistic introduction); Feicht, H. (musicological ed.). \emph{Bogurodzica}. Biblioteka Pisarzy Polskich A~1 (Liryka średniowieczna 1). Wrocław: Ossolineum, 1962. 416 pp. [standard critical edition, with facsimiles of all sources and full transcriptions of every musical version; seen only through Adamiec's transcriptions and the reviews]
+\end{description}}
+
+\end{document}

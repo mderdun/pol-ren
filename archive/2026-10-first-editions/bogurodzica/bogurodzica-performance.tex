@@ -1,0 +1,112 @@
+% Bogurodzica: performance edition
+% Build:  gregorio bogurodzica-performance.gabc
+%         lualatex bogurodzica-performance.tex   (twice; needs GregorioTeX 6 and Junicode)
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2cm,top=1.8cm,bottom=2cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Junicode}[Path=/usr/share/fonts/opentype/junicode/,Extension=.otf,UprightFont=*-Regular,ItalicFont=*-Italic,BoldFont=*-SmBold,BoldItalicFont=*-SmBoldItalic,Numbers=OldStyle]
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+\setotherlanguage{polish}
+\usepackage{microtype}
+\usepackage{gregoriotex}
+\usepackage{array,booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\definecolor{rubric}{RGB}{160,30,30}
+\pagestyle{empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\gresetinitiallines{1}
+\grechangestyle{initial}{\fontsize{48}{48}\selectfont}
+\grechangestaffsize{22}
+\grechangedim{baselineskip}{70pt plus 6pt minus 6pt}{scalable}
+
+\newcommand{\pl}[1]{\foreignlanguage{polish}{#1}}
+\newcommand{\ipa}[1]{{\small\color{black!70}[#1]}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\textsc{Bogurodzica}}\\[0.15em]
+{\small Polish, 13th--14th century \quad·\quad Kraków, Biblioteka Jagiellońska, MS 1619}
+\end{center}
+\vspace{0.6em}
+
+\input{bogurodzica-performance.gtex}
+
+\newpage
+\section*{\large Text, pronunciation and translation}
+
+{\small Pronunciation follows modern Polish, the usual practice for this
+song. \textit{y} is a vowel between English \textit{i} and \textit{u}; \textit{ł}
+is English \textit{w}; \textit{ż}, \textit{sz} and \textit{cz} are hard
+\textit{zh}, \textit{sh} and \textit{ch}; \textit{ś}, \textit{ć} and \textit{dzi}
+are softer, closer to \textit{sh}, \textit{ch} and \textit{j}; \textit{ę} and
+\textit{ą} are nasal. Sing \textit{Kyrie eleison} in seven syllables, as
+underlaid.\par}
+
+\renewcommand{\arraystretch}{1.0}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.62\textwidth}>{\raggedright\arraybackslash\itshape}p{0.34\textwidth}@{}}
+\toprule
+\multicolumn{2}{@{}l}{\textbf{1}}\\
+\pl{Bogurodzica dziewica, Bogiem sławiena Maryja,}\newline\ipa{bɔɡurɔdʑitsa dʑɛvitsa bɔɡʲɛm swavʲɛna marɨja}
+ & Mother of God, Virgin glorified by God, Mary!\\[0.15em]
+\pl{u twego syna Gospodzina matko zwolena, Maryja!}\newline\ipa{u tfɛɡɔ sɨna ɡɔspɔdʑina matkɔ zvɔlɛna marɨja}
+ & Chosen Mother, Mary, from thy Son the Lord\\[0.15em]
+\pl{Zyszczy nam, spuści nam.}\newline\ipa{zɨʂtʂɨ nam spuɕtɕi nam}
+ & win for us, send down to us.\\[0.15em]
+\pl{Kyrie eleison.}\newline\ipa{kiriɛ ɛlɛisɔn}
+ & Lord, have mercy.\\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{2}}\\
+\pl{Twego dziela Krzciciela, Bożyce,}\newline\ipa{tfɛɡɔ dʑɛla kʂtɕitɕɛla bɔʐɨtsɛ}
+ & For thy Baptist's sake, Son of God,\\[0.15em]
+\pl{usłysz głosy, napełń myśli człowiecze.}\newline\ipa{uswɨʂ ɡwɔsɨ napɛwɲ mɨɕli tʂwɔvʲɛtʂɛ}
+ & hear our voices, fulfil the thoughts of men.\\[0.15em]
+\pl{Słysz modlitwę, jąż nosimy,}\newline\ipa{swɨʂ mɔdlitfɛ̃ jɔ̃ʂ nɔɕimɨ}
+ & Hear the prayer we bring,\\[0.15em]
+\pl{a dać raczy, jegoż prosimy:}\newline\ipa{a datɕ ratʂɨ jɛɡɔʂ prɔɕimɨ}
+ & and deign to grant what we ask:\\[0.15em]
+\pl{a na świecie zbożny pobyt,}\newline\ipa{a na ɕfʲɛtɕɛ zbɔʐnɨ pɔbɨt}
+ & on earth a godly life,\\[0.15em]
+\pl{po żywocie rajski przebyt.}\newline\ipa{pɔ ʐɨvɔtɕɛ rajski pʂɛbɨt}
+ & after life a dwelling in paradise.\\[0.15em]
+\pl{Kyrie eleison.} & Lord, have mercy.\\
+\bottomrule
+\end{tabular}
+
+\section*{\large Performance notes}
+{\small\begin{itemize}[leftmargin=1.2em,itemsep=0.15em]
+\item \textbf{Pitch.} The written final is D. The range is a ninth, C to the
+  D above, so the score suits most voices as written; transpose freely.
+\item \textbf{Rhythm.} The manuscript gives pitches only. Sing in the rhythm
+  of the words, with notes of roughly equal length. Sing the notes of a group
+  on one syllable lightly and evenly, and lengthen the last note before each
+  bar line. The pace is unhurried.
+\item \textbf{Breathing.} Breathe at the full bars. The half and quarter bars
+  mark the rhymes inside each line: a short lift, or a catch breath if needed.
+  The double bars end each stanza.
+\item \textbf{The B on \pl{spuści}} is natural. It is the only B in the song,
+  at the top of the melody. Some 16th-century copies flatten B elsewhere; this
+  version has none.
+\item \textbf{The leap at \pl{U twego}.} The line jumps an octave from the
+  low D of \pl{Maryja} to the high D. Later sources smooth it out, but it is
+  in the oldest copy. Take it cleanly.
+\item \textbf{Forces.} The song was sung in church and, by Długosz's account,
+  by Polish knights before battle, Grunwald 1410 among them. A single voice,
+  a small schola or a full choir in unison all suit it. One option is a
+  cantor for each stanza with everyone joining at \pl{Kyrie eleison}.
+\item \textbf{Both stanzas.} Stanza 1 is addressed to the Virgin, stanza 2 to
+  Christ. They share most of their music.
+\end{itemize}}
+
+\vfill
+{\footnotesize Melody and text from the earliest notated copy, Kraków,
+Biblioteka Jagiellońska, MS 1619, written shortly after 1400. Text in
+normalised Old Polish after J. Woronczak (1962). Bar lines are editorial. For
+sources and variants see the critical edition.\par}
+
+\end{document}

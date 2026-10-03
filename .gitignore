@@ -1,0 +1,7 @@
+editions/*/build/
+*.aux
+*.log
+*.out
+*.gaux
+*.gtex
+*.toc

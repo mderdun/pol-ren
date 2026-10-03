@@ -1,0 +1,28 @@
+name: Bogurodzica;
+office-part: Cantio;
+mode: 1;
+annotation: Cant.;
+annotation: I;
+book: Kraków, Biblioteka Jagiellońska, MS 1619 (c. 1407–1408), stanzas 1–2;
+manuscript: Kraków, Biblioteka Jagiellońska, rkps 1619;
+manuscript-storage-place: Kraków, Biblioteka Jagiellońska;
+date: c. 1407–1408 (copy); composition probably 13th–14th c.;
+transcriber: Critical edition prepared for Mikołaj Derdun, 2026;
+commentary: Melody after BJ 1619, collated against the Polona facsimile and Chybiński (1907); text normalised after Woronczak (1962);
+user-notes: Pitch letters with clef c4 map to C D E F G a b c' d' as c d e f g h i j k. No B-flat occurs; the single b (i) on spuś-ci is natural. Bar lines are editorial: the source has no divisiones.;
+centering-scheme: latine;
+%%
+(c4)
+Bo(d)gu(c)ro(f)dzi(eDC)ca(d) dzie(f)wi(gfg)ca,(h) (;)
+Bo(j)giem(k) sła(j)wie(hGF)na(f) Ma(fghg)ry(ec)ja,(d) (:)
+U(k) twe(j)go(hGF) sy(gfg)na,(h) (;) Go(j)spo(k)dzi(j/h/g)na,(f) (;)
+Ma(j)tko(hGF) zwo(fghg)le(ec)na,(d) (;) Ma(fghg)ry(ec)ja!(d) (:)
+Zysz(f)czy(gfg) nam,(h) (,) spu(j)ści(i) nam.(k) (;)
+Ky(j)ri(h)e(gf) e(fghg)le(e)i(d)son.(d.) (::) (z)
+<b>2.</b>() Twe(de)go(dc) dzie(f)la(g) Krzci(e)cie(c)la,(d) (;) bo(fghg)ży(ec)ce,(d) (:)
+u(h)słysz(gf) gło(gfg)sy,(h) (;) na(d)pełń(c) myś(f)li(g) czło(e)wie(c)cze.(d) (:)
+Słysz(c) mo(f)dli(g)twę,(ede) (,) jąż(c) no(d)si(e)my,(d) (:)
+a(h) dać(gf) ra(gfg)czy,(h) (;) je(de)goż(dc) pro(f)si(g)my:(h) (:)
+a(j) na(h) świe(j)cie(g) zboż(j)ny(hGF) po(gfg)byt,(h) (;)
+po(h) ży(j)wo(k)cie(g) raj(j)ski(hGF) prze(gfg)byt.(h) (:)
+Ky(h)ri(g)e(f) e(fghg)le(e)i(d)son.(d.) (::)
