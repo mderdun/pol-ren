@@ -51,7 +51,7 @@ A siglum of a source or edition is set in small capitals inside a thin ring (one
 
 ## 5. Colour
 
-Black, and one red: **#9A1E1E**, a rubricator's red.
+Black, white and one red; no other colour, grey included: **#9A1E1E**, a rubricator's red.
 
 Red is used for: the series line, the fleuron that opens a part, the drop initial of the first section, stanza numbers, liturgical rubrics over a score, the chant initial and annotation, the thin rule of the title-page frame.
 
@@ -92,7 +92,7 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 
 - Voice names in small capitals, abbreviated after the first system (C. A. T. B.).
 - Incipit with original clef, sign and first note (omitted in a transposed performance edition); then the modern clef and the ambitus; then the mensuration sign.
-- **Mensurstriche** as grey hairlines between the staves, so the parts read first and the bar lines are there for whoever wants them. Section, repeat and final bar lines are black and full weight.
+- **Mensurstriche** as dashed lines between the staves, so the parts read first and the bar lines are there for whoever wants them. Section, repeat and final bar lines are solid.
 - Bar numbers in small italic at the start of each system only.
 - Editorial accidentals small, above the note.
 - Ties are solid. A dashed tie means a source note divided to carry text (`\divTie`) and nothing else.
@@ -143,7 +143,7 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 **Conventions**
 
 - British spelling (-ise). Dates "c. 1550–1556", "fl. 1604–1611", "after 1452". En dash in ranges.
-- Single curly quotation marks, double inside. Quotations in their own language, roman, in quotation marks; a translation follows in parentheses when needed.
+- Single curly quotation marks, double inside. Quotations in their own language, roman, in quotation marks, always followed by an English translation in parentheses: ‘dziękujem Tobie’ (‘we thank you’). Block quotations: the translation follows inside the block (`\translation{...}`).
 - Titles of works in italic; Polish and Latin titles in the source's form.
 - References in prose: "bar 29, Altus". In critical notes: "29 | A".
 - Polish names with their diacritics, always.

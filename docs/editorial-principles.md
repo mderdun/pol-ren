@@ -47,7 +47,7 @@ Every piece is published as a critical edition and a performance edition.
 
 1. **Unreduced values.** Note values are those of the source. Where the source is an organ tablature that halves its vocal model, double them. (MD, *Nunc scio*: "doubled is sensible and feels more appropriate")
 2. **Bar = breve** under cut-C. Bar numbers count breves, including both endings of a repeat. (*Nunc scio*, *Zmierzka*, *Plaude*)
-3. **Mensurstriche.** Bar lines run between the staves only, drawn light (a grey hairline) so that the score reads as parts first and as a timed score second. A note that crosses a bar line keeps its single value; the edition adds no ties. Section, repeat and final bar lines keep full weight. (MD, *Nunc scio*; lightened 3 Oct 2026)
+3. **Mensurstriche.** Bar lines run between the staves only, dashed, so that the score reads as parts first and as a timed score second. A note that crosses a bar line keeps its single value; the edition adds no ties. Section, repeat and final bar lines are solid. (MD, *Nunc scio*; dashed 3 Oct 2026)
 4. **Mensuration sign** as printed in the source. Where the source has none (a tablature, an unclefed manuscript), the edition may supply one and says in the method that it is editorial. The score must read without it: the light bar lines carry the time for those who want it. (MD, 3 Oct 2026)
 5. **Incipits** before each staff give the source's clef, sign and first note wherever a mensural source gives them. None where the source is a tablature, unclefed or lost.
 6. **Ambitus** of each voice after the clef.
@@ -126,6 +126,7 @@ Every piece is published as a critical edition and a performance edition.
 4. **Translation** is literal, line by line. Archaic English only where the source language is liturgical verse (*Bogurodzica*).
 5. **Pronunciation** lives in one series guide (`guides/pronunciation`), not in each edition. An edition notes only what is peculiar to its text (a word that needs a gloss, an option the text invites) and points to the guide. Defaults: Polish Latin for Latin texts; modern pronunciation of the old forms for Polish. (MD, 3 Oct 2026) Tables, never paragraphs. (MD, *Nunc scio*)
 6. **Spellings of the source** are kept in lemmata and in the edited text where they are not errors (*confidencium*, *misericordie*). (*Plaude*)
+7. **Translations of quotations.** Every quotation in a language other than English, in either edition, carries an English translation inline: after the original, in parentheses and quotation marks, ‘…’ (‘…’). A block quotation is followed by its translation inside the same block. Titles of works are translated at their first mention in the prose where the meaning matters to the argument; not in source lists or the literature. (MD, 3 Oct 2026)
 
 ## 12. Chant
 
@@ -148,7 +149,7 @@ Every piece is published as a critical edition and a performance edition.
 
 ## 14. Names, attribution, rights
 
-1. **Composer's name in Polish first**, the Latin form after it. (MD, *Plaude*)
+1. **Composers by their vernacular names only** (Piotr z Grudziądza, Wacław z Szamotuł, Mikołaj Zieleński). Latin forms appear only where the prose discusses them, such as a signature in a source. An anonymous work is credited to *Anonymous*, with its date in the composer's dates slot. (MD, 3 Oct 2026)
 2. **Title and subtitle.**
    - *Title*: the work's title in its main source (a heading, a rubric, a table of contents), in the source's language. If the source gives none, the incipit.
    - *Subtitle*: if the title is not the incipit, the incipit (*Modlitwa gdy dziatki spać idą* / *Już się zmierzka*). If the title is the incipit, the work's liturgical or functional designation in the source's language (*Vox in Rama* / *Communio in festo SS. Innocentium*). If neither applies, no subtitle (*Bogurodzica*).

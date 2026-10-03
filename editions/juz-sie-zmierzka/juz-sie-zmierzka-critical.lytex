@@ -29,7 +29,7 @@ between 1550 and 1556.
 The title page names no composer. The letters W and S stand after the final
 notes of the Tenor, Altus and Bassus, and that monogram is the evidence for
 Wacław’s authorship. Michał Wiszniewski described the print in 1844 as
-‘4 kart. Z nutami na 4 tony W. S.’
+‘4 kart. Z nutami na 4 tony W. S.’ (‘4 leaves. With notes for 4 voices. W. S.’)
 
 The setting is a cantional song. The Tenor carries the hymn tune in breves
 and semibreves, one note to each syllable. The other voices move around it
@@ -40,7 +40,7 @@ Whether Wacław wrote it or arranged an older tune is disputed: Mazurkiewicz
 takes it for his, Hławiczka for an older song.
 
 No copy of the print is known today. In 1880 Kazimiera Przyborowska published
-a facsimile of it in Warsaw, ‘z pierwodruku’, and every later edition goes
+a facsimile of it in Warsaw, ‘z pierwodruku’ (‘from the first printing’), and every later edition goes
 back to that facsimile. The usual modern editions transpose the piece up a
 minor third, halve the note values, add a three-flat signature and modernise
 the text. This edition gives the music at the pitch and in the note values of
@@ -50,10 +50,13 @@ forms of the text.
 \section*{The song and its use}
 
 The title says what the song is for. Luther’s Small Catechism (1529) ends
-with prayers that ‘ein Hausvater sein Gesinde soll lehren’, among them an
+with prayers that ‘ein Hausvater sein Gesinde soll lehren’ (‘a head of
+household should teach his household’), among them an
 evening blessing for bedtime: ‘denn ich befehle mich, meinen Leib und Seele
 und alles in deine Hände. Dein heiliger Engel sei mit mir, daß der böse Feind
-keine Macht an mir finde.’ Polish Lutherans took this over directly. The
+keine Macht an mir finde.’ (‘for I commend myself, my body and soul and all
+things into your hands. Let your holy angel be with me, that the wicked enemy
+may find no power over me.’) Polish Lutherans took this over directly. The
 second edition of Jan Seklucjan’s \la{Catechismus} (Königsberg, 1549) closes
 with a \pl{Nauka dziecinna}, a teaching for children, which tells them how to
 begin and end the day:
@@ -65,24 +68,34 @@ niebieski, dziękujem Tobie … iżeś nas tego dnia raczył we zdrowiu zachowa�
 i wszelkiej szkody uchować … a przeto my ciała swoje i dusze i ine wszystki
 rzeczy w ręce Twoje polecamy, aby Twój święty anioł był przy nas, aby
 dyjabeł żadnego prawa do nas nie miał.’
+\translation{‘When going to sleep they are to bid their elders good night,
+and before they lie down they are first to cross themselves … [and] they may
+add this prayer: Almighty heavenly Father, we thank you … that you have
+deigned to keep us in health this day and to preserve us from all harm …
+and therefore we commend our bodies and souls and all other things into
+your hands, that your holy angel may be with us, that the devil may have no
+claim on us.’}
 \end{quote}
 
 Trzecieski’s third and fourth stanzas put this prayer into verse almost
 clause by clause. The holy angel is sent against the enemies of the soul; God
-is asked to keep the household ‘przez wszej szkody’ and from every sudden
-‘przygoda’; everything the household has is put into his care. The song is
+is asked to keep the household ‘przez wszej szkody’ (‘without any harm’) and from
+every sudden ‘przygoda’ (‘mishap’); everything the household has is put into his care. The song is
 the catechism’s evening prayer, made singable for the family.
 
 Behind both stands Compline, the old night office, which the household
 prayer replaced. Its texts are close to Trzecieski’s first stanza. The short
-lesson warns that ‘adversarius vester diabolus tamquam leo rugiens circuit’;
-the hymn \la{Te lucis} asks ‘hostemque nostrum comprime’; Psalm 90 promises
-safety ‘a negotio perambulante in tenebris’; the collect asks God to drive off
-‘omnes insidias inimici’ and to let his holy angels keep the house in peace.
+lesson warns that ‘adversarius vester diabolus tamquam leo rugiens circuit’ (‘your adversary the
+devil, as a roaring lion, goes about’);
+the hymn \la{Te lucis} asks ‘hostemque nostrum comprime’ (‘and hold
+back our enemy’); Psalm 90 promises
+safety ‘a negotio perambulante in tenebris’ (‘from the thing that walks
+about in the dark’); the collect asks God to drive off
+‘omnes insidias inimici’ (‘all the snares of the enemy’) and to let his holy angels keep the house in peace.
 The parallel is my own reading; I know of no study that makes it.
 
 The hymnals show the song in this domestic use. Zaremba’s Calvinist \pl{Pieśni
-chwał boskich} (Brest, 1558), printed for Mikołaj Radziwiłł, Wacław’s patron,
+chwał boskich} (‘Songs of God’s praises’; Brest, 1558), printed for Mikołaj Radziwiłł, Wacław’s patron,
 has the text, in a book that also contains Jakub Sylwiusz’s \pl{Pasterstwo
 domowe}, an order for prayer and singing in the household. Seklucjan’s
 hymnal of 1559 prints the tune among eight songs headed ‘Idąc spać’ (‘Going to
@@ -94,7 +107,8 @@ Trzecieski (c.\,1525 – after 1584) was a Kraków humanist and a leader of the
 Reformation in Little Poland, a friend of Kochanowski and one of the
 translators of the Brest Bible (1563). He knew Wacław well. He wrote verses in
 praise of him for the \la{Lamentationes} (1553) and, after the composer’s
-death, an elegy, \la{De obitu Venceslai Samotulini}.
+death, an elegy, \la{De obitu Venceslai Samotulini} (‘On the death of Wacław
+of Szamotuły’).
 
 \section*{Sources}
 
@@ -157,7 +171,7 @@ dotted minim, or on a fusa; a repeated note takes a new syllable where the
 text allows; the last syllable of a line falls on its cadence note. Where
 these leave a choice, the syllable goes where the Tenor has the same word.
 
-\subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’, with no Amen. All
+\subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’ (‘The end’), with no Amen. All
 four are sung to the same music. Stanza 1 is underlaid; stanzas 2–4 follow
 the score. Old Polish verse counts syllables, eight to the line with a break
 after the fourth, so the later stanzas take the notes of stanza 1 syllable for

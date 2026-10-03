@@ -6,9 +6,9 @@
 discantusNotes = {
   \set melismaBusyProperties = #'()
   \repeat volta 2 { d'1 f'1 e'1. f'2 g'2 d'2 d'2 e'2 c'\breve d'1 r1 a'1. g'2 f'1 bes'2 a'1 g'1 f'2 a'1 r1 a'2 f'2 f'2 g'2 e'2 e'2 e'1 f'2 d'2 c'2 d'2 e'1 f'1 }
-  \alternative { { g'1. a'2 f'2 e'2 f'2 g'2 e'\breve } { g'1. a'2 f'2 e'2 f'2 d'2 \sup e'\breve } }
+  \alternative { { g'1. a'2 f'2 e'2 f'2 g'2 e'\breve } { g'1. a'2 f'2 e'2 f'2 d'2 \sup e'\longa*1/2 } }
   \repeat volta 2 { d'1 e'2 f'2 g'1 d'1 a'2 f'2 f'2 g'2 e'1 d'1 e'2 e'2 e'1 a'\breve bes'2 g'2 g'2 f'2 g'\breve f'2 e'2 e'2 d'2 f'2 f'2 d'1 g'2 f'2 e'2 d'2 }
-  \alternative { { e'1 g'2 a'2 f'2 e'2 f'2 d'2 e'\breve } { e'1 e'1 f'2 e'2 d'2 \fi cis'2 \sup d'\breve \bar "|." } }
+  \alternative { { e'1 g'2 a'2 f'2 e'2 f'2 d'2 e'\breve } { e'1 e'1 f'2 e'2 d'2 \fi cis'2 \sup d'\longa*1/2 \bar "|." } }
 }
 discantusWords = \lyricmode {
   Plau -- de eu -- ge the -- o -- to -- _ cos __ _ re -- gi -- na vir -- _ gi -- _ num sa -- _ lus __ _ ho -- mi -- num in te con -- fi -- den -- ci -- um __ _ con -- fi -- den -- ci -- um um __ _ con -- fi -- den -- ci -- um Te lau -- _ dan -- tes in -- _ spi -- _ _ ce mi -- se -- ros nec de -- _ spi -- _ ce sed mi -- se -- ri -- cor -- di -- e o -- _ cu -- _ lis hos __ _ re -- _ spi -- _ ce lis hos re -- _ spi -- _ ce

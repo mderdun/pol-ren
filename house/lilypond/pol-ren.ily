@@ -94,12 +94,9 @@ voiceSetup = {
 }
 
 %% ------------------------------------------------------------ Mensurstriche
-#(define pr-mensurstrich-grey (rgb-color 0.58 0.58 0.58))
-#(define (pr-mensurstrich? grob) (member (ly:grob-property grob 'glyph-name) '("|" "-span|")))
-#(define (pr-mensurstrich-color grob)
-   (if (pr-mensurstrich? grob) pr-mensurstrich-grey black))
-#(define (pr-mensurstrich-thickness grob)
-   (if (pr-mensurstrich? grob) 1.0 1.9))
+%% Drawn between the staves only, as dashed black lines: the score reads as
+%% parts first and as a timed score second. No colour but black and red.
+\defineBarLine "-span!" #'(#f #f "!")
 
 %% ------------------------------------------------------------ contexts
 \layout {
@@ -123,15 +120,10 @@ voiceSetup = {
   }
   \context { \StaffGroup
     \override SystemStartBracket.collapse-height = #4
-    %% Mensurstriche are drawn light: a hairline in grey, so the score reads
-    %% as parts first and as a timed score second. Section, repeat and final
-    %% bar lines keep full weight.
-    \override SpanBar.color = #pr-mensurstrich-color
-    \override SpanBar.hair-thickness = #pr-mensurstrich-thickness
   }
   \context { \Staff
     %% Mensurstriche: bar lines between the staves, never through a note.
-    measureBarType = "-span|"
+    measureBarType = "-span!"
     \consists "Ambitus_engraver"
     \override InstrumentName.self-alignment-X = #RIGHT
     \override InstrumentName.font-size = #0.6

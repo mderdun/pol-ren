@@ -3,7 +3,6 @@
 
 \seriesno{4}
 \composer[1392 – after 1452]{Piotr z Grudziądza}
-\composeralt{Petrus Wilhelmi de Grudencz}
 \title{Plaude euge theotocos}
 \forces{for three voices}
 \sourceline{from Leipzig, Universitätsbibliothek, Ms 1236, f.~139v}
@@ -44,13 +43,14 @@ to drift from what Piotr wrote.
 
 The scribe wrote the three voices one after another, each in its own block,
 and labelled the upper two Discantus and Medius in the margin; the lowest
-voice has the cue ‘Tenor ymni Plaude’ (the reading of \textit{ymni} is
-uncertain). The notation is void mensural notation in a fast cursive hand.
+voice has the cue ‘Tenor ymni Plaude’ (‘Tenor of the hymn \textit{Plaude}’;
+the reading of \textit{ymni} is uncertain). The notation is void mensural notation in a fast cursive hand.
 The Discantus and Medius are written in semibreves and minims, with their text
 copied as a continuous line under the notes rather than set note by note. The
 Tenor is written almost entirely in ligatures and carries no text beyond its
-cues: the incipit, ‘Te laudantes inspice’ where the second part begins, and
-‘2a fi[n]alis’ and ‘2a finale’ over the second endings. No voice has a clef, a
+cues: the incipit, ‘Te laudantes inspice’ (‘look upon those who praise you’)
+where the second part begins, and ‘2a fi[n]alis’ (‘second final’) and ‘2a
+finale’ (‘second ending’) over the second endings. No voice has a clef, a
 mensuration sign or an accidental. Below the word Discantus is a small sign
 shaped like a b. The scribe ruled five-line staves by hand, unevenly, and many
 notes sit loosely on them. The ends of the Discantus and Medius staves run into
@@ -101,30 +101,34 @@ spellings.
 for Mary confirmed at the Council of Ephesus in 431. It belongs to the
 Byzantine liturgy, but it was never only an Eastern word. Latin writers used
 it from the Nestorian controversy onwards (John Cassian glosses it
-‘theotocos, id est dei mater’), the schools met it in the Latin John of
+‘theotocos, id est dei mater’, ‘theotocos, that is, mother of God’), the schools met it in the Latin John of
 Damascus, and Western liturgical poetry used it freely: the office antiphon
-\textit{Ave o theotokos virgo Maria}, sequences such as \textit{Ave salutata ab
-angelo} (‘Ave, o theotocos’), and a hymn in fifteenth-century breviaries that
-prays ‘Succurre, o Theotocos’. In Piotr's poetry it is one of many Greek
+\textit{Ave o theotokos virgo Maria} (‘Hail, O God-bearer, Virgin Mary’),
+sequences such as \textit{Ave salutata ab angelo}, which has ‘Ave, o
+theotocos’ (‘Hail, O God-bearer’), and a hymn in fifteenth-century breviaries
+that prays ‘Succurre, o Theotocos’ (‘Help, O God-bearer’). In Piotr's poetry it is one of many Greek
 borrowings, alongside \textit{ephebeatum} and \textit{pneuma eucaristiarum,}
 which show off the learning of a Kraków master. I suspect it also solved a
 practical problem. The acrostic needs a word beginning with T, and \textit{Dei
-genitrix} would not serve.
+genitrix} (‘mother of God’) would not serve.
 
 The rest of the language is common Marian stock. \textit{Plaude} and
 \textit{euge} together (‘rejoice’, ‘well done!’) appear in Jan of Jenštejn's
 Visitation sequence \textit{Ave verbi Dei parens}, copied in some forty
 Bohemian sources. \textit{Euge} comes from the Vulgate (‘Euge, serve bone’,
-Matthew 25:21); here it supplies the E. \textit{Regina virginum} is the
-antiphon's ‘Haec est regina virginum’, and rhymed Marian prayers of the
-period call her the hope ‘in te confidentium’. The closing lines echo the
-\textit{Salve Regina}: ‘illos tuos misericordes oculos ad nos converte’. The
+‘Well done, good servant’, Matthew 25:21); here it supplies the E. \textit{Regina virginum} is the
+antiphon's ‘Haec est regina virginum’ (‘This is the queen of virgins’), and
+rhymed Marian prayers of the period call her the hope ‘in te confidentium’
+(‘of those who trust in you’). The closing lines echo the
+\textit{Salve Regina}: ‘illos tuos misericordes oculos ad nos converte’ (‘turn those merciful eyes
+of yours towards us’). The
 title of the oldest Polish hymn, \textit{Bogurodzica}, is the same word. It
 means ‘God-bearer’ and is a calque of \textit{Theotokos.}
 
 The Tenor's cue calls the piece a \textit{hymnus}. In the medieval sense that
 means any song of praise to God or the saints (Isidore: ‘hymnus est canticum
-laudantium’), which the second half's \textit{Te laudantes} makes literal.
+laudantium’, ‘a hymn is a song of those who praise’), which the second half's
+\textit{Te laudantes} (‘those praising you’) makes literal.
 Nothing ties it to a feast or an office. It is a devotional song of the kind
 sung by students, clerics and townspeople in central Europe, in school, at
 home or in church.
@@ -143,7 +147,7 @@ is applied to the whole score. The source has no accidentals either. The
 editorial ones follow two rules of the period: voices should not sound a
 tritone against each other (\textit{mi contra fa}), and a sixth that widens to
 an octave at a cadence should be major. Where the two pull against each
-other, or against the melodic rule \textit{una nota super la}, the critical
+other, or against the melodic rule \textit{una nota super la} (‘one note above la’), the critical
 notes explain the choice. The recording by Schola Gregoriana Pragensis decides
 differently in three places, and those are noted too.
 
@@ -198,8 +202,10 @@ where the upper voices declaim together.
 The Tenor's text is printed in italics because none of it is in the source.
 The Tenor keeps its long notes so that it can hold a sustained line under the
 declaiming upper voices, and it sings only as much of the text as fits:
-‘Plaude theotocos / regina virginum / salus confidencium’, and ‘Te laudantes
-inspice / nec despice / sed hos oculis respice’. The words it leaves out are
+‘Plaude theotocos / regina virginum / salus confidencium’ (‘Rejoice, Mother
+of God, queen of virgins, salvation of those who trust’), and ‘Te laudantes
+inspice / nec despice / sed hos oculis respice’ (‘Look upon those who praise
+you, do not despise them, but look on them with your eyes’). The words it leaves out are
 sung by the upper voices, and what it sings still makes sense on its own.
 Notes are divided only in the endings, and dashed ties mark the divisions. The
 two endings of the first part differ. The first time, the Tenor begins the
@@ -219,6 +225,9 @@ this score.
   (Public Domain Mark). \textit{Base text.}
 \end{sigla}
 
+%% Keep the collated edition and recording together with their lead-in
+%% (the inline translations push siglum P over the page).
+\newpage
 \noindent Edition and recording collated:
 
 \begin{sigla}
@@ -241,7 +250,8 @@ source has no mensuration sign. The music moves in imperfect tempus and minor
 prolation throughout.
 
 \subsection{Repeats} The source writes each half once, followed by its first
-ending, and then the second ending after a double stroke marked ‘2a’. The
+ending, and then the second ending after a double stroke marked ‘2a’
+(‘second’). The
 score uses repeat signs and numbered endings for this. In the first part the
 bar before the endings (bar 14) is printed in both endings, so that the Tenor
 can take it differently each time; the upper voices are the same in both. In
@@ -254,7 +264,9 @@ bar 35. The critical notes give the reasons, and note where \sig{R} and
 \sig{P} differ.
 
 \subsection{Supplied notes} Notes hidden in the gutter of the manuscript are
-supplied in square brackets.
+supplied in square brackets. These are the last notes of the Discantus in
+the two second endings, each printed as a long like the final notes of the
+other voices (see Final notes).
 
 \subsection{Text} Spelling follows the source; capitals and punctuation are
 editorial. The source does not align syllables with notes in any voice, so the
@@ -274,7 +286,9 @@ italics, and shortened so that it keeps its long notes (see above).
 \subsection{Final notes} The source writes the last note of each ending as a
 long in the Tenor, and in the Medius at the end of each second ending. They
 are printed as longs, each filling its bar, and are held until all voices
-have finished. No fermata is added.
+have finished. The Discantus's last note in each second ending, hidden in
+the gutter and supplied in brackets, is printed as a long in the same way,
+so that all three voices end together on longs. No fermata is added.
 
 %% ================================================================ TEXT
 \opensection{Text and translation}
@@ -334,7 +348,8 @@ which need no change of metre in breve barring), and gives the Tenor no text.
   here as a long.}
 \cn{18–19}{D}{Only the first three notes of this ending are clear in
   \sig{MS}. Note 4 is partly visible and the last note is hidden in the
-  gutter. \sig{R} gives c′. This edition supplies e′. The Tenor's b\fl{}–a and
+  gutter. \sig{R} gives c′. This edition supplies e′, printed as a long like
+the final notes of the Medius and Tenor. The Tenor's b\fl{}–a and
   the Medius's g–a make a cadence on A, and the Discantus then takes d′–e′, as
   it does in the first ending.}
 \cn{19}{M 1}{\sig{MS} writes a long, placed between f and g. With \voice{T}
@@ -372,7 +387,7 @@ which need no change of metre in breve barring), and gives the Tenor no text.
   as \sig{R} and \sig{P} do, is the other consistent reading; c\sh{}′ with
   g\na{} is not.}
 \cn{36}{D}{The last note is hidden in the gutter of \sig{MS} and is
-  supplied.}
+  supplied, printed as a long like the final notes of the Medius and Tenor.}
 \end{apparatus}
 
 \section*{Literature}

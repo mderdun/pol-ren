@@ -28,6 +28,7 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
     (cd "$out" && for i in 1 2; do lualatex -interaction=nonstopmode -halt-on-error "$name.tex" >/dev/null \
        || { grep -A5 '^!' "$name.log"; exit 1; }; done)
     cp "$out/$name.pdf" "$src/pdf/"
+    rm -f "$src"/tmp*.out "$src"/tmp*.pdf "$src"/tmp*.aux "$src"/tmp*.log   # lilypond-book page probes
     echo "built ${src#$ROOT/}/pdf/$name.pdf ($(pdfinfo "$src/pdf/$name.pdf" | awk '/^Pages/{print $2}') pp.)"
   done
 }

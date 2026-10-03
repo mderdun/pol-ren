@@ -158,6 +158,8 @@
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \hbox{}\vfill{\centering\red{\ornfont ❧}\par}\vfill\thispagestyle{pr@plain}\newpage\fi\fi}
 
+%% Translation of a block quotation, inside the quote environment.
+\newcommand\translation[1]{\par\smallskip\noindent(#1)}
 %% Block quotations: a size down, indented both sides.
 \renewenvironment{quote}{\par\small\list{}{\leftmargin=2em\rightmargin=2em\topsep=0.5\baselineskip}\item\relax}{\endlist}
 

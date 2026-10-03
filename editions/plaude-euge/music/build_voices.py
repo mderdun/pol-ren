@@ -5,7 +5,9 @@
 Changes from the first edition's build_voices.py (principles 5.7):
 the longs of the source at the ends of the endings (Tenor in every ending,
 Medius at the end of each second ending) are printed as longs, scaled to
-the breve they fill; the editorial fermata is dropped. Notation uses the
+the breve they fill; the editorial fermata is dropped. The Discantus
+finals of the second endings, hidden in the gutter and supplied in
+brackets, are printed as longs like the others. Notation uses the
 house signs (\\fi, \\sup, \\divTie); the Tenor's text is editorial and set
 in italics (\\edText, music/engraving.ily).
 """
@@ -13,8 +15,9 @@ import contextlib, io
 with contextlib.redirect_stdout(io.StringIO()):
     from data import *
 
-# Longs of the source (critical notes 16, 19 T; 19 M 1; 33, 36 T).
-for v, endings in (('T', (1, 2, 4, 5)), ('M', (2, 5))):
+# Longs of the source (critical notes 16, 19 T; 19 M 1; 33, 36 T), and the
+# supplied Discantus finals of the second endings (18-19 D; 36 D).
+for v, endings in (('T', (1, 2, 4, 5)), ('M', (2, 5)), ('D', (2, 5))):
     for k in endings:
         VOICES[v][k][-1]['fl'] += 'L'
 

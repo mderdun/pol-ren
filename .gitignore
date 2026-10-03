@@ -5,3 +5,5 @@ editions/*/build/
 *.gaux
 *.gtex
 *.toc
+editions/*/tmp*
+guides/*/tmp*
