@@ -7,7 +7,7 @@
 
 \begin{document}
 \makemasthead
-\scorepagebreaks{4}
+\scorepagebreaks{3}
 \lilypondfile[noindent]{music/score-performance.ly}
 
 %% The heading's reserved space (six lines) is less than the text block, so

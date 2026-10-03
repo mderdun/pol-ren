@@ -7,4 +7,4 @@
 %% 'inspice' at the cadence on A (24), 'despice' on G (27), 'misericordie'
 %% (30); the endings (14–19, 31–36) each take one system.
 prBreaksCritical = #'(5 9 13 19 24 27 30)
-prBreaksPerformance = #'(5 9 13 19 24 27 30)
+prBreaksPerformance = #'(9 13 19 24 30)

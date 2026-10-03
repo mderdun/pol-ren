@@ -193,7 +193,7 @@ and line division of \sig{A}, with ſ, and ē unexpanded.
 
 %% ================================================================ SCORE
 \scorehead
-\scorepagebreaks{3}
+\scorepagebreaks{2,4}
 \lilypondfile[noindent]{music/score.ly}
 \begin{stanzas}
 \stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
