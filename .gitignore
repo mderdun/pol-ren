@@ -7,3 +7,4 @@ editions/*/build/
 *.toc
 editions/*/tmp*
 guides/*/tmp*
+.claude/worktrees/
