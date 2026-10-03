@@ -43,7 +43,10 @@ for n in NAMES:
         # warnings
         for i,s in und.items():
             bar,t=ons[i-1]
-            if dur(t)<F(1,4): print('SHORT',n,sec,'bar',bar+a,i,s,t)
+            if dur(t)<F(1,4):
+                prev=ons[i-2][1] if i>1 else ''
+                ok=dur(t)==F(1,8) and prev.endswith('4.')   # semiminim after a dotted minim (principles 10.1)
+                print('semiminim after dotted minim' if ok else 'SHORT',n,sec,'bar',bar+a,i,s,t)
         if len(ons) not in und: print('LAST NOTE UNSYLLABLED',n,sec,len(ons))
         # lyric string
         lyr=[]; 
@@ -55,6 +58,8 @@ for n in NAMES:
             if not und[i].endswith('-'):
                 w=''.join(und[j].rstrip('-') for j in word).strip(',.:;').lower()
                 if p<len(canon) and canon[p]==w: p+=1; it=False
+                elif p+1<len(canon) and canon[p] in ('et','in','de') and canon[p+1]==w:
+                    print('SKIP',n,sec,canon[p],'(principles 10.13)'); p+=2; it=False   # light word left out
                 else: it=True
                 for j in word: ital[j]=it
                 word=[]

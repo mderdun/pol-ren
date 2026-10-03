@@ -82,6 +82,7 @@ critical notes list every decision, so any of them can be reversed.
 \end{sigla}
 
 \section*{Editorial method}
+\seriesrules
 
 \subsection{Pitch and note values} Pitch is that of \sig{T}. At this pitch
 the antiphon ends on E with no signature, the normal position of the third
@@ -92,71 +93,86 @@ transposed it. \sig{P}’s pitch would need three flats in the signature,
 which no source of the period uses. Written pitch was not sounding pitch,
 though (see Performance).
 
-Note values are twice those of \sig{T} and \sig{P}. German organ tablatures
-often halve the values of their vocal models. As Perz transcribes it,
-\sig{T} moves in semiminims and fusae, with semifusae at cadences, values a
-vocal motet of about 1550 would hardly use. Doubled, the music moves in
-semibreves and minims under ¢, like Wacław’s two printed motets. The bar is
-a breve, so bar numbers match \sig{P}. The mensuration sign is editorial:
-\sig{T}, a tablature, has none.
+Note values are twice those of \sig{T} and \sig{P} (principles 5.1). As
+Perz transcribes it, \sig{T} moves in semiminims and fusae, with semifusae
+at cadences, values a vocal motet of about 1550 would hardly use. Doubled,
+the music moves in semibreves and minims under ¢, like Wacław’s two printed
+motets. The bar is a breve, so bar numbers match \sig{P}. The mensuration
+sign is editorial, since \sig{T} has none (principles 5.4).
 
-\subsection{Score} Bar lines run between the staves only. Voice names and
-clefs are editorial. Each voice’s range is shown at the head of its staff.
-Rests at entries follow \sig{P}, since a tablature notates rests only in
-part. The antiphon ends on semibreves under \sig{P}’s corona (bar 56).
-The \la{Gloria Patri} ends on longs.
+\subsection{Score} Voice names and clefs are editorial, since \sig{T} has
+neither. Rests at entries follow \sig{P}, because a tablature notates rests
+only in part. The antiphon ends on semibreves under \sig{P}’s corona
+(bar 56). The \la{Gloria Patri} ends on longs (principles 5.7).
 
 \subsection{Accidentals} A tablature spells every pitch, so accidentals
 before notes come from \sig{T}. Accidentals above the staff are editorial,
-all of them suggested by Perz. Each sign applies only to the note it stands
-against. An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
+and Perz suggested all of them (principles 7.2).
 
-\section*{Text underlay}
+\subsection{Underlay} \sig{T} gives only the text incipit, so every
+syllable under the notes is editorial. The series rules apply throughout
+(principles 10.1–10.10). What follows is particular to this piece.
 
-\sig{T} gives only the text incipit. Every syllable below the notes is
-therefore editorial, placed by the method below.
+\textit{Model.} Wacław’s Kraków \la{Lamentationes} (1553) are the evidence
+for principles 10.7. They set the text mostly one syllable to a note and
+put one melisma before each cadence, on the stressed syllable of the last
+word (\la{mé–am, lú–cem, hó–minum, su-á–rum}). The Nuremberg prints of his
+motets agree at clause ends but place the words too loosely to settle more.
 
-\begin{enumerate}
-\item \textit{Chant.} Where a voice carries the cantus firmus, it takes the
-  chant’s syllables. Each syllable starts on the first note of its chant
-  neume, and a chant melisma stays on one syllable, subject to the rules
-  that follow.
-\item \textit{Wacław’s practice.} His Kraków \la{Lamentationes} (1553) set
-  most of the text one syllable to a note, repeated notes included. A
-  melisma comes before the cadence on the stressed syllable of the last
-  word, and the final syllable takes the cadence note (\la{mé–am, lú–cem,
-  hó–minum, su-á–rum}). Short repeats are marked \la{ij}, longer ones
-  written out. The Nuremberg prints of his motets agree at clause ends but
-  place the words too loosely to settle more. Nine in ten clause-final words
-  here follow the \la{Lamentationes}; the rest carry a short ornament or
-  keep an imitative head-motif.
-\item \textit{The theorists.} These rules are kept without exception. A new
-  syllable goes only on a minim or longer note (Lanfranco 1533; Zarlino
-  1558, IV.33). None goes on a dot. None goes on the semiminim after a dotted
-  minim either: Zarlino forbids it, and although Lanfranco and Vicentino
-  allow it, this setting never needs it. The first note after a rest and the last note of a
-  phrase each take a syllable (Zarlino). No rest divides a word, and there
-  is no elision (Vicentino 1555). A repeated note takes a new syllable
-  unless it is a semiminim, one of Stoquerus’s necessary rules (c.\,1570,
-  ch.\,15).
-\item[] Other rules are applied with the latitude Stoquerus allows the older
-  generation of composers, the Netherlanders whose idiom Wacław shares.
-  After a run of semiminims the syllable usually changes on the second white
-  note, not the first (Vicentino), but not always. Long or stressed
-  syllables go to long notes (Zarlino). A clause is repeated to keep the
-  voices together or for emphasis, and repeated whole (Stoquerus).
-\item \textit{Accent.} Stress follows the penultimate rule as Kraków taught
-  it in Wacław’s student years (Sebastian z Felsztyna 1518; Jerzy Liban
-  c.\,1539). Hence \la{Dóminus, ángelum, erípuit, Heródis, exspectatióne,
-  Iudaeórum, princípio, saeculórum.}
-\item \textit{Imitation.} Each point of imitation takes its opening motif
-  from a phrase of the chant, and the words of that phrase go with it. A
-  motif keeps its words wherever it recurs. Perz used the same method for
-  Leopolita’s introits from this tablature (1967).
-\end{enumerate}
+\textit{Stress.} By the Kraków penultimate rule (principles 10.8; Liban
+c.\,1539 teaches the same): \la{Dóminus, ángelum, erípuit, Heródis,
+exspectatióne, Iudaeórum, Spíritui, princípio, saeculórum}.
 
-\noindent Repeated text is printed in italics, as editions print words
-supplied for a source’s \la{ij}.
+\textit{Chant and imitation.} The voice with the chant takes the chant’s
+words in the chant’s order. Each point of imitation takes its opening motif
+from a phrase of the chant, and the words of that phrase go with it
+(principles 10.10). Perz used the same method for Leopolita’s introits from
+this tablature (1967). Within a word, the stresses above place the
+syllables, not the chant’s neumes. The chant sets \la{Nunc} to its whole
+opening neume (f–d–g–f–e). Here the Tenor sings \la{Nunc} on its first two
+notes and \la{sci-} on the leap to g, as the other three voices do with the
+same motif.
+
+\textit{The words lead.} Where the rules leave a choice, I give the run,
+the long note or the high note to the syllable that carries the clause
+(principles 10.6). In every voice \la{Dó-} of \la{Dóminus} takes the
+run or the long notes, and \la{-mi-} the note before the cadence, as in the
+\la{Lamentationes}. So too \la{án-} of \la{ángelum}, \la{má-} of
+\la{manu}, \la{-ró-} of \la{Heródis}, \la{-ó-} of \la{exspectatióne} and
+\la{Iudaeórum}, \la{Sán-} of \la{Sancto}. The light words \la{et},
+\la{de} and \la{in} take one or two notes. The voices often change
+syllable at different times.
+
+\textit{Repeats.} Repeated words are editorial and printed in italics.
+Some are placed for the stress. The Cantus sings \la{et eripuit} once on
+the chant’s semibreves and then repeats \la{eripuit me}, so that the
+repeat’s \la{-rí-} takes the run from c″ (bars 24–29). Altus and Bassus
+sing \la{omni} twice (bars 37–39), so that the second \la{óm-} takes the
+run. The Cantus sings \la{Sancto} once, with a single run before the
+cadence (bars 65–68).
+
+\textit{Words left out.} The Altus leaves out \la{et} before
+\la{Spiritui} (bar 64), so that \la{Spí-} takes the breve e′. The Bassus
+leaves out \la{et} when it repeats \la{eripuit me} (bar 26). Both follow
+principles 10.13.
+
+\textit{Departures.} In a few places an unstressed syllable keeps a run of
+three or more notes, because the notes allow nothing else. A repeated note
+forces a new syllable just before the cadence (principles 10.9): Cantus
+\la{-re} in bar 6, Tenor \la{-rum} in bar 81, Bassus \la{-ne} in
+bars 43–44. Or the next note that can take a syllable is too far off:
+Altus \la{He-} in bar 32, Bassus \la{et} in bar 23, Tenor \la{-spe-} in
+bars 41 and 45. In \la{Iudaeorum} the dotted head motif carries \la{Iu-}
+in Cantus and Bassus, as the imitation requires. In bar 80 the Cantus’s
+high e″ falls on \la{sae-} of \la{saeculórum}, the word’s secondary stress,
+and \la{-ló-} takes the three minims that follow. Elsewhere a three-note
+group on a weak syllable is one note with two passing semiminims. One
+syllable falls on a semiminim after a dotted minim (Bassus, bar 41,
+\la{-ti-}; principles 10.1).
+
+\textit{Alternatives.} The Tenor and Bassus could sing \la{Nunc} over the
+whole opening motif, as the chant does. I prefer the stress on the leap, and
+the same underlay for the motif in all four voices.
 
 \section*{Performance}
 
@@ -182,7 +198,7 @@ antiphon has as good a claim. Marcin Szelest has recorded the \la{Gloria
 Patri} from \sig{T} as an organ piece (Accord, 2023).
 
 Polish Latin suits the piece, with the sounds given in the series
-pronunciation guide. Stress follows the penultimate rule (rule 4 above). The
+pronunciation guide. Stress follows the penultimate rule (principles 10.8). The
 guide’s \textit{tsi} for \textit{ti} before a vowel keeps the \textit{i} as a
 syllable, as the underlay does: ex-spe-cta-ti-o-ne.
 
@@ -220,7 +236,7 @@ judged it at the halved values of the tablature. At this edition’s values
 the figures are ordinary vocal ornaments, so \sig{T} is \verdict{restored}
 unless it creates a fault. The last group joins repeated notes ‘for the
 underlay’. \sig{T} is restored where its repeated notes can carry syllables,
-as Stoquerus requires, and \sig{P} stands where they cannot.
+as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
 
 \begin{apparatus}
 \cn{6}{C}{\sig{T}: e′ tied from bar 5, e′ (minims), f′ d′ (semiminims), e′
@@ -255,7 +271,7 @@ as Stoquerus requires, and \sig{P} stands where they cannot.
   is left for it. \verdict{P accepted.}}
 \cn{37}{A}{\sig{T}: the first two notes are one dotted semibreve d′.
   \sig{P} divides it (semibreve, minim) to keep the imitation exact.
-  \verdict{P accepted} (rule 5).}
+  \verdict{P accepted} (principles 10.10).}
 \cn{49–50}{C}{\sig{T}: minims g′ e′ in place of the tied semibreve g′.
   \sig{P}: g′, for octaves with \voice{T}. The octaves are real.
   \verdict{P accepted.}}
@@ -312,24 +328,30 @@ as Stoquerus requires, and \sig{P} stands where they cannot.
 \section*{Underlay}
 
 \begin{apparatus}
-\cn{3–12}{T}{Cantus firmus. \la{Nunc} covers the chant’s opening neume
-  (f–d–g–f–e), \la{sci-o} its g and a; \la{-re} falls on the cadence note
-  c′ of bar 9, and the clause is repeated.}
-\cn{13–56}{C}{Cantus firmus. Syllables follow the chant, e.g. \la{om-} on
-  g′–a′ and \la{-ni} on d′ (bars 41–42), and three syllables of
-  \la{exspectatione} on the repeated g′ of bars 42–43. Where the chant and
-  rule 3 conflict, the rule decides (\la{-mi-} of \la{Dominus}, bar 16).}
-\cn{26–29}{C}{The chant’s melisma on \la{erípuit} falls on \la{-it}, not
-  \la{-pu-}; the Cantus follows it, with \la{-it} on the c″ of bar 27.}
+\cn{3–12}{T}{Cantus firmus. \la{Nunc} takes f–d of the chant’s opening
+  neume and \la{sci-} its g–f–e, as in the other voices’ statements of the
+  motif (see the method). \la{-o} takes g, \la{ve-} the a and the run after
+  it, and \la{-re} the cadence note c′ of bar 9. The clause is then
+  repeated.}
+\cn{13–56}{C}{Cantus firmus. Syllables fall on the chant’s notes, e.g.
+  \la{om-} on g′ (bar 40), \la{-ni} on g′–a′ (bar 41), and three syllables
+  of \la{exspectatione} on the repeated g′ of bars 42–43. In \la{Dominus}
+  the run is on \la{Do-}, and \la{-mi-} takes the g\sh′ before the cadence
+  (bar 17).}
+\cn{24–29}{C}{The chant’s melisma on \la{erípuit} falls on \la{-it}. The
+  Cantus sings \la{et eripuit} once on the chant’s semibreves and then
+  repeats \la{eripuit me}, so that \la{-rí-} takes the c″ of bar 27 and the
+  run after it, and \la{me} the cadence note of bar 29.}
 \cn{}{}{Elsewhere, where a free voice had a melisma of more than four
   semibreves, the clause is repeated instead, as in Wacław’s prints (e.g.
   \voice{T}, \la{exspectatione}, bars 44–48; \voice{B}, \la{eripuit me},
   bars 25–30).}
-\cn{44–45}{C}{The stressed \la{-o-} of \la{exspectatione} takes the
-  semibreve a′; the chant’s c″ at bar 44 carries \la{-ti-}.}
+\cn{44–46}{C}{The stressed \la{-ó-} of \la{exspectatióne} takes the
+  chant’s c″ at bar 44 and the run after it. \la{-ne} falls on e′ in
+  bar 46.}
 \cn{50–56}{all}{The stressed \la{-o-} of \la{Iudaeórum} falls on a strong
-  minim or a high note in every voice (e.g. \voice{C}, the semibreve a′ at
-  bar 53).}
+  minim or a high note in every voice (e.g. \voice{C}, the minim f′ that opens
+  bar 53 and rises to a′).}
 \cn{63–71}{B}{The Bassus recites the psalm tone on c; its mediant shape
   (d c c, c–a, c) carries \la{-ri-tu-i San-cto} syllabically.}
 \end{apparatus}
@@ -358,12 +380,6 @@ as Stoquerus requires, and \sig{P} stands where they cannot.
 \end{literature}
 \litgroup{Theory}
 \begin{literature}
-\lit Lanfranco, Giovanni Maria. \textit{Scintille di musica}. Brescia, 1533,
-  pp.\,68–69.
-\lit Zarlino, Gioseffo. \textit{Le istitutioni harmoniche}. Venice, 1558,
-  Part IV, ch.\,33.
-\lit Vicentino, Nicola. \textit{L’antica musica ridotta alla moderna
-  prattica}. Rome, 1555, Book IV, chs.\,29–30.
 \lit Stoquerus, Gaspar. \la{De musica verbali libri duo}, ed. and trans.
   Albert C. Rotola. Lincoln: University of Nebraska Press, 1988.
 \lit Sebastian z Felsztyna. \la{Modus regulariter accentuandi lectiones}.
