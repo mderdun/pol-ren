@@ -52,16 +52,40 @@ fi = \once \set suggestAccidentals = ##t
 
 %% Optional editorial accidental: the note keeps the edition's reading; the
 %% bracketed sign above it is an alteration singers may take (Berger 1987).
-%% Post-events: b1\optFlat  c'2\optSharp  b1\optNatural
-#(define (pr-opt-acc glyph)
-   (make-music 'TextScriptEvent 'direction UP
-     'text (markup #:fontsize -2.5
-             #:concat (#:musicglyph "accidentals.leftparen"
-                       #:musicglyph glyph
-                       #:musicglyph "accidentals.rightparen"))))
-optFlat = #(pr-opt-acc "accidentals.flat")
-optSharp = #(pr-opt-acc "accidentals.sharp")
-optNatural = #(pr-opt-acc "accidentals.natural")
+%% Post-events: b1\optFlat (lower)  c'2\optSharp (raise)  b1\optNatural
+%% The sign is worked out from the note after any transposition, so a raised
+%% g' prints a sharp at written pitch and a natural over b-flat' a minor
+%% third up.
+#(define (pr-opt-glyph alt)
+   (cond ((< alt 0) "accidentals.flat") ((> alt 0) "accidentals.sharp")
+         (else "accidentals.natural")))
+#(define (pr-opt-markup glyph)
+   (markup #:fontsize -2.5
+     #:concat (#:musicglyph "accidentals.leftparen"
+               #:musicglyph glyph
+               #:musicglyph "accidentals.rightparen")))
+#(define (pr-opt-acc mode)
+   (make-music 'TextScriptEvent 'direction UP 'pr-opt mode
+     'text (pr-opt-markup (pr-opt-glyph (if (number? mode) mode 0)))))
+optFlat = #(pr-opt-acc -1/2)
+optSharp = #(pr-opt-acc 1/2)
+optNatural = #(pr-opt-acc 'natural)
+#(define (pr-fix-opt music)
+   (music-map
+     (lambda (m)
+       (if (music-is-of-type? m 'note-event)
+           (let ((p (ly:music-property m 'pitch)))
+             (for-each
+               (lambda (a)
+                 (let ((mode (ly:music-property a 'pr-opt #f)))
+                   (if mode
+                       (ly:music-set-property! a 'text
+                         (pr-opt-markup
+                           (pr-opt-glyph
+                             (if (number? mode) (+ (ly:pitch-alteration p) mode) 0)))))))
+               (ly:music-property m 'articulations))))
+       m)
+     music))
 
 %% Note supplied by the editor: small notehead.
 ed = \tweak font-size #-3 \etc
@@ -219,7 +243,7 @@ prStaff =
           (key (pr-lookup 'prKey #{ #}))
           (sign (pr-lookup 'prSign "timesig.C22"))
           (vname (string-downcase long))
-          (music (if transposed #{ \transpose #from #to #notes #} notes))
+          (music (pr-fix-opt (if transposed #{ \transpose #from #to #notes #} notes)))
           (incipit (if (or transposed (null? (ly:music-property inc 'elements)))
                        #{ #}
                        #{ \incipit { \prMens #inc } #})))

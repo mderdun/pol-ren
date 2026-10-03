@@ -9,7 +9,7 @@ cantusNotes = {
   a'\breve |                    % 1
   a'1 g'1 |                     % 2
   f'2 a'2 c''2. b'4 |           % 3
-  a'4 g'4 a'1 \fi gis'2 |       % 4
+  a'4 g'4\optSharp a'1 \fi gis'2 | % 4
   a'1 a'2 c''1                  % 5  (c'' runs into 6)
   b'4 a'4 g'1 |                 % 6
   f'2 a'1 g'4 f'4 |             % 7
@@ -24,7 +24,7 @@ cantusNotes = {
   c''4 b'2 a'1 |                % 16
   g'4 f'4 e'4 d'4 c'2 c''2 |    % 17
   b'4 a'4 g'4 f'4 e'2. f'4 |    % 18
-  g'2 a'1 \fi gis'2 |           % 19
+  g'2 a'1 g'2 |                 % 19
   a'\breve |                    % 20
   e'\breve |                    % 21
   e'1 f'1 |                     % 22
@@ -138,21 +138,49 @@ bassusNotes = {
 }
 
 %% ------------------------------------------------------------ underlay
-%% Stanza 1, transcribed (see "Text"). "_" = a further note of a melisma.
+%% Editorial throughout except the Tenor, which takes one syllable to a note.
+%% Text-led (principles 10.6): stressed syllables of the words that matter
+%% take the long notes, peaks and cadential suspensions; small words
+%% (prepositions, particles, pronouns) stay short. Stanza 2 is underlaid on
+%% its own terms where its stresses differ, so the voices and the stanzas
+%% need not move together. "_" = a further note of a melisma.
 
 cantusWords = \lyricmode {
-  Już się zmierz -- ka, nad -- cho -- _ _ _ _ dzi noc, po -- proś -- _ _ my Bo -- _ _ _ ga o __ _ _ _ po -- moc, a -- by on na -- _ _ szem stra -- żem był, od __ _ _ złych __ _ _ _ _ czar -- _ _ _ _ _ tów __ _ nas o -- bro -- nił, któ -- rzy na -- wię -- cej w_ciem -- no -- ści u -- _ _ _ _ ży -- wa -- _ _ _ ją __ _ swej __ _ chy -- tro -- _ ści.
+  \set stanza = "1."
+  Już się zmierz -- ka, nad -- cho -- _ _ _ _ dzi noc, po -- proś -- _ _ my Bo -- _ _ _ ga o po -- _ _ _ moc, a -- by on na -- _ _ szem stra -- żem był, od złych __ _ _ _ _ _ _ czar -- _ _ _ _ _ tów __ _ nas o -- bro -- nił, któ -- rzy na -- wię -- cej w_ciem -- no -- ści u -- _ _ _ _ ży -- wa -- _ _ _ ją __ _ swej __ _ _ chy -- tro -- ści.
+}
+
+cantusWordsTwo = \lyricmode {
+  \set stanza = "2."
+  Je -- su Kry -- ste, Pa -- _ _ _ _ nie mi -- ły, tyś wszyt -- _ _ ki pie -- kiel -- _ _ _ ne si -- _ _ _ ły przez mę -- kę swo -- _ _ ję po -- ra -- ził, a nam __ _ _ _ _ _ _ wiecz -- ny __ _ _ _ _ po -- _ kój spra -- _ wił. Ra -- czysz, mi -- ło -- sier -- ny Pa -- nie, wy -- _ _ _ _ sły -- _ _ _ szeć na -- _ sze __ _ wo -- _ ła -- nie.
 }
 
 altusWords = \lyricmode {
+  \set stanza = "1."
   Już __ _ _ _ _ _ się zmierz -- _ ka, nad -- cho -- dzi noc, po -- proś -- my Bo -- _ _ _ _ ga o po -- moc, a -- by on na -- _ szem stra -- _ _ żem był, od złych __ _ _ _ _ czar -- _ _ _ _ _ tów __ _ _ nas o -- bro -- nił, któ -- rzy na -- _ wię -- _ cej __ _ _ w_ciem -- no -- ści u -- ży -- wa -- _ _ _ ją __ _ _ swej chy -- tro -- ści.
 }
 
+altusWordsTwo = \lyricmode {
+  \set stanza = "2."
+  Je -- _ _ _ _ _ su Kry -- _ ste, Pa -- nie mi -- ły, tyś wszyt -- ki pie -- _ _ _ _ kiel -- ne si -- ły przez mę -- _ kę swo -- ję po -- _ _ ra -- ził, a nam __ _ _ _ _ wiecz -- _ _ _ _ _ ny __ _ _ po -- kój spra -- wił. Ra -- czysz, mi -- _ ło -- _ sier -- _ _ ny Pa -- nie, wy -- sły -- szeć __ _ _ _ na -- _ _ sze wo -- ła -- nie.
+}
+
 tenorWords = \lyricmode {
+  \set stanza = "1."
   Już się zmierz -- ka, nad -- cho -- dzi noc, po -- proś -- my Bo -- ga o po -- moc, a -- by on na -- szem stra -- żem był, od złych czar -- tów nas o -- bro -- nił, któ -- rzy na -- wię -- cej w_ciem -- no -- ści u -- ży -- wa -- ją swej chy -- tro -- ści.
 }
 
-bassusWords = \lyricmode {
-  Już __ _ _ _ _ się zmierz -- ka, nad -- _ _ cho -- dzi noc, po -- proś -- _ _ my Bo -- _ _ _ _ _ ga o __ _ po -- _ _ moc, a -- by on na -- _ szem __ _ _ _ _ stra -- _ żem był, od __ _ złych czar -- tów nas o -- _ bro -- nił, któ -- rzy na -- wię -- cej w_ciem -- no -- ści u -- _ _ _ _ ży -- wa -- ją swej chy -- tro -- ści.
+tenorWordsTwo = \lyricmode {
+  \set stanza = "2."
+  Je -- su Kry -- ste, Pa -- nie mi -- ły, tyś wszyt -- ki pie -- kiel -- ne si -- ły przez mę -- kę swo -- ję po -- ra -- ził, a nam wiecz -- ny po -- kój spra -- wił. Ra -- czysz, mi -- ło -- sier -- ny Pa -- nie, wy -- sły -- szeć na -- sze wo -- ła -- nie.
 }
 
+bassusWords = \lyricmode {
+  \set stanza = "1."
+  Już __ _ _ _ _ się zmierz -- ka, nad -- _ cho -- dzi __ _ noc, po -- proś -- _ _ my Bo -- _ _ _ _ _ ga o __ _ po -- _ _ moc, a -- by on na -- _ szem __ _ stra -- _ _ _ żem był, __ _ od __ _ złych czar -- tów nas o -- _ bro -- nił, któ -- rzy na -- wię -- cej w_ciem -- no -- ści u -- _ _ _ _ ży -- wa -- ją swej chy -- tro -- ści.
+}
+
+bassusWordsTwo = \lyricmode {
+  \set stanza = "2."
+  Je -- _ _ _ _ su Kry -- ste, Pa -- _ _ nie mi -- ły, tyś wszyt -- _ _ ki pie -- _ _ _ _ _ kiel -- ne __ _ si -- _ _ ły przez mę -- kę swo -- _ ję __ _ _ _ _ po -- _ ra -- ził, a __ _ nam wiecz -- ny po -- kój __ _ spra -- wił. Ra -- czysz, mi -- ło -- sier -- ny Pa -- nie, wy -- _ _ _ _ sły -- szeć na -- sze wo -- ła -- nie.
+}

@@ -8,10 +8,10 @@
 
 \score {
   \prScore <<
-    \prStaff "Cantus" "C." { \clef "petrucci-c1" a'\breve } "treble"   ""       \cantusNotes \cantusWords
-    \prStaff "Altus"  "A." { \clef "petrucci-c3" a4 }       "treble_8" "treble" \altusNotes  \altusWords
-    \prStaff "Tenor"  "T." { \clef "petrucci-c4" a\breve }  "treble_8" ""       \tenorNotes  \tenorWords
-    \prStaff "Bassus" "B." { \clef "petrucci-f4" a,2. }     "bass"     ""       \bassusNotes \bassusWords
+    \prStaff "Cantus" "C." { \clef "petrucci-c1" a'\breve } "treble"   ""       \cantusNotes << \cantusWords \cantusWordsTwo >>
+    \prStaff "Altus"  "A." { \clef "petrucci-c3" a4 }       "treble_8" "treble" \altusNotes  << \altusWords \altusWordsTwo >>
+    \prStaff "Tenor"  "T." { \clef "petrucci-c4" a\breve }  "treble_8" ""       \tenorNotes  << \tenorWords \tenorWordsTwo >>
+    \prStaff "Bassus" "B." { \clef "petrucci-f4" a,2. }     "bass"     ""       \bassusNotes << \bassusWords \bassusWordsTwo >>
   >>
   \layout { $(pr-layout) }
 }

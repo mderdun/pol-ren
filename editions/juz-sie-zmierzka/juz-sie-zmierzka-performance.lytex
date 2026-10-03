@@ -12,10 +12,11 @@
 \makemasthead
 \scorepagebreaks{2,4}
 \lilypondfile[noindent]{music/score-performance.ly}
-\begin{stanzas}[3]   % one row: keeps them on the last page of music
-\stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
+\begin{stanzas}
+\stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
 \end{stanzas}
 
+\newpage   % text, translation and notes share the last page
 \section*{Text and translation}
 
 \begin{textcols}
@@ -39,8 +40,11 @@ series pronunciation guide gives the sounds and the historical options.
 \pl{Ześli} in stanza 3 means ‘send’.
 
 \pnote{Stanzas} All four go to the same music, and most performances sing
-one or two. Stanza 1 is under the notes. For later stanzas, give each
-syllable the notes its counterpart has in stanza 1.
+one or two. Stanzas 1 and 2 are under the notes, each with its own underlay
+where the words need it, so that the long runs fall on the words that matter.
+The parts do not always move to a new syllable together; keep them apart where
+the score has them apart. For stanzas 3 and 4, give each syllable the notes
+its counterpart has in stanza 1.
 
 \pnote{Pitch and voices} The score is a minor third above the print, for
 sopranos, altos, tenors and basses. The Tenor carries the hymn tune, one note
@@ -53,7 +57,9 @@ the bar. Keep the semiminim runs light.
 \pnote{The score} Note values are those of the 1550s print. A bar is one
 breve. The light bar lines run between the staves only, so a note that
 crosses one is held for its full value. Accidentals above the staff are
-editorial; the bracketed flat in bar 29 is optional.
+editorial. A bracketed sign is optional: the natural in bar 4 (Cantus)
+and the flat in bar 29 (Altus). The cadence in bar 19 is left unraised on
+purpose.
 \end{rehearsal}
 \footcolophon
 \end{document}
