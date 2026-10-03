@@ -109,7 +109,7 @@ Every piece is published as a critical edition and a performance edition.
 
 **Method.**
 
-6. **Phrase first.** Map the cadences, place each line's last syllable on its arrival note, then place stresses on strong beats or longer notes. Never count syllables against notes mechanically. (MD, *Plaude*)
+6. **Text first.** The words lead; the notes are fitted to them, not the other way round. Map the cadences and place each line's last syllable on its arrival note. Then weigh the words: the syllable that carries the line (its stressed syllable, its key word) takes the melisma, the long note or the melodic high point; a light word (a preposition, a conjunction, a pronoun, an unstressed syllable) takes one or two notes and never a long run. The voices need not change syllable together: one may arrive early or late on a word, and that push and pull is part of the texture. Never count syllables against notes mechanically. This matters most where an edition underlays from scratch. (MD, *Plaude*; MD, 3 Oct 2026, *Zmierzka*)
 7. **Wacław's own practice** (Kraków *Lamentationes*, 1553): mostly syllabic, repeated notes take new syllables; one melisma before each cadence, on the stressed syllable of the last word; the final syllable on the cadence note; short repeats *ij*, longer ones written out. (*Nunc scio*)
 8. **Accent** follows the penultimate rule as taught in Kraków (Sebastian z Felsztyna, 1518). (*Nunc scio*)
 9. **Repeated notes** take a new syllable unless semiminims (Stoquerus). Long free melismas may be replaced by repeating the clause.
@@ -117,7 +117,7 @@ Every piece is published as a critical edition and a performance edition.
 11. **Source guides.** Where the source prints text in blocks, use its spacing (gaps mark melismas) and the voice whose text fits note for note. (*Zmierzka*)
 12. **Departures** from the theorists that the source itself shows are kept and noted. (*Vox*)
 13. **Lower voices** that are editorially texted may skip words to keep long notes, as long as their text makes sense alone. Divide notes only where text requires it, mark the division with a dashed tie, and avoid movement before the penultimate bar at a final cadence. (MD, *Plaude*)
-14. **Strophic songs.** Underlay as many stanzas as the music needs. Where the underlay is the same in every stanza, stanza 1 goes under the notes and the rest follow the score. Where a later stanza needs different underlay (a different stress pattern, an extra syllable, a melisma that would fall on a weak syllable), that stanza goes under the notes too. Weigh how the piece is usually performed: if most performances sing one or two stanzas, those two matter most. (MD, 3 Oct 2026; *Zmierzka* has one underlaid stanza)
+14. **Strophic songs.** Underlay as many stanzas as the music needs. Where the underlay is the same in every stanza, stanza 1 goes under the notes and the rest follow the score. Where a later stanza needs different underlay (a different stress pattern, an extra syllable, a melisma that would fall on a weak syllable), that stanza goes under the notes too. Weigh how the piece is usually performed: if most performances sing one or two stanzas, those two matter most. (MD, 3 Oct 2026; *Zmierzka* underlays stanzas 1 and 2, each with its own underlay)
 15. Theorists are cited by paraphrase; direct quotation is not needed. (MD, *Nunc scio*)
 
 ## 11. Text

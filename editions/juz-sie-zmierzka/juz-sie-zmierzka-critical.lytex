@@ -169,18 +169,23 @@ the other voices give only a rough guide. Elsewhere the underlay follows the
 rules of this series: no new syllable on a semiminim, except straight after a
 dotted minim, or on a fusa; a repeated note takes a new syllable where the
 text allows; the last syllable of a line falls on its cadence note. Where
-these leave a choice, the syllable goes where the Tenor has the same word.
+these leave a choice, the words decide. The syllable that carries a line
+takes its melisma or its high point (\pl{PO-moc, CZAR-tów, chy-TRO-ści});
+a light word such as \pl{o} or \pl{nas} takes one or two notes. The voices
+do not always change syllable together: in bars 28–29 the Cantus reaches
+\pl{chy-tro-} a minim after the Tenor and Bassus.
 
 \subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’ (‘The end’), with no Amen. All
 four are sung to the same music. Old Polish verse counts syllables, eight to
 the line with a break after the fourth, but not stresses, which fall in
 different places from stanza to stanza. Stanzas 1 and 2 are underlaid, since
-most performances sing one or two. In the Cantus, stanza 2 has its own
-underlay in lines 1, 2 and 6, where stanza 1’s melismas would fall on
-unstressed syllables (\pl{Pa-nie}, \pl{pie-kiel-ne}, \pl{wy-sły-szeć}); the
-melisma moves to the stressed syllable beside it. The Altus and Bassus keep
-stanza 1’s note groups, because moving them would put a new syllable on a
-semiminim. Stanzas 3 and 4 follow the score and take the notes of stanza 1
+most performances sing one or two, and each has its own underlay where the
+other’s would put a melisma on a light syllable: Cantus lines 1, 2, 4 and 6,
+Altus line 3, Bassus lines 1 and 3. So the Cantus sings \pl{PA-nie} and
+\pl{pie-KIEL-ne} in stanza 2, \pl{WIECZ-ny PO-kój} where stanza 1 has
+\pl{CZAR-tów nas}. At the last cadence stanza 1 spreads \pl{swej} over three minims, so that
+\pl{chy-tro-} trails the lower voices; stanza 2 gives the run to \pl{wo-}, so
+that \pl{-ła-} falls on the leading note. Stanzas 3 and 4 follow the score and take the notes of stanza 1
 syllable for syllable. The transcription uses modern spelling and punctuation but keeps
 the old sounds and forms: \pl{zmierzka, naszem, strażem, nawięcej, wszytki,
 swoję, Jesu, raczysz, wszej, jenż}. The diplomatic text keeps the spelling
@@ -222,13 +227,16 @@ pitch and in the values of this edition. Bar numbers agree in all four.
 \cn{8–9}{A}{\sig{PWM}, \sig{K}: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
   ‘o’ on e, so that ‘pomoc’ falls with the Cantus and Tenor.}
 \cn{12–13}{C, B}{Parallel fifths d′–g′ over g–c. They stand in \sig{A}.}
-\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on a′,
-  bar 16, in step with the Altus.}
+\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on b′,
+  bar 16. ‘Czar-’ then takes the leap c′–c″ and the run down from it, and
+  ‘-tów’ the dotted minim e′; in stanza 2 ‘wiecz-’ takes c′ and ‘-ny’ the run.}
 \cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on b, straight after
   the dotted minim.}
-\cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′, ‘swej’ d′,
-  ‘chy-’ e′, ‘-tro-’ d′. \sig{A} leaves a gap after ‘Vżywá’, which keeps the e′
-  within the melisma; the line then moves with Tenor and Bassus.}
+\cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′ and
+  ‘swej’ d′, bar 28, each with the minim after it; ‘chy-’ the semibreve d′ and
+  ‘-tro-’ c\sh′, a minim after the other voices. \sig{A} leaves a gap after ‘Vżywá’,
+  which keeps the e′ of bar 27 within the melisma. Stanza 2: ‘na-’ c′, ‘-sze’
+  d′, ‘wo-’ e′ and the semibreve d′, ‘-ła-’ c\sh′.}
 \cn{28}{A}{\sig{M}: ‘ją’ on the second semiminim c′. Here on d′, straight after the
   dotted minim.}
 \cn{29}{A}{\sig{PWM}, \sig{K} and \sig{M} flatten b (\la{una nota super la}). Left as in \sig{A}:
