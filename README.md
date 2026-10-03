@@ -8,9 +8,10 @@ Critical and performance editions of early Polish music, edited by Mikołaj Derd
 | 2 | *Nunc scio vere* | Wacław z Szamotuł | first edition (2026), awaiting reset |
 | 3 | *Modlitwa gdy dziatki spać idą* (*Już się zmierzka*) | Wacław z Szamotuł | house-style mock |
 
-**Guide**: *Singing Polish and Polish Latin*, a pronunciation guide for the whole series (`guides/pronunciation`).
 | 4 | *Plaude euge theotocos* | Piotr z Grudziądza | first edition (2026), awaiting reset |
 | 5 | *Vox in Rama* | Mikołaj Zieleński | first edition (2026), awaiting reset |
+
+**Guide**: *Singing Polish and Polish Latin*, a pronunciation guide for the whole series (`guides/pronunciation`).
 
 Each piece is published twice. The **critical edition** gives the sources, the editorial method, the text with a diplomatic transcription and translation, the score and the critical notes. The **performance edition** has the same score with only what singers need around it.
 
