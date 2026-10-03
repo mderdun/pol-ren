@@ -95,6 +95,8 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 - **Mensurstriche** as grey hairlines between the staves, so the parts read first and the bar lines are there for whoever wants them. Section, repeat and final bar lines are black and full weight.
 - Bar numbers in small italic at the start of each system only.
 - Editorial accidentals small, above the note.
+- Ties are solid. A dashed tie means a source note divided to carry text (`\divTie`) and nothing else.
+- Editorial underlay in italics: `\edText` for a whole line, `\rep` for one syllable.
 - Rubrics red italic, left-aligned over the system.
 - In the critical edition the score has its own heading: title, subtitle, poet left, composer right.
 - **Stanzas after the score**: centred, two abreast, the widest stanza setting both column widths. An odd last stanza is centred below. Red stanza numbers hang in the left margin of each stanza.
@@ -102,6 +104,7 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 ## 10. Tables and lists
 
 - No vertical rules. One rule under the column heads. Column heads in spaced small capitals.
+- **Variants** (chant and texts): three columns, loc. | lemma | readings (`variants`, `\cl`).
 - **Critical notes**: three columns, bar | voice | note. Bar numbers in lining figures; voices as plain small capitals; sigla framed. Pitches in Helmholtz notation, c′ = middle C, roman. A note ends with its verdict in small capitals where a reading is weighed.
 - **Sources**: siglum in a hanging column; base text marked *Base text*.
 - **Literature**: author first, hanging indent; grouped only when the list is long.

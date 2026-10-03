@@ -1,0 +1,67 @@
+\documentclass[performance]{pol-ren}
+\input{text.tex}
+
+\composer[fl.\,1604–1611]{Mikołaj Zieleński}
+\title{Vox in Rama}
+\subtitle{Communio in festo SS. Innocentium}
+\pitchline{A fifth below the printed pitch}
+\edition{First edition}{2026}
+
+\begin{document}
+\makemasthead
+\scorepagebreaks{3,6}
+\lilypondfile[noindent]{music/score-performance.ly}
+
+\newpage   % the score fills three pages; text and notes share the last
+\section*{Text and translation}
+
+\begin{textcols}
+& \lines{\textLatin} & \lines{\textEnglish}\\
+\end{textcols}
+
+\begin{rehearsal}
+\pnote{About the piece} The communion for the Mass of the Holy Innocents
+(28 December), printed in Venice in 1611 in Zieleński’s \la{Communiones
+totius anni}. Zieleński was organist and chapel master to Wojciech
+Baranowski, primate of Poland, whose court was at Łowicz. The text is
+Matthew’s quotation of Jeremiah: Rachel weeping for her children. The setting
+is short, follows the words closely, and saves its chromatic writing for
+‘ploratus et ululatus’ (bars 15–19).
+
+\pnote{The words} Sing Latin as in Poland, following the series
+pronunciation guide. \la{Rachel} has the \textit{ch} of Scottish
+\textit{loch}, and \la{quia} is KVI-a. Stress: RA-ma, au-DI-ta, plo-RA-tus,
+u-lu-LA-tus, PLO-rans, FI-li-os, NO-lu-it, con-so-LA-ri.
+
+\pnote{Voices and organ} The print asks for the singers alone with the organ
+(‘Soli debent cantare cum Organo’), one voice to a part. The organist played
+from a separate organ book. Organ parts of this kind normally follow the
+voices, so the piece can be sung without organ, or by a choir, with nothing
+missing.
+
+\pnote{Pitch} This score is a fifth below the print. The print uses high
+clefs, and high clefs meant transposition. Adriano Banchieri’s
+\textit{Cartella} (Venice, 1601 and 1610) says that pieces in these clefs are
+sung a fourth lower when they have a flat and a fifth lower when they have
+none. \la{Vox in Rama} has none, and Banchieri’s own example of the
+fifth-lower case has its Tenor in the same C2 clef as the Tenor of this piece.
+Down a fifth, it ends on D, with one flat, and the ranges are Cantus c′–d″,
+Altus g–b\fl′, Tenor c–d′, Bassus D–f, an ordinary four-part choir. A fourth
+down, ending on E (as on CPDL), also works. The small notes in round brackets
+in the last bar are an editorial suggestion and are not in the print. When
+the Altus reaches its final note, Tenor and Bassus may drop to the lower
+octave, as the organ would probably have done and as the Huelgas Ensemble
+does.
+
+\pnote{Reading the score} The note values are those of the print; only the
+pitch has been changed, and the one-flat signature comes from the
+transposition. The beat is the semibreve (whole note), about 50–60 to the
+minute; the cut-C sign means a semibreve beat, not a fast one. A bar is two
+beats. A note that crosses a bar line is held for its full value. An
+accidental applies only to the note it stands before. A small accidental
+above the staff is the editor’s. Square brackets over the Tenor mark ligatures, and
+the corner brackets in bar 17 mark a blackened note in the print. The range
+of each voice is shown at the start of its staff.
+\end{rehearsal}
+\footcolophon
+\end{document}

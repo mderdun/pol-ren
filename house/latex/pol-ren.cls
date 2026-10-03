@@ -92,6 +92,8 @@
 \newcommand\voice[1]{\pr@scap{#1}}
 %% Polish, Latin and German text runs.
 \newcommand\pl[1]{\textpolish{\itshape #1}}
+%% Polish in a source's own spelling, quoted in prose: upright.
+\newcommand\dipl[1]{\textpolish{\upshape #1}}
 \newcommand\la[1]{\textlatin{\itshape #1}}
 %% Accidentals in prose (Junicode has no music signs).
 \newfontfamily\accfont{TeX Gyre Pagella}[Scale=0.92]
@@ -286,7 +288,7 @@
 \newcommand\footcolophon{%
   \par\vfill
   {\footnotesize\noindent\rule{\textwidth}{0.3pt}\par\vspace{1mm}\noindent
-   \pr@composer, \textit{\pr@title}. Performance edition, \pr@editionno\
+   \ifx\pr@composer\@empty\else\pr@composer, \fi\textit{\pr@title}. Performance edition, \pr@editionno\
    (\lnum{\pr@editiondate}), edited by \pr@editor. The score is that of the
    critical edition\ifx\pr@pitchline\@empty\else, transposed\fi. CC~BY~4.0: free to copy and perform; name the editor.
    \url{https://\pr@repo}.\par}}
@@ -327,6 +329,19 @@
    \spacedsc{bar} & \spacedsc{voice} & \spacedsc{note}\\ \midrule\endhead}
   {\end{longtable}\par}
 \newcommand\cn[3]{\lnum{#1} & \voice{#2} & #3\\[0.25em]}
+
+%% Variant tables for chant and texts: loc. | lemma | readings.
+%%   \cl{1.4}{lemma}{readings}   \clbreak between stanzas
+\newenvironment{variants}
+  {\par\small\setlength\LTpre{0.4\baselineskip}\setlength\LTpost{0pt}%
+   \renewcommand\arraystretch{1.18}%
+   \begin{longtable}{@{}>{\raggedright\arraybackslash}p{2.6em}
+                       >{\raggedright\arraybackslash}p{9em}
+                       >{\raggedright\arraybackslash}p{\dimexpr\textwidth-11.6em-4\tabcolsep\relax}@{}}
+   \spacedsc{loc.} & \spacedsc{lemma} & \spacedsc{readings}\\ \midrule\endhead}
+  {\end{longtable}\par}
+\newcommand\cl[3]{\lnum{#1} & \pl{#2} & #3\\[0.25em]}
+\newcommand\clbreak{\midrule}
 %% Verdict at the end of a note: small capitals, not bold.
 \newcommand\verdict[1]{\textsc{#1}}
 

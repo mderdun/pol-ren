@@ -1,0 +1,340 @@
+\documentclass[critical]{pol-ren}
+\input{text.tex}
+
+\seriesno{5}
+\composer[fl.\,1604–1611]{Mikołaj Zieleński}
+\title{Vox in Rama}
+\subtitle{Communio in festo SS. Innocentium}
+\forces{for four voices}
+\sourceline{from \emph{Communiones totius anni} (Venice, 1611)\\
+  Tenor from the print; Cantus, Altus and Bassus from modern editions}
+\edition{First edition}{2026}
+\slug{vox-in-rama}
+
+\begin{document}
+\maketitlepage
+
+\colophon
+
+%% ================================================================ PREFACE
+\section*{Introduction}
+
+\initial{V}{ox in Rama} is the communion of the Mass of the Holy Innocents,
+28 December. Mikołaj Zieleński set it for four voices and organ, and it was
+printed in Venice in 1611 as no.\,36 of his \la{Communiones totius anni}. The
+\la{Communiones} were issued together with his \la{Offertoria totius anni} as
+a single publication with continuous signatures. Between them the two books
+hold all 113 of Zieleński’s known works.
+
+Little is known about the composer. The title pages call him ‘Polonus’ and
+‘organarius et capellae magister’ to Wojciech Baranowski, archbishop of
+Gniezno and primate of Poland from 1608 until his death in 1615. Documents
+gathered by Polish scholars add that he came from Warka and married Anna
+Feterówna. In 1604 Baranowski, then bishop of Płock, gave him land at Gromin
+near Pułtusk. He appeared in court at Łowicz, the primate’s seat, at the turn
+of February and March and again in April 1611. His dates of birth and death
+are unknown, and the ‘1550–1615’ printed in library catalogues and on modern
+scores is a convention, not a documented span. Szymon Starowolski wrote in
+1625 that Zieleński had studied in Rome. No document confirms it. The
+dedication of the 1611 books is dated ‘Venetijs Kalend. Martij’, on a day
+when the Łowicz records place him in Poland, so it says nothing about where he
+was.
+
+The dedication does explain why the books were made. Baranowski, it says, had
+restored order in his dioceses and ordered that ‘this proper singing of the
+offertories and communions, each in its place and season’ be exactly observed
+(\la{hanc ipsam certam ac propriam Offertoriorum, ac Communionum suis locis et
+temporibus decantationem exactè obseruari imperasti}). He commissioned the
+work and paid for the printing. Bound with the parts is a calendar, the
+\la{Registrum}, that assigns an offertory and a communion to each feast.
+Agnieszka Leszczyńska calls it unprecedented in prints of polyphony. It lists
+\la{Vox in Rama} for the Innocents and again for their octave on 4 January.
+Zieleński also claims a first. These, he writes, are offertories and
+communions ‘composed for the first time by a Pole in the new manner’
+(\la{primùm à Polono nouo modo concinnata}).
+
+The \la{Communiones} are ordered by scoring, not by the calendar. Pieces for
+one voice and organ come first, then pieces for two and three voices with
+instruments, then the pieces for four, five and six voices. \la{Vox in Rama}
+is the fourth of eleven four-voice pieces. A rubric in the index governs all
+the pieces from four voices up: those that go plainly (\la{simpliciter}) are
+to be sung with the organ and played on instruments; those written with
+ornaments (\la{cum resolutione}) are sung by the singers with the organ played
+softly. \la{Vox in Rama} is one of the plain pieces. The catalogue of Kurtzman
+and Schnoebelen, made from the Wrocław and Kraków books, records a further
+rubric for it: ‘Soli debent cantare cum Organo’, the singers alone with the
+organ.
+
+\subsection{The text} The communion takes Matthew 2:18, where the evangelist
+quotes Jeremiah 31:15 after the slaughter of the children of Bethlehem. The
+Missal of 1570 gives it as ‘Vox in Rama audita est, ploratus \& ululatus:
+Rachel plorans filios suos: \& noluit consolari, quia non sunt’. This is the
+Vulgate text of Matthew without \la{multus} (‘ploratus, et ululatus
+multus’). Jeremiah’s own Vulgate wording is different (‘Vox in excelso
+audita est lamentationis, luctus, et fletus Rachel plorantis filios suos’).
+The feast was kept as a day of mourning inside Christmastide. The general
+rubrics of the same Missal prescribe violet vestments for the Innocents
+unless the day falls on a Sunday.
+
+\subsection{The music} The setting is 45 breves long and follows the text
+phrase by phrase. Each voice states ‘Vox in Rama’ two or three times in
+staggered entries, often adding a further ‘in Rama’, and the long melismas
+fall on the stressed ‘Ra-’. ‘Audita est’ is set almost syllabically. The
+chromatic writing is kept for ‘ploratus et ululatus’. In bar 15 the Cantus
+falls c″–b′–b\fl′, and the b\fl′ sounds over the Altus f\sh′ and the Tenor
+d′, an augmented triad on ‘ululatus’. In bar 18 the Cantus has
+g″–f\sh″–f″. ‘Rachel plorans’ and ‘filios suos’ are short imitative points.
+‘Et noluit consolari’ comes four times in the Altus and Tenor and three times
+in the Cantus and Bassus. ‘Quia non sunt’ is set twice, the second time over
+a Bassus d held for two breves, and the piece closes on a chord of A with a
+major third.
+
+The text had been set often as a motet, by Clemens non Papa for four voices,
+for example, and by Giaches de Wert for five (printed 1581). Zieleński wrote
+it as the proper of the day: short, close to the words, and with the organ
+beneath the voices.
+
+\section*{Sources}
+
+\subsection{The print} \la{Commvniones totivs anni quibus in solennioribus
+festis Sancta Romana Ecclesia uti consueuit ad cantum Organi, per Vnam, Duas,
+Tres, Quatuor, Quinque, \& Sex voces} … Venetiis, Apud Iacobum Vincentium.
+MDCXI (RISM A/I Z\,200, issued with Z\,199). Quarto partbooks and a folio
+\la{Partitura pro organo}. The only complete set came from the church of
+St Bernardine in Wrocław and was in the city library until 1942. Half of it
+was lost in the war. What survives:
+
+\begin{sigla}
+\item[PL-WRu] Wrocław, Biblioteka Uniwersytecka: Cantus primi chori, Tenor
+  primi chori, Altus secundi chori, Tenor secundi chori.
+\item[PL-Kc] Kraków, Biblioteka Książąt Czartoryskich: \la{Partitura pro
+  organo}. According to the Musicare database it gives some pieces in full
+  score.
+\item[PL-Kj] Kraków, Biblioteka Jagiellońska: Cantus only.
+\end{sigla}
+
+The four voices of no.\,36 were printed in the books of the first choir. The
+Tenor primi chori survives and is the source of this edition’s Tenor. The
+Cantus primi chori also survives and should hold the Cantus, but its
+facsimile was not available. The Altus and Bassus primi chori are lost.
+Before the war Zdzisław Jachimecki and Maria Szczepańska transcribed the
+complete set, and every later edition rests on their copies.
+
+\begin{sigla}
+\siglum{T} Tenor primi chori, no.\,36: ‘A 4. In festo
+  Sanctorum Innocentium. 36 TENOR’. Six staves; C2 clef, sign cut-C; text
+  placed under the notes, with \textit{ij} for repeated words. Facsimile in
+  \textit{Monumenta Musicae in Polonia}, ser.\,D, vol.\,12, ed. Jerzy Morawski
+  (Kraków: PWM, 1983), read in a scan of the Chicago Public Library copy.
+  \textit{Base text for the Tenor.}
+\siglum{N} \la{Vox in Rama}, notAmos Performing Editions, full score 100881
+  (PDF, 2020; CPDL). Four voices and a keyboard reduction. Final E, one-sharp
+  signature, note values halved, barred in a mixture of 3/2 and 2/2.
+\siglum{M} \la{Vox in Rama}, ed. Paul R. Marchesano (Finale PDF, 2009, and
+  MusicXML, 2017; CPDL). Final F, four-flat signature, note values halved,
+  barred in 4/4. \textit{Base text for Cantus, Altus and Bassus.}
+\end{sigla}
+
+\noindent \sig{N} and \sig{M} agree in every note, rest and accidental. \sig{M} lies a
+semitone above \sig{N}, and the two are barred differently. Their underlay
+differs in two places (bars 5–6 and 38–39). Both name the 1611 print as their
+source, but neither can have been made from the partbooks alone, since the
+Altus and Bassus are lost. Two editions that agree note for note across 45
+breves, down to accidentals that \sig{T} does not print, must share a parent:
+WDMP\,12, Malinowski, or the \la{Partitura} in facsimile. Their agreement
+therefore counts as one witness, not two. \sig{M} was chosen as base text
+because it exists as encoded data.
+
+\subsection{Editions not seen} Adolf Chybiński and Bronisław Rutkowski edited
+\la{Vox in Rama} as Wydawnictwo Dawnej Muzyki Polskiej 12 (Warsaw: TWMP, 1933;
+reissued by PWM in 1964, 1971 and 1980) ‘wg druku z r.\,1611’, while the print
+was still complete. The library catalogue gives its scoring as ‘2 soprani,
+mezzosoprano e tenore [con organo]’, which matches the ranges at the printed
+pitch. Władysław Malinowski’s \textit{Opera omnia} in \textit{Monumenta
+Musicae in Polonia}, ser.\,A (1966–91), has the communions in vols.\,4–5. The
+facsimiles of the Cantus primi chori (MMP D/11) and the \la{Partitura}
+(MMP D/15) have not been seen.
+
+\section*{Editorial method}
+
+\subsection{Status of the text} The Tenor is edited from the 1611 print. The
+other three voices come from \sig{M}, a modern edition at least two steps removed
+from the print. \sig{T} shows how far such an edition can be trusted. Its notes
+and rhythms agree with \sig{M} everywhere, once \sig{M}’s transposition and halved values
+are undone. Its accidentals do not: of the thirteen chromatic notes in \sig{M}’s
+Tenor, eight are printed in \sig{T}, four are sharps supplied by the parent
+edition, and one, the e\fl′ in bar 15, is an e\na′ in the print. Readers should
+assume that the accidentals of the Cantus, Altus and Bassus include editorial
+ones in about the same proportion. One reading of \sig{M} is emended, in the
+Altus at bars 17–18 (see the notes).
+
+\subsection{Pitch, values and barring} As in \sig{T}. The Tenor’s C2 clef puts
+the piece on A with no signature, a fourth above \sig{N} and a major third above
+\sig{M}. Note values are those of \sig{T}, twice those of \sig{N} and \sig{M}. The sign cut-C is
+\sig{T}’s; the edition assumes it stood in every voice. A bar is one breve, the
+tactus. Bar lines are drawn between the staves only (\textit{Mensurstriche}).
+A note that runs across a bar line keeps its single value; the edition adds
+no ties. The incipit before the Tenor gives the clef, sign and first note of
+\sig{T}; the clefs of the other voices are not known, and they have no incipit.
+The range of each voice is shown at the head of its staff. The final notes are
+longae, as in \sig{T}.
+
+\subsection{Voices and clefs} At the printed pitch the ranges are Cantus
+g′–a″, Altus d′–f″ (after the emendation in bars 17–18), Tenor g–a′ and
+Bassus A–c′. With a Tenor in C2 they point to a high set of clefs, perhaps
+G2, G2 or C1, C2, F3, which is what the WDMP scoring ‘2 soprani,
+mezzosoprano e tenore’ describes. Cantus and Altus are a pair of equal
+voices: they enter on the same e″, share a range and cross often. The Cantus
+cannot belong an octave lower. There it would lie below the Altus at nine in
+ten note onsets and below the Tenor at more than half of them, while at the
+printed octave it never goes below the Tenor. The Cantus and Altus are
+printed in the treble clef, the Tenor in the octave treble clef, the Bassus
+in the bass clef.
+
+\subsection{Sounding pitch} High clefs were a way of writing, not a pitch to
+be sung. Adriano Banchieri’s \textit{Cartella} (Venice, 1601; 2nd edn 1610,
+pp.\,13–15) states the rule: pieces in the G clef are sung a fourth lower when
+they have a flat and a fifth lower when they have none (‘quando sono per
+b.\,molle si trasportano … una Quarta bassa, \& quando sono per b.\,quadro, si
+trasportano similmente una Quinta bassa’). His written-out example of the
+fifth-lower case has its Tenor in C2, the clef of \sig{T}. Silverio Picerli gives
+the same rule in 1631. Both are quoted, with Banchieri’s example, by Andrew
+Johnstone (2006). \la{Vox in Rama} has no signature, so by this rule it
+sounded a fifth lower, ending on D: Cantus c′–d″, Altus g–b\fl′, Tenor c–d′,
+Bassus D–f, an ordinary four-part choir. The organ basses that Palestrina’s
+publishers printed for his high-clef works follow the same rule, a fifth
+lower without a flat and a fourth lower with one. Praetorius (1619) allows a
+fourth for some modes, and later Italian practice moved towards the fourth
+(Doni, 1640; Pasquini, 1695). The CPDL editions take it down a fourth, to E.
+A fourth down cannot be written in the notation of 1611 without a one-sharp
+signature, while a fifth down gives D with one flat, an ordinary notation of
+the time. The \la{Partitura} may settle the question, since organ parts
+sometimes printed the transposition. This edition prints the written pitch;
+the performance edition is a fifth lower.
+
+\subsection{Accidentals} In the Tenor, accidentals before notes are those of
+\sig{T}, and accidentals above the staff are editorial. In the other voices every
+accidental is \sig{M}’s and stands before the note, whether the print had it or
+not. As in the sources of the period, a sign applies only to the note it
+stands against. A b after a b\fl\ in the same bar is b\na\ and carries no sign.
+
+\subsection{Ligatures and coloration} The three ligatures of \sig{T}, all
+\la{cum opposita proprietate}, are shown by brackets above the notes. In the
+second (bar 17) the second note is black; corner brackets mark it.
+
+\subsection{Underlay} \sig{T} places its text under the notes but loosely, and
+writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. \sig{M}’s
+underlay was then checked syllable by syllable against the rules of this
+series. It keeps every firm rule: no new syllable on a fusa or a dot, a
+syllable on the first note after every rest, no word divided by a rest, no
+elision. It departs from the sixteenth-century theorists in two ways, and in
+both the print’s Tenor does the same, so the edition follows the print.
+First, a semiminim after a dotted minim takes a syllable (‘fí-li-os’,
+‘nó-lu-it’), which Zarlino forbids but which is ordinary by 1611. Second,
+every voice sets the unstressed ‘con-’ of ‘consolari’ to a melisma of five to
+seven notes; \sig{T}’s spacing, ‘con … sola-’, shows the same. In bars 5–6 of the
+Altus \sig{N}’s underlay is preferred, for the reason given in the notes.
+
+\subsection{Text} Spelling follows modern Latin use (\la{et} for the print’s
+ampersand, \la{ululatus} for \sig{T}’s \la{vlulatus}). Punctuation follows the
+Missal. The first word is capitalised; repeated ‘vox’ is not.
+
+%% ================================================================ TEXT
+\opensection{Text and translation}
+
+\begin{textcols}
+& \lines{\textLatin} & \lines{\textEnglish}\\
+\end{textcols}
+
+\noindent Matthew 2:18, after Jeremiah 31:15. Text of the communion for the
+feast of the Holy Innocents in the \la{Missale Romanum} (Venice, 1570).
+
+%% ================================================================ SCORE
+\scorehead[A 4. In festo Sanctorum Innocentium.]
+\scorepagebreaks{3,6}
+\lilypondfile[noindent]{music/score.ly}
+
+%% ================================================================ NOTES
+\opensection{Critical notes}
+
+\noindent Bar numbers refer to this edition, one breve to the bar. Pitches are
+given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
+\voice{A}, \voice{T}, \voice{B}. Readings of \sig{N} and \sig{M} are quoted at this pitch.
+
+\begin{apparatus}
+\cn{5–6}{A}{Underlay. \sig{M} sets ‘Ra-ma’ on c″–b′ and then a melisma of eight
+  notes on ‘-ma’. \sig{N} sets ‘Ra-ma, in Ra-ma’: ‘in’ on a′ (bar 5), ‘Ra-’ on
+  g\sh′, ‘-ma’ on a′ (bar 6). \sig{N} is followed. Its melisma falls on the
+  stressed syllable, and the Altus then says ‘vox in Rama, in Rama’ as the
+  Cantus (bars 4–7) and Tenor (bars 3–9) do.}
+\cn{8}{T}{Fusae g\sh′ f\sh′: \sig{T} without sharps; the minim g\sh′ that follows
+  has its sharp in \sig{T}. \sig{N} and \sig{M} sharpen all three.}
+\cn{15}{T}{e′–d′ in ligature, e′ without flat in \sig{T}. \sig{N} and \sig{M} have
+  e\fl′. With e\na′ the Tenor sounds a sixth below c″ and then a fifth below
+  b′; with e\fl′ it forms a minor 6/3 and then the augmented triad
+  e\fl′–g′–b′. The flat is not in the print, and the counterpoint argues
+  against it. It may come from the \la{Partitura} or from the parent edition.
+  The real chromatic moment comes two minims later, when the Cantus b\fl′
+  meets the Altus f\sh′ over the Tenor d′.}
+\cn{17–18}{A}{Emended. \sig{N} and \sig{M} have a–c′–d′–e′ an octave lower, the last
+  four notes of the melisma on ‘-tus’. They take the Altus to a, a fourth
+  below any other note in the part, and then make it leap e′–e″ to
+  ‘ploratus’. In the high clefs of this piece an Altus would hardly go below
+  d′. Raised an octave, the line runs a′–c″–d″–e″ into the repeated e″ of
+  ‘ploratus’, crosses no other voice, and makes no parallels. The Altus
+  partbook is lost; the \la{Partitura} should settle it.}
+\cn{17}{T}{b–a in ligature, the second note black. In imperfect time a black
+  semibreve followed by short notes is worth a dotted minim, which is the
+  value \sig{N} and \sig{M} give it.}
+\cn{25, 31}{T}{The figure c\sh′–b–c′–d′ at the cadence: \sig{T} prints the sharp on
+  the fusa and not on the minim. The minim’s sharp is editorial. \sig{N} and \sig{M}
+  have it before the note.}
+\cn{38–39}{T}{Underlay. \sig{M}: ‘et no-lu-it (melisma) con- (melisma)
+  so-la-ri’. \sig{N}: ‘no-lu-it, no-lu-it con-so-la-ri’, filling the melisma
+  with another ‘noluit’. \sig{T} has ‘\& no-’ at the end of its fifth staff and
+  ‘luit conso la ri’ at the start of the sixth, one statement only, so \sig{N}’s
+  extra ‘noluit’ is not in the print. \sig{M} is kept: its long ‘con-’ falls
+  with the long ‘con-’ of the Cantus and Altus.}
+\cn{42}{C}{e″ on the second minim against the Bassus f, both newly struck: a
+  passing semiminim on the beat. \sig{N} and \sig{M} agree.}
+\cn{45}{}{\sig{T} ends on a longa a′, followed by the final bar line. \sig{N} and \sig{M}
+  give breves. The other voices are given longae to match.}
+\end{apparatus}
+
+\section*{Literature}
+
+\begin{literature}
+\lit Chemotti, Antonio. Review of \textit{Italian Music in Central-Eastern
+  Europe}, ed. Jeż, Przybyszewska-Jarmińska and Toffetti. \textit{Muzyka} 62,
+  no.\,3 (2017): 130–37.
+\lit Johnstone, Andrew. ‘“High” Clefs in Composition and Performance.’
+  \textit{Early Music} 34, no.\,1 (2006): 29–53. Appendix 1b quotes
+  Banchieri, \textit{Cartella} (2nd edn, Venice, 1610), pp.\,13–15; appendix
+  1c, Picerli, \textit{Specchio secondo di musica} (Naples, 1631), p.\,192.
+\lit Kurtzman, Jeffrey, and Anne Schnoebelen. \textit{A Catalogue of Mass,
+  Office and Holy Week Music Printed in Italy, 1516–1770}. JSCM Instrumenta 2
+  (2014). Entry ‘Zielenski 1611 Z199, Z200’.
+\lit Leszczyńska, Agnieszka. Booklet essay in \textit{Mikołaj Zieleński:
+  Offertoria et Communiones totius anni}. Wrocław Baroque Ensemble, Andrzej
+  Kosendiak. CD Accord ACD 272, 2019.
+\lit \textit{Missale Romanum ex decreto sacrosancti Concilii Tridentini
+  restitutum}. Venice, 1570; Rome: Typographia Vaticana, 1604.
+\lit Musicare: A Database of Incomplete Printed Music, record 003847. Printed
+  Sacred Music database, records 3388–3389 (title pages and dedication). RISM
+  online, sources 990069886–7.
+\lit Zieleński, Mikołaj. \textit{Offertoria et communiones totius anni}.
+  Facsimile, ed. Jerzy Morawski. Monumenta Musicae in Polonia, ser.\,D,
+  vols.\,11–15. Kraków: PWM, 1983–86. Vol.\,12, \textit{Tenor primi chori}
+  (1983).
+\lit Zieleński, Mikołaj. \textit{Opera omnia}. Ed. Władysław Malinowski.
+  Monumenta Musicae in Polonia, ser.\,A. 5 vols. Kraków: PWM, 1966–91.
+\lit Zieleński, Mikołaj. \textit{Vox in Rama}. Ed. Adolf Chybiński and
+  Bronisław Rutkowski. Wydawnictwo Dawnej Muzyki Polskiej 12. Warsaw: TWMP,
+  1933; Kraków: PWM, 1964, 1971, 1980.
+\lit Recordings. Collegium Zieleński, Stanisław Gałoński, \textit{Opera
+  omnia} vol.\,5, DUX 0862 (rec. 2011). Wrocław Baroque Ensemble, Andrzej
+  Kosendiak, CD Accord ACD 272 (2019): soprano, countertenor, tenor and bass
+  with continuo.
+\end{literature}
+
+\end{document}

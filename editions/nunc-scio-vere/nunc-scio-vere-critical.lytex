@@ -1,0 +1,404 @@
+\documentclass[critical]{pol-ren}
+\input{text.tex}
+
+\seriesno{2}
+\composer[c.\,1520 – c.\,1560]{Wacław z Szamotuł}
+\title{Nunc scio vere}
+\subtitle{Introitus in festo SS. Apostolorum Petri et Pauli}
+\forces{Antiphon and Gloria Patri for four voices}
+\sourceline{from the lost organ tablature of c.\,1590 and the reconstruction by Mirosław Perz (1966)}
+\edition{First edition}{2026}
+\slug{nunc-scio-vere}
+
+\begin{document}
+\maketitlepage
+
+\colophon
+
+%% ================================================================ PREFACE
+\section*{The work}
+
+\initial{N}{unc scio vere} is the Introit for Saints Peter and Paul
+(29 June). Medieval Polish graduals also give it to Saint Peter’s Chains
+(1 August). Wacław set the antiphon and the \la{Gloria Patri}. The psalm
+verse between them was sung to its chant tone, and the antiphon was then
+repeated.
+
+The setting survives in one source, an eight-leaf fragment of an organ
+tablature of about 1590. Aleksander Poliński found it, and it is called the
+‘Castle’ tablature after the State Art Collections in the Royal Castle,
+Warsaw, where it was later kept. It passed to the National Library and was
+destroyed in 1944. The fragment was probably part of the Łowicz tablature,
+which contains a cycle of introits by Marcin Leopolita and others. \la{Nunc
+scio vere} stood on fols.\,7v–8r, headed \la{In die Apostolorum Petri et
+Pauli. Nunc scio vere W. S.} The monogram is usually read as Wacław’s.
+Tomasz Czepiel doubts the attribution.
+
+Wacław studied in Poznań and Kraków. He became composer to Sigismund II
+Augustus in 1547 and later served Mikołaj Radziwiłł ‘the Black’. Two other
+Latin motets by him survive, both printed in Nuremberg: \la{In te Domine
+speravi} (1554) and \la{Ego sum pastor bonus} (1564). A Kraków inventory of
+1572, made after the death of Jurek Jasiuczyc, lists ‘offitia Vaczlavove’.
+Poles used \la{officium} for the introit, so these may have been settings
+like this one.
+
+\section*{The music}
+
+The introit chant (third mode) runs through the setting in equal values,
+lightly ornamented. It moves between voices. The Tenor has it for \la{Nunc
+scio vere} (bars 3–12) and the Cantus from \la{quia} to the end of the
+antiphon (13–56). In the \la{Gloria Patri} the Bassus recites the psalm tone
+on c (63–71). These entries are marked [c.f.]. The other voices treat each
+clause of text as a point of imitation. The antiphon ends on E, the final of
+the mode. The \la{Gloria Patri} ends on A, the last note of the psalm tone’s
+termination.
+
+\section*{The reconstruction}
+
+Mirosław Perz made a vocal version from photographs of the two pages and
+published it in 1966 (\sig{P}). He set it a minor third above the tablature
+(\sig{T}) and added his own underlay. His commentary records every reading of
+\sig{T} that he changed. This edition starts from \sig{P}, returns the music
+to the pitch of \sig{T} and weighs each of Perz’s changes against \sig{T}.
+Most stand. At bars 6, 9, 30 and 81–83 \sig{T}’s reading is restored. The
+critical notes list every decision, so any of them can be reversed.
+
+\section*{Sources}
+
+\begin{sigla}
+\siglum{T} Organ tablature, c.\,1590 (‘Castle’ or ‘Small Warsaw’
+  tablature; Poliński collection), fols.\,7v–8r: \la{In die Apostolorum
+  Petri et Pauli. Nunc scio vere W. S.} Text incipit only. Destroyed 1944.
+  Glass-plate photographs of three pieces from the fragment, probably of
+  1928, are in the Institute of Musicology, Jagiellonian University
+  (IMuzUJ 014–017).
+\siglum{P} Mirosław Perz, vocal reconstruction from photographs of \sig{T},
+  in Hieronim Feicht (ed.), \textit{Muzyka staropolska / Old Polish Music}
+  (Kraków: PWM, 1966), pp.\,61–65; commentary pp.\,380–81. Up a minor
+  third; values as in \sig{T}; editorial underlay. \textit{Base text,}
+  revised against \sig{T}.
+\end{sigla}
+
+\section*{Editorial method}
+
+\subsection{Pitch and note values} Pitch is that of \sig{T}. At this pitch
+the antiphon ends on E with no signature, the normal position of the third
+mode, and the voices fit the ordinary low clefs (C1, C3, C4, F4). Cantus
+c′–e″, Altus f–a′, Tenor d–e′, Bassus E–a. A vocal original in this mode
+would have been notated this way, and nothing suggests the intabulator
+transposed it. \sig{P}’s pitch would need three flats in the signature,
+which no source of the period uses. Written pitch was not sounding pitch,
+though (see Performance).
+
+Note values are twice those of \sig{T} and \sig{P}. German organ tablatures
+often halve the values of their vocal models. As Perz transcribes it,
+\sig{T} moves in semiminims and fusae, with semifusae at cadences, values a
+vocal motet of about 1550 would hardly use. Doubled, the music moves in
+semibreves and minims under ¢, like Wacław’s two printed motets. The bar is
+a breve, so bar numbers match \sig{P}. The mensuration sign is editorial:
+\sig{T}, a tablature, has none.
+
+\subsection{Score} Bar lines run between the staves only. Voice names and
+clefs are editorial. Each voice’s range is shown at the head of its staff.
+Rests at entries follow \sig{P}, since a tablature notates rests only in
+part. The antiphon ends on semibreves under \sig{P}’s corona (bar 56).
+The \la{Gloria Patri} ends on longs.
+
+\subsection{Accidentals} A tablature spells every pitch, so accidentals
+before notes come from \sig{T}. Accidentals above the staff are editorial,
+all of them suggested by Perz. Each sign applies only to the note it stands
+against.
+
+\section*{Text underlay}
+
+\sig{T} gives only the text incipit. Every syllable below the notes is
+therefore editorial, placed by the method below.
+
+\begin{enumerate}
+\item \textit{Chant.} Where a voice carries the cantus firmus, it takes the
+  chant’s syllables. Each syllable starts on the first note of its chant
+  neume, and a chant melisma stays on one syllable, subject to the rules
+  that follow.
+\item \textit{Wacław’s practice.} His Kraków \la{Lamentationes} (1553) set
+  most of the text one syllable to a note, repeated notes included. A
+  melisma comes before the cadence on the stressed syllable of the last
+  word, and the final syllable takes the cadence note (\la{mé–am, lú–cem,
+  hó–minum, su-á–rum}). Short repeats are marked \la{ij}, longer ones
+  written out. The Nuremberg prints of his motets agree at clause ends but
+  place the words too loosely to settle more. Nine in ten clause-final words
+  here follow the \la{Lamentationes}; the rest carry a short ornament or
+  keep an imitative head-motif.
+\item \textit{The theorists.} These rules are kept without exception. A new
+  syllable goes only on a minim or longer note (Lanfranco 1533; Zarlino
+  1558, IV.33). None goes on a dot, or on the semiminim after a dotted minim
+  (Lanfranco, Zarlino). The first note after a rest and the last note of a
+  phrase each take a syllable (Zarlino). No rest divides a word, and there
+  is no elision (Vicentino 1555). A repeated note takes a new syllable
+  unless it is a semiminim, one of Stoquerus’s necessary rules (c.\,1570,
+  ch.\,15).
+\item[] Other rules are applied with the latitude Stoquerus allows the older
+  generation of composers, the Netherlanders whose idiom Wacław shares.
+  After a run of semiminims the syllable usually changes on the second white
+  note, not the first (Vicentino), but not always. Long or stressed
+  syllables go to long notes (Zarlino). A clause is repeated to keep the
+  voices together or for emphasis, and repeated whole (Stoquerus).
+\item \textit{Accent.} Stress follows the penultimate rule as Kraków taught
+  it in Wacław’s student years (Sebastian z Felsztyna 1518; Jerzy Liban
+  c.\,1539). Hence \la{Dóminus, ángelum, erípuit, Heródis, exspectatióne,
+  Iudaeórum, princípio, saeculórum.}
+\item \textit{Imitation.} Each point of imitation takes its opening motif
+  from a phrase of the chant, and the words of that phrase go with it. A
+  motif keeps its words wherever it recurs. Perz used the same method for
+  Leopolita’s introits from this tablature (1967).
+\end{enumerate}
+
+\noindent Repeated text is printed in italics, as editions print words
+supplied for a source’s \la{ij}.
+
+\section*{Performance}
+
+At written pitch the setting suits an all-male chapel like Sigismund
+Augustus’s, with boys or falsettists on the Cantus (c′–e″) and a low Bassus
+(E–a). The chapel paid boy singers (\la{pueri, adolescentes cantores})
+alongside its men, and Wacław’s \la{Lamentationes}, in clefs lower still,
+were written for low men’s voices. Every voice lies two to five semitones
+lower than in Wacław’s printed motets, the Cantus most of all. A minor third
+higher, as in \sig{P}, the four ranges match his printed ones almost
+exactly. That is the pitch for a mixed choir, and a sound choice for any
+choir, since written pitch fixed only the relations between the voices.
+
+A minim pulse of about 60–72 suits the declamation. The organ may double
+the voices. The order is Antiphon, psalm verse (cantor, in chant), \la{Gloria
+Patri}, Antiphon. The Introit was often sung in alternation with the organ.
+Perz argued in 1967 that the \la{Gloria Patri} settings of Leopolita’s
+introits in the same tablatures were organ versets, and that the organ could
+play the repeat of an introit while the choir said the words quietly. This
+edition texts the \la{Gloria Patri} because its Bassus recites the psalm
+tone syllable by syllable. An organ doxology or an organ repeat of the
+antiphon has as good a claim. Marcin Szelest has recorded the \la{Gloria
+Patri} from \sig{T} as an organ piece (Accord, 2023).
+
+Polish Latin suits the piece, with the sounds given in the series
+pronunciation guide. Stress follows the penultimate rule (rule 4 above). The
+guide’s \textit{tsi} for \textit{ti} before a vowel keeps the \textit{i} as a
+syllable, as the underlay does: ex-spe-cta-ti-o-ne.
+
+%% ================================================================ TEXT
+\opensection{Text and translation}
+
+\textandtranslation
+
+\noindent Acts 12:11; Psalm 138 (139):1–2. The verse is given as in the
+\la{Graduale Romanum}. Medieval Polish graduals end it at \la{sessionem
+meam}; singers who prefer that reading apply the termination to
+\la{ses-si-ó-nem me-am}.
+
+%% ================================================================ SCORE
+\scorehead
+\scorepagebreaks{3,6,11,14}
+\lilypondfile[noindent]{music/score.ly}
+
+%% ================================================================ NOTES
+\opensection{Critical notes}
+
+\section*{Readings of \sig{T} altered in \sig{P}}
+
+References are to bar, voice and note; tied continuations are not counted.
+Pitches are at the pitch of this edition (c′ = middle C), and note values
+are those of this edition, twice those of \sig{T} and \sig{P}. Each note
+gives \sig{T}’s reading, Perz’s change and his reason, then this edition’s
+decision in small capitals.
+
+Perz’s changes fall into three groups. Some cure a fault of counterpoint,
+such as parallel octaves, a mishandled dissonance or an inner voice given to
+the wrong part. These are \verdict{accepted}, because restoring \sig{T}
+brings the fault back. Others remove a figure Perz thought instrumental. He
+judged it at the halved values of the tablature. At this edition’s values
+the figures are ordinary vocal ornaments, so \sig{T} is \verdict{restored}
+unless it creates a fault. The last group joins repeated notes ‘for the
+underlay’. \sig{T} is restored where its repeated notes can carry syllables,
+as Stoquerus requires, and \sig{P} stands where they cannot.
+
+\begin{apparatus}
+\cn{6}{C}{\sig{T}: e′ tied from bar 5, e′ (minims), f′ d′ (semiminims), e′
+  (minim). \sig{P}: tied breve e′ and breve rest, the figure being
+  instrumental. At doubled values it is a common cadential ornament, and
+  makes no fault. \verdict{T restored} (\la{ve-re} repeated).}
+\cn{9}{T}{\sig{T}: in the second half, minim c′ and semibreve c′ tied into
+  bar 10. \sig{P}: dotted semibreve, for the underlay. The repeated c′ takes
+  \la{-o}. \verdict{T restored.}}
+\cn{20}{A}{\sig{T}: in the second half, minim f′ and semibreve f′ tied into
+  bar 21. \sig{P}: dotted semibreve, for the underlay. \sig{T} would give
+  five repeated f′ to the four syllables of \la{-lum an-ge-lum}.
+  \verdict{P accepted.}}
+\cn{25}{A, T}{\sig{T}: \voice{A} c′, \voice{T} g. \sig{P} exchanges them,
+  to avoid octaves and fifths with \voice{B}. \sig{T} gives octaves
+  \voice{A}–\voice{B} twice and fifths \voice{T}–\voice{B}. \verdict{P
+  accepted.}}
+\cn{26}{A}{\sig{T}: e′ in place of the rest. Omitted in \sig{P} for octaves
+  with \voice{B}. The octave is approached, not consecutive; but the rest
+  lets the Altus breathe before its entry at \la{et eripuit}, and the e′ is
+  probably the organist’s filling. \verdict{P accepted.}}
+\cn{30}{A}{\sig{T}: first note e′. \sig{P}: c′, for the cadence the text
+  creates. \sig{T}’s e′ supplies the only third of the C chord, which
+  otherwise stands bare for a semibreve. \verdict{T restored.}}
+\cn{31}{A, T}{\sig{T}: \voice{A} c′, \voice{T} a. \sig{P} exchanges them,
+  restoring the tenor’s line. \verdict{P accepted.}}
+\cn{34}{A}{\sig{T}: second note a. \sig{P}: b, for the cadence. The cadence
+  to C has the 4–3 suspension in the Cantus, and b is its leading note.
+  \verdict{P accepted.}}
+\cn{35–37}{C}{\sig{T}: two separate breves f′. \sig{P} ties them, for the
+  underlay. The second f′ falls after the clause has ended, and no syllable
+  is left for it. \verdict{P accepted.}}
+\cn{37}{A}{\sig{T}: the first two notes are one dotted semibreve d′.
+  \sig{P} divides it (semibreve, minim) to keep the imitation exact.
+  \verdict{P accepted} (rule 5).}
+\cn{49–50}{C}{\sig{T}: minims g′ e′ in place of the tied semibreve g′.
+  \sig{P}: g′, for octaves with \voice{T}. The octaves are real.
+  \verdict{P accepted.}}
+\cn{49}{B}{\sig{T}: second note without rhythm sign; read as a minim.}
+\cn{52}{C}{\sig{T}: in the second half, semiminims d′ c′ d′ e′. \sig{P}:
+  dotted minim d′, semiminim e′ (instrumental figure; fifths with
+  \voice{T}). The figure is vocal at these values, but the fifths are real
+  (\voice{C}–\voice{T}, bar 52). \verdict{P accepted.}}
+\cn{53}{T}{\sig{T}: first note f. \sig{P}: a, for octaves with \voice{C}.
+  The octaves are real. \verdict{P accepted.}}
+\cn{64}{T}{\sig{T}: third note d. \sig{P}: f, calling d an error. d would be
+  a dissonant semiminim left by leap. \verdict{P accepted.}}
+\cn{71}{A, T}{\sig{T}: \voice{A} c′, \voice{T} a. \sig{P} exchanges them
+  (imitation in \voice{A}; octaves between \voice{T} and \voice{B}). The
+  octaves are real. \verdict{P accepted.}}
+\cn{76–77}{A}{\sig{T}: one breve e′ in each bar. \sig{P}: two semibreves
+  each, for the underlay. The split gives \la{et nunc, et semper} in the
+  declamation the other voices have. \verdict{P accepted.}}
+\cn{81}{T}{\sig{T}: third note b. \sig{P}: g, for the cadence. \sig{T}’s b
+  sounds the resolution against the Cantus’s suspended c″. \verdict{P
+  accepted.}}
+\cn{81–83}{C}{\sig{T}: minims c″ a′ b′ g′ f′ a′, semibreves b′ c″, minims
+  c″ a′. \sig{P}: dotted semibreve c″, minim b′, semibreves a′ b′, dotted
+  semibreve c″; \sig{P} calls the sequence instrumental. At these values it
+  is a vocal sequence in minims, consonant throughout, without parallels.
+  \verdict{T restored} (\la{saeculorum} twice).}
+\cn{86}{C}{\sig{T}: two minims in place of the semibreve a′. \sig{P} joins
+  them, for the underlay. \sig{T} would put the final syllable before the
+  cadence. \verdict{P accepted.}}
+\cn{86}{B}{\sig{T}: second note d. \sig{P}: f, for octaves with \voice{A}.
+  The octaves are real. \verdict{P accepted.}}
+\end{apparatus}
+
+\section*{Other notes}
+
+\begin{apparatus}
+\cn{15–16}{C, T}{Parallel fifths (b′ e′ to a′ d′, bar 16), left as in
+  \sig{T}, following \sig{P}.}
+\cn{44}{C}{b′ as in \sig{T}, a tritone above the bass F on the third minim;
+  \sig{P} does not alter it. Singers may prefer b\fl′, as in bar 45.}
+\cn{44}{B}{The flat is \sig{P}’s; \sig{T} has B, against b\fl\ in the Tenor
+  a minim later.}
+\cn{54}{A, T}{Parallel fifths on the first minim, as in \sig{P}.}
+\cn{56}{A}{e′ (small note) is \sig{P}’s addition, in square brackets in
+  \sig{P}; \sig{T} presumably continued c′ from bar 55. \sig{P}’s e′ makes
+  fifths with \voice{B} (a–e′, E–b); the tied c′ does not, and is a fair
+  alternative.}
+\cn{57–62}{B, T}{Bassus rests for six bars, Tenor for three; the \la{Gloria
+  Patri} opens in two voices, as in \sig{T}.}
+\cn{88}{A}{c\sh′ (major final chord) is in \sig{T}; at bar 87 the sharp is
+  \sig{P}’s.}
+\end{apparatus}
+
+\section*{Underlay}
+
+\begin{apparatus}
+\cn{3–12}{T}{Cantus firmus. \la{Nunc} covers the chant’s opening neume
+  (f–d–g–f–e), \la{sci-o} its g and a; \la{-re} falls on the cadence note
+  c′ of bar 9, and the clause is repeated.}
+\cn{13–56}{C}{Cantus firmus. Syllables follow the chant, e.g. \la{om-} on
+  g′–a′ and \la{-ni} on d′ (bars 41–42), and three syllables of
+  \la{exspectatione} on the repeated g′ of bars 42–43. Where the chant and
+  rule 3 conflict, the rule decides (\la{-mi-} of \la{Dominus}, bar 16).}
+\cn{26–29}{C}{The chant’s melisma on \la{erípuit} falls on \la{-it}, not
+  \la{-pu-}; the Cantus follows it, with \la{-it} on the c″ of bar 27.}
+\cn{}{}{Elsewhere, where a free voice had a melisma of more than four
+  semibreves, the clause is repeated instead, as in Wacław’s prints (e.g.
+  \voice{T}, \la{exspectatione}, bars 44–48; \voice{B}, \la{eripuit me},
+  bars 25–30).}
+\cn{44–45}{C}{The stressed \la{-o-} of \la{exspectatione} takes the
+  semibreve a′; the chant’s c″ at bar 44 carries \la{-ti-}.}
+\cn{50–56}{all}{The stressed \la{-o-} of \la{Iudaeórum} falls on a strong
+  minim or a high note in every voice (e.g. \voice{C}, the semibreve a′ at
+  bar 53).}
+\cn{63–71}{B}{The Bassus recites the psalm tone on c; its mediant shape
+  (d c c, c–a, c) carries \la{-ri-tu-i San-cto} syllabically.}
+\end{apparatus}
+
+\section*{Literature}
+
+\litgroup{Sources and editions}
+\begin{literature}
+\lit Feicht, Hieronim (ed.). \textit{Muzyka staropolska / Old Polish Music}.
+  Kraków: PWM, 1966. (\sig{P}: pp.\,61–65; commentary by Mirosław Perz,
+  pp.\,380–81.)
+\lit \la{Tomus quartus psalmorum selectorum}. Nuremberg: Montanus \&
+  Neuber, 1554 (RISM B/I 1554/11). Wacław, \la{In te Domine speravi},
+  no.\,17. Munich, BSB, 4 Mus.pr. 188\#Beibd.3, digitised.
+\lit Wacław z Szamotuł. \la{Quatuor parium vocum lamentationes Hieremiae
+  prophetae}. Kraków: Łazarz Andrysowic, 1553. Tenor: Munich, BSB, 4 Mus.pr.
+  145, digitised. Altus and Bassus fragments: Gniezno, Archiwum
+  Archidiecezjalne, PL 489, facsimile in Łukaszewski and Wydra 2016.
+\lit \la{Thesauri musici tomus quintus}. Nuremberg: Montanus \& Neuber, 1564
+  (RISM B/I 1564/5). Wacław, \la{Ego sum pastor bonus}.
+\lit Wacław z Szamotuł. \la{In te Domine speravi}; \la{Ego sum pastor
+  bonus} (1564 print and Stuttgart, WLB, Cod. mus. I fol. 8). Ed. Klaas
+  Spijker. IMSLP and CPDL, n.d.
+\lit \la{Graduale Romanum}. Solesmes, 1961, p.\,532. Cantus Index g00257;
+  Cantus Planus in Polonia (cantus.ispan.pl).
+\end{literature}
+\litgroup{Theory}
+\begin{literature}
+\lit Lanfranco, Giovanni Maria. \textit{Scintille di musica}. Brescia, 1533,
+  pp.\,68–69.
+\lit Zarlino, Gioseffo. \textit{Le istitutioni harmoniche}. Venice, 1558,
+  Part IV, ch.\,33.
+\lit Vicentino, Nicola. \textit{L’antica musica ridotta alla moderna
+  prattica}. Rome, 1555, Book IV, chs.\,29–30.
+\lit Stoquerus, Gaspar. \la{De musica verbali libri duo}, ed. and trans.
+  Albert C. Rotola. Lincoln: University of Nebraska Press, 1988.
+\lit Sebastian z Felsztyna. \la{Modus regulariter accentuandi lectiones}.
+  Kraków, 1518.
+\lit Liban, Jerzy. \la{De accentuum ecclesiasticorum exquisita ratione}.
+  Kraków, c.\,1539.
+\end{literature}
+\litgroup{Studies}
+\begin{literature}
+\lit Czepiel, Tomasz M. M. \textit{Music at the Royal Court and Chapel in
+  Poland, c.\,1543–1600}. New York: Garland, 1996.
+\lit Harrán, Don. ‘New Light on the Question of Text Underlay Prior to
+  Zarlino’. \textit{Acta Musicologica} 45 (1973): 24–56.
+\lit Harrán, Don. ‘Vicentino and His Rules of Text Underlay’.
+  \textit{Musical Quarterly} 59 (1973): 620–32.
+\lit Łukaszewski, Jakub, and Wiesław Wydra. \pl{Fragmenty Kota ze lwem
+  Mikołaja Reja i innych druków z XVI w. odnalezione}. Poznań: Poznańskie
+  Studia Polonistyczne, 2016.
+\lit Perz, Mirosław. ‘Motety Marcina Leopolity’. In \textit{Studia
+  Hieronymo Feicht septuagenario dedicata}, ed. Zofia Lissa, 157–89.
+  Kraków: PWM, 1967.
+\lit Poźniak, Piotr, and Ryszard Wieczorek. ‘Wacław z Szamotuł’.
+  \pl{Encyklopedia muzyczna PWM}, online edition (Polska Biblioteka
+  Muzyczna), 2023.
+\lit Schubert, Peter, and Julie E. Cumming. ‘Text and Motif c.\,1500: A New
+  Approach to Text Underlay’. \textit{Early Music} 40 (2012): 3–14.
+\lit Szelest, Marcin. ‘Nowo odkryte fragmenty \textit{Lamentationes}
+  Wacława z Szamotuł: przyczynek do odczytania źródła’. \pl{Muzyka} 63,
+  no.\,1 (2018).
+\lit Szelest, Marcin. ‘Przyczynki do działalności i twórczości muzyków
+  związanych z dworem królewskim Rzeczypospolitej w drugiej połowie
+  XVI wieku’. \pl{Muzyka} 67, no.\,4 (2022): 81–115.
+\lit Towne, Gary. ‘A Systematic Formulation of Sixteenth-Century Text
+  Underlay Rules’. \textit{Musica Disciplina} 44 (1990): 255–87; 45 (1991):
+  143–68.
+\lit Wieczorek, Ryszard J., and Michał Wysocki. ‘\textit{Lamentationes}
+  Wacława z Szamotuł: fragmenty brakujących głosów odnalezione w Gnieźnie’.
+  \pl{Muzyka} 62, no.\,2 (2017): 4–20.
+\end{literature}
+
+\end{document}

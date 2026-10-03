@@ -1,0 +1,420 @@
+\documentclass[critical]{pol-ren}
+\input{text.tex}
+
+\seriesno{4}
+\composer[1392 – after 1452]{Piotr z Grudziądza}
+\composeralt{Petrus Wilhelmi de Grudencz}
+\title{Plaude euge theotocos}
+\forces{for three voices}
+\sourceline{from Leipzig, Universitätsbibliothek, Ms 1236, f.~139v}
+\edition{First edition}{2026}
+\slug{plaude-euge}
+
+\begin{document}
+\maketitlepage
+
+\colophon
+
+%% ================================================================ PREFACE
+\section*{The source}
+
+\initial{P}{laude euge theotocos} survives in a single manuscript, Leipzig,
+Universitätsbibliothek, Ms 1236, f. 139v. The book is a paper miscellany of
+579 leaves (21.5 × 14 cm), mostly grammar, theology and philosophy, copied in
+1447 and 1449; one colophon places its copying in Parchim, in Mecklenburg. It
+belonged to Johannes Klein of Löbau (Lubawa, in the Chełmno land, not far from
+Grudziądz), who matriculated at Leipzig in 1447, later taught in the arts
+faculty, and left his books to the university's Small Princes' College when he
+died in 1490.
+
+Music fills only a few leaves. Two more pieces by Piotr come before this one,
+\textit{Presulem ephebeatum} on ff. 79v–80v and the motet \textit{Pax eterna}
+/ \textit{Jacob scalam} / \textit{Terribilis est locus iste} on the leaves
+just before this one, and an anonymous \textit{Veni dulcis consolator} follows
+on the lower half of f. 139v. A treatise on music begins on f. 140r. Of the
+seventeen sources of Piotr's music copied in his lifetime, seven come from
+universities, two of them from Leipzig. Klein's book is a student's copy of
+the kind that carried his songs from Kraków across central Europe. It is also
+an early copy, made in Piotr's lifetime. Many of his songs reached later
+singers through Bohemian copies, and Paweł Gancarczyk has shown how those
+copies changed them. They gave the songs new texts, altered rhythms at
+cadences, and dropped or rewrote the middle voice. No other copy of
+\textit{Plaude} survives to compare, but a copy this early has had less time
+to drift from what Piotr wrote.
+
+The scribe wrote the three voices one after another, each in its own block,
+and labelled the upper two Discantus and Medius in the margin; the lowest
+voice has the cue ‘Tenor ymni Plaude’ (the reading of \textit{ymni} is
+uncertain). The notation is void mensural notation in a fast cursive hand.
+The Discantus and Medius are written in semibreves and minims, with their text
+copied as a continuous line under the notes rather than set note by note. The
+Tenor is written almost entirely in ligatures and carries no text beyond its
+cues: the incipit, ‘Te laudantes inspice’ where the second part begins, and
+‘2a fi[n]alis’ and ‘2a finale’ over the second endings. No voice has a clef, a
+mensuration sign or an accidental. Below the word Discantus is a small sign
+shaped like a b. The scribe ruled five-line staves by hand, unevenly, and many
+notes sit loosely on them. The ends of the Discantus and Medius staves run into
+the gutter, and the final notes of the Discantus in both second endings cannot
+be seen.
+
+\section*{The composer}
+
+Piotr z Grudziądza, known in Latin as Petrus Wilhelmi de Grudencz, was born in
+1392 in Grudziądz (Graudenz), then in the Prussian state of the Teutonic
+Order, to a family of knightly rank. He matriculated at the University of
+Kraków in 1418, became bachelor of arts in 1425 and master in 1430. The later
+documents place him at the court of Frederick III. In 1442, at Frankfurt am
+Main, the royal chancery issued him a letter of familiarity and safe conduct.
+In 1448 the bishop of Wrocław recommended him, without success, for a canonry
+at Frombork. In 1452 a petition to the papal curia calls him chaplain to the
+Emperor; he was probably in Rome for Frederick's coronation. Nothing is known
+of him after that year. The death date of about 1480 found in older literature
+rests on a supposed stay in Silesia that no document confirms. He was a
+chaplain, not a member of the musical chapel, and he appears to have had no
+musical duties.
+
+His songs, or \textit{cantiones}, are short Latin pieces for two or three
+voices, simple in structure and regular in rhythm. Černý showed that they grow
+out of the Central European song repertory of around 1400, to which Piotr
+added newer harmonic habits. They were sung mainly in university circles, at
+Kraków, Vienna and Leipzig, and in the later fifteenth century by the literary
+brotherhoods of the Bohemian Utraquist churches. About forty works are
+attributed to him, in more than fifty sources copied between about 1420 and
+1726, from Trent to Lwów and from Frankfurt to Masovia; nearly half of the
+sources are Bohemian. Thirty-three works carry his signature as an acrostic,
+and this piece is one of them. The manuscript names no composer, but the
+initials of the opening words spell PETRVS: \textit{Plaude Euge Theotocos
+Regina Virginum Salus.} Jaromír Černý included the piece in his edition of the
+complete works (1993).
+
+\section*{The poem}
+
+Piotr wrote the texts of his songs himself; the acrostic makes that certain
+here, since the words had to be found to fit the letters. The poem is a single
+stanza of eight short lines in two halves. The first half greets the Virgin,
+the second asks her for mercy on those who sing. Each half is sung twice, with
+a different musical ending the second time. The source spells
+\textit{confidencium} and \textit{misericordie}, and this edition keeps those
+spellings.
+
+\textit{Theotocos} is the Greek \textit{Theotokos,} ‘God-bearer’, the title
+for Mary confirmed at the Council of Ephesus in 431. It belongs to the
+Byzantine liturgy, but it was never only an Eastern word. Latin writers used
+it from the Nestorian controversy onwards (John Cassian glosses it
+‘theotocos, id est dei mater’), the schools met it in the Latin John of
+Damascus, and Western liturgical poetry used it freely: the office antiphon
+\textit{Ave o theotokos virgo Maria}, sequences such as \textit{Ave salutata ab
+angelo} (‘Ave, o theotocos’), and a hymn in fifteenth-century breviaries that
+prays ‘Succurre, o Theotocos’. In Piotr's poetry it is one of many Greek
+borrowings, alongside \textit{ephebeatum} and \textit{pneuma eucaristiarum,}
+which show off the learning of a Kraków master. I suspect it also solved a
+practical problem. The acrostic needs a word beginning with T, and \textit{Dei
+genitrix} would not serve.
+
+The rest of the language is common Marian stock. \textit{Plaude} and
+\textit{euge} together (‘rejoice’, ‘well done!’) appear in Jan of Jenštejn's
+Visitation sequence \textit{Ave verbi Dei parens}, copied in some forty
+Bohemian sources. \textit{Euge} comes from the Vulgate (‘Euge, serve bone’,
+Matthew 25:21); here it supplies the E. \textit{Regina virginum} is the
+antiphon's ‘Haec est regina virginum’, and rhymed Marian prayers of the
+period call her the hope ‘in te confidentium’. The closing lines echo the
+\textit{Salve Regina}: ‘illos tuos misericordes oculos ad nos converte’. The
+title of the oldest Polish hymn, \textit{Bogurodzica}, is the same word. It
+means ‘God-bearer’ and is a calque of \textit{Theotokos.}
+
+The Tenor's cue calls the piece a \textit{hymnus}. In the medieval sense that
+means any song of praise to God or the saints (Isidore: ‘hymnus est canticum
+laudantium’), which the second half's \textit{Te laudantes} makes literal.
+Nothing ties it to a feast or an office. It is a devotional song of the kind
+sung by students, clerics and townspeople in central Europe, in school, at
+home or in church.
+
+\section*{Pitch}
+
+Because the source has no clefs, every pitch in a modern score of this piece
+is a reconstruction, and so is the vertical relation of the voices. This
+edition keeps Monique Rio's reading, a final on D with B\fl{}. I tested it
+against the counterpoint. Read this way, the three voices form consonances on
+almost every semibreve, while moving any one voice up or down by a step
+produces dissonance throughout. The flat has to apply to all three voices.
+With a flat in the Discantus alone, the lower voices form tritones on nearly
+every b. The key signature here is therefore editorial, like the clefs, and it
+is applied to the whole score. The source has no accidentals either. The
+editorial ones follow two rules of the period: voices should not sound a
+tritone against each other (\textit{mi contra fa}), and a sixth that widens to
+an octave at a cadence should be major. Where the two pull against each
+other, or against the melodic rule \textit{una nota super la}, the critical
+notes explain the choice. The recording by Schola Gregoriana Pragensis decides
+differently in three places, and those are noted too.
+
+At this pitch the Discantus lies between c′ and b\fl{}′, the Medius between c
+and c′, and the Tenor between G and g. The piece suits alto, tenor and bass,
+and there is no need to transpose it.
+
+\section*{The Tenor: sung or played?}
+
+Both recordings of the piece treat the Tenor as something other than a sung
+text. La Morra (2016) gives it to a fiddle; in the recording by Schola
+Gregoriana Pragensis (2005) a bass hums it. The name of the voice does not
+settle whether that is right. In the fifteenth century \textit{tenor} named a
+function, the voice on which the others were built, and not a range; in
+three-voice songs of this period the lowest voice is regularly the Tenor. The
+other two names are local. Central European treatises of Piotr's time, the
+Mazovian \textit{Circa artem} and Paulus Paulirinus, describe pieces in which
+the \textit{discantus} and \textit{medium} have text while the tenor has none
+and moves in longer values. That is exactly the layout of this page. Nor can
+its low range be pressed, since without clefs the absolute pitch is an
+editor's choice. All that is certain is that it lies about an octave below
+the Discantus.
+
+The notation is better evidence. The Tenor has no text, and it is written
+almost entirely in ligatures, each of which carries a single syllable. The
+scribe did not expect anyone to sing the words to it syllable by syllable. Its
+long values fit an instrument well, and instruments were at hand: Paulus
+Paulirinus, writing in Prague about 1460, describes the fiddle, lute,
+clavichord and organ. Reinhard Strohm notes that the three-part songs of the
+Glogau songbook could be played on three string instruments, sung, or mixed.
+
+The case for voices is just as strong. Since the work of Christopher Page and
+David Fallows in the late 1970s and early 1980s, many scholars have held that
+much of this repertory was sung throughout. Page argues that vocalisation,
+singing a textless line without words, was a standard resource of trained
+singers, all the more because instruments other than the organ were normally
+kept out of church. He also observes that in sources of the early fifteenth
+century lower voices increasingly carry partial text, generally at moments of
+imitation or declamation. This Tenor carries text cues for both halves and for
+the endings, as if its reader was meant to follow the words.
+
+Both ways of performing it have history behind them, and so does a texted
+tenor. Gancarczyk shows that a copyist of the anonymous Central European motet
+\textit{Ave coronata} divided the long notes of its textless tenor into short
+values so that it could sing the words of the discantus, blurring the original
+design. Copyists of Piotr's own songs adjusted the tenor's rhythm at section
+endings, lengthening a note or adding a minim. This edition prints a texted
+Tenor as an option for an all-vocal performance. It follows Page's observation
+rather than the \textit{Ave coronata} copyist, so the Tenor takes text mainly
+where the upper voices declaim together.
+
+The Tenor's text is printed in italics because none of it is in the source.
+The Tenor keeps its long notes so that it can hold a sustained line under the
+declaiming upper voices, and it sings only as much of the text as fits:
+‘Plaude theotocos / regina virginum / salus confidencium’, and ‘Te laudantes
+inspice / nec despice / sed hos oculis respice’. The words it leaves out are
+sung by the upper voices, and what it sings still makes sense on its own.
+Notes are divided only in the endings, and dashed ties mark the divisions. The
+two endings of the first part differ. The first time, the Tenor begins the
+repeated \textit{confidencium} half a bar early, with \textit{con-fi} in two
+minims, and puts its stress, \textit{-den-}, on the downbeat of bar 15 while
+the upper voices sing \textit{con-}. The second time, it holds its breve and
+then takes the rhythm and words of the upper voices, four minims into the
+final breve. In the first ending of the second part the breve on d is halved
+to carry \textit{respice}. The Tenor can equally be vocalised or played from
+this score.
+
+\section*{Sources}
+
+\begin{sigla}
+\siglum{MS} Leipzig, Universitätsbibliothek, Ms 1236, f. 139v. Digital
+  images: \url{https://nbn-resolving.org/urn:nbn:de:bsz:15-0028-574721}
+  (Public Domain Mark). \textit{Base text.}
+\end{sigla}
+
+\noindent Edition and recording collated:
+
+\begin{sigla}
+\siglum{R} Monique Rio (ed.), \textit{Plaude euge theotocos} (St Cecilia
+  Press and CPDL, 2016), the one widely used today.
+\siglum{P} Schola Gregoriana Pragensis, \textit{Maiestas Dei} (Supraphon
+  SU 3807-2, 2005), cited for its accidentals and underlay as heard.
+\end{sigla}
+
+\section*{Editorial method}
+
+\subsection{Pitch and clefs} The pitch is that described above, written in
+modern treble, octave-treble and bass clefs. The key signature is editorial.
+
+\subsection{Note values and barring} The note values are those of the source
+(semibreve = whole note). Lines between the staves mark every breve, and the
+staves themselves are left without barlines, so notes run across them as they
+do in the source. Bar numbers count breves and include both endings. The
+source has no mensuration sign. The music moves in imperfect tempus and minor
+prolation throughout.
+
+\subsection{Repeats} The source writes each half once, followed by its first
+ending, and then the second ending after a double stroke marked ‘2a’. The
+score uses repeat signs and numbered endings for this. In the first part the
+bar before the endings (bar 14) is printed in both endings, so that the Tenor
+can take it differently each time; the upper voices are the same in both. In
+the source the endings begin one bar later.
+
+\subsection{Accidentals} The source has none. Editorial accidentals stand
+above the note they affect, in small type, and apply to that note only. There
+are four: naturals in bars 20 and 30, and two sharps in the final cadence,
+bar 35. The critical notes give the reasons, and note where \sig{R} and
+\sig{P} differ.
+
+\subsection{Supplied notes} Notes hidden in the gutter of the manuscript are
+supplied in square brackets.
+
+\subsection{Text} Spelling follows the source; capitals and punctuation are
+editorial. The source does not align syllables with notes in any voice, so the
+underlay throughout is editorial. It follows the phrase structure. Each line
+of the poem ends at a cadence, with its last syllable on the arrival note: in
+the second part, \textit{inspice} at the cadence on A (bar 24),
+\textit{despice} on G (bar 27) and \textit{oculis} on C (bar 31), the first
+note of each ending. Stressed syllables fall on the beat and usually on longer
+notes (\textit{laudántes, ínspice, míseros, déspice, misericórdie, óculis,
+réspice}). A repeated note takes a new syllable. Melismas fall on the stressed
+or the penultimate syllable before a cadence. Where the upper voices move
+together, they declaim together. I took these rules from sixteenth-century
+theorists, writing a century after this music, and applied them only where
+they make musical sense. The Tenor's text is wholly editorial, printed in
+italics, and shortened so that it keeps its long notes (see above).
+
+\subsection{Final notes} The source writes the last note of each ending as a
+long in the Tenor, and in the Medius at the end of each second ending. They
+are printed as longs, each filling its bar, and are held until all voices
+have finished. No fermata is added.
+
+%% ================================================================ TEXT
+\opensection{Text and translation}
+
+\begin{textcols}
+& \lines{\textOne\\[0.9em] \textTwo} & \lines{\transOne\\[0.9em] \transTwo}\\
+\end{textcols}
+
+\section*{Facsimile}
+
+\noindent\includegraphics[width=\textwidth]{facs.pdf}
+\musicnote{Leipzig, Universitätsbibliothek, Ms 1236, f. 139v (upper part).
+Discantus (staves 1–2), Medius (staves 3–4), Tenor (stave 5). Leipzig
+University Library, Public Domain Mark.}
+
+%% ================================================================ SCORE
+\scorehead
+\scorepagebreaks{4}
+\lilypondfile[noindent]{music/score.ly}
+
+%% ================================================================ NOTES
+\opensection{Critical notes}
+
+\noindent Locations are given as bar, voice and note number, counting rests.
+\voice{D} = Discantus, \voice{M} = Medius, \voice{T} = Tenor. \sig{R} reduces
+the note values by four, bars in 2/4 with two bars of 3/4 (bars 6–8 here,
+which need no change of metre in breve barring), and gives the Tenor no text.
+
+\begin{apparatus}
+\cn{1}{M 3}{\sig{MS} b, no accidental. Printed as b\fl{} by the signature, a
+  fifth below the \voice{D} f′. \sig{R} and \sig{P} sing b\na{}, which makes
+  the rise a–b–c′ smoother but forms a tritone with the \voice{D} f′. Compare
+  20 \voice{M} 3.}
+\cn{2}{D 2}{The minim stands almost as high as the g′ that follows it
+  (3 \voice{D} 1). Read as f′, as in \sig{R}.}
+\cn{2}{T 2}{\sig{MS} b, no accidental; b\fl{} by the signature, as in \sig{R}
+  and \sig{P}. The note sounds against the \voice{D} e′ held from the previous
+  beat, so either reading is dissonant. With b\fl{} it forms a tritone, with
+  b\na{} a fourth above the lowest voice. The Tenor rises from a to b and
+  falls to g, and the rule \textit{una nota super la semper est canendum fa}
+  (a single note above la is sung as fa) favours the flat.}
+\cn{6–10}{M}{Underlay: \textit{regina} is sung after the rests rather than
+  divided by them, so the e at 6 \voice{M} 1 continues \textit{theotocos};
+  \textit{-num} is held over two semibreves and \textit{salus} follows in
+  bar 10. \sig{P} places the text the same way.}
+\cn{10}{D}{Text: \sig{MS} \textit{salus}; \sig{R} prints \textit{sallus}.}
+\cn{14–19}{}{\sig{MS} writes bar 14 once, before the repeat; here it is
+  printed in both endings so that the Tenor can vary (see Editorial method).
+  \voice{T} bars 14–19: the divided notes and the second-ending rhythm are
+  editorial.}
+\cn{15}{M 3–4}{\sig{MS} b–b, rising, where the second ending has a–a–g–g
+  (18 \voice{M} 3–4). \sig{P} sings g–g in both endings. Here the Tenor has d,
+  so g would form a fourth above it on the beat (d–g–f′); with b\fl{} the
+  sonority is d–b\fl{}–f′. In the second ending the Tenor has b\fl{}, and g is
+  a sixth above it.}
+\cn{16, 19}{T}{The last note of each ending is a long in \sig{MS}, printed
+  here as a long.}
+\cn{18–19}{D}{Only the first three notes of this ending are clear in
+  \sig{MS}. Note 4 is partly visible and the last note is hidden in the
+  gutter. \sig{R} gives c′. This edition supplies e′. The Tenor's b\fl{}–a and
+  the Medius's g–a make a cadence on A, and the Discantus then takes d′–e′, as
+  it does in the first ending.}
+\cn{19}{M 1}{\sig{MS} writes a long, placed between f and g. With \voice{T}
+  b\fl{}–a, the cadence requires a (as \sig{R}).}
+\cn{20}{M 3}{\na{} editorial (\sig{R} b\fl{}; \sig{P} b\na{}). The figure is
+  the same as at 1 \voice{M} 3, but the counterpoint is not. Here the
+  Discantus rises d′–e′–f′–g′ a fifth above the Medius g–a–b–c′, so b\fl{}
+  would make four parallel fifths in a row; b\na{} breaks the chain with a
+  diminished fifth on a passing minim. In bar 1 the Discantus moves
+  differently (f′ held over a–b\fl{}, then e′) and no fifths arise, so the
+  flat stands there.}
+\cn{25}{M 1–4}{\sig{MS} writes these four notes as semibreves, without stems.
+  As written, the Medius would run two semibreves longer than the other
+  voices; read as minims, as in \sig{R}.}
+\cn{29}{M 3}{This b\fl{} forms a fourth with the Tenor's f for a whole
+  semibreve, the only such place in the piece. \sig{MS} and \sig{R} agree; it
+  may be a copying error, but no simple emendation removes it.}
+\cn{30}{M 2}{\na{} editorial, as in \sig{R}. With b\fl{} the note would form
+  a tritone with the \voice{D} e′.}
+\cn{31–36}{}{\sig{MS} writes the text of the second part in each upper voice
+  as ‘… oculis hos respice’, then ‘hos respice’ after the double stroke. The
+  text is not aligned with the notes, so the cue cannot be taken literally;
+  the second ending has too few notes for the Discantus to sing \textit{oculis
+  hos respice} there. The cadence on C at the start of the endings closes the
+  phrase \textit{sed misericordie oculis,} so all voices sing \textit{-lis} on
+  its first note and \textit{hos respice} after it, in both endings. \sig{R}
+  has the same reading in the second ending.}
+\cn{33, 36}{T}{The last note is a long in \sig{MS}, printed here as a long.}
+\cn{35}{D 4, M 4}{\sh{} editorial in both voices (\sig{R} and \sig{P} have
+  neither). In the final cadence the Tenor falls e–d under the Discantus
+  c′–d′ and the Medius g–a. The rule that a sixth widening to an octave
+  should be major calls for c\sh{}′; with it the Medius g must also be
+  raised, or the upper voices form a tritone (e–g–c\sh{}′). Raising both gives
+  the double leading-tone cadence common in the period. Leaving both natural,
+  as \sig{R} and \sig{P} do, is the other consistent reading; c\sh{}′ with
+  g\na{} is not.}
+\cn{36}{D}{The last note is hidden in the gutter of \sig{MS} and is
+  supplied.}
+\end{apparatus}
+
+\section*{Literature}
+
+\begin{literature}
+\lit Awianowicz, Bartosz. ‘Texts by Petrus Wilhelmi de Grudencz in the
+  context of the late medieval ars poetriae’. \textit{Muzyka} 62/3 (2017):
+  41–54.
+\lit Černý, Jaromír, ed. \textit{Petrus Wilhelmi de Grudencz Magister
+  Cracoviensis: Opera musica}. Kraków, 1993, p. 67.
+\lit Ciglbauer, Jan, and Paweł Gancarczyk. ‘Manuscript RC 4 from the Silesian
+  Museum in Opava and an unknown song by Petrus Wilhelmi de Grudencz’.
+  \textit{Muzyka} 62/2 (2017): 99–105.
+\lit Dreves, Guido Maria, et al., eds. \textit{Analecta hymnica medii aevi},
+  vols. 4, 7, 24, 32, 48. Cantus Index, antiphon \textit{Ave o theotokos}
+  (CAO 1540).
+\lit Fallows, David. ‘Specific information on the ensembles for composed
+  polyphony, 1400–1474’. In S. Boorman, ed., \textit{Studies in the
+  Performance of Late Mediaeval Music}. Cambridge, 1983, 109–159.
+\lit Gancarczyk, Paweł. ‘Petrus Wilhelmi de Grudencz (b. 1392): a Central
+  European composer’. \textit{De musica disserenda} 2/1 (2006): 103–112.
+\lit Gancarczyk, Paweł. ‘Changing identities of songs by Petrus Wilhelmi de
+  Grudencz’. \textit{Hudební věda} 54 (2017): 5–24.
+\lit Gancarczyk, Paweł. ‘Memory of genre: the polytextual motet in Central
+  Europe and its two traditions’. In K. Kügle, ed., \textit{Sounding the
+  Past: Music as History and Memory}. Turnhout, 2020.
+\lit Gancarczyk, Paweł. \textit{Petrus Wilhelmi de Grudencz i muzyka Europy
+  Środkowej XV wieku}. Warsaw, 2021. Cited from the reviews by Robert Curry,
+  \textit{Res Facta Nova} 23 (2022), and Grzegorz Lubieniecki,
+  \textit{Muzyka} 67/1 (2022).
+\lit Gancarczyk, Paweł. ‘Piotr z Grudziądza’. Polska Biblioteka Muzyczna
+  (online).
+\lit Mackert, Christoph. Description of Ms 1236 (2013). Handschriftenportal.
+  DIAMM, D-LEu MS 1236 (source no. 1865).
+\lit Page, Christopher. ‘Going beyond the limits: experiments with
+  vocalization in the French chanson, 1340–1440’. \textit{Early Music} 20
+  (1992): 446–459.
+\lit Staehelin, Martin. ‘Petrus Wilhelmi de Grudencz’. \textit{Die
+  Musikforschung} 59 (2006): 134ff.
+\lit Recording: La Morra. \textit{Petrus Wilhelmi de Grudencz:
+  Fifteenth-Century Music from Central Europe}. Glossa GCD 922515, 2017.
+  Booklet essay by Michał Gondko.
+\end{literature}
+
+\end{document}

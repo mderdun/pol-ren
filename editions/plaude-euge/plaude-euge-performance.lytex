@@ -1,0 +1,62 @@
+\documentclass[performance]{pol-ren}
+\input{text.tex}
+
+\composer[1392 – after 1452]{Piotr z Grudziądza}
+\title{Plaude euge theotocos}
+\edition{First edition}{2026}
+
+\begin{document}
+\makemasthead
+\scorepagebreaks{4}
+\lilypondfile[noindent]{music/score-performance.ly}
+
+%% The heading's reserved space (six lines) is less than the text block, so
+%% without this break the heading is left alone at the foot of page 2.
+\newpage
+\section*{Text and translation}
+
+\begin{textcols}
+%% One row, so that the two halves stay together on one page.
+& \lines{\textOne\\[0.9em] \textTwo} & \lines{\transOne\\[0.9em] \transTwo}\\
+\end{textcols}
+
+\begin{rehearsal}
+\pnote{The song} Piotr z Grudziądza (1392 – after 1452) studied and
+graduated at Kraków and later served as a chaplain at the court of
+Frederick III. His songs travelled widely in central Europe, and he signed
+many of them with an acrostic. Here the initials of the opening words spell
+PETRVS. He wrote the poem himself. It greets the Virgin as
+\textit{theotocos}, the Greek ‘God-bearer’ (the word that Polish
+\textit{Bogurodzica} translates), and then asks her to look on her singers
+with the eyes of mercy, in words close to the \textit{Salve Regina}. For the
+sounds of the Latin, see the series pronunciation guide.
+
+\pnote{Voices and pitch} The piece survives in one manuscript, Leipzig,
+Universitätsbibliothek, Ms 1236, copied in 1447–9. The voices are the
+source's own: Discantus, Medius and Tenor. At the printed pitch they suit
+alto, tenor and bass. The source writes no clefs, so the pitch and the key
+signature are editorial. Piotr's songs were sung by students and clerics,
+often three men of similar range, and an all-male group may transpose the
+piece down to suit.
+
+\pnote{The Tenor} The Tenor has no text in the source and may be played (a
+fiddle or organ suits it), vocalised, or sung. Its text here is editorial,
+printed in italics, and shortened on purpose. The Tenor keeps its long notes
+and sings only the words that fit, while the upper voices carry the whole
+poem. Dashed ties mark the places in the endings where a note of the source
+is divided. In the first part the Tenor takes the two endings differently.
+The first time it anticipates \textit{con-fi}; the second time it moves with
+the upper voices. Small accidentals above the staff are editorial. The two
+sharps in the final cadence belong together, so sing both or neither. The
+note in square brackets at the end of each second ending is hidden in the
+binding of the manuscript.
+
+\pnote{The score} Note values are those of the source. Lines between the
+staves mark each breve and are not bar lines in the modern sense. Each half
+of the song is sung twice, with the first ending and then the second. The
+long at the end of an ending is held until all voices have finished. Lines
+3–4 of the second half are best sung as a block, all voices declaiming
+together.
+\end{rehearsal}
+\footcolophon
+\end{document}

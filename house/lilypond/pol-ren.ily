@@ -58,6 +58,15 @@ sugg = {
 colStart = ^\markup \raise #0.5 \abs-fontsize #9 "⌜"
 colEnd   = ^\markup \raise #0.5 \abs-fontsize #9 "⌝"
 
+%% Text supplied by the editor: italic underlay. \edText for a whole
+%% lyric line (put it first in the \lyricmode block), \rep for one syllable
+%% (repeated text standing for a source's ij).
+edText = \override LyricText.font-shape = #'italic
+rep = \once \override LyricText.font-shape = #'italic
+
+%% Coloration of a single note: both corners over it.
+colNote = ^\markup \raise #0.5 \abs-fontsize #9 \concat { "⌜" \hspace #2.2 "⌝" }
+
 %% Cantus firmus entry.
 cf = ^\markup \abs-fontsize #8.5 \italic "[c.f.]"
 
@@ -131,9 +140,7 @@ voiceSetup = {
     \override AccidentalSuggestion.parenthesized = ##f
     \override Ambitus.X-offset = #0.6
   }
-  \context { \Voice
-    \override Tie.dash-definition = #'((0 1 0.4 0.75))
-  }
+  %% Ties are solid; only \divTie (a divided source note) is dashed.
   \context { \Lyrics
     \override LyricText.font-size = #1.0
     \override LyricHyphen.minimum-distance = #1.2

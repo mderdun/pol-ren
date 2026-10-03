@@ -4,11 +4,11 @@ Critical and performance editions of early Polish music, edited by Mikołaj Derd
 
 | No. | Piece | Composer | Status |
 |---|---|---|---|
-| 1 | *Bogurodzica* | anonymous, 13th–14th c. | first edition (2026), awaiting reset |
-| 2 | *Nunc scio vere* | Wacław z Szamotuł | first edition (2026), awaiting reset |
-| 3 | *Modlitwa gdy dziatki spać idą* (*Już się zmierzka*) | Wacław z Szamotuł | house-style mock |
-| 4 | *Plaude euge theotocos* | Piotr z Grudziądza | first edition (2026), awaiting reset |
-| 5 | *Vox in Rama* | Mikołaj Zieleński | first edition (2026), awaiting reset |
+| 1 | *Bogurodzica* | anonymous, 13th–14th c. | first edition (2026) |
+| 2 | *Nunc scio vere* | Wacław z Szamotuł | first edition (2026) |
+| 3 | *Modlitwa gdy dziatki spać idą* (*Już się zmierzka*) | Wacław z Szamotuł | first edition (2026) |
+| 4 | *Plaude euge theotocos* | Piotr z Grudziądza | first edition (2026) |
+| 5 | *Vox in Rama* | Mikołaj Zieleński | first edition (2026) |
 
 **Guide**: *Singing Polish and Polish Latin*, a pronunciation guide for the whole series (`guides/pronunciation`).
 

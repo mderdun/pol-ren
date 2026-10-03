@@ -1,0 +1,47 @@
+\documentclass[performance]{pol-ren}
+\input{text.tex}
+
+\composer[c.\,1520 – c.\,1560]{Wacław z Szamotuł}
+\title{Nunc scio vere}
+\subtitle{Introitus in festo SS. Apostolorum Petri et Pauli}
+\edition{First edition}{2026}
+
+\begin{document}
+\makemasthead
+\lilypondfile[noindent]{music/score-performance.ly}
+
+\section*{Text and translation}
+
+\textandtranslation
+
+\noindent Acts 12:11; Psalm 138 (139):1–2.
+
+\begin{rehearsal}
+\pnote{The work} The setting survives only in a textless organ tablature of
+about 1590. It is built on the Introit chant, which passes between the
+voices (marked [c.f.]). The words are editorial. The critical edition gives
+the sources and the reasons for each reading.
+
+\pnote{Order} Antiphon (choir). Psalm verse (cantor, in chant; the choir may
+join at the asterisk). \la{Gloria Patri} (choir). Antiphon repeated. The
+organ may take the \la{Gloria Patri} or the repeat, as it often did in
+Wacław’s time, while the choir says the words quietly.
+
+\pnote{Pitch and tempo} The score is at written pitch, for men’s voices
+with boys or falsettists on the Cantus. A mixed choir should sing a minor
+third higher, where the ranges match Wacław’s other motets. Minim pulse
+about 60–72. The organ may double the voices.
+
+\pnote{The words} Polish Latin, as Wacław’s singers spoke it; the series
+pronunciation guide gives the sounds. Stress: \la{Dóminus, ángelum,
+erípuit, Heródis, exspectatióne, Iudaeórum, princípio, saeculórum}.
+\textit{Ti} before a vowel is \textit{tsi}, its \textit{i} a syllable of
+its own, as the underlay has it: ex-spe-cta-ti-o-ne.
+
+\pnote{Signs} Accidentals before notes come from the source and apply to
+their own note only. Accidentals above the staff are editorial. Italic
+words are repetitions of text. The small note in the Altus at bar 56 is
+editorial; the tied c′ before it may be held instead.
+\end{rehearsal}
+\footcolophon
+\end{document}
