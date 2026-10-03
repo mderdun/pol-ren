@@ -94,7 +94,8 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 - Incipit with original clef, sign and first note (omitted in a transposed performance edition); then the modern clef and the ambitus; then the mensuration sign.
 - **Mensurstriche** as dashed lines between the staves, so the parts read first and the bar lines are there for whoever wants them. Section, repeat and final bar lines are solid.
 - Bar numbers in small italic at the start of each system only.
-- Editorial accidentals small, above the note.
+- **Notes on the music page** (`\pagenote`): only for a sign on that page that is neither standard notation nor explained by the score itself, such as an editorial suggestion printed in the music. One line, at the foot of the page, at most one per page. Everything else belongs in the rehearsal notes. (Bent 2013; trial in *Vox in Rama*, Oct 2026.)
+- Editorial accidentals small, above the note; optional ones in brackets (`\optFlat`, `\optSharp`, `\optNatural`).
 - Ties are solid. A dashed tie means a source note divided to carry text (`\divTie`) and nothing else.
 - Editorial underlay in italics: `\edText` for a whole line, `\rep` for one syllable.
 - Rubrics red italic, left-aligned over the system.

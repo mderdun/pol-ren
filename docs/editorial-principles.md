@@ -68,6 +68,7 @@ Every piece is published as a critical edition and a performance edition.
 
 1. **Source accidentals** stand before the note.
 2. **Editorial accidentals** stand above the note, small, without brackets, and apply to that note only. (*Nunc scio*, *Zmierzka*, *Plaude*, *Vox*)
+   - **Optional accidentals** are bracketed above the note: the note as printed is the edition's reading, the bracketed sign an alteration singers may make. Use them where the period rules leave a real choice; give the reason in the critical notes. Paired alterations (a double leading-tone cadence) are marked in both voices and the notes say "both or neither". (Berger 1987; MD, 3 Oct 2026)
 3. **Accidental style "forget"**: a sign governs only its own note; no cautionaries.
 4. **Grounds.** Editorial accidentals rest on period rules: no *mi contra fa* between voices; a sixth opening to an octave at a cadence is major; *una nota super la*. Where the rules conflict, the critical note explains the choice. Parallel fifths count as grounds for a natural. (*Plaude*)
 5. **Consistency.** At a double leading-tone cadence, sharpen both voices or neither, never one. (*Plaude*)
@@ -79,6 +80,7 @@ Every piece is published as a critical edition and a performance edition.
 | What | Sign |
 |---|---|
 | Accidental supplied | small, above the note |
+| Accidental optional | small, in brackets, above the note (the note keeps the edition's reading) |
 | Note supplied by the editor | small notehead |
 | Note illegible or missing, supplied | notehead in square brackets |
 | Source note divided to carry text | dashed tie |
@@ -99,11 +101,11 @@ Every piece is published as a critical edition and a performance edition.
 
 **Firm rules** (kept without exception unless the source itself breaks them):
 
-1. A new syllable only on a minim or longer (Lanfranco 1533; Zarlino 1558): not on a fusa, a dot, or the semiminim after a dotted minim.
+1. A new syllable only on a minim or longer, or on a semiminim straight after a dotted minim; never on a fusa or a dot. Lanfranco (1533) and Vicentino (1555) allow the semiminim after a dotted minim, and the sources do it (the 1611 Tenor of *Vox in Rama*); Zarlino (1558) is stricter. Prefer the longer note where the music allows. (MD, 3 Oct 2026: the best-supported rule wins)
 2. A syllable on the first note after a rest.
 3. The last syllable of a phrase on its last (cadence) note.
 4. No rest divides a word. (MD, *Plaude*)
-5. No elision. (Vicentino 1555)
+5. **Elision.** None in Latin (Vicentino 1555). In Polish, the syllable count of the verse decides: elide only where the line needs it to keep its count, as the poet's own metre shows. (Vicentino requires elision in the vernacular; Polish syllabic verse rarely needs it.) (MD, 3 Oct 2026)
 
 **Method.**
 

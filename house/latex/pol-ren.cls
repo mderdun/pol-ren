@@ -311,6 +311,10 @@
   \clist_if_in:NnTF \g_pr_pbreaks_clist {#1} {\newpage} {}}
 \ExplSyntaxOff
 \def\betweenLilyPondSystem#1{\par\vspace{\systemskip}\pr@sysbreak{#1}\noindent}
+%% A note at the foot of a music page, for a sign on that page that singers
+%% cannot read without it. Use sparingly: house-style §9.
+\newcommand\pagenote[1]{{\renewcommand\thefootnote{}\renewcommand\@makefntext[1]{\noindent\itshape##1}%
+  \footnotetext{#1}}}
 \newcommand\musicnote[1]{\par{\small\itshape\centering #1\par}}
 
 %% ------------------------------------------------------------ apparatus

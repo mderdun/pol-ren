@@ -36,6 +36,7 @@ make                                       # every edition and guide
 make juz-sie-zmierzka                      # one
 tools/build.sh juz-sie-zmierzka critical   # one kind
 make lint                                  # check content files hold no layout
+make musicxml                              # MusicXML 4.0 of each critical score, in pdf/ beside the PDFs
 ```
 
 Design lives only in `house/`. Edition files hold content; `tools/lint.sh` rejects layout commands in them, and every build runs it. Change the house files, run `make`, and every edition is reset to the new design. LaTeX sets every page; LilyPond and Gregorio only engrave the music, and `lilypond-book` hands LaTeX one graphic per system so page breaks fall between systems.

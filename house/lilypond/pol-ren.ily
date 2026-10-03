@@ -37,6 +37,19 @@ mensSign =
 %% Editorial accidental: small, above the note, valid for that note only.
 fi = \once \set suggestAccidentals = ##t
 
+%% Optional editorial accidental: the note keeps the edition's reading; the
+%% bracketed sign above it is an alteration singers may take (Berger 1987).
+%% Post-events: b1\optFlat  c'2\optSharp  b1\optNatural
+#(define (pr-opt-acc glyph)
+   (make-music 'TextScriptEvent 'direction UP
+     'text (markup #:fontsize -2.5
+             #:concat (#:musicglyph "accidentals.leftparen"
+                       #:musicglyph glyph
+                       #:musicglyph "accidentals.rightparen"))))
+optFlat = #(pr-opt-acc "accidentals.flat")
+optSharp = #(pr-opt-acc "accidentals.sharp")
+optNatural = #(pr-opt-acc "accidentals.natural")
+
 %% Note supplied by the editor: small notehead.
 ed = \tweak font-size #-3 \etc
 
@@ -172,6 +185,7 @@ prMens = {
 }
 
 %% \prStaff long short incipit clef perf-clef notes words
+%%   words: one \lyricmode block, or << \stanzaOne \stanzaTwo >> for several
 %%   incipit: music for the incipit staff (clef, sign, first note), or {} for none
 %%   perf-clef: clef in a transposed performance edition ("" = same as clef)
 prStaff =
@@ -198,7 +212,11 @@ prStaff =
             \voiceSetup
             \new Voice = #vname $music
           }
-          \new Lyrics \lyricsto #vname $words
+          $(make-simultaneous-music
+             (map (lambda (w) #{ \new Lyrics \lyricsto #vname $w #})
+                  (if (music-is-of-type? words 'simultaneous-music)
+                      (ly:music-property words 'elements)
+                      (list words))))
         >> #}))
 
 %% Per-score layout: music/engraving.ily may define

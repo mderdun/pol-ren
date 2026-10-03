@@ -159,7 +159,7 @@ d–a′, Tenor d–e′, Bassus G–a.
 \subsection{Accidentals} \sig{A} prints none, so every accidental here is editorial.
 They stand above the note and apply to that note only. They are limited to
 the five cadences where a major sixth opens to an octave (bars 2, 4, 9, 19
-and 29).
+and 29), with one optional flat (bar 29, Altus). An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
 
 \subsection{Underlay} \sig{A} prints each voice’s text as a block under the staff,
 so the underlay is editorial. Three things in \sig{A} guide it. The Tenor’s text
@@ -227,7 +227,7 @@ pitch and in the values of this edition. Bar numbers agree in all four.
   dotted minim.}
 \cn{29}{A}{\sig{PWM}, \sig{K} and \sig{M} flatten b (\la{una nota super la}). Left as in \sig{A}:
   b\fl\ would sound a tritone against e′ in the Cantus, and b is the sixth
-  degree of the D mode. Singers who prefer the flat may take it.
+  degree of the D mode. The flat is printed in brackets as an option.
   \verdict{A kept.}}
 \cn{30}{B}{\sig{A} has a maxima, given as a longa to match the other voices.}
 \cn{text}{}{\sig{PWM}: ‘zmierzcha’, ‘naszym stróżem’. \sig{K}, \sig{M}: ‘naszym strażem’;

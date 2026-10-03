@@ -2,7 +2,7 @@ from fractions import Fraction as F
 import re, json
 
 def parse(spec):
-    """spec tokens: pitch:dur[:flags]  dur in sb: B=2, 1, h=1/2, 1.5 ; flags: f=ficta, s=supplied ; 'r' rest"""
+    """spec tokens: pitch:dur[:flags]  dur in sb: B=2, 1, h=1/2, 1.5 ; flags: f=ficta, o=optional sharp, s=supplied ; 'r' rest"""
     out=[]
     for tok in spec.split():
         parts=tok.split(':')
@@ -48,7 +48,8 @@ def ly_notes(notes):
         dur='\\longa*1/2' if 'L' in n['fl'] else DUR[n['d']]
         if 'L' in n['fl']: assert n['d']==F(2)
         tie='~' if n.get('tie') else ''
-        out.append(f"{pre}{n['p']}{dur}{tie}")
+        post='\\optSharp' if 'o' in n['fl'] else ''   # optional sharp (bracketed)
+        out.append(f"{pre}{n['p']}{dur}{post}{tie}")
     return ' '.join(out)
 
 def ly_lyrics(notes):

@@ -11,6 +11,7 @@
 \makemasthead
 \scorepagebreaks{3,6}
 \lilypondfile[noindent]{music/score-performance.ly}
+\pagenote{Small notes in round brackets, last bar: an editorial suggestion, not in the print.}
 
 \newpage   % the score fills three pages; text and notes share the last
 \section*{Text and translation}

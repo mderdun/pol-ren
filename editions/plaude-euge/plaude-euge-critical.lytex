@@ -259,8 +259,8 @@ the source the endings begin one bar later.
 
 \subsection{Accidentals} The source has none. Editorial accidentals stand
 above the note they affect, in small type, and apply to that note only. There
-are four: naturals in bars 20 and 30, and two sharps in the final cadence,
-bar 35. The critical notes give the reasons, and note where \sig{R} and
+are two: naturals in bars 20 and 30. The two sharps of the final cadence,
+bar 35, are optional and printed in brackets. An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make. The critical notes give the reasons, and note where \sig{R} and
 \sig{P} differ.
 
 \subsection{Supplied notes} Notes hidden in the gutter of the manuscript are
@@ -378,14 +378,14 @@ the final notes of the Medius and Tenor. The Tenor's b\fl{}–a and
   its first note and \textit{hos respice} after it, in both endings. \sig{R}
   has the same reading in the second ending.}
 \cn{33, 36}{T}{The last note is a long in \sig{MS}, printed here as a long.}
-\cn{35}{D 4, M 4}{\sh{} editorial in both voices (\sig{R} and \sig{P} have
+\cn{35}{D 4, M 4}{\sh{} optional in both voices, printed in brackets (\sig{R} and \sig{P} have
   neither). In the final cadence the Tenor falls e–d under the Discantus
   c′–d′ and the Medius g–a. The rule that a sixth widening to an octave
   should be major calls for c\sh{}′; with it the Medius g must also be
   raised, or the upper voices form a tritone (e–g–c\sh{}′). Raising both gives
   the double leading-tone cadence common in the period. Leaving both natural,
-  as \sig{R} and \sig{P} do, is the other consistent reading; c\sh{}′ with
-  g\na{} is not.}
+  as \sig{R} and \sig{P} do, is the other consistent reading, and the one
+  printed; c\sh{}′ with g\na{} is not. Sing both sharps or neither.}
 \cn{36}{D}{The last note is hidden in the gutter of \sig{MS} and is
   supplied, printed as a long like the final notes of the Medius and Tenor.}
 \end{apparatus}

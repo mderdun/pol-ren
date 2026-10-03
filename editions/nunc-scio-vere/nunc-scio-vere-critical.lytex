@@ -109,7 +109,7 @@ The \la{Gloria Patri} ends on longs.
 \subsection{Accidentals} A tablature spells every pitch, so accidentals
 before notes come from \sig{T}. Accidentals above the staff are editorial,
 all of them suggested by Perz. Each sign applies only to the note it stands
-against.
+against. An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
 
 \section*{Text underlay}
 
@@ -294,7 +294,7 @@ as Stoquerus requires, and \sig{P} stands where they cannot.
 \cn{15–16}{C, T}{Parallel fifths (b′ e′ to a′ d′, bar 16), left as in
   \sig{T}, following \sig{P}.}
 \cn{44}{C}{b′ as in \sig{T}, a tritone above the bass F on the third minim;
-  \sig{P} does not alter it. Singers may prefer b\fl′, as in bar 45.}
+  \sig{P} does not alter it. b\fl′, as in bar 45, is printed in brackets as an option.}
 \cn{44}{B}{The flat is \sig{P}’s; \sig{T} has B, against b\fl\ in the Tenor
   a minim later.}
 \cn{54}{A, T}{Parallel fifths on the first minim, as in \sig{P}.}

@@ -67,7 +67,7 @@ altusNotes = {
   d'1 d'2 a1                    % 26
   b2 c'2 e'2.                   % 27
   d'4 c'4 b4 a1 |               % 28
-  b1 a1 |                       % 29
+  b1\optFlat a1 |               % 29
   \finalis 2 a\longa \bar "|."   % 30
 }
 
