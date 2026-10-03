@@ -228,6 +228,16 @@ prMens = {
   \time 2/2
 }
 
+%% Rests (principles 5.8): in a performance edition every rest is cut at the
+%% bar lines, so that entries can be counted by the bar. A critical edition
+%% keeps the rests of a primary source as written; voices that come from a
+%% modern edition can be regularised there too, by listing them in the
+%% edition's music/engraving.ily:  prRegularRests = #'("cantus" "altus")
+#(define (pr-regular-rests? vname)
+   (or (eq? (ly:parser-lookup 'prPerformance) #t)
+       (let ((l (ly:parser-lookup 'prRegularRests)))
+         (and (list? l) (member vname l) #t))))
+
 %% \prStaff long short incipit clef perf-clef notes words
 %%   words: one \lyricmode block, or << \stanzaOne \stanzaTwo >> for several
 %%   incipit: music for the incipit staff (clef, sign, first note), or {} for none
@@ -254,7 +264,9 @@ prStaff =
             \time 2/1
             $(if (string-null? sign) #{ \omit Staff.TimeSignature #} #{ \mensSign #sign #})
             \voiceSetup
-            \new Voice = #vname $music
+            $(if (pr-regular-rests? vname)
+                 #{ \new Voice = #vname \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $music #}
+                 #{ \new Voice = #vname $music #})
           }
           $(make-simultaneous-music
              (map (lambda (w) #{ \new Lyrics \lyricsto #vname $w #})
