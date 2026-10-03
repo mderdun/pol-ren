@@ -172,10 +172,16 @@ text allows; the last syllable of a line falls on its cadence note. Where
 these leave a choice, the syllable goes where the Tenor has the same word.
 
 \subsection{Text} \sig{A} prints four stanzas and ‘Dokończenye’ (‘The end’), with no Amen. All
-four are sung to the same music. Stanza 1 is underlaid; stanzas 2–4 follow
-the score. Old Polish verse counts syllables, eight to the line with a break
-after the fourth, so the later stanzas take the notes of stanza 1 syllable for
-syllable. The transcription uses modern spelling and punctuation but keeps
+four are sung to the same music. Old Polish verse counts syllables, eight to
+the line with a break after the fourth, but not stresses, which fall in
+different places from stanza to stanza. Stanzas 1 and 2 are underlaid, since
+most performances sing one or two. In the Cantus, stanza 2 has its own
+underlay in lines 1, 2 and 6, where stanza 1’s melismas would fall on
+unstressed syllables (\pl{Pa-nie}, \pl{pie-kiel-ne}, \pl{wy-sły-szeć}); the
+melisma moves to the stressed syllable beside it. The Altus and Bassus keep
+stanza 1’s note groups, because moving them would put a new syllable on a
+semiminim. Stanzas 3 and 4 follow the score and take the notes of stanza 1
+syllable for syllable. The transcription uses modern spelling and punctuation but keeps
 the old sounds and forms: \pl{zmierzka, naszem, strażem, nawięcej, wszytki,
 swoję, Jesu, raczysz, wszej, jenż}. The diplomatic text keeps the spelling
 and line division of \sig{A}, with ſ, and ē unexpanded.
@@ -193,10 +199,10 @@ and line division of \sig{A}, with ſ, and ē unexpanded.
 
 %% ================================================================ SCORE
 \scorehead
-\scorepagebreaks{3}
+\scorepagebreaks{2,4}
 \lilypondfile[noindent]{music/score.ly}
 \begin{stanzas}
-\stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
+\stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
 \end{stanzas}
 
 %% ================================================================ NOTES

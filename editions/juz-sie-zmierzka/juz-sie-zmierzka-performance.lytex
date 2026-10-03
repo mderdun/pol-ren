@@ -10,12 +10,13 @@
 
 \begin{document}
 \makemasthead
-\scorepagebreaks{3}
+\scorepagebreaks{2,4}
 \lilypondfile[noindent]{music/score-performance.ly}
-\begin{stanzas}[3]   % one row: keeps them on the last page of music
-\stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
+\begin{stanzas}
+\stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
 \end{stanzas}
 
+\newpage   % text, translation and notes share the last page
 \section*{Text and translation}
 
 \begin{textcols}
@@ -39,8 +40,9 @@ series pronunciation guide gives the sounds and the historical options.
 \pl{Ześli} in stanza 3 means ‘send’.
 
 \pnote{Stanzas} All four go to the same music, and most performances sing
-one or two. Stanza 1 is under the notes. For later stanzas, give each
-syllable the notes its counterpart has in stanza 1.
+one or two. Stanzas 1 and 2 are under the notes; in the Cantus they differ
+in places, to keep the melismas on stressed syllables. For stanzas 3 and 4,
+give each syllable the notes its counterpart has in stanza 1.
 
 \pnote{Pitch and voices} The score is a minor third above the print, for
 sopranos, altos, tenors and basses. The Tenor carries the hymn tune, one note
