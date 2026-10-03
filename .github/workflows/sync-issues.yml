@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths: [tracker/issues.json]
   workflow_dispatch:
+concurrency:
+  group: sync-issues
+  cancel-in-progress: false
 permissions:
   issues: write
   contents: read
@@ -25,6 +28,9 @@ jobs:
               --color "$(jq -r .color <<<"$l")" --description "$(jq -r .description <<<"$l")" --force
           done
           gh issue list --repo "$REPO" --state all --limit 500 --json number,title,state > existing.json
+          # close duplicates (same title), keeping the oldest
+          jq -r 'group_by(.title)[] | select(length>1) | sort_by(.number) | .[1:][] | select(.state=="OPEN") | .number' existing.json \
+            | while read -r d; do gh issue close "$d" --repo "$REPO" --reason "not planned" --comment "Duplicate."; done
           jq -c '.issues[]' tracker/issues.json | while read -r i; do
             t="$(jq -r .title <<<"$i")"; body="$(jq -r .body <<<"$i")"
             want="$(jq -r '.state // "open"' <<<"$i")"
