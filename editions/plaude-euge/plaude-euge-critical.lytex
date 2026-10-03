@@ -238,14 +238,13 @@ this score.
 \end{sigla}
 
 \section*{Editorial method}
+\seriesrules
 
 \subsection{Pitch and clefs} The pitch is that described above, written in
 modern treble, octave-treble and bass clefs. The key signature is editorial.
 
 \subsection{Note values and barring} The note values are those of the source
-(semibreve = whole note). Lines between the staves mark every breve, and the
-staves themselves are left without barlines, so notes run across them as they
-do in the source. Bar numbers count breves and include both endings. The
+(semibreve = whole note). Bar numbers count breves and include both endings. The
 source has no mensuration sign. The music moves in imperfect tempus and minor
 prolation throughout.
 
@@ -257,10 +256,8 @@ bar before the endings (bar 14) is printed in both endings, so that the Tenor
 can take it differently each time; the upper voices are the same in both. In
 the source the endings begin one bar later.
 
-\subsection{Accidentals} The source has none. Editorial accidentals stand
-above the note they affect, in small type, and apply to that note only. There
-are two: naturals in bars 20 and 30. The two sharps of the final cadence,
-bar 35, are optional and printed in brackets. An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make. The critical notes give the reasons, and note where \sig{R} and
+\subsection{Accidentals} The source has none. There are two editorial ones: naturals in bars 20 and 30. The two sharps of the final cadence,
+bar 35, are optional and printed in brackets (principles 7.2). The critical notes give the reasons, and note where \sig{R} and
 \sig{P} differ.
 
 \subsection{Supplied notes} Notes hidden in the gutter of the manuscript are
@@ -274,21 +271,19 @@ underlay throughout is editorial. It follows the phrase structure. Each line
 of the poem ends at a cadence, with its last syllable on the arrival note: in
 the second part, \textit{inspice} at the cadence on A (bar 24),
 \textit{despice} on G (bar 27) and \textit{oculis} on C (bar 31), the first
-note of each ending. Stressed syllables fall on the beat and usually on longer
-notes (\textit{laudántes, ínspice, míseros, déspice, misericórdie, óculis,
-réspice}). A repeated note takes a new syllable. Melismas fall on the stressed
-or the penultimate syllable before a cadence. Where the upper voices move
-together, they declaim together. I took these rules from sixteenth-century
-theorists, writing a century after this music, and applied them only where
-they make musical sense. The Tenor's text is wholly editorial, printed in
+note of each ending. Otherwise the series rules apply (principles 10), and
+stressed syllables take the long notes (\textit{laudántes, ínspice, míseros,
+déspice, misericórdie, óculis, réspice}). Where the upper voices move
+together, they declaim together. The rules come from theorists a century
+later than this music, so I apply them only where they make musical sense
+(principles 1.4). The Tenor's text is wholly editorial, printed in
 italics, and shortened so that it keeps its long notes (see above).
 
 \subsection{Final notes} The source writes the last note of each ending as a
 long in the Tenor, and in the Medius at the end of each second ending. They
-are printed as longs, each filling its bar, and are held until all voices
-have finished. The Discantus's last note in each second ending, hidden in
+are printed as longs, each filling its bar (principles 5.7). The Discantus's last note in each second ending, hidden in
 the gutter and supplied in brackets, is printed as a long in the same way,
-so that all three voices end together on longs. No fermata is added.
+so that all three voices end together on longs.
 
 %% ================================================================ TEXT
 \opensection{Text and translation}

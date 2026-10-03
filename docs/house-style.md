@@ -124,7 +124,7 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 - No puffery or mood words: not "beautiful", "haunting", "pivotal". Describe the music: its range, its cadences, what the Tenor does.
 - No em dashes. Commas and full stops; parentheses only for references and glosses. Colons only before a list or a quotation.
 - Every claim verified or cut. Unverified material goes to the issue tracker, not into the edition.
-- The performance edition speaks to singers and directors: what to sing, how fast, what the signs mean, what the words say, and enough about the piece to rehearse it with understanding. Nothing about how the edition was made beyond one line.
+- The performance edition speaks to singers and directors: what to sing, how fast, what the signs mean, what the words say, and enough about the piece to rehearse it with understanding. Nothing about how the edition was made beyond one line. Reasons are given in general terms ("as an organ would have done"), never by naming an ensemble, a recording or another edition; those citations belong in the critical edition.
 
 **Terms** (use these, not their synonyms)
 
@@ -149,3 +149,4 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 - References in prose: "bar 29, Altus". In critical notes: "29 | A".
 - Polish names with their diacritics, always.
 - Every edition's prose gets an unslop pass before release. (Editor's rule.)
+- Never restate a series rule in an edition. Cite it by number ("as the series rules require (principles 10.1)") and spend the words on what is particular to the piece. The rules are in the series guide *Editorial principles*. (Editor's rule.)

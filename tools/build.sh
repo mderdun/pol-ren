@@ -11,6 +11,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 build_dir() {  # $1 = directory, $2 = optional kind filter
   local src="$1" out="$1/build" name
   rm -rf "$out"; mkdir -p "$out" "$src/pdf"   # lilypond-book does not track includes
+  [ "$(basename "$src")" = editorial-principles ] && python3 "$ROOT/tools/principles_guide.py" "$out/principles-body.tex"
   export TEXINPUTS="$ROOT/house/latex//:$src//:"
   for f in "$src"/*.lytex "$src"/*.tex; do
     [ -e "$f" ] || continue

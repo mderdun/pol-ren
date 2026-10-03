@@ -42,7 +42,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{needspace}
-\RequirePackage{booktabs,longtable,array,tabularx}
+\RequirePackage{booktabs,longtable,array,tabularx,calc}
 \RequirePackage{enumitem}
 \RequirePackage{lettrine}
 \RequirePackage{etoolbox}
@@ -99,6 +99,11 @@
 \newfontfamily\accfont{TeX Gyre Pagella}[Scale=0.92]
 \newcommand\fl{{\accfont\raisebox{0.15ex}{♭}}}
 \newcommand\na{{\accfont\raisebox{0.15ex}{♮}}}
+%% Opening line of every Editorial method section: the series rules are not
+%% restated in an edition (principles 13.4).
+\newcommand\seriesrules{\noindent This edition follows the rules of the series, set out in the guide
+  \textit{Editorial principles} and cited here by number. What follows is
+  particular to this piece: its choices and its departures.\par}
 \newcommand\sh{{\accfont\raisebox{0.15ex}{♯}}}
 
 %% ------------------------------------------------------------ page

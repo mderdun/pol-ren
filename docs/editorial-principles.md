@@ -148,6 +148,8 @@ Every piece is published as a critical edition and a performance edition.
 1. Context is welcome in both: "enough paratext for both performers and critical readers". (MD) In the performance edition it is limited to what changes how one sings.
 2. Distinguish verified citations from the editor's own readings. Write "my own reading" where no published study makes the link. (*Zmierzka*)
 3. Verify every claim before printing it; cut what cannot be verified. (*Plaude*, *Zmierzka*)
+4. **Do not restate the series rules in an edition.** The rules live in one place, the series guide *Editorial principles* (this document, also kept in the repository as docs/editorial-principles.md). An edition's method section says only what is particular to the piece: its sources, the choices the rules leave open, and every departure from a rule, with the reason. Where a rule is meant, name it and cite it by number ("principles 10.1"). Restating rules makes the editions repetitive and lets them drift out of step with each other and with this file. (MD, 3 Oct 2026)
+5. **The performance edition argues from the music, not from names.** It gives the reason for a choice in general terms ("as an organ would have done"), never by pointing to what a particular ensemble, recording or modern edition does. Specific citations, if they matter, belong in the critical edition. (MD, 3 Oct 2026)
 
 ## 14. Names, attribution, rights
 

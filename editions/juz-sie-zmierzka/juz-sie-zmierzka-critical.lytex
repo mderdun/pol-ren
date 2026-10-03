@@ -142,35 +142,30 @@ not yet been collated. Editions collated:
 listed in the critical notes.
 
 \section*{Editorial method}
+\seriesrules
 
 \subsection{Pitch, values and barring} As in \sig{A}: final D, no signature, no
 reduction of note values, and the print’s cut-C. A bar is one breve, the
-tactus of cut-C. Light bar lines run between the staves only, so that none
-cuts through a note; a note that runs across one keeps its single value, and
-no ties are added. They serve ensemble and rehearsal, and the parts can be
-read past them. The
-incipit before each staff gives the clef, sign and first note of \sig{A}, and the
-range of each voice follows it. The final notes are longae, as in \sig{A}, and are held until all voices have finished; no fermata is added.
+tactus of cut-C. The incipits are those of \sig{A}, and the final longae are
+\sig{A}’s (principles 5.7).
 
 \subsection{Clefs and voices} The voice names are those of \sig{A}. Altus and Tenor
 use the octave-transposing treble clef. Written ranges: Cantus c′–d″, Altus
 d–a′, Tenor d–e′, Bassus G–a.
 
 \subsection{Accidentals} \sig{A} prints none, so every accidental here is editorial.
-They stand above the note and apply to that note only. They raise the
+They raise the
 cadences where a sixth opens to an octave, in bars 2, 4, 9 and 29. The fifth
 such cadence, bar 19, is left as printed. Two signs are optional: a sharp in
-bar 4 (Cantus) and a flat in bar 29 (Altus). An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
+bar 4 (Cantus) and a flat in bar 29 (Altus) (principles 7.2).
 
 \subsection{Underlay} \sig{A} prints each voice’s text as a block under the staff,
 so the underlay is editorial. Three things in \sig{A} guide it. The Tenor’s text
 fits its notes exactly, one syllable to a note. Where \sig{A} spaces the words of
 the Cantus and Bassus apart, it leaves room for a melisma. The line breaks of
-the other voices give only a rough guide. Elsewhere the underlay follows the
-rules of this series: no new syllable on a semiminim, except straight after a
-dotted minim, or on a fusa; a repeated note takes a new syllable where the
-text allows; the last syllable of a line falls on its cadence note. Where
-these leave a choice, the words decide. The syllable that carries a line
+the other voices give only a rough guide. Elsewhere the series rules apply
+(principles 10.1–10.9). Where they leave a choice, the words decide
+(principles 10.6). The syllable that carries a line
 takes its melisma or its high point (\pl{PO-moc, CZAR-tów, chy-TRO-ści});
 a light word such as \pl{o} or \pl{nas} takes one or two notes. The voices
 do not always change syllable together. At the two main cadences the Cantus
