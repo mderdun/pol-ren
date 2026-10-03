@@ -13,7 +13,12 @@ Every design decision lives in two files:
 
 LaTeX (LuaLaTeX) sets every page. LilyPond, through `lilypond-book`, and Gregorio only engrave music into it. `lilypond-book` hands LaTeX one graphic per system, so LaTeX breaks pages between systems and headings, stanzas and notes around a score obey the same rules as the prose. A chant edition and a polyphonic one share one design.
 
-Edition and guide files hold content only: text, sigla, notes, the music data, and a one-line choice of pitch for a transposed performance edition. `tools/lint.sh` rejects layout commands in them (spacing, sizes, colour, staff sizes, LilyPond overrides). To change the design, edit the two house files and run `make`; every edition and guide is rebuilt from them.
+**Style is central; engraving is per score.** Type, colour, sizes, signs, page design and every visual default are set once in the house files. How a particular score falls on the page cannot be automated well, so each edition makes those decisions itself, in two places:
+
+- `music/engraving.ily`: system breaks for each kind of edition (`prBreaksCritical`, `prBreaksPerformance`, as bar numbers after which a system ends), and spacing that only this score needs (`prLayoutCritical`, `prLayoutPerformance`). Break at the ends of verse lines or sections where the music allows.
+- the edition file: page breaks between systems (`\scorepagebreaks{3}`), and the number of stanza columns where the default two would push the stanzas off the last page of music (`\begin{stanzas}[3]`).
+
+Everything else in an edition is content: text, sigla, notes, the music data, and the choice of pitch for a transposed performance edition. `tools/lint.sh` rejects layout commands elsewhere; `engraving.ily` may adjust breaks and spacing but not type, colour or staff size. To change the style, edit the two house files and run `make`; every edition and guide is rebuilt, and each keeps its own breaks. Check the page breaks by eye after any style change that alters sizes.
 
 ## 2. Page
 
@@ -29,7 +34,7 @@ One page for every single edition and guide, critical or performance: A4, symmet
 
 ## 3. Type
 
-**Junicode 2** throughout, music text and IPA included. Accidentals in prose (♭ ♮ ♯) come from TeX Gyre Pagella, since Junicode has none.
+**Junicode 2** throughout, music text included. Accidentals in prose (♭ ♮ ♯) come from TeX Gyre Pagella, since Junicode has none.
 
 | Element | Setting |
 |---|---|
@@ -39,7 +44,6 @@ One page for every single edition and guide, critical or performance: A4, symmet
 | Expanded capitals | Composer's name on a title page only (Junicode Exp) |
 | Bold | Not used. Emphasis is italic; labels are small capitals |
 | Figures | Old-style in prose; lining in apparatus columns and folios |
-| IPA | Upright in square brackets |
 
 ## 4. Sigla
 
@@ -71,7 +75,7 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 - **A heading never ends a page.** Every head reserves room for several lines after it, or moves to the next page. (Editor's rule.)
 - No widows or orphans. Paragraphs indent 1.2 em, except after a heading. No space between paragraphs.
 - **Critical edition**: the title page stands alone; its verso carries the contents (generated from the section heads) and the colophon. Text, Score and Critical notes each start a new page.
-- **Performance edition**: no blank pages. Blocks that should not split (the stanzas after a score, the rehearsal notes with their heading) are kept whole and move to the next page if they do not fit.
+- **Performance edition**: no blank pages, and no short or crowded music pages. Aim for the music and its stanzas to fill whole pages, with the stanzas on the last page of music; set system and page breaks per score to get there. Blocks that should not split (the stanzas after a score, the rehearsal notes with their heading) are kept whole.
 - A repeated section starts and ends on its own system.
 
 ## 8. The two editions
@@ -102,7 +106,7 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 - **Sources**: siglum in a hanging column; base text marked *Base text*.
 - **Literature**: author first, hanging indent; grouped only when the list is long.
 - **Text and translation**: two columns (text, italic translation) or, in the critical edition, three (diplomatic, transcription, translation). Red stanza numbers.
-- **Pronunciation**: in the series guide, as tables (spelling | sound | example; for Latin, spelling | Polish Latin | Roman | example).
+- **Pronunciation**: in the series guide, as tables (spelling | sound | example; for Latin, spelling | Polish Latin | Roman | example). Sounds are described by comparison with familiar words, stress by capitals (po-PROŚ-my). No IPA.
 
 ## 11. Language
 

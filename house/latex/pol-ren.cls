@@ -297,8 +297,16 @@
 \newlength\systemskip
 \ifpr@critical\setlength\systemskip{4mm plus 3mm minus 1mm}
 \else\setlength\systemskip{3mm plus 4mm minus 1mm}\fi
-\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}\pr@sysbreak\noindent}
-\def\pr@sysbreak{}
+%% Per-score page breaks, set in the edition file before \lilypondfile:
+%%   \scorepagebreaks{3}      new page after system 3 (comma list allowed)
+%% Elsewhere a page may break between systems where LaTeX finds room.
+\ExplSyntaxOn
+\clist_new:N \g_pr_pbreaks_clist
+\NewDocumentCommand\scorepagebreaks{m}{\clist_gset:Nn \g_pr_pbreaks_clist {#1}}
+\NewDocumentCommand\pr@sysbreak{m}{
+  \clist_if_in:NnTF \g_pr_pbreaks_clist {#1} {\newpage} {}}
+\ExplSyntaxOff
+\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}\pr@sysbreak{#1}\noindent}
 \newcommand\musicnote[1]{\par{\small\itshape\centering #1\par}}
 
 %% ------------------------------------------------------------ apparatus
@@ -344,34 +352,33 @@
 %% Verse lines inside one table cell: \lines{line\\ line\\ ...}
 \newcommand\lines[1]{\begin{tabular}[t]{@{}l@{}}#1\end{tabular}}
 
-%% Stanzas printed after a score: centred, two abreast; an odd last stanza
-%% is centred below. Columns share the width of the widest stanza.
-%%   \begin{stanzas} \stanza{2}{line\\ line ...} \stanza{3}{...} \end{stanzas}
-\newsavebox\pr@stbox \newsavebox\pr@stleft
-\newlength\pr@stmax \newcount\pr@stn \newcount\pr@sti
+%% Stanzas printed after a score: centred, two abreast by default; an
+%% incomplete last row is centred below. Columns share the width of the
+%% widest stanza. A score that needs it may ask for another count:
+%%   \begin{stanzas}[3] \stanza{2}{line\\ line ...} ... \end{stanzas}
+\newsavebox\pr@stbox \newsavebox\pr@strow
+\newlength\pr@stmax \newcount\pr@stn \newcount\pr@sti \newcount\pr@stc \newcount\pr@stcols
 \newcommand\pr@stanzabox[2]{\begin{tabular}[t]{@{}l@{}}\llap{\stanzanumber{#1}\enspace}#2\end{tabular}}
-\newenvironment{stanzas}[1][\small]
-  {\par\vspace{5mm}#1\gdef\pr@stlist{}\global\pr@stn=0
+\newenvironment{stanzas}[1][2]
+  {\par\nopagebreak[4]\vspace{5mm}\small\global\pr@stcols=#1\relax
+   \gdef\pr@stlist{}\global\pr@stn=0
    \def\stanza##1##2{\global\advance\pr@stn by 1
      \g@addto@macro\pr@stlist{\pr@do{##1}{##2}}}}
   {\global\pr@stmax=0pt
    \def\pr@do##1##2{\sbox\pr@stbox{\pr@stanzabox{##1}{##2}}%
      \ifdim\wd\pr@stbox>\pr@stmax\global\pr@stmax=\wd\pr@stbox\fi}%
    \pr@stlist
-   \global\pr@sti=0
+   \global\pr@sti=0 \global\pr@stc=0
    \par\noindent\begin{minipage}{\linewidth}%   never split across pages
-   \def\pr@do##1##2{\global\advance\pr@sti by 1
-     \ifodd\pr@sti
-       \ifnum\pr@sti=\pr@stn
-         \par{\centering\makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}\par}%
-       \else
-         \global\sbox\pr@stleft{\makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}}%
-       \fi
-     \else
-       \par{\centering\usebox\pr@stleft\hspace{4em}%
-         \makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}\par}\vspace{0.9\baselineskip}%
-     \fi}%
+   \def\pr@do##1##2{\global\advance\pr@sti by 1 \global\advance\pr@stc by 1
+     \ifnum\pr@stc=1 \global\sbox\pr@strow{}\fi
+     \global\sbox\pr@strow{\usebox\pr@strow\ifnum\pr@stc>1 \hspace{3.5em}\fi
+       \makebox[\pr@stmax][l]{\pr@stanzabox{##1}{##2}}}%
+     \ifnum\pr@stc=\pr@stcols \pr@flushrow \else\ifnum\pr@sti=\pr@stn \pr@flushrow\fi\fi}%
+   \def\pr@flushrow{\par{\centering\usebox\pr@strow\par}%
+     \ifnum\pr@sti<\pr@stn\vspace{0.9\baselineskip}\fi\global\pr@stc=0 }%
    \pr@stlist\par\end{minipage}\par}
+
 \newcommand\colhead[1]{{\upshape\footnotesize\spacedsc{#1}}}
 
 %% IPA, upright in square brackets: \ipa{ˈmat.ka}

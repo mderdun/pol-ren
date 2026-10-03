@@ -202,6 +202,38 @@ prStaff =
           \new Lyrics \lyricsto #vname $words
         >> #}))
 
+%% Per-score layout: music/engraving.ily may define
+%%   prLayoutCritical = \layout { ... }   and/or   prLayoutPerformance = \layout { ... }
+%% for spacing that only this score needs; score.ly ends with \layout { $(pr-layout) }.
+#(define (pr-layout)
+   (let ((v (ly:parser-lookup
+             (if (eq? (ly:parser-lookup 'prPerformance) #t)
+                 'prLayoutPerformance 'prLayoutCritical))))
+     (if (null? v) (ly:parser-lookup '$defaultlayout) v)))
+
+%% Per-score engraving: an edition's music/engraving.ily may set
+%%   prBreaksCritical = #'(5 10 15 20 25)     ; system breaks after these bars
+%%   prBreaksPerformance = #'(5 10 15 20 25)
+%%   prBarLength = #(ly:make-moment 2/1)       ; length of a bar (default breve)
+%% and spacing for this score only. Style stays in this file.
+#(define (pr-break-voice breaks)
+   (let* ((len (pr-lookup 'prBarLength (ly:make-moment 2/1)))
+          (last (apply max breaks)))
+     (make-sequential-music
+      (append-map
+       (lambda (bar)
+         (list (make-music 'SkipEvent 'duration
+                 (ly:make-duration 0 0 (ly:moment-main len)))
+               (if (memv bar breaks)
+                   (make-music 'LineBreakEvent 'break-permission 'force)
+                   (make-music 'LineBreakEvent 'break-permission '()))))
+       (iota last 1)))))
+
 prScore =
 #(define-music-function (staves) (ly:music?)
-   #{ \new StaffGroup $staves #})
+   (let* ((perf (eq? (ly:parser-lookup 'prPerformance) #t))
+          (breaks (pr-lookup (if perf 'prBreaksPerformance 'prBreaksCritical)
+                             (pr-lookup 'prBreaks '()))))
+     (if (null? breaks)
+         #{ \new StaffGroup $staves #}
+         #{ \new StaffGroup << $staves \new Devnull $(pr-break-voice breaks) >> #})))

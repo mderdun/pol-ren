@@ -4,6 +4,7 @@
 %% includes this file.
 \include "pol-ren.ily"
 \include "voices.ily"
+\include "engraving.ily"
 
 \score {
   \prScore <<
@@ -12,5 +13,5 @@
     \prStaff "Tenor"  "T." { \clef "petrucci-c4" a\breve }  "treble_8" ""       \tenorNotes  \tenorWords
     \prStaff "Bassus" "B." { \clef "petrucci-f4" a,2. }     "bass"     ""       \bassusNotes \bassusWords
   >>
-  \layout { }
+  \layout { $(pr-layout) }
 }

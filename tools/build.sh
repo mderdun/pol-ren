@@ -9,7 +9,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 "$ROOT/tools/lint.sh" || { echo "fix lint first"; exit 1; }
 build_dir() {  # $1 = directory, $2 = optional kind filter
-  local src="$1" out="$1/build" name; mkdir -p "$out" "$src/pdf"
+  local src="$1" out="$1/build" name
+  rm -rf "$out"; mkdir -p "$out" "$src/pdf"   # lilypond-book does not track includes
   export TEXINPUTS="$ROOT/house/latex//:$src//:"
   for f in "$src"/*.lytex "$src"/*.tex; do
     [ -e "$f" ] || continue

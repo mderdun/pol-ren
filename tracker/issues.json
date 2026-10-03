@@ -189,12 +189,12 @@
       "body": "The first editions disagree with each other and with the guide:\n\n- [ ] Vox in Rama says 's always voiceless'; the guide has [z] between vowels\n- [ ] Nunc scio vere writes ti- as [tsj] and principio as [prinˈtsipjɔ], merging syllables the underlay keeps apart; the guide has [tsi] with a syllabic i\n- [ ] Nunc scio vere claims its table is 'as Wacław's singers spoke it' but cites modern school grammars\n- [ ] Bogurodzica: note that y in *Kyrie* is [i]; final *modlitwę* [ɛ̃] vs [ɛ]\n\nEach edition keeps only text-specific notes and points to `guides/pronunciation`."
     },
     {
-      "title": "Pronunciation guide: check page references and Copeman",
+      "title": "Pronunciation guide: sources to get",
       "labels": [
         "guide",
         "literature"
       ],
-      "body": "- [ ] Check the historical grammars cited in the guide against copies (page numbers were left out until checked)\n- [ ] Copeman, *Singing in Latin* (1990/1992): does it have a Polish section?\n- [ ] Look for a published account of Polish Latin pronunciation c. 1550–1650 (none found so far)\n- [ ] Narrowed vowels: which words in our Polish texts had them, if a choir asks"
+      "body": "Full list with notes: `guides/pronunciation/sources-to-get.md`.\n\n**Polish Latin (weakest part of the guide)**\n- [ ] German 2023, UJ dissertation (open access)\n- [ ] Urbańczyk 1952, *Język Polski* 32\n- [ ] Liban c. 1539 and Sebastian z Felsztyna (Polona)\n- [ ] Copeman 1990/1992: is there a Polish section?\n- [ ] Svoboda 2016, *Aura musica* 9 (Bohemian comparison)\n- [ ] CD booklets of Polish early-music ensembles\n- [ ] Library search: 'wymowa łaciny' in *Muzyka*, *Muzyka Religijna w Polsce*, *Polski Rocznik Muzykologiczny*\n\n**Historical Polish (check page numbers before citing)**\n- [ ] Długosz-Kurczabowa & Dubisz 2006\n- [ ] Klemensiewicz 1999\n- [ ] Walczak 1999\n- [ ] Kuraszkiewicz 1972; Stieber 1973 (English)\n\n**Period grammars (Polona)**\n- [ ] Zaborowski c. 1514–18; Murzynowski 1551; Statorius 1568; Januszowski 1594; Knapski 1621; Meniński 1649"
     }
   ]
 }

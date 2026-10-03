@@ -10,8 +10,9 @@
 
 \begin{document}
 \makemasthead
+\scorepagebreaks{3}
 \lilypondfile[noindent]{music/score-performance.ly}
-\begin{stanzas}
+\begin{stanzas}[3]   % one row: keeps them on the last page of music
 \stanza{2}{\stanzaTwo} \stanza{3}{\stanzaThree} \stanza{4}{\stanzaFour}
 \end{stanzas}
 
