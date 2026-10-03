@@ -58,6 +58,8 @@ Every piece is published as a critical edition and a performance edition.
    - A long that must end with the other voices but enters late is scaled to its real length (*Vox*). A maxima in one voice only may be given as a long, with a note.
    (MD, 3 Oct 2026)
 
+8. **Rests.** In the performance edition every rest is cut at the bar lines and grouped by the bar, so that entries can be counted; notes are never cut (5.3), because a cut note implies a tie, while a cut rest changes nothing that sounds. The critical edition keeps the rests of a primary source as written, with their groupings; voices taken from a modern edition are regularised as in the performance edition. (MD, 4 Oct 2026)
+
 ## 6. Clefs and voice names
 
 1. **Voice names** are the source's (Cantus, Altus, Tenor, Bassus; Discantus, Medius, Tenor), in Latin, in small capitals, abbreviated after the first system.
@@ -109,7 +111,7 @@ Every piece is published as a critical edition and a performance edition.
 
 **Method.**
 
-6. **Text first.** The words lead; the notes are fitted to them, not the other way round. Map the cadences and place each line's last syllable on its arrival note. Then weigh the words: the syllable that carries the line (its stressed syllable, its key word) takes the melisma, the long note or the melodic high point; a light word (a preposition, a conjunction, a pronoun, an unstressed syllable) takes one or two notes and never a long run. The voices need not change syllable together: one may arrive early or late on a word, and that push and pull is part of the texture. Never count syllables against notes mechanically. This matters most where an edition underlays from scratch. (MD, *Plaude*; MD, 3 Oct 2026, *Zmierzka*)
+6. **Words and music together.** Neither leads by rule. Map the cadences and place each line's last syllable on its arrival note. Where the music declaims, the words shape it: the stressed syllable or the key word takes the long note or the high point. Where the line sings, let it: a long run is right where the syllable can carry it, a stressed or key syllable and, for preference, an open, bright vowel (*a*, *e*, *o*) rather than a closed one (*i*, *u*). Follow the momentum of the language. Light words and syllables (*et*, *in*, *de*, the unstressed syllable before a stress) tend to fall off the beat inside moving figures and to lead into the stressed or open syllable on the beat; on long notes, where the choice is textural rather than declamatory, they may stand on the beat. The voices need not change syllable together. These are tendencies to weigh by ear, not rules to count: sing every line before settling it. This matters most where an edition underlays from scratch. (MD, 3–4 Oct 2026, *Zmierzka*, *Nunc scio*)
 7. **Wacław's own practice** (Kraków *Lamentationes*, 1553): mostly syllabic, repeated notes take new syllables; one melisma before each cadence, on the stressed syllable of the last word; the final syllable on the cadence note; short repeats *ij*, longer ones written out. (*Nunc scio*)
 8. **Accent** follows the penultimate rule as taught in Kraków (Sebastian z Felsztyna, 1518). (*Nunc scio*)
 9. **Repeated notes** take a new syllable unless semiminims (Stoquerus). Long free melismas may be replaced by repeating the clause.
