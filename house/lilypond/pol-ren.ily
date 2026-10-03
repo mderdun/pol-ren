@@ -9,6 +9,19 @@
 
 \version "2.24.0"
 
+%% ------------------------------------------------------------ breathing room
+%% Vertical clearance is set as padding: the minimum white space between the
+%% actual ink of neighbouring lines (staff, lyrics, ledger-line notes,
+%% accidentals, rubrics). LilyPond measures the ink, so a note far above or
+%% below its staff pushes the lines apart by itself; padding is the floor
+%% that is always kept. Performance editions, with fewer systems a page,
+%% get more (prBreathe). A score may scale it further with
+%%   prBreathe = #1.4   in music/engraving.ily (before score.ly includes this).
+#(define pr-breathe
+   (let ((v (ly:parser-lookup 'prBreathe)))
+     (if (number? v) v
+         (if (eq? (ly:parser-lookup 'prPerformance) #t) 1.3 1.0))))
+
 %% ------------------------------------------------------------ type
 %% Staff size: 17 in critical editions, 19 in performance editions.
 #(set-global-staff-size
@@ -114,10 +127,13 @@ voiceSetup = {
 %% ------------------------------------------------------------ contexts
 \layout {
   \context { \Score
-    \override BarNumber.font-size = #-1.5
+    \override BarNumber.font-size = #-0.7
     \override BarNumber.font-shape = #'italic
     \override BarNumber.break-visibility = ##(#f #f #t)
     \override BarNumber.self-alignment-X = #LEFT
+    %% clear of the curl of the system bracket
+    \override BarNumber.X-offset = #1.2
+    \override BarNumber.padding = #1.4
     \override SpacingSpanner.base-shortest-duration = #(ly:make-moment 1/4)
     \override RehearsalMark.break-align-symbols = #'(left-edge clef)
     %% Range of each voice after the clef, before the mensuration sign.
@@ -133,6 +149,8 @@ voiceSetup = {
   }
   \context { \StaffGroup
     \override SystemStartBracket.collapse-height = #4
+    \override StaffGrouper.staff-staff-spacing.padding = #(* pr-breathe 1.6)
+    \override StaffGrouper.staffgroup-staff-spacing.padding = #(* pr-breathe 1.6)
   }
   \context { \Staff
     %% Mensurstriche: bar lines between the staves, never through a note.
@@ -150,8 +168,10 @@ voiceSetup = {
     \override LyricText.font-size = #1.0
     \override LyricHyphen.minimum-distance = #1.2
     \override LyricSpace.minimum-distance = #1.2
-    \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #0.7
-    \override VerticalAxisGroup.nonstaff-nonstaff-spacing.padding = #0.3
+    \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #(* pr-breathe 0.9)
+    \override VerticalAxisGroup.nonstaff-nonstaff-spacing.padding = #(* pr-breathe 0.45)
+    %% lyrics to the staff below: room for its ledger-line notes and accidentals
+    \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing.padding = #(* pr-breathe 2.0)
     \override StanzaNumber.font-size = #0.6
   }
 }
