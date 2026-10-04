@@ -33,6 +33,29 @@ def onsets(bars):
             if not prevtie: res.append((bi+1,t))
             prevtie=t.endswith('~')
     return res
+
+# Ties in the tablature come from its bar lines and beat grouping, not from
+# the music. Where one note can show the tied value, write one note: the
+# edition's bar lines never cut a note (principles 5.3). Onsets are unchanged.
+NOTE = r"([a-g](?:is|es)?[',]*)(\d+)(\.?)"
+def val(d, dot): v = F(1, int(d)); return v * F(3, 2) if dot else v
+def name(v):
+    for d in (1, 2, 4, 8, 16, 32):
+        if v == F(1, d): return str(d)
+        if v == F(3, 2 * d): return str(d) + '.'
+    if v == 2: return '\\breve'
+    if v == 3: return '\\breve.'
+    return None
+def merge_ties(music):
+    pat = re.compile(NOTE + r"~\s+\1(\d+)(\.?)(?![\d.])")
+    while True:
+        def rep(m):
+            v = val(m.group(2), m.group(3)) + val(m.group(4), m.group(5))
+            n = name(v)
+            return m.group(1) + n if n else m.group(0)
+        new = pat.sub(rep, music, count=0)
+        if new == music: return music
+        music = new
 out={}
 for n in NAMES:
     bars=bars_of(n); assert len(bars)==88,(n,len(bars))
@@ -43,7 +66,10 @@ for n in NAMES:
         # warnings
         for i,s in und.items():
             bar,t=ons[i-1]
-            if dur(t)<F(1,4): print('SHORT',n,sec,'bar',bar+a,i,s,t)
+            if dur(t)<F(1,4):
+                prev=ons[i-2][1] if i>1 else ''
+                ok=dur(t)==F(1,8) and prev.endswith('4.')   # semiminim after a dotted minim (principles 10.1)
+                print('semiminim after dotted minim' if ok else 'SHORT',n,sec,'bar',bar+a,i,s,t)
         if len(ons) not in und: print('LAST NOTE UNSYLLABLED',n,sec,len(ons))
         # lyric string
         lyr=[]; 
@@ -55,6 +81,8 @@ for n in NAMES:
             if not und[i].endswith('-'):
                 w=''.join(und[j].rstrip('-') for j in word).strip(',.:;').lower()
                 if p<len(canon) and canon[p]==w: p+=1; it=False
+                elif p+1<len(canon) and canon[p] in ('et','in','de') and canon[p+1]==w:
+                    print('SKIP',n,sec,canon[p],'(principles 10.13)'); p+=2; it=False   # light word left out
                 else: it=True
                 for j in word: ital[j]=it
                 word=[]
@@ -66,7 +94,7 @@ for n in NAMES:
             mel=nxt-i-1
             if mel and not cont: lyr.append('__')
             lyr+=['_']*mel
-        out[n,sec]=(' '.join(bars[a:b]), ' '.join(lyr))
+        out[n,sec]=(merge_ties(' '.join(bars[a:b])), ' '.join(lyr))
         print(n,sec,'onsets',len(ons),'syll',len(und))
 
 # ---- write voices.ily (values doubled: choral.ily keeps those of the tablature)
