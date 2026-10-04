@@ -382,13 +382,25 @@ voiceSetup = {
                                                                      (< b (+ (cdr d) pr-lyric-gap))))
                                                     bars)
                                             (lambda (p q) (< (abs (- p c)) (abs (- q c)))))))
-                              (left (cons (- b pr-lyric-gap w) (- b pr-lyric-gap)))
-                              (right (cons (+ b pr-lyric-gap) (+ b pr-lyric-gap w)))
+                              ;; the free room either side of the bar line; a lone
+                              ;; hyphen goes to the middle of the larger one, one of
+                              ;; a row of dashes just clear of the bar line
+                              (free-l (cons (car room) (- b pr-lyric-gap)))
+                              (free-r (cons (+ b pr-lyric-gap) (cdr room)))
+                              (place (lambda (f side)
+                                       (if (= n 1)
+                                           (let ((m (interval-center f)))
+                                             (cons (- m (/ w 2)) (+ m (/ w 2))))
+                                           (if (eq? side LEFT)
+                                               (cons (- (cdr f) w) (cdr f))
+                                               (cons (car f) (+ (car f) w))))))
                               (fits (lambda (s) (and (>= (car s) (car room)) (<= (cdr s) (cdr room))
                                                      (not (hit? s)))))
-                              (cands (sort (filter fits (list left right))
-                                           (lambda (p q) (< (abs (- (interval-center p) c))
-                                                            (abs (- (interval-center q) c)))))))
+                              (cands (map car
+                                      (sort (filter (lambda (p) (fits (car p)))
+                                                    (list (cons (place free-l LEFT) (interval-length free-l))
+                                                          (cons (place free-r RIGHT) (interval-length free-r))))
+                                            (lambda (p q) (> (cdr p) (cdr q)))))))
                          (if (pair? cands)
                              (list (pr-box (car (car cands)) (cdr (car cands)) ye blot))
                              ;; no room to step aside: open the dash at the bar line
