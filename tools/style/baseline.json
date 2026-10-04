@@ -78,7 +78,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S105",
-   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:182",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:184",
    "message": "this sentence of the method seems to restate a series rule ('most performances sing one or' is the wording of principles 10.14); cite the rule by number and keep to what is particular to the piece"
   },
   {
@@ -94,7 +94,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S105",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:203",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:209",
    "message": "this sentence of the method seems to restate a series rule ('in the octave treble clef' is the wording of principles 2.2); cite the rule by number and keep to what is particular to the piece"
   },
   {
@@ -102,7 +102,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S105",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:190",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:196",
    "message": "this sentence of the method seems to restate a series rule ('clef sign and first note' is the wording of principles 5.5); cite the rule by number and keep to what is particular to the piece"
   },
   {
@@ -110,7 +110,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S105",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:227",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:233",
    "message": "this sentence of the method seems to restate a series rule ('written pitch the performance edition' is the wording of principles 2.2); cite the rule by number and keep to what is particular to the piece"
   },
   {
@@ -126,7 +126,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:107",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:104",
    "message": "source H has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
@@ -134,7 +134,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:106",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:103",
    "message": "source M has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
@@ -142,7 +142,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:108",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:105",
    "message": "source S has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
@@ -150,7 +150,7 @@
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:103",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:100",
    "message": "source Ł has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
@@ -158,7 +158,7 @@
    "status": "pending",
    "reason": "false positive: the shelfmark is given (Cim. Qu. 5822), in a form the heuristic does not recognise (4 Oct 2026)",
    "check": "S113",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:123",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:121",
    "message": "source PL-Kj has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
@@ -166,8 +166,16 @@
    "status": "pending",
    "reason": "false positive: the shelfmark is given (Wrocław, Biblioteka Uniwersytecka, 50914 Muz.; copy consulted Chicago Public Library M2014.6 .Z5 O4 1983), in a form the heuristic does not recognise (4 Oct 2026)",
    "check": "S113",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:134",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:137",
    "message": "source T has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S116|docs/editorial-principles.md|resolution|1",
+   "status": "accepted",
+   "reason": "10.6 contrasts a voice's own melodic resolution with the harmonic cadence (Miki, 4 Oct 2026); 'cadence' would lose the distinction.",
+   "check": "S116",
+   "where": "docs/editorial-principles.md:122",
+   "message": "'resolution': the house term is 'cadence' or 'clausula'"
   },
   {
    "fingerprint": "S122|editions/plaude-euge/plaude-euge-critical.lytex|hymnus est canticum laudantium|1",
