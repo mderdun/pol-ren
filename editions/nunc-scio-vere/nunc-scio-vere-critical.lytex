@@ -98,7 +98,9 @@ Perz transcribes it, \sig{T} moves in semiminims and fusae, with semifusae
 at cadences, values a vocal motet of about 1550 would hardly use. Doubled,
 the music moves in semibreves and minims under ¢, like Wacław’s two printed
 motets. The bar is a breve, so bar numbers match \sig{P}. The mensuration
-sign is editorial, since \sig{T} has none (principles 5.4).
+sign is editorial, since \sig{T} has none (principles 5.4). A tablature
+divides a long note at its own bar lines and beats; here such a note is
+written as one value wherever one note can show it (principles 5.3).
 
 \subsection{Score} Voice names and clefs are editorial, since \sig{T} has
 neither. Rests at entries follow \sig{P}, because a tablature notates rests
@@ -129,9 +131,8 @@ from a phrase of the chant, and the words of that phrase go with it
 (principles 10.10). Perz used the same method for Leopolita’s introits from
 this tablature (1967). Within a word, the stresses above place the
 syllables, not the chant’s neumes. The chant sets \la{Nunc} to its whole
-opening neume (f–d–g–f–e). The Bassus, which states the motif first,
-keeps that long \la{Nunc}; the Tenor, Cantus and Altus sing \la{Nunc} on
-its first two notes and \la{sci-} on the leap to g.
+opening neume (f–d–g–f–e), and every voice keeps that long \la{Nunc} over
+its statement of the motif, with \la{sci-} on the note after it.
 
 \textit{Words and music.} Where the rules leave a choice, I weigh the
 words against the line (principles 10.6). Where the music declaims, the
@@ -167,13 +168,8 @@ bars 41 and 45. In \la{Iudaeorum} the dotted head motif carries \la{Iu-}
 in Cantus and Bassus, as the imitation requires. In bar 80 the Cantus’s
 high e″ falls on \la{sae-} of \la{saeculórum}, the word’s secondary stress,
 and \la{-ló-} takes the three minims that follow. Elsewhere a three-note
-group on a weak syllable is one note with two passing semiminims. One
-syllable falls on a semiminim after a dotted minim (Bassus, bar 41,
-\la{-ti-}; principles 10.1).
+group on a weak syllable is one note with two passing semiminims.
 
-\textit{Alternatives.} The Tenor and Bassus could sing \la{Nunc} over the
-whole opening motif, as the chant does. I prefer the stress on the leap, and
-the same underlay for the motif in all four voices.
 
 \section*{Performance}
 
@@ -329,11 +325,9 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
 \section*{Underlay}
 
 \begin{apparatus}
-\cn{3–12}{T}{Cantus firmus. \la{Nunc} takes f–d of the chant’s opening
-  neume and \la{sci-} its g–f–e, as in the other voices’ statements of the
-  motif (see the method). \la{-o} takes g, \la{ve-} the a and the run after
-  it, and \la{-re} the cadence note c′ of bar 9. The clause is then
-  repeated.}
+\cn{3–12}{T}{Cantus firmus. \la{Nunc} takes the chant’s whole opening
+  neume f–d–g–f–e, \la{sci-} g, \la{-o} a and the run after it, \la{ve-} c′,
+  and \la{-re} the cadence note c′ of bar 9. The clause is then repeated.}
 \cn{13–56}{C}{Cantus firmus. Syllables fall on the chant’s notes, e.g.
   \la{om-} on g′ (bar 40), \la{-ni} on g′–a′ (bar 41), and three syllables
   of \la{exspectatione} on the repeated g′ of bars 42–43. In \la{Dominus}
