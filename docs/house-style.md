@@ -57,6 +57,10 @@ Red is used for: the series line, the fleuron that opens a part, the drop initia
 
 Red is never used for notes, accidentals, editorial signs, sigla, or anything a reader needs. A black-and-white photocopy must lose nothing.
 
+## 5a. Finish
+
+Every PDF is printed through a plate-and-paper finish (`tools/novello_vector.py`, strength 1.5, white page): each mark gains a little ink, its corners round, its edge wanders with a fine paper-fibre field, and solid heads get the odd pore. It stays vector, in black and the one red, and the text stays searchable. The texture is generated from a fixed seed, so a rebuild prints the same page. It is the series' look; it carries no information. `NOVELLO=0 make` gives the plain PDF for proofing.
+
 ## 6. Ornament
 
 | Mark | Glyph | Where |

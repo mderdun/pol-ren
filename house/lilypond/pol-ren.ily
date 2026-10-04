@@ -163,9 +163,8 @@ voiceSetup = {
 %% Drawn between the staves only, as dashed black lines: the score reads as
 %% parts first and as a timed score second. No colour but black and red.
 \defineBarLine "-span!" #'(#f #f "!")
-%% The dashed line steps aside where a note, stem, accidental or syllable
-%% stands in its way (a note far above or below its staff, a lyric), so the
-%% Mensurstrich never crosses anything the singer reads.
+%% The dashed line stops half a staff space short of each staff, and further
+%% where a note, stem or accidental stands out from that staff in its way.
 #(define (pr-knockout-holes grob sys cx y0)
    (let ((pad 0.4))
      (filter-map
@@ -174,9 +173,7 @@ voiceSetup = {
                  (grob::has-interface g 'stem-interface)
                  (grob::has-interface g 'accidental-interface)
                  (grob::has-interface g 'dots-interface)
-                 (grob::has-interface g 'flag-interface)
-                 (grob::has-interface g 'lyric-syllable-interface)
-                 (grob::has-interface g 'lyric-hyphen-interface))
+                 (grob::has-interface g 'flag-interface))
              (let* ((gx (ly:grob-extent g sys X))
                     ;; a note head outside the staff carries a ledger line wider than itself
                     (px (if (grob::has-interface g 'note-head-interface) (+ pad 0.45) pad)))
@@ -215,15 +212,20 @@ voiceSetup = {
                 (on 0.4) (off 0.6) (x (interval-center xe)))
            (fold
             (lambda (gap acc)
-              (let ((lo (+ (car gap) pr-span-gap)) (hi (- (cdr gap) pr-span-gap)))
+              ;; Each end stops a fixed distance from its staff, or further when a
+              ;; note, stem or accidental near the line stands out from that staff.
+              ;; Only the ends move: the line is never broken in the middle.
+              (let* ((lo0 (car gap)) (hi0 (cdr gap)) (mid (/ (+ lo0 hi0) 2))
+                     (hi (fold (lambda (h m) (if (> (cdr h) mid) (min m (car h)) m))
+                               (- hi0 pr-span-gap) holes))
+                     (lo (fold (lambda (h m) (if (< (car h) mid) (max m (cdr h)) m))
+                               (+ lo0 pr-span-gap) holes)))
                 (let loop ((y hi) (acc acc))
                   (if (<= y lo)
                       acc
-                      (let* ((a (max lo (- y on)))
-                             (blocked (any (lambda (h) (and (< (car h) y) (> (cdr h) a))) holes)))
+                      (let ((a (max lo (- y on))))
                         (loop (- y on off)
-                              (if blocked acc
-                                  (ly:stencil-add acc (make-line-stencil th x a x y)))))))))
+                              (ly:stencil-add acc (make-line-stencil th x a x y))))))))
             empty-stencil gaps)))))
 
 %% ------------------------------------------------------------ contexts
