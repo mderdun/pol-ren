@@ -31,3 +31,16 @@ text_edits:
   # conjunctions and auxiliaries whose loss leaves the clause's sense; no
   # prepositions (vox Rama is not Latin), no content words
   droppable: [et, est, ac, atque, sed, nec, i, a, oraz]
+
+# Principles 10.1 (rewritten 4 October 2026): a new syllable on a semiminim
+# (under C, on a fusa) is legal only under a licence, and each licence costs a
+# little, so that the default (a minim or longer) wins where it is about as
+# good and the search can still propose a licensed placement. Outside these
+# the firm core holds and U101/U102 break. The critical note names the clause.
+licences_10_1:
+  a: 0.5          # the first semiminim of a run, on a minim beat (U106)
+  b_dotted: 0.25  # straight after a dotted minim (U106)
+  b_repeat: 0.25  # a lone semiminim on a repeated pitch, after a longer note (U106)
+  c: 0.5          # a later note of a run: all voices in semiminims, or a leap (U106)
+  d: 0.25         # the white note straight after a run, at a phrase end (U203)
+  # (e) a placement the period source shows (10.12): accepted beside the note

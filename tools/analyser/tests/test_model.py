@@ -39,11 +39,14 @@ def test_alternatives_are_always_legal():
         for c in m.search(sp, tuple(range(len(sp.syls)))):
             assert not c.hard
             for i, p in zip(sp.syls, c.starts):
-                assert line.events[p].dur >= 2 or p == sp.first
+                # 10.1(a): the run's first semiminim (g, on the minim beat) is
+                # legal; its second note (a) never is
+                assert line.events[p].dur >= 2 or p == sp.first or p == 1
 
 
 def test_a_break_is_reported_with_a_legal_alternative():
-    a, r = setup({"notes": "f2 g1 a1 b2 c'4 d'4", "text": "Do- mi- _ nus et _"})
+    # mi- on the run's second note, by step: outside 10.1(a)-(c)
+    a, r = setup({"notes": "f2 g1 a1 b2 c'4 d'4", "text": "Do- _ mi- nus et _"})
     f = next(f for f in r.findings if f.rule == "U101")
     assert f.level == "break" and f.regret is None
     assert f.alternatives and all("'mi'" in " ".join(x["moves"]) for x in f.alternatives)

@@ -18,33 +18,25 @@ def at(voice, bar):
     return [f for f in BREAKS if f.voice == voice and f.bar == bar]
 
 
-def test_the_eight_breaks():
-    assert len(BREAKS) == 8
-    assert {(f.voice, f.bar) for f in BREAKS} == {
-        ("Altus", 11), ("Altus", 12), ("Altus", 32), ("Bassus", 27),
-        ("Tenor", 6), ("Tenor", 37), ("Tenor", 40)}
+LICENSED = [f for f in R.findings if f.rule == "U106"]
 
 
-def test_bassus_27_su_on_the_semibreve():
-    # review: "su- on the semibreve a, under the Tenor's su-"
-    f = at("Bassus", 27)[0]
-    assert f.alternatives and f.alternatives[0]["moves"] == ["'su' 27.1 -> 27.3"]
+def test_the_eight_breaks_under_the_new_10_1():
+    # The review found eight breaks of the old 10.1. Rewritten after the
+    # literature review (4 October 2026, docs/research/rule-10-1-review.md),
+    # 10.1 licenses six of the seven places; only Marchesano's -di-, -ta on
+    # the lone semiminims of the Altus at bar 12 stay outside (a)-(e)
+    assert {(f.voice, f.bar) for f in BREAKS} == {("Altus", 12)}
+    clause = {(f.voice, f.bar): f.message for f in LICENSED}
+    for voice, bar, c in (("Altus", 11, "(b)"), ("Altus", 32, "(a)"), ("Bassus", 27, "(a)"),
+                          ("Tenor", 6, "(a)"), ("Tenor", 37, "(a)"), ("Tenor", 40, "(a)")):
+        assert c in clause[(voice, bar)], (voice, bar, clause.get((voice, bar)))
 
 
-def test_altus_32_con_later():
-    # review: drop this et; con- moves to f#' with the run
-    f = at("Altus", 32)[0]
-    assert f.alternatives and f.alternatives[0]["moves"][0].startswith("'con' 32.4 ->")
-
-
-def test_tenor_40_moves_without_losing_a_word():
-    # review: "con- g a, -so- b, -la- e' (minim) with the run ... No word is lost."
-    # Miki (4 October 2026) would not have -la- on the weak 39.4 when a
-    # stronger place is lawful (U210), so the model now takes it to the
-    # half-bar, 39.3, still without losing a word
-    f = at("Tenor", 40)[0]
-    assert f.alternatives and not f.alternatives[0]["edit"]
-    assert any("'la' 40.1 -> 39." in m for a in f.alternatives for m in a["moves"])
+def test_altus_32_con_on_the_run_is_licensed():
+    # Miki (4 October 2026): con- on the first semiminim of the run, 32.4: 10.1(a)
+    fs = [f for f in LICENSED if f.voice == "Altus" and f.where == "32.4"]
+    assert fs and "'con'" in fs[0].message and "(a)" in fs[0].message
 
 
 def test_no_move_only_fix_where_the_review_dropped_words():
@@ -67,14 +59,13 @@ def test_the_review_drops_are_proposed():
 
 
 def test_altus_11_ra_stays_on_10_4():
-    # the first analyser kept est by drawing Ra-ma back a minim onto 10.3.
     # Miki's second review (4 October 2026): "the 3 top parts are clearly
     # playing against the tactus here, so Ra on 10.4 is appropriate". Bar 10
-    # is now a displaced span, U210 measures Ra against the displaced pulse,
-    # and moving Ra gains nothing: the review's own drop of est comes first.
-    f = at("Altus", 11)[0]
-    assert f.alternatives and f.alternatives[0]["moves"][0].startswith("drop 'est'")
-    assert f.alternatives[0]["moves"][0] != "'Ra' 10.4 -> 10.3"
+    # is a displaced span, and no alternative draws Ra back to 10.3.
+    assert not at("Altus", 11)
+    for f in R.findings:
+        for alt in f.alternatives:
+            assert "'Ra' 10.4 -> 10.3" not in alt["moves"], (f.voice, f.where)
 
 
 # ---------------------------------------------------------------------------

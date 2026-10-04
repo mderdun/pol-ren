@@ -6,11 +6,13 @@ legacy: true
 weight: 0
 tier: firm
 principle: "10.1"
-authority: "Lanfranco V, Zarlino VI (Harrán 1973a, 40–41); Stoquerus O2 (Rotola ed., 201)"
+authority: "Lanfranco V, Zarlino VI (Harrán 1973a, 40–41); Stoquerus O2 (Rotola ed., 201); Towne 1991, 155 (19d)"
 message: "'{txt}' on the semiminim, but no syllable on the note after it"
 examples:
   flag:
     - {notes: "f3 g1 a2 g2", text: "Do- mi- _ nus", at: 1}
+    - {notes: "f2 g1 g2 a2", text: "Do- mi- _ nus", at: 1, why: "a lone semiminim (b, repeated pitch) passes its syllable on"}
   pass:
     - {notes: "f3 g1 a2 g2", text: "Do- mi- nus _"}
     - {notes: "f3 g1 r2 g2", text: "Do- mi- nus", why: "a rest follows"}
+    - {notes: "f2 g1 a1 b2 c'2", text: "Do- mi- _ _ nus", why: "the first of a run (a): the run and the white note keep it"}
