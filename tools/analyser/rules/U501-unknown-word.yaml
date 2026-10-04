@@ -1,0 +1,14 @@
+id: U501
+name: unknown-word
+level: info
+weight: 0
+tier: info
+scope: line
+principle: "10.8"
+authority: "survey §1.12: a wrong stress that nobody sees is worse than none"
+message: "'{word}' is not in the {lang} lexicon; stress assumed by the penultimate rule"
+examples:
+  flag:
+    - {notes: "f2 g2 a2", text: "Xy- zy- zy"}
+  pass:
+    - {notes: "f2 g2 a2", text: "Do- mi- nus"}

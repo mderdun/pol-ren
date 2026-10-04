@@ -1,0 +1,25 @@
+id: U302
+name: clausula-melisma
+level: look
+weight: 2.0
+tier: phrase
+principle: "10.7"
+authority: "Wacław z Szamotuł's own practice (Kraków Lamentationes, 1553); Stoquerus O1 (Rotola ed., 203–207); Lanfranco's phrase model (Harrán 1997, 239)"
+message: "{nn} notes on '{txt}' of {word}, the last word before the cadence; its stress is on syllable {st}"
+examples:
+  flag:
+    - config: {waclaw_practice: true}
+      voices:
+        Cantus: {notes: "a4 g2 f2 e2 g2 b4 c'8", text: "Do- mi- _ _ _ _ nus."}
+        Tenor:  {notes: "f4 e4 f4 d4 c8", text: "Do- mi- _ _ nus."}
+      rule_voice: Cantus
+  pass:
+    - config: {waclaw_practice: true}
+      voices:
+        Cantus: {notes: "a4 g2 f2 e2 g2 b4 c'8", text: "Do- _ _ _ mi- _ nus."}
+        Tenor:  {notes: "f4 e4 f4 d4 c8", text: "Do- _ mi- _ nus."}
+    - config: {waclaw_practice: false}
+      voices:
+        Cantus: {notes: "a4 g2 f2 e2 g2 b4 c'8", text: "Do- mi- _ _ _ _ nus."}
+        Tenor:  {notes: "f4 e4 f4 d4 c8", text: "Do- mi- _ _ nus."}
+      why: "only where the edition follows Wacław's practice"

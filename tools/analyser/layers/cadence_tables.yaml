@@ -1,0 +1,30 @@
+# Cadence tables for layers/cadence.py. Written for this project from the
+# published definitions of cadential voice functions (Schubert; Morgan;
+# CRIM's documentation), not copied from CRIM's CC BY-SA tables.
+#
+# Voice functions at an arrival:
+#   C  cantizans    rises by step into the arrival; with T forms a major sixth
+#                   (or minor third, when it lies below T) opening to the octave
+#                   (or closing to the unison)
+#   T  tenorizans   falls by step into the arrival
+#   B  bassizans    leaps up a fourth or down a fifth onto the cadential tone
+#   A  altizans     arrives on the fifth above the cadential tone
+#   b  evaded bass  stood on the fifth before the arrival and goes elsewhere
+#                   than the cadential tone
+#   c, t            the C or T of a prepared clausula (a 7-6 suspension into the
+#                   major sixth) that does not arrive
+#
+# Types, tried in order; the first whose conditions hold names the cadence.
+#   has:      functions that must all be present
+#   lacks:    functions that must all be absent
+#   phrygian: whether the tenorizans falls by a semitone
+#   bass_on_tone: whether the lowest sounding voice at the arrival has the
+#             cadential tone
+types:
+  - {name: abandoned,      has: [c],         strength: 1, note: "a voice of the clausula drops out at the arrival"}
+  - {name: evaded,         has: [t],         strength: 1, note: "the prepared clausula does not arrive"}
+  - {name: phrygian,       has: [C, T],      phrygian: true, strength: 3}
+  - {name: evaded,         has: [C, T, b],   strength: 1, note: "the bass leaves the fifth for another note than the tone"}
+  - {name: authentic,      has: [C, T, B],   bass_on_tone: true, strength: 3}
+  - {name: clausula vera,  has: [C, T],      lacks: [B], bass_on_tone: true, strength: 2, note: "the two-voice clausula, the lowest voice on the tone"}
+  - {name: evaded,         has: [C, T],      bass_on_tone: false, strength: 1, note: "the lowest voice undercuts the arrival"}

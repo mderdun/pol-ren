@@ -9,3 +9,8 @@ editions/*/tmp*
 guides/*/tmp*
 .claude/worktrees/
 house/fonts/
+
+# analyser
+__pycache__/
+.pytest_cache/
+analyser-out/

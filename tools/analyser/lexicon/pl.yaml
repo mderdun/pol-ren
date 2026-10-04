@@ -1,0 +1,84 @@
+# Polish lexicon for the series' texts.
+#
+# Stress is on the penultimate syllable by rule (survey §1.13). The loader
+# checks that every entry with two or more syllables has its capitals on the
+# penult; a word that departs from the rule must say so in `exception`, with
+# its reason. Known exception classes, none of which occurs in our texts yet:
+#   -liśmy, -liście, -łybyśmy (past tense plural): antepenult in careful speech
+#   loans in -yka, -ika (muzyka, fizyka): antepenult
+#   clitic groups (nie wiem, do mnie): the stress may move onto the clitic
+# Monosyllables: content words carry their own stress (noc, już); clitics and
+# prepositions do not (się, o, w).
+#
+# Keys are the word in lower case without punctuation. A preposition sung
+# with the next word as one syllable (w_ciemności, sung "w ciem-no-ści") is
+# entered as the group.
+#
+# `class` as in la.yaml. `src`: rule (penultimate rule), mono (monosyllable),
+# old (the old audit's LIGHT list), prep (a preposition, treated like the light
+# prepositions of the old list). Checked by hand 4 October 2026 (Claude).
+
+rule: penultimate
+
+words:
+  # light words (underlay_audit.py LIGHT)
+  i:          {syl: i, class: light, src: old}
+  w:          {syl: w, class: light, src: old}
+  z:          {syl: z, class: light, src: old}
+  na:         {syl: na, class: light, src: old}
+  do:         {syl: do, class: light, src: old}
+  o:          {syl: o, class: light, src: old}
+  od:         {syl: od, class: light, src: old}
+  u:          {syl: u, class: light, src: old}
+  ku:         {syl: ku, class: light, src: old}
+  że:         {syl: że, class: light, src: old}
+  by:         {syl: by, class: light, src: old}
+  się:        {syl: się, class: light, src: old}
+  a:          {syl: a, class: light, src: old}
+  przez:      {syl: przez, class: light, src: prep}
+
+  # Już się zmierzka, stanza 1
+  już:        {syl: JUŻ, class: function, src: mono}
+  zmierzka:   {syl: ZMIERZ-ka, class: content, src: rule}
+  nadchodzi:  {syl: nad-CHO-dzi, class: content, src: rule}
+  noc:        {syl: NOC, class: content, src: mono}
+  poprośmy:   {syl: po-PROŚ-my, class: content, src: rule}
+  boga:       {syl: BO-ga, class: content, src: rule}
+  pomoc:      {syl: PO-moc, class: content, src: rule}
+  aby:        {syl: A-by, class: function, src: rule}
+  "on":       {syl: "ON", class: function, src: mono}
+  naszem:     {syl: NA-szem, class: function, src: rule, note: "Old Polish instrumental, modern naszym"}
+  strażem:    {syl: STRA-żem, class: content, src: rule, note: "Old Polish strażą"}
+  był:        {syl: BYŁ, class: function, src: mono}
+  złych:      {syl: ZŁYCH, class: content, src: mono}
+  czartów:    {syl: CZAR-tów, class: content, src: rule}
+  nas:        {syl: NAS, class: function, src: mono}
+  obronił:    {syl: o-BRO-nił, class: content, src: rule}
+  którzy:     {syl: KTÓ-rzy, class: function, src: rule}
+  nawięcej:   {syl: na-WIĘ-cej, class: content, src: rule, note: "Old Polish, modern najwięcej"}
+  wciemności: {syl: wciem-NO-ści, class: content, src: rule, note: "w ciemności, the preposition sung with ciem- as one syllable"}
+  używają:    {syl: u-ży-WA-ją, class: content, src: rule}
+  swej:       {syl: SWEJ, class: function, src: mono}
+  chytrości:  {syl: chy-TRO-ści, class: content, src: rule}
+
+  # stanza 2
+  jesu:       {syl: JE-su, class: content, src: rule}
+  kryste:     {syl: KRY-ste, class: content, src: rule}
+  panie:      {syl: PA-nie, class: content, src: rule}
+  miły:       {syl: MI-ły, class: content, src: rule}
+  tyś:        {syl: TYŚ, class: function, src: mono}
+  wszytki:    {syl: WSZYT-ki, class: function, src: rule, note: "Old Polish, modern wszystkie"}
+  piekielne:  {syl: pie-KIEL-ne, class: content, src: rule}
+  siły:       {syl: SI-ły, class: content, src: rule}
+  mękę:       {syl: MĘ-kę, class: content, src: rule}
+  swoję:      {syl: SWO-ję, class: function, src: rule, note: "Old Polish, modern swoją"}
+  poraził:    {syl: po-RA-ził, class: content, src: rule}
+  nam:        {syl: NAM, class: function, src: mono}
+  wieczny:    {syl: WIECZ-ny, class: content, src: rule}
+  pokój:      {syl: PO-kój, class: content, src: rule}
+  sprawił:    {syl: SPRA-wił, class: content, src: rule}
+  raczysz:    {syl: RA-czysz, class: content, src: rule}
+  miłosierny: {syl: mi-ło-SIER-ny, class: content, src: rule}
+  wysłyszeć:  {syl: wy-SŁY-szeć, class: content, src: rule}
+  nasze:      {syl: NA-sze, class: function, src: rule}
+  wołanie:    {syl: wo-ŁA-nie, class: content, src: rule}

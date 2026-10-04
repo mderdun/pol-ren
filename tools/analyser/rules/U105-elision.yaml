@@ -1,0 +1,16 @@
+id: U105
+name: elision
+level: break
+hard: true
+scope: line
+weight: 0
+tier: firm
+principle: "10.5"
+authority: "Vicentino rule 8 (Harrán 1973b, 626); Towne 1990, R31–33"
+applies: {lang: [la]}
+message: "elision in Latin ('{txt}')"
+examples:
+  flag:
+    - {notes: "f2 g2", text: "et‿in te"}
+  pass:
+    - {notes: "f2 g2", text: "et in"}

@@ -1,0 +1,15 @@
+id: U205
+name: run-light
+level: look
+legacy: true
+weight: 1.0
+tier: light
+principle: "10.6"
+authority: "Calvisius 1592: unaccented syllables are not apt for melismas (Towne 1990, 271); Zarlino IX (Harrán 1973a, 44–45)"
+message: "'{txt}' over {nn} notes"
+gates: {older_practice: 0.5}
+examples:
+  flag:
+    - {notes: "f2 g1 a1 b2 c'2 a2", text: "et _ _ _ in _", at: 0}
+  pass:
+    - {notes: "f2 g2 a2", text: "et in te"}

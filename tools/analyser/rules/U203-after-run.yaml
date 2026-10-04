@@ -1,0 +1,14 @@
+id: U203
+name: after-run
+level: look
+legacy: true
+weight: 0.75
+tier: idiom
+principle: "10.6"
+authority: "Lanfranco VI (Harrán 1973a, 41–42); Vicentino rule 1, the second white note (Harrán 1973b, 622); Stoquerus R3 (Rotola ed., 247–251)"
+message: "'{txt}' straight after {run} short notes; the white note before them is free"
+examples:
+  flag:
+    - {notes: "f2 g2 a1 g1 f2 e2", text: "Do- _ _ _ mi- nus", at: 1}
+  pass:
+    - {notes: "f2 a1 g1 f2 e2 d2", text: "Do- _ _ mi- nus _", why: "the white note before the run already carries Do-"}

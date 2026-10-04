@@ -1,0 +1,15 @@
+id: U204
+name: octave-up
+level: look
+legacy: true
+weight: 0.75
+tier: idiom
+principle: "10.6"
+authority: "MD, 4 Oct 2026; cf. Vicentino rule 10, who begins the word on the upper note (Harrán 1973b, 627)"
+message: "'{txt}' starts on the top of a rising octave"
+gates: {cadence_lower_note: 0}
+examples:
+  flag:
+    - {notes: "c2 c'2 b2", text: "Do- mi- nus", at: 1}
+  pass:
+    - {notes: "c2 c'2 b2 a2", text: "Do- _ mi- nus", why: "the leap is taken inside Do-"}

@@ -1,0 +1,16 @@
+id: U104
+name: rest-in-word
+level: break
+hard: true
+legacy: true
+scope: line
+weight: 0
+tier: firm
+principle: "10.4"
+authority: "MD (Plaude); Zarlino, end of IV.32: no rest before the sense is complete (Harrán 1973a, 32–33)"
+message: "rest inside a word ('{txt}')"
+examples:
+  flag:
+    - {notes: "f2 g2 r2 a2", text: "Do- mi- nus"}
+  pass:
+    - {notes: "f2 g2 a2 r2 a2", text: "Do- mi- nus et"}

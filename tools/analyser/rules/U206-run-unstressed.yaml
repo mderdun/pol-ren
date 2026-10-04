@@ -1,0 +1,15 @@
+id: U206
+name: run-unstressed
+level: look
+legacy: true
+weight: 2.0
+tier: stress
+principle: "10.6"
+authority: "Zarlino IX: a melisma on a short syllable is a barbarism (Harrán 1973a, 44–45); Stoquerus O1 (Rotola ed., 203–207); Calvisius 1592 (Towne 1990, 271)"
+message: "{nn} notes on '{txt}' of {word} (stress on syllable {st}; vowel {vowel})"
+gates: {cadence_approach: 0.5, older_practice: 0.5}
+examples:
+  flag:
+    - {notes: "f4 g2 a1 g1 f1 e1 d1 e1 f2", text: "Do- mi- _ _ _ _ _ _ nus", at: 1}
+  pass:
+    - {notes: "f2 g1 a1 g1 f1 e1 d1 e2 f2", text: "Do- _ _ _ _ _ _ mi- nus", why: "the run is on the stressed syllable"}

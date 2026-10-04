@@ -1,0 +1,16 @@
+id: U102
+name: semiminim-next
+level: break
+hard: true
+legacy: true
+weight: 0
+tier: firm
+principle: "10.1"
+authority: "Lanfranco V, Zarlino VI (Harrán 1973a, 40–41); Stoquerus O2 (Rotola ed., 201)"
+message: "'{txt}' on the semiminim, but no syllable on the note after it"
+examples:
+  flag:
+    - {notes: "f3 g1 a2 g2", text: "Do- mi- _ nus", at: 1}
+  pass:
+    - {notes: "f3 g1 a2 g2", text: "Do- mi- nus _"}
+    - {notes: "f3 g1 r2 g2", text: "Do- mi- nus", why: "a rest follows"}

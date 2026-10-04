@@ -1,0 +1,45 @@
+# Per-edition settings the analyser cannot read from the MusicXML.
+#
+# mensuration: the sign the rules should assume (principles 5.4, 10.1).
+#   cut  ¢: a new syllable needs a minim or longer (10.1)
+#   C    C: semiminims count as minims (10.1; Stoquerus, Rotola ed., 227, 243)
+#   The MusicXML carries the printed sign; this entry wins where the edition
+#   prints none.
+# waclaw_practice: apply 10.7 (one melisma before each cadence, on the stressed
+#   syllable of the last word).
+# older_practice: a piece before the mid-sixteenth-century accent rules; the
+#   stress and light-word rules count for half (gates.yaml: older_practice).
+# key_words: words the editor marks as key words for 10.6 (lexicon class "key").
+#   Left empty until the editor marks them: the analyser does not guess them.
+
+nunc-scio-vere:
+  lang: la
+  mensuration: cut
+  mensuration_note: "editorial sign; the source is a tablature (critical edition, Note values)"
+  waclaw_practice: true
+  key_words: []
+
+vox-in-rama:
+  lang: la
+  mensuration: cut
+  mensuration_note: "printed in the 1611 Tenor"
+  waclaw_practice: false
+  key_words: []
+
+plaude-euge:
+  lang: la
+  mensuration: C
+  mensuration_note: "no sign in the source; the critical edition reads imperfect tempus, minor prolation"
+  older_practice: true   # Piotr z Grudziądza, before the mid-century accent rules (gates.yaml)
+  waclaw_practice: false
+  key_words: []
+
+juz-sie-zmierzka:
+  lang: pl
+  mensuration: cut
+  mensuration_note: "printed cut-C in every voice"
+  waclaw_practice: false
+  key_words: []
+
+bogurodzica:
+  skip: "chant; its underlay comes from the chant sources (underlay review, October 2026)"

@@ -1,0 +1,21 @@
+id: U304
+name: homorhythm-text
+level: info
+weight: 0.25
+tier: info
+scope: piece
+principle: "10.6"
+authority: "Towne 1991, principles 52–53: homophony suggests simultaneous text; but principles 10.6: the voices need not change syllable together"
+message: "in the homorhythmic passage {region}, '{txt}' {how} where the other voices {other}"
+examples:
+  flag:
+    - voices:
+        Cantus: {notes: "c'2 d'2 e'2 f'2 g'2", text: "Do- mi- nus et in"}
+        Altus:  {notes: "a2 b2 c'2 d'2 e'2", text: "Do- mi- nus et in"}
+        Tenor:  {notes: "f2 g2 a2 b2 c'2", text: "Do- _ mi- nus et"}
+      rule_voice: Tenor
+  pass:
+    - voices:
+        Cantus: {notes: "c'2 d'2 e'2 f'2 g'2", text: "Do- mi- nus et in"}
+        Altus:  {notes: "a2 b2 c'2 d'2 e'2", text: "Do- mi- nus et in"}
+        Tenor:  {notes: "f2 g2 a2 b2 c'2", text: "Do- mi- nus et in"}

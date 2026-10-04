@@ -1,0 +1,19 @@
+# Scoring settings for the underlay model (survey §3.3). These are judgements,
+# set by hand from the order of the principles; every finding shows its
+# breakdown so that a reviewer can disagree with a number.
+
+# Tiers, highest first. A rule's own `weight` is what counts; the tier only
+# groups rules for the reports.
+tiers: [firm, phrase, stress, light, idiom, info]
+
+# Severity is regret: cost(current) - cost(best legal alternative in a window
+# around the finding). Levels are thresholds on regret.
+levels:
+  warn: 2.0      # a clearly better legal underlay exists nearby
+  look: 0.75     # a better one exists; sing both
+  # below look: info (nothing much better is available)
+
+window: 2          # syllables either side of a finding that the search may move
+alternatives: 3    # alternatives listed per finding
+kbest: 12          # candidates kept per state in the k-best search before re-ranking
+max_span_notes: 160

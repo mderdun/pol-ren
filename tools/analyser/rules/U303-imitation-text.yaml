@@ -1,0 +1,20 @@
+id: U303
+name: imitation-text
+level: look
+weight: 2.0
+tier: phrase
+scope: piece
+principle: "10.10"
+authority: "MD (Nunc scio); Towne 1991, principles 52–53; but Zarlino lets each part have its own underlay (Harrán 1973a, 50–51; Towne 1990, R26)"
+message: "the {ptype} entry ({entry}) sets {word} differently from the leading entry ({leader}): syllables {pattern} against {lead_pattern}"
+gates: {full_point: 1.5}
+examples:
+  flag:
+    - voices:
+        Cantus: {notes: "c'4 c'2 d'2 e'4 r8 r8 r4", text: "Do- mi- nus _"}
+        Tenor:  {notes: "r8 r8 c4 c2 d2 e4", text: "Do- _ mi- nus"}
+      rule_voice: Tenor
+  pass:
+    - voices:
+        Cantus: {notes: "c'4 c'2 d'2 e'4 r8 r8 r4", text: "Do- mi- nus _"}
+        Tenor:  {notes: "r8 r8 c4 c2 d2 e4", text: "Do- mi- nus _"}
