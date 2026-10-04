@@ -26,6 +26,14 @@
    "message": "'wa' (używają) off the beat of the tactus, though 27.3 could take it"
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Altus|v2|U206|piekielne#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U206",
+   "where": "Altus v2 bar 7.3",
+   "message": "5 notes, 12 semiminims, on 'pie' of piekielne (stress on syllable 2; vowel e)"
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Altus|v2|U210|miłosierny#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -74,6 +82,14 @@
    "message": "'a' over 3 notes, 8 semiminims"
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U209|tyś#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U209",
+   "where": "Bassus v2 bar 5.4",
+   "message": "'tyś' to 'wszyt' passes 3 consonants on a minim"
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U210|piekielne#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -98,28 +114,20 @@
    "message": "'o' on the half-bar, minim"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U203|czartów#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Cantus v1 bar 17.3",
-   "message": "'czar' straight after 4 short notes; the white note before them is free"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U205|od#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U205",
-   "where": "Cantus v1 bar 15.3",
-   "message": "'od' over 3 notes, 6 semiminims"
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U206|używają#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U206",
    "where": "Cantus v1 bar 25.2",
    "message": "5 notes, 8 semiminims, on 'u' of używają (stress on syllable 3; vowel u)"
+  },
+  {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U209|od#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U209",
+   "where": "Cantus v1 bar 16.2",
+   "message": "'od' to 'złych' passes 3 consonants on a semiminim"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U210|chytrości#1|1",
@@ -232,6 +240,14 @@
    "rule": "U301",
    "where": "Altus v1 bar 49.1",
    "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)"
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U302|herodis#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U302",
+   "where": "Altus v1 bar 32.4",
+   "message": "3 notes on 'He' of herodis, the last word before the cadence; its stress is on syllable 2"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v2|U210|amen#0|1",
@@ -442,6 +458,14 @@
    "message": "6 notes, 10 semiminims, on 'ge' of angelum (stress on syllable 1; vowel e)"
   },
   {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U207|herodis#1|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U207",
+   "where": "Tenor v1 bar 32.3",
+   "message": "'ro' runs over a repeated F3; the second note could take the next syllable"
+  },
+  {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U207|scio#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -482,14 +506,6 @@
    "message": "5 notes on 'pu' of eripuit, the last word before the cadence; its stress is on syllable 2"
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|exspectatione#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U302",
-   "where": "Tenor v1 bar 45.4",
-   "message": "3 notes on 'spe' of exspectatione, the last word before the cadence; its stress is on syllable 5"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U303|nunc#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -522,12 +538,20 @@
    "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against xxx"
   },
   {
+   "fingerprint": "vox-in-rama|Altus|v1|U101|audita#1|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U101",
+   "where": "Altus v1 bar 12.3",
+   "message": "'di' on a note shorter than a minim: a lone short note"
+  },
+  {
    "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
-   "where": "Altus v1 bar 36.4",
-   "message": "'la' (consolari) off the beat of the tactus, though 37.1 could take it"
+   "where": "Altus v1 bar 33.4",
+   "message": "'la' (consolari) off the beat of the tactus, though 33.3 could take it"
   },
   {
    "fingerprint": "vox-in-rama|Bassus|v1|U206|consolari#0|1",
@@ -538,12 +562,12 @@
    "message": "7 notes, 12 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)"
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U210|ululatus#2|1",
+   "fingerprint": "vox-in-rama|Bassus|v1|U209|filios#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Bassus v1 bar 18.2",
-   "message": "'la' (ululatus) off the beat of the tactus, though 18.3 could take it"
+   "rule": "U209",
+   "where": "Bassus v1 bar 27.3",
+   "message": "'os' to 'su' passes 2 consonants on a fusa"
   },
   {
    "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",

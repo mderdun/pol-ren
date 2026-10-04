@@ -41,6 +41,18 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Altus|v2|U206|piekielne#0|1",
+   "level": "look",
+   "where": "7.3",
+   "message": "5 notes, 12 semiminims, on 'pie' of piekielne (stress on syllable 2; vowel e)",
+   "cost": 2.0,
+   "regret": 1.5,
+   "alternative": [
+    "'kiel' 9.1 -> 8.3",
+    "'ne' 9.2 -> 9.1"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Altus|v2|U210|miłosierny#2|1",
    "level": "look",
    "where": "23.2",
@@ -157,17 +169,6 @@
    ]
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U209|pokój#1|1",
-   "level": "look",
-   "where": "19.2",
-   "message": "'kój' to 'spra' passes 4 consonants on a minim",
-   "cost": 1.5,
-   "regret": 1.5,
-   "alternative": [
-    "'spra' 19.2 -> 19.4"
-   ]
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|wysłyszeć#1|1",
    "level": "look",
    "where": "26.2",
@@ -206,6 +207,19 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U209|pokój#1|1",
+   "level": "look",
+   "where": "19.2",
+   "message": "'kój' to 'spra' passes 4 consonants on a minim",
+   "cost": 1.5,
+   "regret": 1.184,
+   "alternative": [
+    "'po' 18.3 -> 18.1",
+    "'kój' 19.1 -> 18.3",
+    "'spra' 19.2 -> 19.4"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v1|U205|od#0|1",
    "level": "look",
    "where": "16.1",
@@ -234,6 +248,19 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U209|od#0|1",
+   "level": "look",
+   "where": "16.2",
+   "message": "'od' to 'złych' passes 3 consonants on a semiminim",
+   "cost": 1.5,
+   "regret": 1.038,
+   "alternative": [
+    "'od' 15.3 -> 16.2",
+    "'złych' 16.2 -> 17.1",
+    "'czar' 17.3 -> 18.1"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U201|o#0|1",
    "level": "look",
    "where": "8.3",
@@ -244,18 +271,6 @@
     "'ga' 8.1 -> 7.2",
     "'o' 8.3 -> 8.1",
     "'po' 8.4 -> 8.3"
-   ]
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U205|od#0|1",
-   "level": "look",
-   "where": "15.3",
-   "message": "'od' over 3 notes, 6 semiminims",
-   "cost": 1.0,
-   "regret": 1.0,
-   "alternative": [
-    "'od' 15.3 -> 16.2",
-    "'złych' 16.2 -> 16.3"
    ]
   },
   {
@@ -282,6 +297,17 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U209|tyś#0|1",
+   "level": "look",
+   "where": "5.4",
+   "message": "'tyś' to 'wszyt' passes 3 consonants on a minim",
+   "cost": 1.5,
+   "regret": 0.833,
+   "alternative": [
+    "'wszyt' 5.4 -> 6.2"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U205|a#0|1",
    "level": "look",
    "where": "16.1",
@@ -290,18 +316,6 @@
    "regret": 0.75,
    "alternative": [
     "'a' 16.1 -> 16.4"
-   ]
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U203|czartów#0|1",
-   "level": "look",
-   "where": "17.3",
-   "message": "'czar' straight after 4 short notes; the white note before them is free",
-   "cost": 0.75,
-   "regret": 0.75,
-   "alternative": [
-    "'od' 15.3 -> 16.2",
-    "'złych' 16.2 -> 16.3"
    ]
   },
   {
@@ -317,12 +331,25 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U205|od#0|1",
+   "level": "info",
+   "where": "15.3",
+   "message": "'od' over 3 notes, 6 semiminims",
+   "cost": 1.0,
+   "regret": 0.692,
+   "alternative": [
+    "'od' 15.3 -> 16.2",
+    "'złych' 16.2 -> 17.1",
+    "'czar' 17.3 -> 18.1"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U206|piekielne#0|1",
    "level": "info",
    "where": "7.1",
    "message": "6 notes, 10 semiminims, on 'pie' of piekielne (stress on syllable 2; vowel e)",
    "cost": 0.75,
-   "regret": 0.667,
+   "regret": 0.625,
    "alternative": [
     "'wszyt' 5.4 -> 7.1",
     "'ki' 6.3 -> 8.1",
@@ -337,10 +364,24 @@
    "where": "18.3",
    "message": "'po' straight after 4 short notes; the white note before them is free",
    "cost": 0.75,
-   "regret": 0.513,
+   "regret": 0.592,
    "alternative": [
-    "'ny' 17.3 -> 17.4",
+    "'po' 18.3 -> 18.1",
+    "'kój' 19.1 -> 18.3",
     "'spra' 19.2 -> 19.4"
+   ]
+  },
+  {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U203|czartów#0|1",
+   "level": "info",
+   "where": "17.3",
+   "message": "'czar' straight after 4 short notes; the white note before them is free",
+   "cost": 0.75,
+   "regret": 0.519,
+   "alternative": [
+    "'od' 15.3 -> 16.2",
+    "'złych' 16.2 -> 17.1",
+    "'czar' 17.3 -> 18.1"
    ]
   },
   {
@@ -367,6 +408,19 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U204|wszytki#0|1",
+   "level": "info",
+   "where": "5.4",
+   "message": "'wszyt' starts on the top of a rising octave",
+   "cost": 0.75,
+   "regret": 0.5,
+   "alternative": [
+    "'wszyt' 5.4 -> 6.2",
+    "'ki' 6.3 -> 7.1",
+    "'pie' 7.1 -> 8.1"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U206|wysłyszeć#0|1",
    "level": "info",
    "where": "26.2",
@@ -376,6 +430,17 @@
    "alternative": [
     "'sły' 27.2 -> 27.1",
     "'szeć' 27.3 -> 27.2"
+   ]
+  },
+  {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U209|tyś#0|1",
+   "level": "info",
+   "where": "5.4",
+   "message": "'tyś' to 'wszyt' passes 3 consonants on a minim",
+   "cost": 1.5,
+   "regret": 0.5,
+   "alternative": [
+    "'wszyt' 5.4 -> 6.2"
    ]
   },
   {
@@ -390,29 +455,26 @@
    ]
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U204|wszytki#0|1",
+   "fingerprint": "juz-sie-zmierzka|Altus|v1|U106|się#0|1",
    "level": "info",
-   "where": "5.4",
-   "message": "'wszyt' starts on the top of a rising octave",
-   "cost": 0.75,
-   "regret": 0.375,
+   "where": "2.1",
+   "message": "'się' on a semiminim under 10.1(b): straight after a dotted note",
+   "cost": 0.25,
+   "regret": 0.25,
    "alternative": [
-    "'wszyt' 5.4 -> 6.3",
-    "'ki' 6.3 -> 7.1",
-    "'pie' 7.1 -> 8.1"
+    "'się' 2.1+ -> 1.4"
    ]
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U209|od#0|1",
+   "fingerprint": "juz-sie-zmierzka|Altus|v2|U106|jesu#1|1",
    "level": "info",
-   "where": "16.2",
-   "message": "'od' to 'złych' passes 3 consonants on a semiminim",
-   "cost": 1.5,
-   "regret": 0.231,
+   "where": "2.1",
+   "message": "'su' on a semiminim under 10.1(b): straight after a dotted note",
+   "cost": 0.25,
+   "regret": 0.25,
    "alternative": [
-    "'od' 15.3 -> 15.4",
-    "'złych' 16.2 -> 16.1+",
-    "'czar' 17.3 -> 16.2"
+    "'su' 2.1+ -> 1.3",
+    "'Kry' 2.2 -> 1.4"
    ]
   },
   {
@@ -465,13 +527,30 @@
    ]
   },
   {
+   "fingerprint": "juz-sie-zmierzka|Altus|v2|U401|siły#0|1",
+   "level": "info",
+   "where": "9.3",
+   "message": "'si' starts on a dissonant note (neighbour, A4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.115,
+   "alternative": [
+    "'kiel' 9.1 -> 8.3",
+    "'ne' 9.2 -> 9.1",
+    "'si' 9.3 -> 9.2",
+    "'ły' 10.1 -> 9.3",
+    "'przez' 10.3 -> 10.1"
+   ]
+  },
+  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U401|sprawił#0|1",
    "level": "info",
    "where": "19.2",
    "message": "'spra' starts on a dissonant note (suspension, P4 against the Bassus)",
    "cost": 0.125,
-   "regret": 0.125,
+   "regret": 0.099,
    "alternative": [
+    "'po' 18.3 -> 18.1",
+    "'kój' 19.1 -> 18.3",
     "'spra' 19.2 -> 19.4"
    ]
   },
@@ -508,24 +587,6 @@
    "where": "24.1",
    "message": "'cej' to 'w ciem' passes 3 consonants on a semiminim",
    "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Altus|v2|U206|piekielne#0|1",
-   "level": "info",
-   "where": "7.3",
-   "message": "5 notes, 12 semiminims, on 'pie' of piekielne (stress on syllable 2; vowel e)",
-   "cost": 2.0,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Altus|v2|U401|siły#0|1",
-   "level": "info",
-   "where": "9.3",
-   "message": "'si' starts on a dissonant note (neighbour, A4 against the Tenor)",
-   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -575,15 +636,6 @@
    "alternative": []
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U209|tyś#0|1",
-   "level": "info",
-   "where": "5.4",
-   "message": "'tyś' to 'wszyt' passes 3 consonants on a minim",
-   "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U304|swoję#0|1",
    "level": "info",
    "where": "13.1",
@@ -607,15 +659,6 @@
    "where": "19.2",
    "message": "'o' starts on a dissonant note (suspension, P4 against the Bassus)",
    "cost": 0.125,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U209|tyś#0|1",
-   "level": "info",
-   "where": "5.4",
-   "message": "'tyś' to 'wszyt' passes 3 consonants on a minim",
-   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
