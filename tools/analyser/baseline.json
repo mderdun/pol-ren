@@ -2,22 +2,6 @@
  "version": 1,
  "findings": [
   {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U204|wszytki#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U204",
-   "where": "Bassus v2 bar 5.4",
-   "message": "'wszyt' starts on the top of a rising octave"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v2|U206|piekielne#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U206",
-   "where": "Bassus v2 bar 7.1",
-   "message": "6 notes on 'pie' of piekielne (stress on syllable 2; vowel e)"
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U201|o#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -42,14 +26,6 @@
    "message": "'u' starts on the top of a rising octave"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U203|pokój#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Cantus v2 bar 18.3",
-   "message": "'po' straight after 4 short notes; the white note before them is free"
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U204|wysłyszeć#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -71,7 +47,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v1 bar 17.1",
-   "message": "the arrival carries 'mi', and 'nus' comes after it (phrygian cadence on E)"
+   "message": "the arrival carries 'mi', and 'nus' comes after it (phrygian cadence on E, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
@@ -79,7 +55,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v1 bar 49.1",
-   "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C)"
+   "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U301|suum#0|1",
@@ -87,7 +63,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v1 bar 23.1",
-   "message": "the arrival carries 'su', and 'um:' comes after it (clausula vera cadence on C)"
+   "message": "the arrival carries 'su', and 'um:' comes after it (clausula vera cadence on C, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v2|U301|sancto#0|1",
@@ -95,7 +71,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v2 bar 69.1",
-   "message": "the arrival carries 'San', and 'cto.' comes after it (clausula vera cadence on C)"
+   "message": "the arrival carries 'San', and 'cto.' comes after it (clausula vera cadence on C, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U204|quia#0|1",
@@ -119,7 +95,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Bassus v1 bar 17.3",
-   "message": "'nus,' starts before the arrival (evaded cadence on A)"
+   "message": "'nus,' starts before the arrival (authentic cadence on A, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U301|vere#0|1",
@@ -127,7 +103,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Bassus v1 bar 11.1",
-   "message": "the arrival carries 've', and 're,' comes after it (clausula vera cadence on G)"
+   "message": "the arrival carries 've', and 're,' comes after it (clausula vera cadence on G, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U302|iudaeorum#0|1",
@@ -151,7 +127,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v1 bar 55.3",
-   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E)"
+   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U301|vere#0|1",
@@ -159,7 +135,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v1 bar 5.3",
-   "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E)"
+   "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U302|dominus#1|1",
@@ -194,28 +170,12 @@
    "message": "'Spi' (spiritui) shorter and weaker than the syllable after it"
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U203|gloria#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Cantus v2 bar 60.3",
-   "message": "'ri' straight after 2 short notes; the white note before them is free"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U204|spiritui#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U204",
-   "where": "Cantus v2 bar 64.2",
-   "message": "'Spi' starts on the top of a rising octave"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U301|sancto#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v2 bar 68.3",
-   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F)"
+   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F, evaded)"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U206|angelum#1|1",
@@ -231,7 +191,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Tenor v1 bar 55.3",
-   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E)"
+   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E, full)"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U302|dominus#1|1",
@@ -263,7 +223,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Tenor v2 bar 81.3",
-   "message": "'rum,' starts before the arrival (clausula vera cadence on G)"
+   "message": "'rum,' starts before the arrival (clausula vera cadence on G, weak)"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U301|sancto#0|1",
@@ -271,7 +231,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Tenor v2 bar 68.3",
-   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F)"
+   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F, evaded)"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U303|et#0|1",
@@ -280,14 +240,6 @@
    "rule": "U303",
    "where": "Tenor v2 bar 77.1",
    "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against xxx"
-  },
-  {
-   "fingerprint": "plaude-euge|Discantus|v1|U201|sed#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U201",
-   "where": "Discantus v1 bar 28.1",
-   "message": "'sed' on the bar, minim"
   },
   {
    "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|1",
@@ -306,6 +258,14 @@
    "message": "7 notes on 'con' of consolari (stress on syllable 3; vowel o)"
   },
   {
+   "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U301",
+   "where": "Bassus v1 bar 18.3",
+   "message": "the arrival carries 'la', and 'tus,' comes after it (clausula vera cadence on D, full)"
+  },
+  {
    "fingerprint": "vox-in-rama|Cantus|v1|U206|consolari#0|1",
    "status": "accepted",
    "reason": "the print's own long con- in every voice, bars 29-39 (underlay review, October 2026; critical note on bars 38-39); kept under principles 10.12",
@@ -319,7 +279,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v1 bar 39.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on B)"
+   "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on B, weak)"
   },
   {
    "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|2",
@@ -327,7 +287,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v1 bar 28.1",
-   "message": "the arrival carries 'su', and 'os,' comes after it (evaded cadence on D)"
+   "message": "the arrival carries 'su', and 'os,' comes after it (authentic cadence on D, full)"
   },
   {
    "fingerprint": "vox-in-rama|Tenor|v1|U206|ululatus#1|1",

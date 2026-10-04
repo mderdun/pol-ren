@@ -11,6 +11,8 @@
 #   A  altizans     arrives on the fifth above the cadential tone
 #   b  evaded bass  stood on the fifth before the arrival and goes elsewhere
 #                   than the cadential tone
+#   P               plagal bass: rises a fifth or falls a fourth onto the final
+#   H               holds the final tone above a plagal bass
 #   c, t            the C or T of a prepared clausula (a 7-6 suspension into the
 #                   major sixth) that does not arrive
 #
@@ -24,7 +26,14 @@ types:
   - {name: abandoned,      has: [c],         strength: 1, note: "a voice of the clausula drops out at the arrival"}
   - {name: evaded,         has: [t],         strength: 1, note: "the prepared clausula does not arrive"}
   - {name: phrygian,       has: [C, T],      phrygian: true, strength: 3}
-  - {name: evaded,         has: [C, T, b],   strength: 1, note: "the bass leaves the fifth for another note than the tone"}
+  - {name: evaded,         has: [C, T, b],   lacks: [B], strength: 1, note: "the bass leaves the fifth for another note than the tone"}
   - {name: authentic,      has: [C, T, B],   bass_on_tone: true, strength: 3}
   - {name: clausula vera,  has: [C, T],      lacks: [B], bass_on_tone: true, strength: 2, note: "the two-voice clausula, the lowest voice on the tone"}
   - {name: evaded,         has: [C, T],      bass_on_tone: false, strength: 1, note: "the lowest voice undercuts the arrival"}
+
+# Closure points (layers/cadence.py, closure): long arrival notes, a rest after
+# the arrival, a suspension into it, a bass (bassizans or plagal), the end of a
+# clause in the text. A complete clausula needs this many to count as a full
+# cadence; with fewer it is a weak figure (reported, not counted as a cadence;
+# 10.3 binds it at half weight, gates.yaml: weak_cadence).
+full_closure: 2

@@ -40,9 +40,10 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
     a.slices = sonority.slices(score, a.stream)
     a.dissonances = dissonance.label(score, a.slices)
     a.cadences = cadence.find(score, a.dissonances)
+    cadence.closure(score, lines, a.cadences)
     a.arrivals = cadence.arrivals(a.cadences)
     a.phrases = phrase.phrases(score, lines, a.stream, a.arrivals)
-    a.points = imitation.points(score)
+    a.points = imitation.points(score, lines, a.arrivals)
     a.regions = texture.regions(score, a.slices)
     for line in lines:
         starts = line.starts

@@ -30,6 +30,14 @@ def evaded_cadence(a, line, hit) -> bool:
     return hit.values.get("cadence_type") in ("evaded", "abandoned")
 
 
+def weak_cadence(a, line, hit) -> bool:
+    return hit.values.get("cadence_kind") == "weak"
+
+
+def key_word(a, line, hit) -> bool:
+    return hit.syl < len(line.syls) and line.word_of(hit.syl).cls == "key"
+
+
 def suspension(a, line, hit) -> bool:
     return hit.values.get("label") == "suspension"
 
@@ -47,7 +55,7 @@ def older_practice(a, line, hit) -> bool:
 
 
 GATES = {name: globals()[name] for name in
-         ("cadence_approach", "cadence_lower_note", "evaded_cadence", "suspension", "full_point",
+         ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
           "homorhythm", "older_practice")}
 
 

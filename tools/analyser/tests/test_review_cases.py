@@ -1,7 +1,8 @@
 """The October 2026 underlay review as evidence: on the Vox in Rama of commit
 bb75083 (before the review's fixes), the model should find the eight breaks,
-find a move-only fix where the review found one, and find none where the
-review had to drop a word (docs/reviews/underlay-2026-10.md)."""
+find a move-only fix where the review found one, and none where the review
+had to drop a word; there it should propose the review's drop (10.13)
+(docs/reviews/underlay-2026-10.md)."""
 from tools.analyser.findings import run
 from tools.analyser.tests.helpers import FIXTURES
 
@@ -42,7 +43,17 @@ def test_tenor_40_moves_without_losing_a_word():
 def test_no_move_only_fix_where_the_review_dropped_words():
     # review: Altus 12 drop est; Tenor 37 drop et
     for voice, bar in (("Altus", 12), ("Tenor", 37)):
-        assert all(not f.alternatives for f in at(voice, bar)), (voice, bar)
+        for f in at(voice, bar):
+            assert all(a["edit"] for a in f.alternatives), (voice, bar)
+
+
+def test_the_review_drops_are_proposed():
+    for voice, bar, word in (("Altus", 12, "est"), ("Tenor", 37, "et")):
+        for f in at(voice, bar):
+            assert f.alternatives, (voice, bar)
+            first = f.alternatives[0]
+            assert first["edit"] == "drop" and first["moves"][0].startswith(f"drop '{word}'"), first
+            assert any(x.startswith("edit ") for x in first["introduces"])
 
 
 def test_altus_11_differs_from_the_review():

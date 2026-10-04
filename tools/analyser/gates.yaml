@@ -18,6 +18,16 @@ evaded_cadence:
   when: "the cadence is evaded or abandoned rather than completed"
   why: "an evaded cadence does not close the sentence, so 10.3 binds less"
 
+weak_cadence:
+  layer: cadence
+  when: "the clausula is complete but closes weakly (fewer than full_closure points: short arrival notes, no rest, no suspension, no bass, no clause end; layers/cadence_tables.yaml)"
+  why: "a passing clausula figure inside a phrase does not close the sentence, so 10.3 binds less; survey §3.2 item 6 (strength)"
+
+key_word:
+  layer: text
+  when: "the word is a key word the editor has confirmed (editions.yaml: key_words)"
+  why: "principles 10.6: the stressed syllable or the key word takes the long note or the high point"
+
 suspension:
   layer: dissonance
   when: "the dissonant note is a suspension (prepared, resolving down by step)"

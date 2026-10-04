@@ -9,22 +9,54 @@
 #   syllable of the last word).
 # older_practice: a piece before the mid-sixteenth-century accent rules; the
 #   stress and light-word rules count for half (gates.yaml: older_practice).
-# key_words: words the editor marks as key words for 10.6 (lexicon class "key").
-#   Left empty until the editor marks them: the analyser does not guess them.
+# key_words: words carrying the sense of each clause, for 10.6 ("the stressed
+#   syllable or the key word takes the long note or the high point"; lexicon
+#   class "key"). Each entry is {word, source}. Entries whose source begins
+#   "proposed" are the analyser's proposals from the text (4 October 2026),
+#   shown in the review page and `analyse --layers` but with NO effect until
+#   the editor confirms them: change the source to "MD, <date>" (or delete the
+#   entry). A confirmed key word is no longer light (U201, U205) and its
+#   stressed syllable weighs more when short (gates.yaml: key_word).
+# strophic: the piece has stanzas under the same notes (10.14, rule U305).
+# text_edits: false to offer no dropped or repeated words (10.13) here.
 
 nunc-scio-vere:
   lang: la
   mensuration: cut
   mensuration_note: "editorial sign; the source is a tablature (critical edition, Note values)"
   waclaw_practice: true
-  key_words: []
+  key_words:
+    - {word: scio, source: "proposed, not confirmed"}
+    - {word: vere, source: "proposed, not confirmed"}
+    - {word: dominus, source: "proposed, not confirmed"}
+    - {word: angelum, source: "proposed, not confirmed"}
+    - {word: eripuit, source: "proposed, not confirmed"}
+    - {word: herodis, source: "proposed, not confirmed"}
+    - {word: exspectatione, source: "proposed, not confirmed"}
+    - {word: iudaeorum, source: "proposed, not confirmed"}
+    - {word: gloria, source: "proposed, not confirmed"}
+    - {word: patri, source: "proposed, not confirmed"}
+    - {word: filio, source: "proposed, not confirmed"}
+    - {word: spiritui, source: "proposed, not confirmed"}
+    - {word: sancto, source: "proposed, not confirmed"}
+    - {word: principio, source: "proposed, not confirmed"}
+    - {word: saeculorum, source: "proposed, not confirmed"}
 
 vox-in-rama:
   lang: la
   mensuration: cut
   mensuration_note: "printed in the 1611 Tenor"
   waclaw_practice: false
-  key_words: []
+  key_words:
+    - {word: vox, source: "proposed, not confirmed"}
+    - {word: rama, source: "proposed, not confirmed"}
+    - {word: ploratus, source: "proposed, not confirmed"}
+    - {word: ululatus, source: "proposed, not confirmed"}
+    - {word: rachel, source: "proposed, not confirmed"}
+    - {word: plorans, source: "proposed, not confirmed"}
+    - {word: filios, source: "proposed, not confirmed"}
+    - {word: consolari, source: "proposed, not confirmed"}
+    - {word: non, source: "proposed, not confirmed"}
 
 plaude-euge:
   lang: la
@@ -32,14 +64,46 @@ plaude-euge:
   mensuration_note: "no sign in the source; the critical edition reads imperfect tempus, minor prolation"
   older_practice: true   # Piotr z Grudziądza, before the mid-century accent rules (gates.yaml)
   waclaw_practice: false
-  key_words: []
+  key_words:
+    - {word: plaude, source: "proposed, not confirmed"}
+    - {word: theotocos, source: "proposed, not confirmed"}
+    - {word: regina, source: "proposed, not confirmed"}
+    - {word: virginum, source: "proposed, not confirmed"}
+    - {word: salus, source: "proposed, not confirmed"}
+    - {word: confidencium, source: "proposed, not confirmed"}
+    - {word: laudantes, source: "proposed, not confirmed"}
+    - {word: inspice, source: "proposed, not confirmed"}
+    - {word: despice, source: "proposed, not confirmed"}
+    - {word: misericordie, source: "proposed, not confirmed"}
+    - {word: respice, source: "proposed, not confirmed"}
 
 juz-sie-zmierzka:
   lang: pl
   mensuration: cut
   mensuration_note: "printed cut-C in every voice"
+  strophic: true         # stanzas 1 and 2 under the notes (10.14)
   waclaw_practice: false
-  key_words: []
+  key_words:
+    - {word: zmierzka, source: "proposed, not confirmed"}
+    - {word: noc, source: "proposed, not confirmed"}
+    - {word: boga, source: "proposed, not confirmed"}
+    - {word: pomoc, source: "proposed, not confirmed"}
+    - {word: strażem, source: "proposed, not confirmed"}
+    - {word: czartów, source: "proposed, not confirmed"}
+    - {word: obronił, source: "proposed, not confirmed"}
+    - {word: wciemności, source: "proposed, not confirmed"}   # w ciemności: one word as sung (w ciem-no-ści)
+    - {word: chytrości, source: "proposed, not confirmed"}
+    - {word: jesu, source: "proposed, not confirmed"}
+    - {word: kryste, source: "proposed, not confirmed"}
+    - {word: panie, source: "proposed, not confirmed"}
+    - {word: piekielne, source: "proposed, not confirmed"}
+    - {word: siły, source: "proposed, not confirmed"}
+    - {word: mękę, source: "proposed, not confirmed"}
+    - {word: poraził, source: "proposed, not confirmed"}
+    - {word: wieczny, source: "proposed, not confirmed"}
+    - {word: pokój, source: "proposed, not confirmed"}
+    - {word: wysłyszeć, source: "proposed, not confirmed"}
+    - {word: wołanie, source: "proposed, not confirmed"}
 
 bogurodzica:
   skip: "chant; its underlay comes from the chant sources (underlay review, October 2026)"

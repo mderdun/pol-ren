@@ -1,0 +1,44 @@
+id: U305
+name: stanza-consistency
+level: look
+weight: 1.0
+tier: phrase
+scope: piece
+principle: "10.14"
+authority: "MD, 3 Oct 2026 (Zmierzka underlays stanzas 1 and 2, each with its own underlay where the text needs it)"
+message: "stanza {verse} sets '{txt}' at {where}, stanza 1 its syllable '{ref_txt}' at {ref_where}, though the words fall alike here ({nsyl} syllables, the same stresses and word breaks)"
+examples:
+  flag:
+    - voices:
+        Cantus:
+          notes: "c'4 d'2 e'2 f'2 g'2 a'4 r8"
+          text: "Ja- ko- ba _ wo- ła"
+          verses: {"2": "Ma- ry- _ ja wo- ła"}
+      config: {strophic: true}
+      lang: pl
+      rule_voice: Cantus
+      why: "ja-KO-ba and ma-RY-ja fall alike, but the melisma moves from the last syllable to the stressed one"
+  pass:
+    - voices:
+        Cantus:
+          notes: "c'4 d'2 e'2 f'2 g'2 a'4 r8"
+          text: "Ja- ko- ba _ wo- ła"
+          verses: {"2": "Ma- ry- ja _ wo- ła"}
+      config: {strophic: true}
+      lang: pl
+      why: "the same underlay in both stanzas"
+    - voices:
+        Cantus:
+          notes: "c'4 d'2 e'2 f'2 g'2 a'4 r8"
+          text: "Ja- ko- ba _ wo- ła"
+          verses: {"2": "Mi- ło- sier- ny Pan _"}
+      config: {strophic: true}
+      lang: pl
+      why: "stanza 2 has other words and stresses here, so it may take its own underlay (10.14)"
+    - voices:
+        Cantus:
+          notes: "c'4 d'2 e'2 f'2 g'2 a'4 r8"
+          text: "Ja- ko- ba _ wo- ła"
+          verses: {"2": "Ma- ry- _ ja wo- ła"}
+      lang: pl
+      why: "not a strophic piece (editions.yaml: strophic)"

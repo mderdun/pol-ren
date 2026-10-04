@@ -5,8 +5,8 @@ weight: 4.0
 tier: phrase
 principle: "10.3"
 authority: "Lanfranco VIII, Zarlino X (Harrán 1973a, 44–46); after a run, its first note or the longer note before it (Stoquerus R3, Rotola ed., 251; Towne 1990, R10, R16)"
-message: "{problem} ({cadence_type} cadence on {tone})"
-gates: {evaded_cadence: 0.5}
+message: "{problem} ({cadence_type} cadence on {tone}, {cadence_kind})"
+gates: {evaded_cadence: 0.5, weak_cadence: 0.5}
 examples:
   flag:
     - voices:

@@ -149,11 +149,27 @@ def _caps_ok(syl: str) -> bool:
     return all(p.isupper() or p.islower() for p in syl.split("-"))
 
 
+def key_word_entries(config: dict) -> list[dict]:
+    """editions.yaml key_words as {word, source, confirmed}."""
+    out = []
+    for e in config.get("key_words") or []:
+        if isinstance(e, str):
+            e = {"word": e, "source": "MD"}
+        src = str(e.get("source", ""))
+        out.append({"word": str(e["word"]), "source": src, "confirmed": not src.lower().startswith("proposed")})
+    return out
+
+
+def key_words(config: dict, *, proposed: bool = False) -> list[str]:
+    """The confirmed key words (with proposed=True, the proposals too)."""
+    return [e["word"] for e in key_word_entries(config) if e["confirmed"] or proposed]
+
+
 def build_lines(score: Score, *, legacy: bool = False) -> list[Line]:
     out = []
     lang = score.lang
     lex = lexicon(lang)
-    keys = {normalise(w, lang) for w in (score.config.get("key_words") or [])}
+    keys = {normalise(w, lang) for w in key_words(score.config)}
     for voice in score.parts:
         evs = score.voices[voice]
         for verse in score.verses(voice):

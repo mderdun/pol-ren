@@ -33,7 +33,7 @@ def check(ctx):
     cad = a.arrivals[(voice, j)]
     evs = ctx.events
     rest_after = ctx.next_start is None or ctx.next_start != ctx.end
-    vals = dict(cadence_type=cad.type, tone=cad.tone)
+    vals = dict(cadence_type=cad.type, tone=cad.tone, cadence_kind=cad.kind)
     if phrase_final(ctx, ctx.i, rest_after):
         if j == ctx.start:
             return

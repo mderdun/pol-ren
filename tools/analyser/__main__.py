@@ -36,6 +36,9 @@ def cmd_check(a) -> int:
     results = [run(p) for p in _paths(a.paths)]
     base = B.load(a.baseline)
     new = B.apply(results, base)
+    from .inline import problems
+    for p in problems(results):
+        print(f"analyser: {p}", file=sys.stderr)
     if a.update_baseline:
         n = B.update(a.baseline, results, base)
         print(f"baseline {a.baseline}: {n} new entries added as pending")
@@ -58,6 +61,12 @@ def cmd_check(a) -> int:
             (out / "analyser.md").write_text(md, encoding="utf-8")
         else:
             print(md)
+    if "sarif" in fmts:
+        data = report.sarif(results, new)
+        if out:
+            (out / "analyser.sarif").write_text(report.dumps(data), encoding="utf-8")
+        else:
+            print(report.dumps(data))
     if "github" in fmts:
         for line in report.github(results, new):
             print(line)
@@ -171,7 +180,7 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd")
     c = sub.add_parser("check", help="findings for one or more editions")
     c.add_argument("paths", nargs="+")
-    c.add_argument("--format", default="text", help="comma list: text, json, markdown, github")
+    c.add_argument("--format", default="text", help="comma list: text, json, markdown, github, sarif")
     c.add_argument("--out", help="directory for analyser.json and analyser.md")
     c.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
     c.add_argument("--update-baseline", action="store_true")
