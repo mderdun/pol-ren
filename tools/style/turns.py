@@ -32,7 +32,7 @@ def read_musicxml(path: Path) -> dict:
     """measures (in order, as written), the bars that end a section, and for
     each part, per measure: does it end with a rest, does it begin with one."""
     root = ET.parse(path).getroot()
-    names = {p.get("id"): p.findtext("part-name") for p in root.iter("score-part")}
+    names = {p.get("id"): (p.findtext("part-name") or "").strip("[]") for p in root.iter("score-part")}
     measures: list[str] = []
     section_end: set[str] = set()
     parts: dict[str, dict] = {}

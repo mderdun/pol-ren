@@ -62,7 +62,7 @@ words:
   eripuit:         {syl: e-RI-pu-it, class: content, src: "q old"}
   manu:            {syl: MA-nu, class: content, src: "q old"}
   herodis:         {syl: he-RO-dis, class: content, src: "q old"}
-  omni:            {syl: OM-ni, class: content, src: "q old"}
+  omni:            {syl: O-mni, class: content, src: "q old; carry-over division, principles 11.8"}
   exspectatione:   {syl: ex-spe-cta-ti-O-ne, class: content, src: "q old"}
   plebis:          {syl: PLE-bis, class: content, src: "q old"}
   iudaeorum:       {syl: iu-dae-O-rum, class: content, src: "q old"}

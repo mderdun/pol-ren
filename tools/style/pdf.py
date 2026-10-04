@@ -232,6 +232,16 @@ def _thickness(r: Raster, y: int, x0: int, x1: int) -> float:
     return vals[len(vals) // 2] if vals else 0
 
 
+def _ledger_slot(st: Staff, y: int, x0: int, x1: int) -> bool:
+    """A run of up to 4 ss lying where a ledger line lies (a whole number of
+    staff spaces below the bottom line): the ledger of a breve or a long,
+    whose hollow head leaves the run looking thin and bare (Nunc scio, Altus
+    bar 36). An extender that close to the staff fails P209 anyway at its
+    real length, which is longer."""
+    k = (y - st.bottom) / st.space
+    return x1 - x0 <= 4 * st.space and abs(k - round(k)) < 0.12 and round(k) >= 1
+
+
 def extenders_below(r: Raster, st: Staff, limit_y: float) -> list[tuple[float, int, int]]:
     """Thin horizontal runs at least 2.5 ss long between staff st and limit_y:
     (y, x0, x1), y the centre of the run, px."""
@@ -257,7 +267,8 @@ def extenders_below(r: Raster, st: Staff, limit_y: float) -> list[tuple[float, i
                        and any(r.dark(x, yy) for yy in range(y + thick + 1, y + half + 1)))
             if (above < 0.3 * len(mid) and below < 0.3 * len(mid) and near < 0.3 * max(1, len(third))
                     and _thickness(r, y, x0, x1) <= max(3, 0.3 * st.space)
-                    and not _stacked(r, y, x0, x1, st.space)):
+                    and not _stacked(r, y, x0, x1, st.space)
+                    and not _ledger_slot(st, y, x0, x1)):
                 # the centre of the run: rows below that are still dark along it
                 yy = y
                 while yy + 1 < stop and sum(r.dark(x, yy + 1) for x in mid) > 0.7 * len(mid):

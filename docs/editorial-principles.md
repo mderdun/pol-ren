@@ -199,4 +199,4 @@ Square brackets mark editorial matter, an optional accidental included. Round br
 7. Source descriptions: shelfmarks and title pages with line ends (3.9).
 8. Text written *ij*: angle brackets; italics only for text the source lacks (11.9).
 9. Latin orthography (11.1, 11.6): likely errors normalised, idiosyncratic spellings kept.
-10. Ligature brackets kept where the underlay breaks a ligature (10.16); centred whole-bar rests in the performance edition (5.8); bar lines kept off the lyrics (5.3).
+10. Ligature brackets kept where the underlay breaks a ligature (10.16); centred whole-bar rests in the performance edition (5.8); bar lines kept off the words of the underlay (5.3).

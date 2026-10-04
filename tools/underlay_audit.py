@@ -49,7 +49,7 @@ def vowel(syl):
 
 def load(path):
     r = ET.parse(path).getroot()
-    names = {p.get('id'): p.findtext('part-name') for p in r.iter('score-part')}
+    names = {p.get('id'): (p.findtext('part-name') or '').strip('[]') for p in r.iter('score-part')}
     parts = {}
     for p in r.findall('part'):
         div, t, beats, evs = 1, F(0), F(8), []

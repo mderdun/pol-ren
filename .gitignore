@@ -17,3 +17,4 @@ analyser-out/
 
 # style checks
 style-out/
+guides/*/build/*.prsys

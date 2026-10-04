@@ -13,12 +13,12 @@ lilypond-book numbers the systems. On the next build:
     added below the lyrics of every staff of that system but the last;
   OUT.prskip (LaTeX): \\prsysskip{n}{X pt}, added before system n.
 
-Per page, every gap takes the same addition: each staff gap inside a system
-and each gap between two systems. A four-voice system has three staff gaps
-to one system gap, so the staves take three quarters of the spare height
-(Ross: the staff gaps "always", at three to six times the share of the
-system gaps), while the gap between systems grows as much as any gap inside
-them and stays the widest gap on the page (Gould 488). A gap takes at most
+Per page, every staff gap inside a system takes the same addition, and each
+gap between two systems takes SYS_WEIGHT times as much. A four-voice system has three staff gaps
+to one system gap, so the staves take half the spare height, less than Ross's
+three to six times the share of the system gaps; that is the price of keeping
+the gap between systems the widest, as Gould 488 asks: the gap between systems grows three
+times as much as any gap inside it (tools/style checks the result). A gap takes at most
 MAX_GAP staff spaces; what is left stays where LaTeX puts it. The page that
 ends the score takes no more than the page before it, so a short last page
 does not spread its systems further than the rest, and two facing music
@@ -31,6 +31,9 @@ from collections import OrderedDict
 
 MAX_GAP = 3.0          # staff spaces added to one gap, at most
 SAFETY = 3.0           # pt of each page's slack left alone
+SYS_WEIGHT = 3.0       # a gap between systems takes this many shares to a staff gap's one:
+                       # the natural system gap is often no wider than a staff gap with two
+                       # stanzas of lyrics under it, and Gould 488 wants it wider
 
 
 def main():
@@ -65,7 +68,7 @@ def main():
         if gaps == 0 or s <= 0:
             room[page] = 0.0
             continue
-        room[page] = min(s / (gaps + len(ns) - 1) / ss, MAX_GAP)
+        room[page] = min(s / (gaps + SYS_WEIGHT * (len(ns) - 1)) / ss, MAX_GAP)
     for i, page in enumerate(pages):                  # the last page: no looser than the one before
         if max(onpage[page]) == nsys and i > 0:
             room[page] = min(room[page], room[pages[i - 1]])
@@ -84,7 +87,7 @@ def main():
         for i, n in enumerate(onpage[page]):
             extra[keys[n - 1]] = round(e, 3)
             if i > 0:
-                skip[n] = round(e * ss, 2)
+                skip[n] = round(SYS_WEIGHT * e * ss, 2)
     items = [(k, v) for k, v in extra.items() if v > 0.05]
     with open(out, 'w') as f:
         f.write('(' + ' '.join(f'(({k[0]} . {k[1]}) . {v})' for k, v in items) + ')\n')
