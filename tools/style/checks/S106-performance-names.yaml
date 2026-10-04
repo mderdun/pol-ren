@@ -1,0 +1,18 @@
+id: S106
+name: performance-names
+kind: source
+level: warn
+heuristic: true
+rule: "principles 13.5"
+authority: "Principles 13.5 (MD, 3 Oct 2026); house style 11: reasons in general terms, 'never by naming an ensemble, a recording or another edition'"
+message: "the performance edition points to {what}; give the reason in general terms (\"as an organ would have done\") and leave the citation to the critical edition"
+applies: [performance]
+examples:
+  flag:
+    - {path: editions/x/x-performance.lytex, text: "Most choirs sing it a fourth down, as the Tallis Scholars do.", why: "an ensemble"}
+    - {path: editions/x/x-performance.lytex, text: "The recording takes it slowly.", why: "a recording"}
+    - {path: editions/x/x-performance.lytex, text: "The sharp is as in \\sig{M}.", why: "a siglum points to an edition"}
+    - {path: editions/x/x-performance.lytex, text: "Sing it as Perz does, with the b-flat.", why: "'as X does'"}
+  pass:
+    - {path: editions/x/x-performance.lytex, text: "Tenor and Bassus may drop to the lower octave, as an organ accompanying them would probably have done.", why: "a general reason"}
+    - {path: editions/x/x-critical.lytex, text: "Schola Gregoriana Pragensis, Maiestas Dei (Supraphon, 2005).", why: "the critical edition may cite recordings"}

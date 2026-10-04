@@ -1,0 +1,389 @@
+{
+ "version": 1,
+ "findings": [
+  {
+   "fingerprint": "P204|editions/vox-in-rama/pdf/vox-in-rama-critical.pdf|DejaVuSans|1",
+   "status": "pending",
+   "reason": "pending: the corner brackets of \\colStart/\\colEnd (⌜ ⌝) are not in Junicode, so LilyPond falls back to DejaVuSans; the fix is in house/lilypond (a glyph from the pressed fonts, as principles_guide.py does with \\accfont). For Miki or the house-file agent.",
+   "check": "P204",
+   "where": "editions/vox-in-rama/pdf/vox-in-rama-critical.pdf p.9",
+   "message": "font DejaVuSans (p.9) is not one of the house's pressed fonts; probably a fallback for a glyph the house fonts lack"
+  },
+  {
+   "fingerprint": "P204|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|DejaVuSans|1",
+   "status": "pending",
+   "reason": "pending: the corner brackets of \\colStart/\\colEnd (⌜ ⌝) are not in Junicode, so LilyPond falls back to DejaVuSans; the fix is in house/lilypond (a glyph from the pressed fonts, as principles_guide.py does with \\accfont). For Miki or the house-file agent.",
+   "check": "P204",
+   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.2",
+   "message": "font DejaVuSans (p.2) is not one of the house's pressed fonts; probably a fallback for a glyph the house fonts lack"
+  },
+  {
+   "fingerprint": "P205|editions/bogurodzica/pdf/bogurodzica-critical.pdf|JunicodePressed-Medium|1",
+   "status": "pending",
+   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
+   "check": "P205",
+   "where": "editions/bogurodzica/pdf/bogurodzica-critical.pdf p.6",
+   "message": "bold font JunicodePressed-Medium on p.6"
+  },
+  {
+   "fingerprint": "P205|editions/bogurodzica/pdf/bogurodzica-performance.pdf|JunicodePressed-Medium|1",
+   "status": "pending",
+   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
+   "check": "P205",
+   "where": "editions/bogurodzica/pdf/bogurodzica-performance.pdf p.1",
+   "message": "bold font JunicodePressed-Medium on p.1"
+  },
+  {
+   "fingerprint": "P205|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-critical.pdf|JunicodePressed-Bold|1",
+   "status": "pending",
+   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
+   "check": "P205",
+   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-critical.pdf p.7",
+   "message": "bold font JunicodePressed-Bold on p.7"
+  },
+  {
+   "fingerprint": "P205|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf|JunicodePressed-Bold|1",
+   "status": "pending",
+   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
+   "check": "P205",
+   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf p.1",
+   "message": "bold font JunicodePressed-Bold on p.1"
+  },
+  {
+   "fingerprint": "P206|editions/nunc-scio-vere/pdf/nunc-scio-vere-critical.pdf|short page ( of the text block) before p.11|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P206",
+   "where": "editions/nunc-scio-vere/pdf/nunc-scio-vere-critical.pdf p.10",
+   "message": "p.10: short page (5% of the text block) before p.11"
+  },
+  {
+   "fingerprint": "P210|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf|turn-after-10|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf p.1",
+   "message": "turn p.1→2 falls after bar 10, where Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "P210|editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf|turn-after-12|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf p.1",
+   "message": "turn p.1→2 falls after bar 12, where Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "P210|editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf|turn-after-50|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf p.3",
+   "message": "turn p.3→4 falls after bar 50, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "P210|editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf|turn-after-77|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/nunc-scio-vere/pdf/nunc-scio-vere-performance.pdf p.5",
+   "message": "turn p.5→6 falls after bar 77, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-10|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.1",
+   "message": "turn p.1→2 falls after bar 10, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-39|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "P210",
+   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.3",
+   "message": "turn p.3→4 falls after bar 39, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+  },
+  {
+   "fingerprint": "S104|editions/bogurodzica/bogurodzica-critical.tex|musicnote|1",
+   "status": "pending",
+   "reason": "pending: 'Bar lines are editorial. Neume groups follow K.' under the chant score; house style 9 says no notes on the music page. Miki to decide: move it to the method, or accept for chant.",
+   "check": "S104",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:144",
+   "message": "\\musicnote after the score on a music page; a sign the score marks as editorial needs no gloss there (rehearsal or critical notes instead)"
+  },
+  {
+   "fingerprint": "S105|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|stanzas and are underlaid since most|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S105",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:178",
+   "message": "this sentence of the method seems to restate a series rule ('most performances sing one or' is the wording of principles 10.14); cite the rule by number and keep to what is particular to the piece"
+  },
+  {
+   "fingerprint": "S105|editions/plaude-euge/plaude-euge-critical.lytex|pitch and clefs the pitch is|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S105",
+   "where": "editions/plaude-euge/plaude-euge-critical.lytex:243",
+   "message": "this sentence of the method seems to restate a series rule ('treble octave treble and bass' is the wording of principles 6.2); cite the rule by number and keep to what is particular to the piece"
+  },
+  {
+   "fingerprint": "S105|editions/vox-in-rama/vox-in-rama-critical.lytex|the cantus and altus are printed|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S105",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:195",
+   "message": "this sentence of the method seems to restate a series rule ('in the octave treble clef' is the wording of principles 2.2); cite the rule by number and keep to what is particular to the piece"
+  },
+  {
+   "fingerprint": "S105|editions/vox-in-rama/vox-in-rama-critical.lytex|the incipit before the tenor gives|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S105",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:182",
+   "message": "this sentence of the method seems to restate a series rule ('clef sign and first note' is the wording of principles 5.5); cite the rule by number and keep to what is particular to the piece"
+  },
+  {
+   "fingerprint": "S105|editions/vox-in-rama/vox-in-rama-critical.lytex|this edition prints the written pitch|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S105",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:219",
+   "message": "this sentence of the method seems to restate a series rule ('written pitch the performance edition' is the wording of principles 2.2); cite the rule by number and keep to what is particular to the piece"
+  },
+  {
+   "fingerprint": "S111|editions/vox-in-rama/vox-in-rama-critical.lytex|17–18 | A|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S111",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:289",
+   "message": "the emendation note at 17–18 | A does not say how the error arose (a misread clef, a slip of a third, an octave lost in transcription ...)"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:has|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:219",
+   "message": "'A has': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:has|2",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:223",
+   "message": "'A has': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:has|3",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:246",
+   "message": "'A has': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:prints|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:156",
+   "message": "'A prints': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:prints|2",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:162",
+   "message": "'A prints': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|A:prints|3",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:175",
+   "message": "'A prints': A is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:gives|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:114",
+   "message": "'T gives': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:gives|2",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:251",
+   "message": "'T gives': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:has|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:101",
+   "message": "'T has': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:has|2",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:105",
+   "message": "'T has': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:has|3",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:312",
+   "message": "'T has': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S112|editions/nunc-scio-vere/nunc-scio-vere-critical.lytex|T:is|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S112",
+   "where": "editions/nunc-scio-vere/nunc-scio-vere-critical.lytex:233",
+   "message": "'T is': T is lost, so past tense"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Gn|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:76",
+   "message": "source Gn has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|H|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:99",
+   "message": "source H has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|K3|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:94",
+   "message": "source K3 has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|K70|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:69",
+   "message": "source K70 has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|M|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:98",
+   "message": "source M has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|S|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:100",
+   "message": "source S has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Wa|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:91",
+   "message": "source Wa has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Ł|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/bogurodzica/bogurodzica-critical.tex:95",
+   "message": "source Ł has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|S|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:125",
+   "message": "source S has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-Kc|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:114",
+   "message": "source PL-Kc has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-Kj|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:117",
+   "message": "source PL-Kj has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-WRu|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:112",
+   "message": "source PL-WRu has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|T|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S113",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:128",
+   "message": "source T has no shelfmark (library and call number of the source or of the copy consulted)"
+  },
+  {
+   "fingerprint": "S122|editions/plaude-euge/plaude-euge-critical.lytex|hymnus est canticum laudantium|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S122",
+   "where": "editions/plaude-euge/plaude-euge-critical.lytex:129",
+   "message": "the quotation ‘hymnus est canticum laudantium’ looks Latin and has its translation after a comma, not in parentheses: ‘…’ (‘…’)"
+  },
+  {
+   "fingerprint": "S122|editions/plaude-euge/plaude-euge-critical.lytex|theotocos, id est dei mater|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S122",
+   "where": "editions/plaude-euge/plaude-euge-critical.lytex:104",
+   "message": "the quotation ‘theotocos, id est dei mater’ looks Latin and has its translation after a comma, not in parentheses: ‘…’ (‘…’)"
+  },
+  {
+   "fingerprint": "S122|editions/vox-in-rama/vox-in-rama-critical.lytex|Vox in Rama audita est, ploratus \\& ulul|1",
+   "status": "pending",
+   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "check": "S122",
+   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:71",
+   "message": "the quotation ‘Vox in Rama audita est, ploratus \\& ululatus: Rachel plorans…’ looks Latin and has no translation after it: ‘…’ (‘…’)"
+  }
+ ]
+}

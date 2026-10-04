@@ -1,0 +1,13 @@
+id: P209
+name: extender-clearance
+kind: pdf
+level: error
+rule: "decision of 4 Oct 2026 (engraving); Grier 167"
+authority: "Grier, The Critical Editing of Music, 167: set the text low enough that the extender is visibly further from the bottom staff line than the staff lines are from each other, so that it cannot be read as another line (decided 4 Oct 2026: a check)"
+message: "p.{page}, staff {staff}: a lyric extender {dist:.2f} spaces below the staff; it must be more than one staff space below"
+applies: [critical, performance]
+examples:
+  flag:
+    - {fixture: extender-close, why: "an extender 0.6 spaces under the staff"}
+  pass:
+    - {fixture: gould-pass, why: "extenders 3 spaces under the staff, ledger lines ignored"}

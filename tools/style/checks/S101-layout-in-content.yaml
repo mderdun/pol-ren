@@ -1,0 +1,17 @@
+id: S101
+name: layout-in-content
+kind: source
+level: error
+rule: "house style 1"
+authority: "House style 1: every design decision lives in house/; edition files hold content only (tools/lint.sh, ported)"
+message: "layout command {cmd} in a content file; move it to house/ (engraving.ily may set breaks and spacing, not type, colour or staff size)"
+applies: [critical, performance, text, music, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\vspace{2mm} Text", why: "spacing belongs to the class"}
+    - {path: editions/x/music/voices.ily, text: "\\override NoteHead.color = #red", why: "an override in the music"}
+    - {path: editions/x/music/engraving.ily, text: "#(set-global-staff-size 18)", why: "staff size is house design"}
+  pass:
+    - {path: editions/x/music/engraving.ily, text: "\\override Score.SpacingSpanner.spacing-increment = #2", why: "engraving.ily may tune spacing"}
+    - {path: editions/x/x-critical.lytex, text: "% \\vspace{2mm} in a comment", why: "comments are not checked"}
+    - {path: editions/x/music/score.ly, text: "\\layout { $(pr-layout) }", why: "the house layout hook"}

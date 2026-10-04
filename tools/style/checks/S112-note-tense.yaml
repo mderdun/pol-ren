@@ -1,0 +1,28 @@
+id: S112
+name: note-tense
+kind: source
+level: warn
+heuristic: true
+rule: "decision 11 (4 Oct 2026)"
+authority: "Decision 11 of 4 Oct 2026: tense in critical notes, present for extant sources, past for lost ones (Caldwell 9). Lost sources are read from each edition's Sources (tools/style/editions.py, editions.yaml)"
+message: "'{phrase}': {siglum} is {state}, so {tense} tense"
+applies: [critical]
+examples:
+  flag:
+    - path: editions/x/x-critical.lytex
+      meta: {sigla: {A: {lost: true}, F: {lost: false}}}
+      text: "\\cn{30}{B}{\\sig{A} has a breve here.}"
+      why: "A, the 1550s print, is lost (its Sources entry: 'No copy known')"
+    - path: editions/x/x-critical.lytex
+      meta: {sigla: {T: {lost: false}}}
+      text: "\\cn{8}{T}{\\sig{T} had no sharp.}"
+      why: "T, the Tenor partbook, survives"
+  pass:
+    - path: editions/x/x-critical.lytex
+      meta: {sigla: {A: {lost: true}, F: {lost: false}}}
+      text: "\\cn{30}{B}{\\sig{A} had a breve here, as \\sig{F} shows.}"
+      why: "past for the lost print, present for the facsimile"
+    - path: editions/x/x-critical.lytex
+      meta: {sigla: {T: {lost: false}, N: {lost: false}, M: {lost: false}}}
+      text: "\\cn{8}{T}{Fusae g\\sh′ f\\sh′: \\sig{T} without sharps; \\sig{N} and \\sig{M} sharpen all three.}"
+      why: "present for extant witnesses"

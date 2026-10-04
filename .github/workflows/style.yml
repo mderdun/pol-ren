@@ -1,0 +1,54 @@
+# Style and editorial checks (docs/style-checks.md). Checks the sources and
+# the committed PDFs against the house style and the editorial principles;
+# no TeX or LilyPond is needed, since the PDFs are committed. Fails only on a
+# new error (one not accepted in tools/style/baseline.json); warnings are
+# annotated, and everything goes to the job summary.
+name: style
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: tools/style/requirements.txt
+
+      - name: Install the checks' dependencies
+        run: pip install -r tools/style/requirements.txt
+
+      - name: Test the checks
+        run: python -m pytest tools/style/tests -q
+
+      - name: Check sources and PDFs
+        run: |
+          python -m tools.style check \
+            --format text,markdown,github,json --out style-out \
+            --fail-on error
+
+      - name: Job summary
+        if: always()
+        run: |
+          if [ -f style-out/style.md ]; then
+            cat style-out/style.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: style-report
+          path: style-out/
+          if-no-files-found: ignore

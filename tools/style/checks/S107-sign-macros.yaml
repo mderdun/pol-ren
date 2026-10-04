@@ -1,0 +1,20 @@
+id: S107
+name: sign-macros
+kind: source
+level: error
+rule: "principles 8; house style 9; decision 8 (4 Oct 2026)"
+authority: "Principles 8 (the table of signs) and house style 9 define each editorial sign once, in house/lilypond/pol-ren.ily; decision 8 (4 Oct 2026): consistency of signs across the series is what matters, and the checks enforce it"
+message: "raw {raw} in the music; use the house sign {use} so that the sign looks and means the same in every edition"
+applies: [music]
+examples:
+  flag:
+    - {path: editions/x/music/voices.ily, text: "\\tieDashed a'1~ a'2", why: "a dashed tie means a divided note: \\divTie"}
+    - {path: editions/x/music/voices.ily, text: "\\once \\override LyricText.font-shape = #'italic", why: "italic underlay: \\rep or \\edText"}
+    - {path: editions/x/music/voices.ily, text: "\\once \\set suggestAccidentals = ##t fis'2", why: "editorial accidental: \\fi"}
+    - {path: editions/x/music/voices.ily, text: "a'2^\\markup \"⌜\"", why: "coloration: \\colStart"}
+    - {path: editions/x/music/voices.ily, text: "\\parenthesize d'1", why: "round brackets alone"}
+    - {path: editions/x/music/voices.ily, text: "\\tweak font-size #-3 e'2", why: "a small note: \\ed"}
+  pass:
+    - {path: editions/x/music/voices.ily, text: "\\divTie a'1~ a'2 \\fi fis'2 \\ed e'2 a'2\\colStart b'2\\colEnd", why: "house signs"}
+    - {path: editions/x/music/engraving.ily, text: "suggFinal = #(define-music-function (note) (ly:music?)\n  #{ \\voiceTwo \\sugg\n     \\parenthesize #note #})", why: "brackets built on \\sugg"}
+    - {path: house/lilypond/pol-ren.ily, text: "rep = \\once \\override LyricText.font-shape = #'italic", why: "the house defines the signs"}

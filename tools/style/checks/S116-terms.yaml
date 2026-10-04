@@ -1,0 +1,16 @@
+id: S116
+name: terms
+kind: source
+level: warn
+rule: "house style 11"
+authority: "House style 11, Terms: 'use these, not their synonyms'"
+message: "'{found}': the house term is {use}"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The copy text is the print.", why: "copy text"}
+    - {path: editions/x/x-performance.lytex, text: "Sing the lyrics at the original pitch; each half note is a beat.", why: "lyrics, original pitch, half note"}
+    - {path: editions/x/x-critical.lytex, text: "\\section*{Commentary}", why: "commentary as a heading"}
+  pass:
+    - {path: editions/x/x-performance.lytex, text: "The beat is the semibreve (whole note), at written pitch; the underlay is editorial.", why: "a gloss after the house term"}
+    - {path: editions/x/x-critical.lytex, text: "those written with ornaments (\\la{cum resolutione}) and ‘the original’", why: "Latin and quotations are not English prose"}

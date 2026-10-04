@@ -74,7 +74,16 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
       w=$(pdfinfo "$sys" | awk '/Page size/{print int($3)}')
       if [ "$w" -gt 490 ]; then echo "  system $(basename "$sys"): $w pt wide, over the 482 pt text block; reset this score's breaks"; fi
     done | sort -u
+    style_check --pdfs "$src/pdf/$name.pdf"
   done
+  style_check --sources "$src"
+}
+# Style and editorial checks (docs/style-checks.md) as warnings: a local build
+# never fails on them; CI (.github/workflows/style.yml) gates on new errors.
+style_check() {
+  if python3 -c 'import pymupdf, yaml' 2>/dev/null; then
+    (cd "$ROOT" && python3 -m tools.style check "$@" --fail-on never) | sed -n '/^== /,$p' | grep -v '^-- 0 error, 0 warn' || true
+  fi
 }
 if [ $# -eq 0 ]; then
   for d in "$ROOT"/editions/*/ "$ROOT"/guides/*/; do [ -d "$d" ] && build_dir "${d%/}"; done

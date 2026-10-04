@@ -1,0 +1,16 @@
+id: S113
+name: shelfmark
+kind: source
+level: warn
+heuristic: true
+rule: "decision 7 (4 Oct 2026)"
+authority: "Decision 7 of 4 Oct 2026: a shelfmark for every source and consulted copy (Grier 55-56, 212; Caldwell 6-7). Collated modern editions and recordings are cited, not shelfmarked; a lost source with no copy has none"
+message: "source {siglum} has no shelfmark (library and call number of the source or of the copy consulted)"
+applies: [critical]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\begin{sigla}\n\\siglum{K70} Kraków, Biblioteka Jagiellońska, manuscript of 1570.\n\\end{sigla}", why: "a library, no call number"}
+    - {path: editions/x/x-critical.lytex, text: "\\begin{sigla}\n\\item[PL-WRu] Wrocław, Biblioteka Uniwersytecka: Cantus primi chori, Tenor primi chori.\n\\end{sigla}", why: "partbooks without their shelfmark"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\begin{sigla}\n\\siglum{MS} Leipzig, Universitätsbibliothek, Ms 1236, f. 139v.\n\\siglum{F} Facsimile: Warsaw, Biblioteka Narodowa, Podr.SD Mag.F I.6.\n\\siglum{A} A print. No copy known.\n\\end{sigla}", why: "shelfmarks; a lost print"}
+    - {path: editions/x/x-critical.lytex, text: "Editions collated:\n\\begin{sigla}\n\\siglum{PWM} Już się zmierzcha (Kraków: PWM, 1955).\n\\end{sigla}", why: "a collated edition"}

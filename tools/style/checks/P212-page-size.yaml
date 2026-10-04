@@ -1,0 +1,13 @@
+id: P212
+name: page-size
+kind: pdf
+level: error
+rule: "house style 2"
+authority: "House style 2: 'One page for every single edition and guide, critical or performance: A4'"
+message: "p.{page} is {w:.0f} × {h:.0f} pt, not A4 (595 × 842 pt)"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: letter-page, why: "US Letter"}
+  pass:
+    - {fixture: house-colours, why: "A4"}

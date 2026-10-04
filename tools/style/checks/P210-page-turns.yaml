@@ -1,0 +1,14 @@
+id: P210
+name: page-turns
+kind: pdf
+level: warn
+heuristic: true
+rule: "decision of 4 Oct 2026 (engraving); Grier 176"
+authority: "Grier, The Critical Editing of Music, 176: in a performance score, turn the page where every voice rests or a section ends (decided 4 Oct 2026: a warning for multi-page performance scores). A turn is the change from an odd page to the next; systems are mapped to bars through engraving.ily's prBreaksPerformance and the edition's MusicXML"
+message: "turn p.{page}→{next} falls after bar {bar}, where {voices} {verb} on; a turn wants a rest or a section end in every voice"
+applies: [performance]
+examples:
+  flag:
+    - {fixture: turn-mid-phrase, why: "the turn after bar 10, where the Cantus and Altus sing on"}
+  pass:
+    - {fixture: turn-at-rest, why: "every voice rests at the end of bar 10"}
