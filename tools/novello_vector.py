@@ -127,7 +127,7 @@ def treat(geom, k, press, fib, wander, rng):
     # ink pools in tight inner corners: a small closing rounds them
     r = 0.025 * MM * k
     g = g.buffer(r, resolution=3).buffer(-r, resolution=3)
-    g = segmentize(g, 0.12 * MM)
+    g = segmentize(g, 0.25 * MM)
     def move(coords):
         pts = np.asarray(coords)
         d1 = fib(pts) * 0.016 * MM * k
@@ -171,12 +171,16 @@ def path_ops(geom, h):
     polys = [geom] if geom.geom_type == 'Polygon' else [p for p in getattr(geom, 'geoms', []) if p.geom_type == 'Polygon']
     out = []
     for p in polys:
-        p = orient(p, 1.0)            # holes wind against their outline: nonzero fill keeps them
+        p = orient(p.simplify(0.03, preserve_topology=True), 1.0)   # holes wind against their outline: nonzero fill keeps them
         for ring in [p.exterior] + list(p.interiors):
-            c = np.asarray(ring.coords)
+            # integers in hundredths of a point (the stream sets a 0.01 scale): the
+            # same precision as before in fewer bytes. Points within 0.01 pt of the
+            # line through their neighbours (0.03 pt) are dropped first (Douglas-Peucker),
+            # far below what any printer can show.
+            c = np.rint(np.asarray(ring.coords) * 100).astype(np.int64)
+            c[:, 1] = int(round(h * 100)) - c[:, 1]
             if len(c) < 3: continue
-            c[:, 1] = h - c[:, 1]
-            out.append('%.2f %.2f m ' % tuple(c[0]) + ' '.join('%.2f %.2f l' % tuple(q) for q in c[1:]) + ' h')
+            out.append('%d %d m ' % tuple(c[0]) + ' '.join('%d %d l' % tuple(q) for q in c[1:]) + ' h')
     return out
 
 def write_page(doc, page, layers):
@@ -230,10 +234,26 @@ def main():
         with Pool(min(a.jobs, len(jobs))) as pool:
             results = pool.map(do_page, jobs)
         dst = pymupdf.open()
-        for w, h, layers in results:
+        orig = pymupdf.open(a.inp)
+        for i, (w, h, layers) in zip(pages, results):
             dp = dst.new_page(width=w, height=h)
-            write_page(dst, dp, [((0, 0, 0), layers['black']), ((0x9A / 255, 0x1E / 255, 0x1E / 255), layers['red'])])
-        dst.save(a.out, garbage=4, deflate=True)
+            ink = 'q 0.01 0 0 0.01 0 0 cm\n' + ''.join('%.4f %.4f %.4f rg\n' % rgb + '\n'.join(ops) + '\nf\n'
+                          for rgb, ops in [((0, 0, 0), layers['black']),
+                                           ((0x9A / 255, 0x1E / 255, 0x1E / 255), layers['red'])] if ops) + 'Q\n'
+            # The original page rides along, clipped to nothing: it draws no ink but
+            # keeps the text searchable and selectable, as in the plain PDF.
+            dp.show_pdf_page(dp.rect, orig, i)
+            xref = dp.get_contents()[0]
+            hidden = dst.xref_stream(xref)
+            dst.update_stream(xref, b'q 0 0 0 0 re W n\n' + hidden + b'\nQ\n' + ink.encode())
+            for link in orig[i].get_links():
+                link.pop('xref', None)
+                try: dp.insert_link(link)
+                except Exception: pass
+        if len(pages) == len(orig):          # a partial run (--pages) has no outline
+            dst.set_toc(orig.get_toc(simple=False))
+        dst.set_metadata(orig.metadata)
+        dst.save(a.out, garbage=4, deflate=True, use_objstms=1, compression_effort=100)
 
 if __name__ == '__main__':
     main()

@@ -18,6 +18,8 @@ reported as LOOK: places to sing through and judge, not errors.
   LOOK after-run       a new syllable on the white note straight after a run of
                        short notes, where it could come before the run
                        (Lanfranco VI; Vicentino: the second white note).
+  LOOK octave-up        a new syllable on the upper note of a rising octave;
+                       singers take the leap inside one syllable (MD).
   LOOK run-light       a run of 4+ notes on a light word.
   LOOK run-unstressed  a run of 6+ notes on an unstressed, non-final
                        syllable of a word with a known stress.
@@ -117,6 +119,10 @@ def audit(path):
                         if run >= 2 and before and not before['rest'] and before['d'] >= 2 and n not in before['ly'] \
                                 and cur and cur[2][0] is not before:
                             out.append(('LOOK', voice, n, e['bar'], f"after-run: '{txt}' straight after {run} short notes; the white note before them is free"))
+                    # a new syllable on the top of a rising octave: take the leap inside one syllable
+                    if prev is not None and not prev['rest'] and prev['p'] and e['p'] \
+                            and prev['p'][0] == e['p'][0] and int(e['p'][1:]) - int(prev['p'][1:]) == 1:
+                        out.append(('LOOK', voice, n, e['bar'], f"octave-up: '{txt}' starts on the top of a rising octave"))
                     cur = [txt, syl, [e]]; groups.append(cur)
                 else:
                     if started and prev is not None and prev['rest']:

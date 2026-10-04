@@ -57,8 +57,11 @@
 \newcommand\red[1]{\textcolor{rubric}{#1}}
 
 %% ------------------------------------------------------------ type
-\def\pr@junipath{/usr/share/fonts/opentype/junicode/}
-\IfFileExists{\pr@junipath Junicode-Regular.otf}{}{\def\pr@junipath{}}
+%% The pinned release fetched by tools/get-fonts.sh, else the system copy.
+\def\pr@junipath{../../../house/fonts/junicode/}
+\IfFileExists{\pr@junipath Junicode-Regular.otf}{}{%
+  \def\pr@junipath{/usr/share/fonts/opentype/junicode/}%
+  \IfFileExists{\pr@junipath Junicode-Regular.otf}{}{\def\pr@junipath{}}}
 \setmainfont{Junicode}[
   Path=\pr@junipath, Extension=.otf,
   UprightFont=*-Regular, ItalicFont=*-Italic,
