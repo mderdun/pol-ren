@@ -6,6 +6,7 @@
     python -m tools.analyser lexicon
     python -m tools.analyser golden [--update]
     python -m tools.analyser legacy <musicxml>      # the old audit's output
+    python -m tools.analyser review <musicxml> --html OUT.html
 
 See docs/analyser.md. The analyser advises; it never changes an edition.
 """
@@ -20,7 +21,7 @@ from . import baseline as B
 from . import report
 from .ingest import ROOT, editions_config, slug_of
 
-COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy")
+COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy", "review")
 DEFAULT_BASELINE = Path(__file__).resolve().parent / "baseline.json"
 GOLDEN = Path(__file__).resolve().parent / "tests" / "golden"
 
@@ -172,6 +173,17 @@ def cmd_legacy(a) -> int:
     return 0
 
 
+def cmd_review(a) -> int:
+    from .review import build
+    paths = _paths(a.paths)
+    if len(paths) != 1:
+        print("review: one MusicXML file at a time", file=sys.stderr)
+        return 2
+    out = build(paths[0], Path(a.html), baseline=a.baseline)
+    print(f"wrote {out} ({out.stat().st_size // 1024} KB)")
+    return 0
+
+
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] not in COMMANDS + ("-h", "--help"):
@@ -205,6 +217,11 @@ def main(argv=None) -> int:
     lg = sub.add_parser("legacy", help="the old audit's output, from the ported rules")
     lg.add_argument("paths", nargs="+")
     lg.set_defaults(fn=cmd_legacy)
+    rv = sub.add_parser("review", help="one self-contained HTML page for reviewing one piece")
+    rv.add_argument("paths", nargs=1)
+    rv.add_argument("--html", required=True, help="the page to write")
+    rv.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
+    rv.set_defaults(fn=cmd_review)
     a = ap.parse_args(argv)
     return a.fn(a)
 

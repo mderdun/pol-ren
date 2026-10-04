@@ -26,6 +26,7 @@ class Alternative:
     introduces: list
     basis: str = "change"       # change | total (the current underlay is not legal)
     edit: str = ""              # "" (syllables move), drop or repeat (10.13): the text changes
+    placement: list = field(default_factory=list)   # [event, syllable] for the span under this alternative
 
 
 @dataclass
@@ -51,6 +52,10 @@ class Finding:
     src: str = ""
     fingerprint: str = ""
     baseline: str | None = None     # the reason, if the baseline accepts it
+    ev: int = -1                    # event the finding points at
+    notes: list = field(default_factory=list)       # events of the syllable's notes
+    span: list = field(default_factory=list)        # [first, end) events of its span (rest to rest)
+    placement: list = field(default_factory=list)   # [event, syllable] for the span as it stands
 
     def to_json(self) -> dict:
         d = asdict(self)
@@ -220,6 +225,22 @@ def _edit_options(a, m, line, sp, h, cache: dict, eps=1e-9) -> list:
     return out
 
 
+def _syllable_notes(line, syl: int, ev: int) -> list[int]:
+    """The notes the finding concerns: its syllable's notes, or the event."""
+    if syl >= len(line.syls):
+        return [ev]
+    a = line.syls[syl].ev
+    b = line.syls[syl + 1].ev if syl + 1 < len(line.syls) else len(line.events)
+    out = []
+    for j in range(a, b):
+        if line.events[j].rest or (j > a and line.events[j].after_break):
+            break
+        out.append(j)
+    if ev not in out:
+        out.append(ev)
+    return out
+
+
 def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
     if analysis is None:
         score = parse(path)
@@ -248,6 +269,10 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
             if not h.hard and p.cost <= 0 and r.level != "info":
                 continue
             regret, alts, breakdown = None, [], []
+            span, placement = [], []
+            if sp is not None and sp.syls:
+                span = [sp.first, sp.end]
+                placement = [[line.syls[i].ev, line.syls[i].text] for i in sp.syls]
             if sp is not None and sp.syls and (sp.end - sp.first) <= settings()["max_span_notes"]:
                 window = m.window_for(sp, h.syl)
                 wsyls = {sp.syls[j] for j in window} | ({sp.syls[window[0] - 1]} if window[0] > 0 else set())
@@ -284,13 +309,16 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
                     if ed is not None:
                         intro.append(f"edit {ed.cost:.2f}")
                         moves = _edit_moves(line, ed, sp2, o.cand)
+                        place = [[b, ed.line.syls[i].text + ("*" if ed.to_orig.get(i) is None else "")]
+                                 for i, b in zip(sp2.syls, o.cand.starts)]
                     else:
                         moves = _moves(line, sp, cur, o.cand)
+                        place = [[b, line.syls[i].text] for i, b in zip(sp.syls, o.cand.starts)]
                     alts.append(Alternative(moves=moves, cost=round(o.total - cur.total, 3)
                                             if not cur_hard else round(o.total, 3),
                                             fixes=fixes, introduces=intro,
                                             basis="total" if cur_hard else "change",
-                                            edit=ed.kind if ed is not None else ""))
+                                            edit=ed.kind if ed is not None else "", placement=place))
                     if len(alts) >= settings()["alternatives"]:
                         break
             syl = line.syls[h.syl] if h.syl < len(line.syls) else None
@@ -307,6 +335,7 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
                 voice=line.voice, verse=line.verse, bar=ev.bar, where=ev.where, word=word, k=k,
                 text=syl.text if syl else "", message=r.format(h.values), principle=r.principle,
                 cost=p.cost, regret=regret, gates=[f"{n}×{f:g}" for n, f in p.gates],
-                breakdown=breakdown, alternatives=[asdict(x) for x in alts], src=src, fingerprint=fp))
+                breakdown=breakdown, alternatives=[asdict(x) for x in alts], src=src, fingerprint=fp,
+                ev=h.ev, notes=_syllable_notes(line, h.syl, h.ev), span=span, placement=placement))
     findings.sort(key=lambda f: (LEVEL_ORDER[f.level], -(f.regret or 0), f.voice, f.verse, f.bar, f.rule))
     return Result(slug=score.slug, path=str(path), analysis=a, findings=findings)

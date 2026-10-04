@@ -41,6 +41,7 @@ class Event:
     divided: bool = False  # continuation of a dashed tie (a note divided for text, 10.13)
     after_break: bool = False   # first event after a section break or a second ending
     src: tuple | None = None    # (file, line, column) in the LilyPond source
+    srcs: list = field(default_factory=list)   # every source note merged into this one (ties)
     m21: object = None          # the music21 Note built by layers.m21
 
     def __repr__(self):

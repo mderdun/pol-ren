@@ -1,7 +1,8 @@
 # Underlay analyser (docs/analyser.md). Tests the analyser, re-exports the
 # MusicXML with LilyPond 2.24, and checks every edition's underlay against the
 # baseline. Fails only on a new firm-rule break (principles 10.1-10.5); every
-# other finding goes to the job summary, ranked by regret.
+# other finding goes to the job summary, ranked by regret. The kept report has
+# the SARIF file and the review pages of Vox in Rama and Nunc scio vere.
 name: underlay
 
 on:
@@ -57,8 +58,15 @@ jobs:
         run: |
           python -m tools.analyser check editions/*/pdf/*.musicxml \
             --baseline tools/analyser/baseline.json \
-            --format markdown,github --out analyser-out \
+            --format markdown,github,sarif --out analyser-out \
             --fail-on new-break
+
+      - name: Review pages
+        if: always()
+        run: |
+          for x in editions/vox-in-rama/pdf/vox-in-rama.musicxml editions/nunc-scio-vere/pdf/nunc-scio-vere.musicxml; do
+            python -m tools.analyser review "$x" --html "analyser-out/review-$(basename "$x" .musicxml).html" || true
+          done
 
       - name: Job summary
         if: always()
