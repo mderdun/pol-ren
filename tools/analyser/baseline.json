@@ -2,38 +2,6 @@
  "version": 1,
  "findings": [
   {
-   "fingerprint": "juz-sie-zmierzka|Altus|v1|U208|czartów#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v1 bar 18.3",
-   "message": "'tów' is stopped by 'w' and cannot be sung through, but carries 3 notes (4 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Altus|v1|U208|już#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v1 bar 1.1",
-   "message": "'Już' is stopped by 'ż' and cannot be sung through, but carries 6 notes (9 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Altus|v1|U208|zmierzka#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v1 bar 2.2",
-   "message": "'zmierz' is stopped by 'z' and cannot be sung through, but carries 2 notes (6 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Altus|v1|U208|złych#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v1 bar 16.1",
-   "message": "'złych' is stopped by 'h' and cannot be sung through, but carries 5 notes (12 semiminims)"
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Altus|v1|U209|czartów#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -42,20 +10,20 @@
    "message": "'tów' to 'nas' passes 2 consonants on a fusa"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Altus|v2|U208|wieczny#0|1",
+   "fingerprint": "juz-sie-zmierzka|Altus|v1|U209|od#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v2 bar 17.3",
-   "message": "'wiecz' is stopped by 'z' and cannot be sung through, but carries 6 notes (8 semiminims)"
+   "rule": "U209",
+   "where": "Altus v1 bar 16.1",
+   "message": "'od' to 'złych' passes 3 consonants on a minim"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Altus|v2|U208|wysłyszeć#2|1",
+   "fingerprint": "juz-sie-zmierzka|Altus|v1|U210|używają#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Altus v2 bar 26.4",
-   "message": "'szeć' is stopped by 'ć' and cannot be sung through, but carries 3 notes (8 semiminims)"
+   "rule": "U210",
+   "where": "Altus v1 bar 26.4",
+   "message": "'wa' (używają) off the beat of the tactus, though 27.3 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Altus|v2|U210|miłosierny#2|1",
@@ -63,7 +31,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v2 bar 23.2",
-   "message": "'sier' (miłosierny) off the tactus, and 'ny' after it on the bar"
+   "message": "'sier' (miłosierny) off the beat of the tactus, though 23.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Altus|v2|U210|nasze#0|1",
@@ -71,7 +39,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v2 bar 27.4",
-   "message": "'na' (nasze) off the tactus, and 'sze' after it on the half-bar"
+   "message": "'na' (nasze) off the beat of the tactus, though 27.3 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Bassus|v1|U205|od#0|1",
@@ -82,36 +50,12 @@
    "message": "'od' over 3 notes, 8 semiminims"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v1|U208|już#0|1",
+   "fingerprint": "juz-sie-zmierzka|Bassus|v1|U209|od#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Bassus v1 bar 1.1",
-   "message": "'Już' is stopped by 'ż' and cannot be sung through, but carries 5 notes (10 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v1|U208|od#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Bassus v1 bar 16.1",
-   "message": "'od' is stopped by 'd' and cannot be sung through, but carries 3 notes (8 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v1|U208|poprośmy#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Bassus v1 bar 5.4",
-   "message": "'proś' is stopped by 'ś' and cannot be sung through, but carries 3 notes (6 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Bassus|v1|U210|poprośmy#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Bassus v1 bar 5.4",
-   "message": "'proś' (poprośmy) off the tactus, and 'my' after it on the half-bar"
+   "rule": "U209",
+   "where": "Bassus v1 bar 17.1",
+   "message": "'od' to 'złych' passes 3 consonants on a minim"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Bassus|v1|U210|strażem#0|1",
@@ -119,7 +63,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v1 bar 13.4",
-   "message": "'stra' (strażem) off the tactus, and 'żem' after it on the bar"
+   "message": "'stra' (strażem) off the beat of the tactus, though 14.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U205|a#0|1",
@@ -135,7 +79,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v2 bar 8.2",
-   "message": "'kiel' (piekielne) off the tactus, and 'ne' after it on the half-bar"
+   "message": "'kiel' (piekielne) off the beat of the tactus, though 8.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Bassus|v2|U210|wysłyszeć#1|1",
@@ -143,7 +87,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v2 bar 27.2",
-   "message": "'sły' (wysłyszeć) off the tactus, and 'szeć' after it on the half-bar"
+   "message": "'sły' (wysłyszeć) off the beat of the tactus, though 27.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U201|o#0|1",
@@ -152,6 +96,14 @@
    "rule": "U201",
    "where": "Cantus v1 bar 8.3",
    "message": "'o' on the half-bar, minim"
+  },
+  {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U203|czartów#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U203",
+   "where": "Cantus v1 bar 17.3",
+   "message": "'czar' straight after 4 short notes; the white note before them is free"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U205|od#0|1",
@@ -170,36 +122,12 @@
    "message": "5 notes, 8 semiminims, on 'u' of używają (stress on syllable 3; vowel u)"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U208|od#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Cantus v1 bar 15.3",
-   "message": "'od' is stopped by 'd' and cannot be sung through, but carries 3 notes (6 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U208|poprośmy#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Cantus v1 bar 5.4",
-   "message": "'proś' is stopped by 'ś' and cannot be sung through, but carries 3 notes (6 semiminims)"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U208|złych#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Cantus v1 bar 16.2",
-   "message": "'złych' is stopped by 'h' and cannot be sung through, but carries 6 notes (10 semiminims)"
-  },
-  {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U210|chytrości#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v1 bar 29.4",
-   "message": "'tro' (chytrości) off the tactus, and 'ści.' after it on the bar"
+   "message": "'tro' (chytrości) off the beat of the tactus, though 29.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v1|U210|pomoc#0|1",
@@ -207,15 +135,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v1 bar 8.4",
-   "message": "'po' (pomoc) off the tactus, and 'moc,' after it on the bar"
-  },
-  {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v1|U210|poprośmy#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Cantus v1 bar 5.4",
-   "message": "'proś' (poprośmy) off the tactus, and 'my' after it on the half-bar"
+   "message": "'po' (pomoc) off the beat of the tactus, though 9.3 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U204|wysłyszeć#0|1",
@@ -234,12 +154,20 @@
    "message": "5 notes, 8 semiminims, on 'wy' of wysłyszeć (stress on syllable 2; vowel y)"
   },
   {
-   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U208|wieczny#0|1",
+   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U209|pokój#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Cantus v2 bar 16.3",
-   "message": "'wiecz' is stopped by 'z' and cannot be sung through, but carries 5 notes (8 semiminims)"
+   "rule": "U209",
+   "where": "Cantus v2 bar 19.2",
+   "message": "'kój' to 'spra' passes 4 consonants on a minim"
+  },
+  {
+   "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|panie#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U210",
+   "where": "Cantus v2 bar 3.2",
+   "message": "'Pa' (panie) off the beat of the tactus, though 3.3 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|piekielne#1|1",
@@ -247,7 +175,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 7.2",
-   "message": "'kiel' (piekielne) off the tactus, and 'ne' after it on the half-bar"
+   "message": "'kiel' (piekielne) off the beat of the tactus, though 8.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|siły#0|1",
@@ -255,7 +183,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 8.4",
-   "message": "'si' (siły) off the tactus, and 'ły' after it on the bar"
+   "message": "'si' (siły) off the beat of the tactus, though 8.3 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|wołanie#1|1",
@@ -263,7 +191,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 29.4",
-   "message": "'ła' (wołanie) off the tactus, and 'nie.' after it on the bar"
+   "message": "'ła' (wołanie) off the beat of the tactus, though 29.1 could take it"
   },
   {
    "fingerprint": "juz-sie-zmierzka|Cantus|v2|U210|wysłyszeć#1|1",
@@ -271,15 +199,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 26.2",
-   "message": "'sły' (wysłyszeć) off the tactus, and 'szeć' after it on the half-bar"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|dominus#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 16.2",
-   "message": "'Do' (dominus) off the tactus, and 'mi' after it on the bar"
+   "message": "'sły' (wysłyszeć) off the beat of the tactus, though 26.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|herodis#1|1",
@@ -287,7 +207,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v1 bar 33.2",
-   "message": "'ro' (herodis) off the tactus, and 'dis,' after it on the bar"
+   "message": "'ro' (herodis) off the beat of the tactus, though 33.3 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|iudaeorum#2|1",
@@ -295,7 +215,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v1 bar 53.2",
-   "message": "'o' (iudaeorum) off the tactus, and 'rum,' after it on the half-bar"
+   "message": "'o' (iudaeorum) off the beat of the tactus, though 53.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|plebis#0|1",
@@ -303,15 +223,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v1 bar 49.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis' after it on the half-bar"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|vere#0|2",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 11.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar"
+   "message": "'ple' (plebis) off the beat of the tactus, though 50.3 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
@@ -322,20 +234,20 @@
    "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)"
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U210|erat#0|1",
+   "fingerprint": "nunc-scio-vere|Altus|v2|U210|amen#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
-   "where": "Altus v2 bar 70.4",
-   "message": "'e' (erat) off the tactus, and 'rat' after it on the bar"
+   "where": "Altus v2 bar 85.4",
+   "message": "'A' (amen) off the beat of the tactus, though 86.1 could take it"
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U210|sicut#0|1",
+   "fingerprint": "nunc-scio-vere|Altus|v2|U210|principio#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
-   "where": "Altus v2 bar 70.2",
-   "message": "'Si' (sicut) off the tactus, and 'cut' after it on the half-bar"
+   "where": "Altus v2 bar 72.4",
+   "message": "'ci' (principio) off the beat of the tactus, though 73.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U204|quia#0|1",
@@ -359,7 +271,15 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U208",
    "where": "Bassus v1 bar 23.4",
-   "message": "'et' is stopped by 't' and cannot be sung through, but carries 4 notes (6 semiminims)"
+   "message": "'et' is closed by 't' (stop), and carries 4 notes (6 semiminims)"
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|dominus#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U210",
+   "where": "Bassus v1 bar 17.4",
+   "message": "'Do' (dominus) off the beat of the tactus, though 17.3 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U210|misit#0|1",
@@ -367,7 +287,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v1 bar 15.2",
-   "message": "'mi' (misit) off the tactus, and 'sit' after it on the bar"
+   "message": "'mi' (misit) off the beat of the tactus, though 15.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U210|scio#0|1",
@@ -375,31 +295,15 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v1 bar 3.2",
-   "message": "'sci' (scio) off the tactus, and 'o' after it on the half-bar"
+   "message": "'sci' (scio) off the beat of the tactus, though 2.1 could take it"
   },
   {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|suum#0|1",
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|scio#0|3",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
-   "where": "Bassus v1 bar 20.4",
-   "message": "'su' (suum) off the tactus, and 'um:' after it on the bar"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|vere#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Bassus v1 bar 3.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|vere#0|2",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Bassus v1 bar 11.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar"
+   "where": "Bassus v1 bar 9.2",
+   "message": "'sci' (scio) off the beat of the tactus, though 10.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U301|dominus#2|1",
@@ -434,12 +338,12 @@
    "message": "the FUGA entry (Bassus 1.3) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x"
   },
   {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U210|saeculorum#2|1",
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U206|saecula#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Bassus v2 bar 80.2",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum,' after it on the bar"
+   "rule": "U206",
+   "where": "Bassus v2 bar 78.2",
+   "message": "5 notes, 8 semiminims, on 'cu' of saecula (stress on syllable 1; vowel u)"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U207|scio#0|1",
@@ -455,15 +359,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U208",
    "where": "Cantus v1 bar 28.4",
-   "message": "'it' is stopped by 't' and cannot be sung through, but carries 2 notes (6 semiminims)"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U210|plebis#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Cantus v1 bar 46.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis,' after it on the half-bar"
+   "message": "'it' is closed by 't' (stop), and carries 2 notes (6 semiminims)"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U210|vere#0|1",
@@ -471,7 +367,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v1 bar 10.2",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar"
+   "message": "'ve' (vere) off the beat of the tactus, though 10.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U301|iudaeorum#2|1",
@@ -514,20 +410,12 @@
    "message": "the FUGA entry (Cantus 2.1) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x"
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|erat#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Cantus v2 bar 69.4",
-   "message": "'e' (erat) off the tactus, and 'rat' after it on the bar"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U210|saeculorum#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 81.2",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum,' after it on the bar"
+   "message": "'lo' (saeculorum) off the beat of the tactus, though 81.3 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U210|sicut#0|1",
@@ -535,7 +423,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Cantus v2 bar 69.2",
-   "message": "'Si' (sicut) off the tactus, and 'cut' after it on the half-bar"
+   "message": "'Si' (sicut) off the beat of the tactus, though 69.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U301|sancto#0|1",
@@ -562,28 +450,12 @@
    "message": "'o' runs over a repeated A3; the second note could take the next syllable"
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U210|exspectatione#4|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Tenor v1 bar 47.2",
-   "message": "'o' (exspectatione) off the tactus, and 'ne' after it on the half-bar"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U210|plebis#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Tenor v1 bar 50.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis' after it on the half-bar"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U210|vere#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Tenor v1 bar 10.2",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar"
+   "message": "'ve' (vere) off the beat of the tactus, though 10.3 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U301|iudaeorum#2|1",
@@ -631,7 +503,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Tenor v2 bar 67.2",
-   "message": "'San' (sancto) off the tactus, and 'cto.' after it on the bar"
+   "message": "'San' (sancto) off the beat of the tactus, though 68.1 could take it"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U301|saeculorum#3|1",
@@ -650,60 +522,12 @@
    "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against xxx"
   },
   {
-   "fingerprint": "plaude-euge|Discantus|v1|U210|regina#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Discantus v1 bar 6.4",
-   "message": "'gi' (regina) off the tactus, and 'na' after it on the bar"
-  },
-  {
-   "fingerprint": "plaude-euge|Tenor|v1|U208|hos#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U208",
-   "where": "Tenor v1 bar 29.1",
-   "message": "'hos' is stopped by 's' and cannot be sung through, but carries 2 notes (8 semiminims)"
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U210|audita#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 11.4",
-   "message": "'di' (audita) off the tactus, and 'ta,' after it on the bar"
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U210|audita#1|2",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 12.3",
-   "message": "'di' (audita) off the tactus, and 'ta,' after it on the bar"
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|2",
+   "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Altus v1 bar 36.4",
-   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the half-bar"
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U210|quia#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 41.4",
-   "message": "'qui' (quia) off the tactus, and 'a' after it on the bar"
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U210|rama#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U210",
-   "where": "Altus v1 bar 10.4",
-   "message": "'Ra' (rama) off the tactus, and 'ma' after it on the bar"
+   "message": "'la' (consolari) off the beat of the tactus, though 37.1 could take it"
   },
   {
    "fingerprint": "vox-in-rama|Bassus|v1|U206|consolari#0|1",
@@ -719,7 +543,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U210",
    "where": "Bassus v1 bar 18.2",
-   "message": "'la' (ululatus) off the tactus, and 'tus,' after it on the bar"
+   "message": "'la' (ululatus) off the beat of the tactus, though 18.3 could take it"
   },
   {
    "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",

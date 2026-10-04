@@ -66,9 +66,14 @@ def tail_voice(a, line, hit) -> bool:
     return bool(hit.values.get("tail"))
 
 
+def against_tactus(a, line, hit) -> bool:
+    return a is not None and bool(getattr(a, "displaced", None)) and \
+        a.against_tactus(line.voice, line.events[hit.ev].onset)
+
+
 GATES = {name: globals()[name] for name in
          ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
-          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice")}
+          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus")}
 
 
 def applied(rule, a, line, hit) -> list[tuple[str, float]]:

@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from .ingest import parse
 from .model import Score
 from .text import Line, build_lines
+from . import meter
 from .layers import cadence, dissonance, imitation, m21, phrase, sonority, texture
 
 
@@ -27,6 +28,11 @@ class Analysis:
     resolutions: dict = field(default_factory=dict)       # (voice, arrival ev) -> ev of the voice's own resolution
     new_text: dict = field(default_factory=dict)          # verse -> [(onset, voice)] where new text begins
     motifs: list = field(default_factory=list)            # imitation.Point(type MOTIF): recurring texted motifs
+    displaced: list = field(default_factory=list)         # meter.Displaced: spans played against the tactus
+    duos: list = field(default_factory=list)              # texture.Duo: paired upper voices
+
+    def against_tactus(self, voice: str, t) -> bool:
+        return any(d.contains(voice, t) for d in self.displaced)
 
     def tail_voice(self, voice: str, verse: str, t0, t1) -> bool:
         """Has another voice begun new text strictly between t0 and t1?"""
@@ -67,6 +73,8 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
     a.resolutions = cadence.melodic_resolutions(score, a.arrivals)
     a.new_text = _new_text(lines)
     a.motifs = imitation.motifs(score)
+    a.displaced = meter.displaced_spans(score)
+    a.duos = texture.duos(score)
     return a
 
 

@@ -5,7 +5,7 @@
    "fingerprint": "nunc-scio-vere|Cantus|v1|U208|eripuit#3|1",
    "level": "warn",
    "where": "28.4",
-   "message": "'it' is stopped by 't' and cannot be sung through, but carries 2 notes (6 semiminims)",
+   "message": "'it' is closed by 't' (stop), and carries 2 notes (6 semiminims)",
    "cost": 4.5,
    "regret": 4.5,
    "alternative": [
@@ -16,15 +16,17 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U301|vere#0|1",
+   "fingerprint": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
    "level": "warn",
-   "where": "11.1",
-   "message": "the arrival carries 've', and 're,' comes after it (clausula vera cadence on G, full)",
+   "where": "49.1",
+   "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)",
    "cost": 4.0,
    "regret": 4.0,
    "alternative": [
-    "'re,' 11.3 -> 11.1",
-    "'ve' 11.4 -> 11.3"
+    "'bis,' 48.4 -> 49.1",
+    "'ple' 49.1 -> 49.3",
+    "'bis,' 49.3 -> 49.4",
+    "'ple' 49.4 -> 50.3"
    ]
   },
   {
@@ -39,31 +41,16 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U301|vere#0|1",
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U301|vere#0|1",
    "level": "warn",
-   "where": "5.3",
-   "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E, full)",
+   "where": "11.1",
+   "message": "the arrival carries 've', and 're,' comes after it (clausula vera cadence on G, full)",
    "cost": 4.0,
-   "regret": 3.556,
+   "regret": 3.455,
    "alternative": [
-    "'ve' 4.3 -> 5.1",
-    "'re,' 5.1 -> 5.3",
-    "'ve' 5.3 -> 6.2",
-    "'re,' 6.2 -> 6.4"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
-   "level": "warn",
-   "where": "49.1",
-   "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)",
-   "cost": 4.0,
-   "regret": 3.0,
-   "alternative": [
-    "'bis,' 48.4 -> 49.1",
-    "'ple' 49.1 -> 49.3",
-    "'bis,' 49.3 -> 49.4",
-    "'ple' 49.4 -> 50.3"
+    "'sci' 9.2 -> 10.1",
+    "'re,' 11.3 -> 11.1",
+    "'ve' 11.4 -> 11.3"
    ]
   },
   {
@@ -101,9 +88,24 @@
    "where": "55.3",
    "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E, full)",
    "cost": 4.0,
+   "regret": 2.605,
+   "alternative": [
+    "'Iu' 51.4 -> 52.4+",
+    "'dae' 52.3 -> 53.1",
+    "'o' 53.1 -> 53.3",
+    "'rum.' 56.3 -> 55.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|eripuit#2|1",
+   "level": "warn",
+   "where": "28.2",
+   "message": "5 notes on 'pu' of eripuit, the last word before the cadence; its stress is on syllable 2",
+   "cost": 3.333,
    "regret": 2.5,
    "alternative": [
-    "'rum.' 56.3 -> 55.3"
+    "'ri' 28.1 -> 28.2",
+    "'pu' 28.2 -> 29.1"
    ]
   },
   {
@@ -118,14 +120,16 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|eripuit#2|1",
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U301|vere#0|1",
    "level": "warn",
-   "where": "28.2",
-   "message": "5 notes on 'pu' of eripuit, the last word before the cadence; its stress is on syllable 2",
-   "cost": 3.333,
-   "regret": 2.083,
+   "where": "5.3",
+   "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E, full)",
+   "cost": 4.0,
+   "regret": 2.222,
    "alternative": [
-    "'pu' 28.2 -> 29.1"
+    "'re,' 5.1 -> 4.4",
+    "'ve' 5.3 -> 5.1",
+    "'re,' 6.2 -> 5.3"
    ]
   },
   {
@@ -171,9 +175,8 @@
    "cost": 2.0,
    "regret": 2.0,
    "alternative": [
-    "'cu' 80.3 -> 80.4",
-    "'lo' 80.4 -> 81.1",
-    "'rum,' 81.1 -> 81.3"
+    "'sae' 82.1 -> 81.3",
+    "'cu' 82.3 -> 82.1"
    ]
   },
   {
@@ -191,7 +194,7 @@
    "fingerprint": "nunc-scio-vere|Bassus|v1|U208|et#0|1",
    "level": "look",
    "where": "23.4",
-   "message": "'et' is stopped by 't' and cannot be sung through, but carries 4 notes (6 semiminims)",
+   "message": "'et' is closed by 't' (stop), and carries 4 notes (6 semiminims)",
    "cost": 4.5,
    "regret": 1.5,
    "alternative": [
@@ -201,38 +204,39 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|vere#0|2",
-   "level": "look",
-   "where": "11.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 1.5,
-   "alternative": [
-    "'o' 11.3 -> 10.2",
-    "'ve' 11.4 -> 10.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|dominus#0|1",
-   "level": "look",
-   "where": "16.2",
-   "message": "'Do' (dominus) off the tactus, and 'mi' after it on the bar",
-   "cost": 1.5,
-   "regret": 1.5,
-   "alternative": [
-    "'mi' 17.1 -> 16.4"
-   ]
-  },
-  {
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|iudaeorum#2|1",
    "level": "look",
    "where": "53.2",
-   "message": "'o' (iudaeorum) off the tactus, and 'rum,' after it on the half-bar",
+   "message": "'o' (iudaeorum) off the beat of the tactus, though 53.1 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
     "'dae' 53.1 -> 52.4",
     "'o' 53.2 -> 53.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U210|principio#1|1",
+   "level": "look",
+   "where": "72.4",
+   "message": "'ci' (principio) off the beat of the tactus, though 73.1 could take it",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'prin' 72.3 -> 72.4",
+    "'ci' 72.4 -> 73.1",
+    "'pi' 75.2 -> 74.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U210|amen#0|1",
+   "level": "look",
+   "where": "85.4",
+   "message": "'A' (amen) off the beat of the tactus, though 86.1 could take it",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'A' 85.4 -> 86.1"
    ]
   },
   {
@@ -251,38 +255,24 @@
    "fingerprint": "nunc-scio-vere|Bassus|v1|U210|scio#0|1",
    "level": "look",
    "where": "3.2",
-   "message": "'sci' (scio) off the tactus, and 'o' after it on the half-bar",
+   "message": "'sci' (scio) off the beat of the tactus, though 2.1 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
-    "'sci' 3.2 -> 2.3",
-    "'o' 3.3 -> 3.1",
-    "'ve' 3.4 -> 3.3"
+    "'sci' 3.2 -> 2.1",
+    "'o' 3.3 -> 2.3",
+    "'ve' 3.4 -> 3.1"
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|vere#0|1",
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|dominus#0|1",
    "level": "look",
-   "where": "3.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar",
+   "where": "17.4",
+   "message": "'Do' (dominus) off the beat of the tactus, though 17.3 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
-    "'sci' 3.2 -> 2.3",
-    "'o' 3.3 -> 3.1",
-    "'ve' 3.4 -> 3.3",
-    "'ve' 5.1 -> 5.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|suum#0|1",
-   "level": "look",
-   "where": "20.4",
-   "message": "'su' (suum) off the tactus, and 'um:' after it on the bar",
-   "cost": 1.5,
-   "regret": 1.5,
-   "alternative": [
-    "'su' 20.4 -> 22.3"
+    "'Do' 17.4 -> 17.3"
    ]
   },
   {
@@ -298,36 +288,22 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U210|plebis#0|1",
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|sicut#0|1",
    "level": "look",
-   "where": "46.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis,' after it on the half-bar",
+   "where": "69.2",
+   "message": "'Si' (sicut) off the beat of the tactus, though 69.1 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
-    "'ne' 46.3 -> 44.4",
-    "'ple' 46.4 -> 45.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|erat#0|1",
-   "level": "look",
-   "where": "69.4",
-   "message": "'e' (erat) off the tactus, and 'rat' after it on the bar",
-   "cost": 1.5,
-   "regret": 1.5,
-   "alternative": [
-    "'Si' 69.2 -> 69.1",
-    "'cut' 69.3 -> 69.2",
-    "'e' 69.4 -> 69.3",
-    "'rat' 70.1 -> 69.4"
+    "'San' 65.3 -> 66.3",
+    "'Si' 69.2 -> 69.1"
    ]
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U210|saeculorum#2|1",
    "level": "look",
    "where": "81.2",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum,' after it on the bar",
+   "message": "'lo' (saeculorum) off the beat of the tactus, though 81.3 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
@@ -351,7 +327,7 @@
    "fingerprint": "nunc-scio-vere|Tenor|v1|U210|vere#0|1",
    "level": "look",
    "where": "10.2",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar",
+   "message": "'ve' (vere) off the beat of the tactus, though 10.3 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
@@ -375,7 +351,7 @@
    "fingerprint": "nunc-scio-vere|Tenor|v2|U210|sancto#0|1",
    "level": "look",
    "where": "67.2",
-   "message": "'San' (sancto) off the tactus, and 'cto.' after it on the bar",
+   "message": "'San' (sancto) off the beat of the tactus, though 68.1 could take it",
    "cost": 1.5,
    "regret": 1.5,
    "alternative": [
@@ -390,9 +366,76 @@
    "cost": 2.0,
    "regret": 1.25,
    "alternative": [
-    "'San' 65.3 -> 65.4",
-    "'cto.' 68.4 -> 66.2",
-    "'Si' 69.2 -> 66.3"
+    "'San' 65.3 -> 66.3",
+    "'cto.' 68.4 -> 66.4",
+    "'Si' 69.2 -> 67.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|misit#0|1",
+   "level": "look",
+   "where": "15.2",
+   "message": "'mi' (misit) off the beat of the tactus, though 15.1 could take it",
+   "cost": 1.5,
+   "regret": 1.21,
+   "alternative": [
+    "drop 'Dominus' at 16.2 (10.13)",
+    "'qui' 14.1 -> 14.3",
+    "'a' 14.3 -> 15.1",
+    "'mi' 15.2 -> 15.3",
+    "'Do' 17.4 -> 16.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U210|plebis#0|1",
+   "level": "look",
+   "where": "49.4",
+   "message": "'ple' (plebis) off the beat of the tactus, though 50.3 could take it",
+   "cost": 1.5,
+   "regret": 1.125,
+   "alternative": [
+    "drop 'plebis' at 49.1 (10.13)",
+    "'bis,' 48.4 -> 49.1",
+    "'ple' 49.4 -> 49.3",
+    "'bis' 51.3 -> 49.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|scio#0|3",
+   "level": "look",
+   "where": "9.2",
+   "message": "'sci' (scio) off the beat of the tactus, though 10.1 could take it",
+   "cost": 1.5,
+   "regret": 1.091,
+   "alternative": [
+    "drop 'vere' at 10.3 (10.13)",
+    "'re,' 9.1 -> 9.2",
+    "'sci' 9.2 -> 10.1",
+    "'ve' 11.4 -> 10.3",
+    "'re,' 12.3 -> 12.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U206|saecula#1|1",
+   "level": "look",
+   "where": "78.2",
+   "message": "5 notes, 8 semiminims, on 'cu' of saecula (stress on syllable 1; vowel u)",
+   "cost": 1.0,
+   "regret": 1.0,
+   "alternative": [
+    "'la' 79.2 -> 79.1",
+    "'sae' 79.3 -> 79.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U210|herodis#1|1",
+   "level": "look",
+   "where": "33.2",
+   "message": "'ro' (herodis) off the beat of the tactus, though 33.3 could take it",
+   "cost": 1.5,
+   "regret": 0.833,
+   "alternative": [
+    "'ro' 33.2 -> 33.3"
    ]
   },
   {
@@ -401,81 +444,17 @@
    "where": "45.4",
    "message": "3 notes on 'spe' of exspectatione, the last word before the cadence; its stress is on syllable 5",
    "cost": 2.0,
-   "regret": 1.143,
+   "regret": 0.786,
    "alternative": [
-    "drop 'exspectatione' at 45.3 (10.13)",
-    "'ne,' 44.4 -> 43.4",
-    "'ple' 49.1 -> 44.1",
-    "'bis,' 50.2 -> 48.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|vere#0|2",
-   "level": "look",
-   "where": "11.4",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 1.14,
-   "alternative": [
-    "drop 'vere' at 13.1 (10.13)",
-    "'re,' 11.3 -> 11.1",
-    "'ve' 11.4 -> 11.3",
-    "'re,' 12.3 -> 12.2",
-    "'qui' 14.1 -> 12.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|misit#0|1",
-   "level": "look",
-   "where": "15.2",
-   "message": "'mi' (misit) off the tactus, and 'sit' after it on the bar",
-   "cost": 1.5,
-   "regret": 1.14,
-   "alternative": [
-    "drop 'Dominus' at 16.2 (10.13)",
-    "'qui' 14.1 -> 14.3",
-    "'a' 14.3 -> 15.1",
-    "'sit' 16.1 -> 16.2",
-    "'Do' 17.4 -> 16.4"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|sicut#0|1",
-   "level": "look",
-   "where": "69.2",
-   "message": "'Si' (sicut) off the tactus, and 'cut' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.857,
-   "alternative": [
-    "'San' 65.3 -> 65.4",
-    "'Si' 69.2 -> 69.1",
-    "'cut' 69.3 -> 69.2",
-    "'e' 69.4 -> 69.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U210|exspectatione#4|1",
-   "level": "look",
-   "where": "47.2",
-   "message": "'o' (exspectatione) off the tactus, and 'ne' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.857,
-   "alternative": [
-    "drop 'exspectatione' at 45.3 (10.13)",
-    "'ne,' 44.4 -> 43.4",
-    "'ple' 49.1 -> 44.1",
-    "'bis,' 50.2 -> 48.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|herodis#1|1",
-   "level": "look",
-   "where": "33.2",
-   "message": "'ro' (herodis) off the tactus, and 'dis,' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.833,
-   "alternative": [
-    "'ro' 33.2 -> 33.3"
+    "drop 'plebis' at 49.1 (10.13)",
+    "'ne,' 44.4 -> 43.3",
+    "'ex' 45.3 -> 43.4",
+    "'spe' 45.4 -> 44.1",
+    "'cta' 46.3 -> 44.2",
+    "'ti' 47.1 -> 44.3+",
+    "'o' 47.2 -> 44.4",
+    "'ne' 48.3 -> 50.4",
+    "'ple' 50.4 -> 51.1"
    ]
   },
   {
@@ -494,50 +473,12 @@
    "fingerprint": "nunc-scio-vere|Cantus|v1|U210|vere#0|1",
    "level": "look",
    "where": "10.2",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the half-bar",
+   "message": "'ve' (vere) off the beat of the tactus, though 10.1 could take it",
    "cost": 1.5,
    "regret": 0.78,
    "alternative": [
     "'o' 10.1 -> 9.2",
     "'ve' 10.2 -> 10.1"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|plebis#0|1",
-   "level": "look",
-   "where": "49.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.75,
-   "alternative": [
-    "drop 'plebis' at 49.1 (10.13)",
-    "'bis,' 48.4 -> 49.1",
-    "'ple' 49.4 -> 49.3",
-    "'bis' 51.3 -> 49.4"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U210|sicut#0|1",
-   "level": "look",
-   "where": "70.2",
-   "message": "'Si' (sicut) off the tactus, and 'cut' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.75,
-   "alternative": [
-    "'cut' 70.3 -> 70.4",
-    "'e' 70.4 -> 71.1"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U210|erat#0|1",
-   "level": "look",
-   "where": "70.4",
-   "message": "'e' (erat) off the tactus, and 'rat' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.75,
-   "alternative": [
-    "'cut' 70.3 -> 70.4",
-    "'e' 70.4 -> 71.1"
    ]
   },
   {
@@ -554,18 +495,6 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U210|saeculorum#2|1",
-   "level": "look",
-   "where": "80.2",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum,' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.75,
-   "alternative": [
-    "drop 'saeculorum' at 79.3 (10.13)",
-    "'la' 79.2 -> 79.1"
-   ]
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U207|scio#1|1",
    "level": "look",
    "where": "7.1",
@@ -579,16 +508,14 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U210|plebis#0|1",
-   "level": "look",
-   "where": "50.4",
-   "message": "'ple' (plebis) off the tactus, and 'bis' after it on the half-bar",
+   "fingerprint": "nunc-scio-vere|Altus|v1|U202|angelum#0|1",
+   "level": "info",
+   "where": "18.2",
+   "message": "'an' (angelum) shorter and weaker than the syllable after it",
    "cost": 1.5,
-   "regret": 0.75,
+   "regret": 0.577,
    "alternative": [
-    "drop 'plebis' at 49.1 (10.13)",
-    "'ne' 48.3 -> 50.4",
-    "'ple' 50.4 -> 51.1"
+    "'ge' 19.2 -> 19.1"
    ]
   },
   {
@@ -603,55 +530,6 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U210|omni#0|1",
-   "level": "info",
-   "where": "37.4",
-   "message": "'o' (omni) off the tactus, and 'mni,' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.5,
-   "alternative": [
-    "drop 'et' at 39.3 (10.13)",
-    "'o' 37.4 -> 39.3",
-    "'mni,' 38.3 -> 40.1",
-    "'de' 40.1 -> 40.3",
-    "'o' 40.3 -> 41.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U206|saecula#1|1",
-   "level": "info",
-   "where": "78.2",
-   "message": "5 notes, 8 semiminims, on 'cu' of saecula (stress on syllable 1; vowel u)",
-   "cost": 1.0,
-   "regret": 0.5,
-   "alternative": [
-    "drop 'saeculorum' at 79.3 (10.13)",
-    "'la' 79.2 -> 79.1"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U202|spiritui#0|1",
-   "level": "info",
-   "where": "64.2",
-   "message": "'Spi' (spiritui) shorter and weaker than the syllable after it",
-   "cost": 1.5,
-   "regret": 0.5,
-   "alternative": [
-    "'ri' 64.3 -> 64.4+"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|spiritui#0|1",
-   "level": "info",
-   "where": "64.2",
-   "message": "'Spi' (spiritui) off the tactus, and 'ri' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.5,
-   "alternative": [
-    "'ri' 64.3 -> 64.4+"
-   ]
-  },
-  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U401|sancto#0|1",
    "level": "info",
    "where": "65.3",
@@ -659,20 +537,22 @@
    "cost": 0.5,
    "regret": 0.5,
    "alternative": [
-    "'San' 65.3 -> 65.4",
+    "'San' 65.3 -> 66.3",
     "'Si' 69.2 -> 69.1"
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U210|semper#0|1",
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|in#0|1",
    "level": "info",
-   "where": "74.4",
-   "message": "'sem' (semper) off the tactus, and 'per,' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.5,
+   "where": "72.2",
+   "message": "'in' starts on a dissonant note (passing, A4 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.455,
    "alternative": [
-    "drop 'et' at 74.1 (10.13)",
-    "'sem' 74.4 -> 74.1"
+    "'rat' 72.1 -> 72.3",
+    "'in' 72.2 -> 72.4",
+    "'prin' 72.3 -> 73.1",
+    "'ci' 72.4 -> 73.3"
    ]
   },
   {
@@ -689,17 +569,17 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U401|in#0|1",
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|plebis#1|1",
    "level": "info",
-   "where": "72.2",
-   "message": "'in' starts on a dissonant note (passing, A4 against the Cantus)",
+   "where": "48.4",
+   "message": "'bis,' starts on a dissonant note (neighbour, A4 against the Tenor)",
    "cost": 0.5,
-   "regret": 0.4,
+   "regret": 0.375,
    "alternative": [
-    "'rat' 72.1 -> 72.2",
-    "'in' 72.2 -> 72.4",
-    "'prin' 72.3 -> 73.1",
-    "'ci' 72.4 -> 73.2"
+    "drop 'plebis' at 49.1 (10.13)",
+    "'bis,' 48.4 -> 49.1",
+    "'ple' 49.4 -> 49.3",
+    "'bis' 51.3 -> 49.4"
    ]
   },
   {
@@ -736,25 +616,8 @@
    "cost": 0.5,
    "regret": 0.286,
    "alternative": [
-    "drop 'vere' at 3.4 (10.13)",
-    "'sci' 3.2 -> 2.1",
-    "'o' 3.3 -> 2.3",
-    "'ve' 5.1 -> 3.1",
-    "'re,' 6.3 -> 3.2"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U401|plebis#1|1",
-   "level": "info",
-   "where": "48.4",
-   "message": "'bis,' starts on a dissonant note (neighbour, A4 against the Tenor)",
-   "cost": 0.5,
-   "regret": 0.25,
-   "alternative": [
-    "drop 'plebis' at 49.1 (10.13)",
-    "'bis,' 48.4 -> 49.1",
-    "'ple' 49.4 -> 49.3",
-    "'bis' 51.3 -> 49.4"
+    "drop 'vere' at 5.1 (10.13)",
+    "'sci' 3.2 -> 2.3"
    ]
   },
   {
@@ -769,29 +632,6 @@
     "'prin' 73.2 -> 73.3",
     "'ci' 73.3 -> 74.1",
     "'pi' 74.1 -> 74.2+"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U401|saeculorum#3|1",
-   "level": "info",
-   "where": "81.1",
-   "message": "'rum,' starts on a dissonant note (neighbour, m7 against the Tenor)",
-   "cost": 0.5,
-   "regret": 0.25,
-   "alternative": [
-    "drop 'saeculorum' at 79.3 (10.13)",
-    "'la' 79.2 -> 79.1"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U201|et#0|1",
-   "level": "info",
-   "where": "63.1",
-   "message": "'et' on the bar, minim",
-   "cost": 1.5,
-   "regret": 0.25,
-   "alternative": [
-    "drop 'et' at 63.1 (10.13)"
    ]
   },
   {
@@ -811,7 +651,7 @@
    "fingerprint": "nunc-scio-vere|Altus|v2|U210|sancto#0|1",
    "level": "info",
    "where": "68.2",
-   "message": "'San' (sancto) off the tactus, and 'cto.' after it on the half-bar",
+   "message": "'San' (sancto) off the beat of the tactus, though 69.1 could take it",
    "cost": 1.5,
    "regret": 0.183,
    "alternative": [
@@ -875,24 +715,13 @@
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|vere#0|1",
    "level": "info",
    "where": "8.2",
-   "message": "'ve' (vere) off the tactus, and 're,' after it on the bar",
+   "message": "'ve' (vere) off the beat of the tactus, though 8.1 could take it",
    "cost": 1.5,
    "regret": 0.115,
    "alternative": [
-    "'sci' 6.3 -> 6.2",
+    "'sci' 6.3 -> 8.1",
     "'o' 8.1 -> 8.2",
     "'ve' 8.2 -> 8.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U202|angelum#0|1",
-   "level": "info",
-   "where": "18.2",
-   "message": "'an' (angelum) shorter and weaker than the syllable after it",
-   "cost": 1.5,
-   "regret": 0.115,
-   "alternative": [
-    "'ge' 19.2 -> 18.4"
    ]
   },
   {
@@ -947,6 +776,30 @@
    ]
   },
   {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|angelum#1|1",
+   "level": "info",
+   "where": "19.2",
+   "message": "'ge' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.048,
+   "alternative": [
+    "'ge' 19.2 -> 19.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|plebis#0|1",
+   "level": "info",
+   "where": "48.2",
+   "message": "'ple' starts on a dissonant note (suspension, m7 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.041,
+   "alternative": [
+    "drop 'plebis' at 48.2 (10.13)",
+    "'ple' 49.1 -> 48.2",
+    "'bis,' 49.3 -> 49.1"
+   ]
+  },
+  {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U401|filio#1|1",
    "level": "info",
    "where": "63.4",
@@ -957,9 +810,8 @@
     "drop 'et' at 64.4 (10.13)",
     "'et' 63.1 -> 63.2",
     "'Fi' 63.2 -> 63.4",
-    "'li' 63.4 -> 64.4",
-    "'o,' 64.3 -> 65.1",
-    "'Spi' 65.1 -> 65.3"
+    "'li' 63.4 -> 64.3",
+    "'o,' 64.3 -> 64.4"
    ]
   },
   {
@@ -983,20 +835,9 @@
    "cost": 0.125,
    "regret": 0.01,
    "alternative": [
-    "'sci' 6.3 -> 6.2",
+    "'sci' 6.3 -> 8.1",
     "'o' 8.1 -> 8.2",
     "'ve' 8.2 -> 8.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U401|angelum#1|1",
-   "level": "info",
-   "where": "19.2",
-   "message": "'ge' starts on a dissonant note (suspension, P4 against the Bassus)",
-   "cost": 0.125,
-   "regret": 0.01,
-   "alternative": [
-    "'ge' 19.2 -> 18.4"
    ]
   },
   {
@@ -1009,10 +850,19 @@
    "alternative": []
   },
   {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U210|angelum#0|1",
+   "level": "info",
+   "where": "18.2",
+   "message": "'an' (angelum) off the beat of the tactus, though 18.3 could take it",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "nunc-scio-vere|Altus|v1|U210|suum#0|1",
    "level": "info",
    "where": "22.2",
-   "message": "'su' (suum) off the tactus, and 'um:' after it on the half-bar",
+   "message": "'su' (suum) off the beat of the tactus, though 22.3 could take it",
    "cost": 1.5,
    "regret": 0.0,
    "alternative": []
@@ -1027,20 +877,20 @@
    "alternative": []
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U401|plebis#0|1",
-   "level": "info",
-   "where": "48.2",
-   "message": "'ple' starts on a dissonant note (suspension, m7 against the Bassus)",
-   "cost": 0.125,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "nunc-scio-vere|Altus|v2|U401|gloria#2|1",
    "level": "info",
    "where": "61.2",
    "message": "'a' starts on a dissonant note (suspension, P4 against the Tenor)",
    "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U210|erat#0|1",
+   "level": "info",
+   "where": "70.4",
+   "message": "'e' (erat) off the beat of the tactus, though 71.1 could take it",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -1054,20 +904,20 @@
    "alternative": []
   },
   {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|scio#0|2",
+   "level": "info",
+   "where": "7.2",
+   "message": "'sci' (scio) off the beat of the tactus, though 8.1 could take it",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U301|herodis#1|1",
    "level": "info",
    "where": "35.1",
    "message": "the arrival carries 'ro', and 'dis,' comes after it, on the voice's own resolution, while other voices begin new text (clausula vera cadence on C, full)",
    "cost": 1.0,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U210|omni#0|1",
-   "level": "info",
-   "where": "38.2",
-   "message": "'o' (omni) off the tactus, and 'mni' after it on the bar",
-   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -1099,6 +949,15 @@
    "alternative": []
   },
   {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U401|saeculorum#3|1",
+   "level": "info",
+   "where": "81.1",
+   "message": "'rum,' starts on a dissonant note (neighbour, m7 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U401|vere#1|1",
    "level": "info",
    "where": "5.1",
@@ -1126,6 +985,15 @@
    "alternative": []
   },
   {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U202|spiritui#0|1",
+   "level": "info",
+   "where": "64.2",
+   "message": "'Spi' (spiritui) shorter and weaker than the syllable after it",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U204|spiritui#0|1",
    "level": "info",
    "where": "64.2",
@@ -1135,29 +1003,20 @@
    "alternative": []
   },
   {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|spiritui#0|1",
+   "level": "info",
+   "where": "64.2",
+   "message": "'Spi' (spiritui) off the beat of the tactus, though 64.3 could take it",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U401|semper#0|1",
    "level": "info",
    "where": "73.3",
    "message": "'sem' starts on a dissonant note (unexplained, P4 against the Bassus)",
    "cost": 0.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|amen#0|1",
-   "level": "info",
-   "where": "84.4",
-   "message": "'A' (amen) off the tactus, and 'men,' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U210|amen#0|2",
-   "level": "info",
-   "where": "86.2",
-   "message": "'A' (amen) off the tactus, and 'men.' after it on the bar",
-   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -1183,7 +1042,16 @@
    "fingerprint": "nunc-scio-vere|Tenor|v1|U210|herodis#1|1",
    "level": "info",
    "where": "33.4",
-   "message": "'ro' (herodis) off the tactus, and 'dis,' after it on the half-bar",
+   "message": "'ro' (herodis) off the beat of the tactus, though 34.3 could take it",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U210|plebis#0|1",
+   "level": "info",
+   "where": "50.4",
+   "message": "'ple' (plebis) off the beat of the tactus, though 51.1 could take it",
    "cost": 1.5,
    "regret": 0.0,
    "alternative": []
@@ -1194,6 +1062,15 @@
    "where": "60.1",
    "message": "the FUGA entry (Tenor 60.1) sets gloria differently from the leading entry (Cantus at 57.1): syllables xxx against x",
    "cost": 3.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U201|et#0|1",
+   "level": "info",
+   "where": "63.1",
+   "message": "'et' on the bar, minim",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -1216,24 +1093,6 @@
    "alternative": []
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U210|sicut#0|1",
-   "level": "info",
-   "where": "69.4",
-   "message": "'Si' (sicut) off the tactus, and 'cut' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U210|erat#0|1",
-   "level": "info",
-   "where": "70.2",
-   "message": "'e' (erat) off the tactus, and 'rat' after it on the half-bar",
-   "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U401|nunc#0|1",
    "level": "info",
    "where": "73.3",
@@ -1243,29 +1102,11 @@
    "alternative": []
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U210|saeculorum#2|1",
-   "level": "info",
-   "where": "80.4",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum,' after it on the bar",
-   "cost": 1.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v2|U401|saeculorum#1|1",
    "level": "info",
    "where": "83.4",
    "message": "'cu' starts on a dissonant note (suspension, m7 against the Bassus)",
    "cost": 0.125,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v2|U210|saeculorum#2|2",
-   "level": "info",
-   "where": "84.2",
-   "message": "'lo' (saeculorum) off the tactus, and 'rum.' after it on the half-bar",
-   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },

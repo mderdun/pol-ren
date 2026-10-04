@@ -4,11 +4,15 @@ level: look
 weight: 1.5
 tier: stress
 principle: "10.6"
-authority: "Miki, review of 4 Oct 2026 ('-la-' of consolari pinned to the strong beat 35.3 in the Cantus; Tenor 'la' to 40.1, not a weak beat when a strong one is available); Towne 1990, R29 (Vicentino ch. 29; Stoquerus ch. 23): accented syllables on accented beats"
-message: "'{txt}' ({word}) off the tactus, and '{nxt}' after it on the {place}"
+authority: "Miki, review of 4 Oct 2026 ('-la-' of consolari pinned to the strong beat 35.3 in the Cantus; Tenor 'la' to 40.1, not a weak beat when a strong one is available); second review of 4 Oct 2026 (Altus 41.4 'quia': no flag where the stressed syllable has no better place, and 'a' on a strong beat is fine; Altus 10.4 'Ra' and Altus 15 'la' measured against the displaced pulse where the voices play against the tactus); Towne 1990, R29 (Vicentino ch. 29; Stoquerus ch. 23): accented syllables on accented beats"
+message: "'{txt}' ({word}) off the beat of {pulse}, though {free} could take it"
 examples:
   flag:
-    - {notes: "f4 g2 a2 g4", text: "con- so- la- ri", at: 2, why: "-LA- on the fourth minim, -ri on the bar (Tenor 39.4)"}
+    - {notes: "f4 g2 a2 g4 f4", text: "con- so- la- ri _", at: 2, why: "-LA- on the fourth minim, and the bar note after it is free for it (Tenor 39.4 -> 40.1)"}
+    - {voices: {Cantus: {notes: "f4 g2 a2 g4 f4", text: "con- so- la- ri _"}, Tenor: {notes: "c4 e3 f1 e8", text: "Do- mi- _ nus"}}, at: 2, rule_voice: Cantus, why: "a dotted minim off the tactus in one voice only is no displaced pulse"}
   pass:
     - {notes: "f4 g2 a2 g4 f4", text: "con- _ so- la- ri", why: "-LA- on the bar (Tenor 40.1 as Miki would have it)"}
     - {notes: "f4 g2 a2 g4", text: "Do- _ mi- nus", why: "the stressed syllable is on the bar"}
+    - {notes: "a2 d'4 c'1 b1 a1 b1 c'2 a6", text: "sunt, qui- _ _ _ _ _ a", offset: 4, why: "Vox Altus 41.4 'QUI-a' (Miki, second review): qui has no beat it could take (42.3 is a semiminim), and 'a' on the bar is fine"}
+    - {ref: "fixture:vox-in-rama-ee0dcc9/Altus/1/10", why: "Vox Altus 10.4 'Ra': 'the 3 top parts are clearly playing against the tactus here' (Miki, second review); Ra is on the displaced pulse"}
+    - {ref: "fixture:vox-in-rama-ee0dcc9/Altus/1/15", why: "Vox Altus 15.4 'la' of ululatus, off the tactus in a hemiola-like figure (Miki, second review)"}

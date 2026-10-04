@@ -99,6 +99,33 @@ def coda_class(text: str) -> str:
     return "sonorant" if coda[0] in SONORANTS else "obstruent"
 
 
+STOPS = set("tdkgpbcq")
+SIBILANTS = set("sśzź")
+
+
+def coda_kind(text: str) -> str:
+    """open | sonorant | stop | fricative | sibilant: the coda refined for
+    U208 (Miki, second review, 4 October 2026: "penalise fricatives far less
+    than stops ... particularly s"). The first consonant after the vowel
+    decides between sonorant and obstruent (`coda_class`); an obstruent coda
+    with a stop anywhere in it (it, et, est, nec: Latin c is /k/) is a stop,
+    one of fricatives only is a fricative (x, f, ch, rz), and an s alone the
+    mildest of all."""
+    cls = coda_class(text)
+    if cls != "obstruent":
+        return cls
+    s = _letters(text)
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    coda = s[v + 1:]
+    if coda.startswith("rz") or coda.startswith("ch") or coda.startswith("sz"):
+        return "fricative"
+    if any(c in STOPS for c in coda):
+        return "stop"
+    if all(c in SIBILANTS for c in coda):
+        return "sibilant"
+    return "fricative"
+
+
 def onset_consonants(text: str) -> int:
     """Consonants before the syllable's first vowel, counting qu, ch, sz, cz,
     rz, dz as one sound."""
