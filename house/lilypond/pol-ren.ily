@@ -191,6 +191,11 @@ voiceSetup = {
 \defineBarLine "-span!" #'(#f #f "!")
 %% The dashed line stops half a staff space short of each staff, and further
 %% where a note, stem or accidental stands out from that staff in its way.
+%% It never runs through words (syllables with their punctuation, stanza
+%% numbers, text above a staff): there it breaks, a little clear of the
+%% text. Where it passes between the syllables of a word, the hyphen or
+%% extender line makes room for it instead (pr-lyric-hyphen, -extender).
+%% A piece of dash shorter than half a dash is left out.
 #(define (pr-knockout-holes grob sys cx y0)
    (let ((pad 0.4))
      (filter-map
@@ -209,6 +214,37 @@ voiceSetup = {
                       (and (interval-sane? gy)
                            (cons (- (car gy) y0 pad) (+ (- (cdr gy) y0) pad))))))))
       (ly:grob-array->list (ly:grob-object sys 'all-elements)))))
+%% Clearance (staff spaces) between the dashed line and written text.
+#(define pr-text-pad 0.4)
+#(define (pr-text-holes grob sys cx y0)
+   (filter-map
+    (lambda (g)
+      (and (or (grob::has-interface g 'lyric-syllable-interface)
+               (grob::has-interface g 'stanza-number-interface)
+               (grob::has-interface g 'text-script-interface))
+           (let ((gx (ly:grob-extent g sys X)))
+             (and (interval-sane? gx)
+                  (< (car gx) (+ cx pr-text-pad)) (> (cdr gx) (- cx pr-text-pad))
+                  (let ((gy (ly:grob-extent g sys Y)))
+                    (and (interval-sane? gy)
+                         (cons (- (car gy) y0 pr-text-pad)
+                               (+ (- (cdr gy) y0) pr-text-pad))))))))
+    (ly:grob-array->list (ly:grob-object sys 'all-elements))))
+%% [lo, hi] less the holes, as a list of intervals from the top down.
+#(define (pr-interval-minus lo hi holes)
+   (let loop ((segs (list (cons lo hi)))
+              (hs (sort holes (lambda (a b) (< (car a) (car b))))))
+     (if (null? hs)
+         (sort (filter (lambda (s) (< (car s) (cdr s))) segs)
+               (lambda (a b) (> (car a) (car b))))
+         (let ((h (car hs)))
+           (loop (append-map
+                  (lambda (s)
+                    (if (or (<= (cdr h) (car s)) (>= (car h) (cdr s)))
+                        (list s)
+                        (list (cons (car s) (car h)) (cons (cdr h) (cdr s)))))
+                  segs)
+                 (cdr hs))))))
 %% Gap (staff spaces) between the dashed line and the staves it joins.
 #(define pr-span-gap (let ((v (ly:parser-lookup 'prSpanGap))) (if (number? v) v 0.5)))
 #(define (pr-span-bar grob)
@@ -221,6 +257,7 @@ voiceSetup = {
                 (xe (ly:stencil-extent default X))
                 (cx (+ (ly:grob-relative-coordinate grob sys X) (interval-center xe)))
                 (holes (pr-knockout-holes grob sys cx y0))
+                (texts (pr-text-holes grob sys cx y0))
                 ;; the gaps between the staves this span bar joins, in its own coordinates
                 (staves (sort (filter-map
                                (lambda (b)
@@ -239,20 +276,129 @@ voiceSetup = {
            (fold
             (lambda (gap acc)
               ;; Each end stops a fixed distance from its staff, or further when a
-              ;; note, stem or accidental near the line stands out from that staff.
-              ;; Only the ends move: the line is never broken in the middle.
+              ;; note, stem or accidental near the line stands out from that staff;
+              ;; in between, the line breaks only for text.
               (let* ((lo0 (car gap)) (hi0 (cdr gap)) (mid (/ (+ lo0 hi0) 2))
                      (hi (fold (lambda (h m) (if (> (cdr h) mid) (min m (car h)) m))
                                (- hi0 pr-span-gap) holes))
                      (lo (fold (lambda (h m) (if (< (car h) mid) (max m (cdr h)) m))
                                (+ lo0 pr-span-gap) holes)))
-                (let loop ((y hi) (acc acc))
-                  (if (<= y lo)
-                      acc
-                      (let ((a (max lo (- y on))))
-                        (loop (- y on off)
-                              (ly:stencil-add acc (make-line-stencil th x a x y))))))))
+                (fold
+                 (lambda (seg acc)
+                   (let loop ((y (cdr seg)) (acc acc))
+                     (let ((a (max (car seg) (- y on))))
+                       (if (< (- y a) (/ on 2))   ; nothing left, or a blip
+                           acc
+                           (loop (- y on off)
+                                 (ly:stencil-add acc (make-line-stencil th x a x y)))))))
+                 acc (pr-interval-minus lo hi texts))))
             empty-stencil gaps)))))
+
+%% Where a dashed bar line passes between the syllables of a word, the hyphen
+%% steps aside (or, where it cannot, opens) and the extender line opens, a
+%% little either side of the bar line.
+#(define pr-lyric-gap 0.3)
+%% x positions of the dashed bar lines crossing the line of this lyric grob,
+%% in the grob's own coordinates. Only horizontal positions are used (the
+%% vertical ones are not known yet when a lyric line is drawn): a lyric line
+%% is crossed when it stands between two staves of the system.
+#(define (pr-between-staves? grob)
+   (let* ((vag (ly:grob-parent grob Y))
+          (al (and (ly:grob? vag) (ly:grob-parent vag Y)))
+          (els (if (ly:grob? al) (ly:grob-array->list (ly:grob-object al 'elements)) '()))
+          (staff? (lambda (g) (not (ly:grob-property g 'staff-affinity #f))))
+          (tail (member vag els)))
+     (and tail
+          (any staff? (cdr tail))
+          (any staff? (let loop ((l els) (acc '()))
+                        (if (or (null? l) (eq? (car l) vag)) acc
+                            (loop (cdr l) (cons (car l) acc))))))))
+#(define (pr-bars-across grob sys)
+   (if (not (pr-between-staves? grob))
+       '()
+       (let ((gx (ly:grob-relative-coordinate grob sys X)))
+         (filter-map
+          (lambda (b)
+            (and (grob::has-interface b 'span-bar-interface)
+                 (member (ly:grob-property b 'glyph-name "") '("!" "-span!"))
+                 (let ((be (ly:grob-extent b sys X)))
+                   (and (interval-sane? be)
+                        (- (interval-center be) gx)))))
+          (ly:grob-array->list (ly:grob-object sys 'all-elements))))))
+#(define (pr-box x0 x1 ye blot)
+   (ly:round-filled-box (cons x0 x1) ye blot))
+#(define (pr-lyric-extender grob)
+   (let ((st (ly:lyric-extender::print grob)))
+     (if (not (ly:stencil? st))
+         st
+         (let* ((sys (ly:grob-system grob))
+                (xe (ly:stencil-extent st X)) (ye (ly:stencil-extent st Y))
+                (blot (* 0.8 (interval-length ye)))
+                (bars (filter (lambda (b) (and (> b (- (car xe) pr-lyric-gap))
+                                               (< b (+ (cdr xe) pr-lyric-gap))))
+                              (pr-bars-across grob sys))))
+           (if (null? bars)
+               st
+               (let* ((segs (pr-interval-minus (car xe) (cdr xe)
+                              (map (lambda (b) (cons (- b pr-lyric-gap) (+ b pr-lyric-gap))) bars)))
+                      (segs (filter (lambda (s) (>= (- (cdr s) (car s)) 0.3)) segs)))
+                 (apply ly:stencil-add empty-stencil
+                        (map (lambda (s) (pr-box (car s) (cdr s) ye blot)) segs))))))))
+#(define (pr-lyric-hyphen grob)
+   (let ((st (ly:lyric-hyphen::print grob)))
+     (if (not (and (ly:stencil? st) (not (ly:stencil-empty? st))))
+         st
+         (let* ((sys (ly:grob-system grob))
+                (xe (ly:stencil-extent st X)) (ye (ly:stencil-extent st Y))
+                (blot (* 0.9 (interval-length ye)))
+                (len (ly:grob-property grob 'length 0.66))
+                (period (ly:grob-property grob 'dash-period 10.0))
+                (n (if (< (- (interval-length xe) len) 0.01) 1
+                       (1+ (inexact->exact (round (/ (- (interval-length xe) len) period))))))
+                (dashes (if (= n 1) (list xe)
+                            (map (lambda (i) (cons (+ (car xe) (* i period))
+                                                   (+ (car xe) (* i period) len)))
+                                 (iota n))))
+                (gx (ly:grob-relative-coordinate grob sys X))
+                ;; room between the syllables, in this grob's coordinates
+                (room (let ((l (ly:spanner-bound grob LEFT)) (r (ly:spanner-bound grob RIGHT)))
+                        (cons (if (grob::has-interface l 'lyric-syllable-interface)
+                                  (- (cdr (ly:grob-extent l sys X)) gx -0.1) (car xe))
+                              (if (grob::has-interface r 'lyric-syllable-interface)
+                                  (- (car (ly:grob-extent r sys X)) gx 0.1) (cdr xe)))))
+                (bars (pr-bars-across grob sys))
+                (hit? (lambda (d) (any (lambda (b) (and (> b (- (car d) pr-lyric-gap))
+                                                        (< b (+ (cdr d) pr-lyric-gap))))
+                                       bars))))
+           (if (not (any hit? dashes))
+               st
+               (apply ly:stencil-add empty-stencil
+                (append-map
+                 (lambda (d)
+                   (if (not (hit? d))
+                       (list (pr-box (car d) (cdr d) ye blot))
+                       (let* ((w (interval-length d)) (c (interval-center d))
+                              (b (car (sort (filter (lambda (b) (and (> b (- (car d) pr-lyric-gap))
+                                                                     (< b (+ (cdr d) pr-lyric-gap))))
+                                                    bars)
+                                            (lambda (p q) (< (abs (- p c)) (abs (- q c)))))))
+                              (left (cons (- b pr-lyric-gap w) (- b pr-lyric-gap)))
+                              (right (cons (+ b pr-lyric-gap) (+ b pr-lyric-gap w)))
+                              (fits (lambda (s) (and (>= (car s) (car room)) (<= (cdr s) (cdr room))
+                                                     (not (hit? s)))))
+                              (cands (sort (filter fits (list left right))
+                                           (lambda (p q) (< (abs (- (interval-center p) c))
+                                                            (abs (- (interval-center q) c)))))))
+                         (if (pair? cands)
+                             (list (pr-box (car (car cands)) (cdr (car cands)) ye blot))
+                             ;; no room to step aside: open the dash at the bar line
+                             (let ((pieces (filter (lambda (s) (>= (- (cdr s) (car s)) (/ len 2)))
+                                                   (pr-interval-minus (car d) (cdr d)
+                                                     (list (cons (- b pr-lyric-gap) (+ b pr-lyric-gap)))))))
+                               (if (null? pieces)
+                                   (list (pr-box (car d) (cdr d) ye blot))
+                                   (map (lambda (s) (pr-box (car s) (cdr s) ye blot)) pieces)))))))
+                 dashes)))))))
 
 %% ------------------------------------------------------------ bar lines
 %% Final, repeat and double bar lines to plate proportions (Ross 147, 152):
@@ -315,6 +461,8 @@ voiceSetup = {
     %% the hyphen to match it.
     \override LyricExtender.thickness = #2.0
     \override LyricHyphen.thickness = #1.8
+    \override LyricHyphen.stencil = #pr-lyric-hyphen
+    \override LyricExtender.stencil = #pr-lyric-extender
     \override LyricHyphen.minimum-distance = #1.2
     \override LyricSpace.minimum-distance = #1.2
     \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #(* pr-breathe 0.9)
@@ -392,6 +540,76 @@ prMens = {
        (let ((l (ly:parser-lookup 'prRegularRests)))
          (and (list? l) (member vname l) #t))))
 
+%% Whole-bar rests (performance editions; Gould 159): a rest, or the part of
+%% a rest, that fills a whole bar becomes a whole-bar rest, centred in the
+%% bar like any modern part's. The music is walked in time order; a change
+%% of bar length (\finalis) is followed. If anything does not add up, the
+%% music is left as it was.
+#(define (pr-whole-bar-rests music bar)
+   (let ((len bar) (anchor 0))
+     (define (dur l) (ly:make-duration 0 0 l))
+     (define (rest l) (make-music 'RestEvent 'duration (dur l)))
+     (define (split m pos)
+       ;; the rest m starting at pos, as rest / whole bars / rest
+       (let* ((l (ly:moment-main (ly:music-length m)))
+              (into (let ((x (- pos anchor))) (- x (* len (floor (/ x len))))))
+              (head (if (zero? into) 0 (min l (- len into))))
+              (n (floor (/ (- l head) len)))
+              (tail (- l head (* n len))))
+         (if (zero? n)
+             (list m)
+             (append (if (zero? head) '() (list (rest head)))
+                     (map (lambda (i) (make-music 'MultiMeasureRestMusic 'duration (dur len)))
+                          (iota n))
+                     (if (zero? tail) '() (list (rest tail)))))))
+     (define (walk m pos)
+       ;; returns (new-music . end-pos)
+       (cond
+        ((and (music-is-of-type? m 'rest-event)
+              (null? (ly:music-property m 'articulations))
+              (not (ly:pitch? (ly:music-property m 'pitch #f))))
+         (let ((parts (split m pos)))
+           (cons (if (= 1 (length parts)) (car parts) (make-sequential-music parts))
+                 (+ pos (ly:moment-main (ly:music-length m))))))
+        ((music-is-of-type? m 'sequential-music)
+         (let loop ((es (ly:music-property m 'elements)) (pos pos) (acc '()))
+           (if (null? es)
+               (begin (ly:music-set-property! m 'elements (reverse acc)) (cons m pos))
+               (let ((r (walk (car es) pos)))
+                 (loop (cdr es) (cdr r) (cons (car r) acc))))))
+        ((music-is-of-type? m 'simultaneous-music)
+         (let ((rs (map (lambda (e) (walk e pos)) (ly:music-property m 'elements))))
+           (ly:music-set-property! m 'elements (map car rs))
+           (cons m (apply max pos (map cdr rs)))))
+        ((and (music-is-of-type? m 'layout-instruction-event) #f) (cons m pos))
+        ((eq? (ly:music-property m 'name) 'PropertySet)
+         (if (eq? (ly:music-property m 'symbol) 'measureLength)
+             (begin (set! len (ly:moment-main (ly:music-property m 'value)))
+                    (set! anchor pos)))
+         (cons m pos))
+        ((music-is-of-type? m 'repeated-music)
+         (let* ((b (walk (ly:music-property m 'element) pos))
+                (alts (let loop ((es (ly:music-property m 'elements)) (p (cdr b)) (acc '()))
+                        (if (null? es) (cons (reverse acc) p)
+                            (let ((r (walk (car es) p)))
+                              (loop (cdr es) (cdr r) (cons (car r) acc)))))))
+           (ly:music-set-property! m 'element (car b))
+           (ly:music-set-property! m 'elements (car alts))
+           (cons m (cdr alts))))
+        ((and (ly:music? (ly:music-property m 'element #f))
+              (not (music-is-of-type? m 'time-scaled-music)))
+         (let ((r (walk (ly:music-property m 'element) pos)))
+           (ly:music-set-property! m 'element (car r))
+           (cons m (cdr r))))
+        (else (cons m (+ pos (ly:moment-main (ly:music-length m)))))))
+     (let* ((copy (ly:music-deep-copy music))
+            (before (ly:music-length music))
+            (r (walk copy 0)))
+       (if (equal? before (ly:music-length (car r)))
+           (car r)
+           (begin (ly:warning "pr-whole-bar-rests: length changed, rests left as they were")
+                  music)))))
+
 %% \prStaff long short incipit clef perf-clef notes words
 %%   words: one \lyricmode block, or << \stanzaOne \stanzaTwo >> for several
 %%   incipit: music for the incipit staff (clef, sign, first note), or {} for none
@@ -408,6 +626,9 @@ prStaff =
           (sign (pr-lookup 'prSign "timesig.C22"))
           (vid (string-downcase long))
           (music (pr-fix-opt (if transposed #{ \transpose #from #to #notes #} notes)))
+          (rmusic (if (pr-critical?) music
+                      (pr-whole-bar-rests music
+                        (ly:moment-main (pr-lookup 'prBarLength (ly:make-moment 2/1))))))
           (incipit (if (or transposed (null? (ly:music-property inc 'elements)))
                        #{ #}
                        #{ \incipit { \prMens #inc } #})))
@@ -421,7 +642,7 @@ prStaff =
                    (else #{ \mensSign #sign #}))
             \voiceSetup
             $(if (pr-regular-rests? vid)
-                 #{ \new Voice = #vid \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $music #}
+                 #{ \new Voice = #vid \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $rmusic #}
                  #{ \new Voice = #vid $music #})
           }
           $(make-simultaneous-music
@@ -476,7 +697,7 @@ prEquiv =
      (if (and (pr-critical?) (markup? v) (not pr-values-done))
          (begin
            (set! pr-values-done #t)
-           #{ \context Score {
+           #{ \new Devnull {
                 \tweak break-align-symbols #'(left-edge)
                 \tweak self-alignment-X #RIGHT
                 \tweak X-offset #(lambda (g) (- (self-alignment-interface::self-aligned-on-breakable g) 1.2))
