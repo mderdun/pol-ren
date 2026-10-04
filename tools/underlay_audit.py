@@ -15,6 +15,9 @@ reported as LOOK: places to sing through and judge, not errors.
                        where it could sit off the beat and lead in.
   LOOK stress-short    a stressed syllable on a shorter note than the
                        unstressed syllable after it in the same word.
+  LOOK after-run       a new syllable on the white note straight after a run of
+                       short notes, where it could come before the run
+                       (Lanfranco VI; Vicentino: the second white note).
   LOOK run-light       a run of 4+ notes on a light word.
   LOOK run-unstressed  a run of 6+ notes on an unstressed, non-final
                        syllable of a word with a known stress.
@@ -104,6 +107,16 @@ def audit(path):
                         nx = evs[i + 1] if i + 1 < len(evs) else None
                         if nx and not nx['rest'] and n not in nx['ly']:
                             out.append(('BREAK', voice, n, e['bar'], f"'{txt}' on the semiminim, but no syllable on the note after it"))
+                    # the white note straight after a run of shorter notes (Lanfranco VI, Vicentino)
+                    if i >= 3 and e['d'] >= 2 and txt[-1:] not in ',.:;' and syl in ('begin', 'middle', 'single'):
+                        j = i
+                        while j > 0 and not evs[j-1]['rest'] and evs[j-1]['d'] < 2 and n not in evs[j-1]['ly']:
+                            j -= 1
+                        run = i - j
+                        before = evs[j-1] if j > 0 else None
+                        if run >= 2 and before and not before['rest'] and before['d'] >= 2 and n not in before['ly'] \
+                                and cur and cur[2][0] is not before:
+                            out.append(('LOOK', voice, n, e['bar'], f"after-run: '{txt}' straight after {run} short notes; the white note before them is free"))
                     cur = [txt, syl, [e]]; groups.append(cur)
                 else:
                     if started and prev is not None and prev['rest']:

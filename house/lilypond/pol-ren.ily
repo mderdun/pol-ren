@@ -163,6 +163,68 @@ voiceSetup = {
 %% Drawn between the staves only, as dashed black lines: the score reads as
 %% parts first and as a timed score second. No colour but black and red.
 \defineBarLine "-span!" #'(#f #f "!")
+%% The dashed line steps aside where a note, stem, accidental or syllable
+%% stands in its way (a note far above or below its staff, a lyric), so the
+%% Mensurstrich never crosses anything the singer reads.
+#(define (pr-knockout-holes grob sys cx y0)
+   (let ((pad 0.4))
+     (filter-map
+      (lambda (g)
+        (and (or (grob::has-interface g 'note-head-interface)
+                 (grob::has-interface g 'stem-interface)
+                 (grob::has-interface g 'accidental-interface)
+                 (grob::has-interface g 'dots-interface)
+                 (grob::has-interface g 'flag-interface)
+                 (grob::has-interface g 'lyric-syllable-interface)
+                 (grob::has-interface g 'lyric-hyphen-interface))
+             (let* ((gx (ly:grob-extent g sys X))
+                    ;; a note head outside the staff carries a ledger line wider than itself
+                    (px (if (grob::has-interface g 'note-head-interface) (+ pad 0.45) pad)))
+               (and (interval-sane? gx)
+                    (< (car gx) (+ cx px)) (> (cdr gx) (- cx px))
+                    (let ((gy (ly:grob-extent g sys Y)))
+                      (and (interval-sane? gy)
+                           (cons (- (car gy) y0 pad) (+ (- (cdr gy) y0) pad))))))))
+      (ly:grob-array->list (ly:grob-object sys 'all-elements)))))
+%% Gap (staff spaces) between the dashed line and the staves it joins.
+#(define pr-span-gap (let ((v (ly:parser-lookup 'prSpanGap))) (if (number? v) v 0.5)))
+#(define (pr-span-bar grob)
+   (let ((default (ly:span-bar::print grob)))
+     (if (not (and (ly:stencil? default)
+                   (member (ly:grob-property grob 'glyph-name "") '("!" "-span!"))))
+         default
+         (let* ((sys (ly:grob-system grob))
+                (y0 (ly:grob-relative-coordinate grob sys Y))
+                (xe (ly:stencil-extent default X))
+                (cx (+ (ly:grob-relative-coordinate grob sys X) (interval-center xe)))
+                (holes (pr-knockout-holes grob sys cx y0))
+                ;; the gaps between the staves this span bar joins, in its own coordinates
+                (staves (sort (filter-map
+                               (lambda (b)
+                                 (let ((ss (ly:grob-object b 'staff-symbol)))
+                                   (and (ly:grob? ss)
+                                        (let ((e (ly:grob-extent ss sys Y)))
+                                          (cons (- (car e) y0) (- (cdr e) y0))))))
+                               (ly:grob-array->list (ly:grob-object grob 'elements)))
+                              (lambda (a b) (> (car a) (car b)))))
+                (gaps (let g ((l staves) (acc '()))
+                        (if (or (null? l) (null? (cdr l))) (reverse acc)
+                            (g (cdr l) (cons (cons (cdr (cadr l)) (car (car l))) acc)))))
+                (th (* (ly:staff-symbol-line-thickness grob)
+                       (ly:grob-property grob 'hair-thickness 1.9)))
+                (on 0.4) (off 0.6) (x (interval-center xe)))
+           (fold
+            (lambda (gap acc)
+              (let ((lo (+ (car gap) pr-span-gap)) (hi (- (cdr gap) pr-span-gap)))
+                (let loop ((y hi) (acc acc))
+                  (if (<= y lo)
+                      acc
+                      (let* ((a (max lo (- y on)))
+                             (blocked (any (lambda (h) (and (< (car h) y) (> (cdr h) a))) holes)))
+                        (loop (- y on off)
+                              (if blocked acc
+                                  (ly:stencil-add acc (make-line-stencil th x a x y)))))))))
+            empty-stencil gaps)))))
 
 %% ------------------------------------------------------------ contexts
 \layout {
@@ -188,6 +250,7 @@ voiceSetup = {
     sectionBarType = "||"
   }
   \context { \StaffGroup
+    \override SpanBar.stencil = #pr-span-bar
     \override SystemStartBracket.collapse-height = #4
     \override StaffGrouper.staff-staff-spacing.padding = #(* pr-breathe 1.6)
     \override StaffGrouper.staffgroup-staff-spacing.padding = #(* pr-breathe 1.6)
