@@ -242,14 +242,6 @@
    "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against xxx"
   },
   {
-   "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|1",
-   "status": "accepted",
-   "reason": "the print's own long con- in every voice, bars 29-39 (underlay review, October 2026; critical note on bars 38-39); kept under principles 10.12",
-   "rule": "U206",
-   "where": "Altus v1 bar 32.3",
-   "message": "6 notes on 'con' of consolari (stress on syllable 3; vowel o)"
-  },
-  {
    "fingerprint": "vox-in-rama|Bassus|v1|U206|consolari#0|1",
    "status": "accepted",
    "reason": "the print's own long con- in every voice, bars 29-39 (underlay review, October 2026; critical note on bars 38-39); kept under principles 10.12",
@@ -259,8 +251,8 @@
   },
   {
    "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "status": "accepted",
+   "reason": "MD (Vox review, 4 Oct 2026): -la- held across 18.2-18.3, the smaller move; the vowel of -tus on the final note closes the phrase; et dropped (10.13); principles 10.6",
    "rule": "U301",
    "where": "Bassus v1 bar 18.3",
    "message": "the arrival carries 'la', and 'tus,' comes after it (clausula vera cadence on D, full)"
@@ -275,8 +267,8 @@
   },
   {
    "fingerprint": "vox-in-rama|Cantus|v1|U301|consolari#2|2",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "status": "accepted",
+   "reason": "MD (Vox review, 4 Oct 2026): -la- is the stressed syllable and arrives on the weak cadence at 39.3; -ri follows on 40.1; principles 10.6",
    "rule": "U301",
    "where": "Cantus v1 bar 39.3",
    "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on B, weak)"

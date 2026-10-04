@@ -1,13 +1,13 @@
 %% Engraving decisions for this score only (breaks, spacing, local signs).
 
 %% Editorial suggestion at the final (performance edition only): the house
-%% \sugg, in round brackets, set in the same column as the voice's own note.
+%% \sugg, small, in square brackets as every editorial suggestion (principles
+%% 2.3, section 8), set in the same column as the voice's own note.
 suggFinal =
 #(define-music-function (note) (ly:music?)
-   #{ \voiceTwo \sugg
+   #{ \voiceTwo \sugg \sup
       \once \override NoteColumn.force-hshift = #0
-      \once \override Parentheses.padding = #0.3
-      \parenthesize #note #})
+      #note #})
 
 %% Systems follow the text where the imitation allows: 'Vox in Rama' (1-10),
 %% 'audita est, ploratus et ululatus' (11-20), 'Rachel plorans' (21-24),
