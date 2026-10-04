@@ -119,6 +119,22 @@ colNote = ^\markup \raise #0.5 \abs-fontsize #9 \concat { "‚åú" \hspace #2.2 "‚å
 
 %% Cantus firmus entry.
 cf = ^\markup \abs-fontsize #8.5 \italic "[c.f.]"
+%% Cantus firmus over its whole span: \cfStart on its first note, \cfEnd on
+%% its last. The label repeats at the start of every system it crosses, and
+%% a light dashed line shows how far it runs.
+cfStart = -\tweak direction #UP
+  -\tweak style #'dashed-line
+  -\tweak dash-fraction #0.2
+  -\tweak dash-period #1.6
+  -\tweak thickness #0.6
+  -\tweak bound-details.left.text \markup \abs-fontsize #8.5 \italic "[c.f.] "
+  -\tweak bound-details.left-broken.text \markup \abs-fontsize #8.5 \italic "[c.f.] "
+  -\tweak bound-details.left.stencil-align-dir-y #CENTER
+  -\tweak bound-details.left-broken.stencil-align-dir-y #CENTER
+  -\tweak bound-details.right.text \markup \draw-line #'(0 . -0.8)
+  -\tweak bound-details.right-broken.text ##f
+  \startTextSpan
+cfEnd = \stopTextSpan
 
 %% Divided note (a source note split to carry text): dashed tie.
 divTie = { \once \tieDashed \once \override Tie.dash-definition = #'((0 1 0.4 0.75)) }
