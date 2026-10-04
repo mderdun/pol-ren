@@ -54,9 +54,21 @@ def older_practice(a, line, hit) -> bool:
     return a is not None and bool(a.score.config.get("older_practice"))
 
 
+def sung_through(a, line, hit) -> bool:
+    return hit.syl < len(line.syls) and not line.syls[hit.syl].short
+
+
+def melodic_resolution(a, line, hit) -> bool:
+    return bool(hit.values.get("melodic"))
+
+
+def tail_voice(a, line, hit) -> bool:
+    return bool(hit.values.get("tail"))
+
+
 GATES = {name: globals()[name] for name in
          ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
-          "homorhythm", "older_practice")}
+          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice")}
 
 
 def applied(rule, a, line, hit) -> list[tuple[str, float]]:

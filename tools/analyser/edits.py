@@ -13,7 +13,8 @@ Which edits are offered:
   drop     a word in the finding's neighbourhood (the finding's word and the
            words either side), in a voice below the top one, whose loss
            leaves the sense: a conjunction or auxiliary on the droppable list
-           (et, est ...), or one of a word sung twice in a row
+           (et, est ...), or one of a word sung twice in a row; never a word
+           on a recurring motif's head notes (imitation.motifs)
   repeat   the finding's word, sung again straight after itself, where the
            finding is a long melisma (run rules U205, U206, U302)
 """
@@ -66,6 +67,15 @@ def _sense_survives(line: Line, w: Word) -> bool:
         if 0 <= j < len(line.words) and line.words[j].norm == w.norm and line.words[j].syls:
             return True
     return False
+
+
+def _on_motif(analysis, line: Line, w: Word) -> bool:
+    """Does the word sit on a recurring motif's head notes in this voice? A drop
+    there would break the motif's text (Miki, review of 4 October 2026: the
+    dropped 'et' at Altus 32 broke the 'et noluit' chain). Never offered."""
+    heads = {idx for m in getattr(analysis, "motifs", ()) for e in m.entries if e.voice == line.voice
+             for idx in e.head}
+    return any(line.syls[i].ev in heads for i in w.syls)
 
 
 def _rebuild(line: Line, syls: list, words_syls: dict, extra_word: Word | None) -> Line:
@@ -141,7 +151,7 @@ def candidates(analysis, line: Line, sp, hit) -> list[Edit]:
         w = line.words[j]
         if not w.syls or not set(w.syls) <= inside or len(w.syls) >= len(sp.syls):
             continue
-        if _sense_survives(line, w):
+        if _sense_survives(line, w) and not _on_motif(analysis, line, w):
             out.append(drop(line, j))
     if hit.rule in MELISMA_RULES:
         w = line.words[wi]

@@ -1,0 +1,14 @@
+id: U209
+name: cluster-short
+level: look
+weight: 1.5
+tier: idiom
+principle: "10.6"
+authority: "Miki, review of 4 Oct 2026 (Cantus 34.2, alternative 1: moving so- back 'means that the mouth has to move between o-n-s across a quaver'). No period theorist is cited for it; the 10.1 limits on short notes (Stoquerus, Rotola ed., 227, 243) are the nearest rule."
+message: "'{txt}' to '{nxt}' passes {n} consonants on a {value}"
+examples:
+  flag:
+    - {notes: "f3 e1 d1/2 c1/2 d2 e2", text: "con- _ _ _ so- la", at: 0, why: "Cantus 34.2, alternative 1: o-n-s across the last fusa of the run"}
+  pass:
+    - {notes: "f3 e1 d1/2 c1/2 d2 e2", text: "con- _ _ _ _ so", why: "the change comes after a minim"}
+    - {notes: "f3 e1 d1/2 c1/2 d2 e2", text: "Ra- _ _ _ ma _", why: "one consonant only (a-m-a)"}

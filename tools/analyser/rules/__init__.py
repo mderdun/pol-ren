@@ -37,6 +37,7 @@ class Rule:
     hard: bool = False      # a firm rule: decides legality
     gates: dict = field(default_factory=dict)
     examples: dict = field(default_factory=dict)
+    params: dict = field(default_factory=dict)     # thresholds the check reads (rule YAML `params`)
     module: object = None
     path: str = ""
 
@@ -64,12 +65,18 @@ def load() -> dict[str, Rule]:
                  authority=d.get("authority", ""), message=d["message"],
                  scope=d.get("scope", "syllable"), langs=tuple(d.get("applies", {}).get("lang", ["la", "pl"])),
                  legacy=bool(d.get("legacy", False)), hard=bool(d.get("hard", False)),
-                 gates=d.get("gates") or {}, examples=d.get("examples") or {}, module=mod,
+                 gates=d.get("gates") or {}, examples=d.get("examples") or {},
+                 params=d.get("params") or {}, module=mod,
                  path=str(y.relative_to(HERE.parent.parent.parent)))
         if r.level not in LEVELS:
             raise ValueError(f"{y.name}: level {r.level!r}")
         rules[r.id] = r
     return rules
+
+
+def params(rid: str) -> dict:
+    """A rule's `params` from its YAML."""
+    return load()[rid].params
 
 
 @lru_cache(maxsize=1)

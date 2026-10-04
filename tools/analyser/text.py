@@ -59,6 +59,67 @@ class Syl:
     def punct(self) -> bool:
         return self.text[-1:] in PUNCT
 
+    @property
+    def coda(self) -> str:
+        """open | sonorant | obstruent: what closes the syllable's vowel
+        (`coda_class`)."""
+        return coda_class(self.text)
+
+    @property
+    def short(self) -> bool:
+        """A short syllable for melisma purposes (Miki, review of 4 October
+        2026): its vowel is stopped by a plosive or fricative (it, et, est,
+        -tus), so it cannot be sung through. An open syllable or one closed by
+        a sonorant (con, in, non) can carry a run."""
+        return self.coda == "obstruent"
+
+
+# Syllable codas (Miki, review of 4 October 2026). The first consonant after
+# the syllable's last vowel decides: a sonorant (m n l r, Polish ń ł j) can be
+# sung through, a plosive or fricative stops the vowel. Polish digraphs: rz is
+# a fricative (ż), sz cz ch dz are obstruents.
+VOWELS = set("aeiouyąęó")
+SONORANTS = set("mnlrjńł")
+
+
+def _letters(text: str) -> str:
+    return re.sub(r"[^a-ząćęłńóśźż]", "", strip_accents(text.lower()))
+
+
+def coda_class(text: str) -> str:
+    s = _letters(text)
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    if v < 0:
+        return "open"
+    coda = s[v + 1:]
+    if not coda:
+        return "open"
+    if coda.startswith("rz"):
+        return "obstruent"
+    return "sonorant" if coda[0] in SONORANTS else "obstruent"
+
+
+def onset_consonants(text: str) -> int:
+    """Consonants before the syllable's first vowel, counting qu, ch, sz, cz,
+    rz, dz as one sound."""
+    s = _letters(text)
+    for d in ("qu", "ch", "sz", "cz", "rz", "dz", "ph", "th"):
+        s = s.replace(d, "C")
+    n = 0
+    for c in s:
+        if c in VOWELS:
+            break
+        n += 1
+    return n
+
+
+def coda_consonants(text: str) -> int:
+    s = _letters(text)
+    for d in ("ch", "sz", "cz", "rz", "dz", "x"):
+        s = s.replace(d, "CC" if d == "x" else "C")
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    return 0 if v < 0 else len(s) - v - 1
+
 
 @dataclass
 class Word:

@@ -313,3 +313,35 @@ def arrivals(cads: list[Cadence]) -> dict:
             if c.functions.get(v) in ("C", "T", "B", "P"):
                 out[(v, idx)] = c
     return out
+
+
+RESOLUTION_NOTES = 2        # notes a voice may add after the arrival before its phrase ends
+RESOLUTION_TIME = F(8)      # within a breve
+
+
+def melodic_resolutions(score: Score, arr: dict) -> dict:
+    """(voice, arrival ev) -> ev of the voice's own melodic resolution, where it
+    comes after the harmonic arrival (Miki, review of 4 October 2026: the
+    Cantus at 28.1 of *Vox in Rama* arrives on D with the other voices but
+    resolves its own line on the A after it). It is the last note of the
+    voice's phrase: at most RESOLUTION_NOTES notes after the arrival, within
+    RESOLUTION_TIME, before a rest or a section break, on another pitch. An
+    arrival that ends its voice's phrase, or that the voice runs on from, has
+    no entry: there the arrival is the resolution."""
+    out = {}
+    for (v, j), _ in arr.items():
+        evs = score.voices[v]
+        a = evs[j]
+        k = j + 1
+        tail = []
+        while k < len(evs) and not evs[k].rest and not evs[k].after_break:
+            tail.append(evs[k])
+            k += 1
+            if len(tail) > RESOLUTION_NOTES:
+                break
+        if not tail or len(tail) > RESOLUTION_NOTES:
+            continue
+        if tail[-1].end - a.end > RESOLUTION_TIME or tail[-1].midi == a.midi:
+            continue
+        out[(v, j)] = tail[-1].idx
+    return out

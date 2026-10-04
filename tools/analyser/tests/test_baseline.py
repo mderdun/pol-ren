@@ -26,7 +26,9 @@ def test_accepted_findings_are_marked_and_not_new():
     r = run(ROOT / "editions" / "vox-in-rama" / "pdf" / "vox-in-rama.musicxml")
     new = B.apply([r], B.load(DEFAULT_BASELINE))
     con = [f for f in r.findings if f.rule == "U206" and f.word == "consolari"]
-    assert con and all(f.baseline.startswith("accepted") for f in con)
+    # accepted (baseline or inline), or fallen to information since melismas are
+    # measured in time and 'con' can be sung through (Miki's review, 4 Oct 2026)
+    assert con and all((f.baseline or "").startswith("accepted") or f.level == "info" for f in con)
     assert not new.get("vox-in-rama")
 
 

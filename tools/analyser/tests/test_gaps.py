@@ -54,7 +54,7 @@ def test_findings_sharing_an_alternative_share_its_improvement(slug):
     for key, fs in groups.items():
         if len(fs) > 1:
             gain = -fs[0].alternatives[0]["cost"]
-            assert sum(f.regret for f in fs) <= gain + 1e-6, key
+            assert sum(f.regret for f in fs) <= gain + 1e-3, key   # costs are rounded to 3 places
 
 
 # ------------------------------------------------------------------ text edits (10.13)

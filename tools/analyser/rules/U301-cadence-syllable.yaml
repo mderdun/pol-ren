@@ -4,9 +4,12 @@ level: look
 weight: 4.0
 tier: phrase
 principle: "10.3"
-authority: "Lanfranco VIII, Zarlino X (Harrán 1973a, 44–46); after a run, its first note or the longer note before it (Stoquerus R3, Rotola ed., 251; Towne 1990, R10, R16)"
+authority: "Lanfranco VIII, Zarlino X (Harrán 1973a, 44–46); after a run, its first note or the longer note before it (Stoquerus R3, Rotola ed., 251; Towne 1990, R10, R16); the voice's own resolution and the tail voice: Miki, review of 4 Oct 2026 (Cantus 28.1, Bassus 18.3)"
 message: "{problem} ({cadence_type} cadence on {tone}, {cadence_kind})"
-gates: {evaded_cadence: 0.5, weak_cadence: 0.5}
+# The voice's own melodic resolution after the harmonic arrival, and a voice
+# that carries its phrase's last syllable while the others begin new text (a
+# tail transition), each halve a late last syllable (Miki, review of 4 Oct 2026).
+gates: {evaded_cadence: 0.5, weak_cadence: 0.5, melodic_resolution: 0.5, tail_voice: 0.5}
 examples:
   flag:
     - voices:
@@ -19,6 +22,11 @@ examples:
         Tenor:  {notes: "f4 e4 d4 c8", text: "Do- mi- _ nus."}
       rule_voice: Cantus
       why: "the last syllable starts on the leading note and holds through the arrival"
+    - voices:
+        Cantus: {notes: "a4 g4 b4 c'4 g4", text: "Do- mi- _ nus. _"}
+        Tenor:  {notes: "f4 e4 d4 c8", text: "Do- mi- _ nus."}
+      rule_voice: Cantus
+      why: "the Cantus resolves its own line on the g after the arrival; 'nus' is carried back across that move (Bassus 18.3: not 'tus' over 18.3-19.1)"
   pass:
     - voices:
         Cantus: {notes: "a4 g4 b4 c'8", text: "Do- mi- _ nus."}
