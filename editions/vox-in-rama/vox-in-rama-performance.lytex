@@ -11,7 +11,6 @@
 \makemasthead
 \scorepagebreaks{}
 \lilypondfile[noindent]{music/score-performance.ly}
-\pagenote{Small notes in round brackets, last bar: an editorial suggestion, not in the print.}
 
 \section*{Text and translation}
 

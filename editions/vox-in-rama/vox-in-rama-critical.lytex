@@ -233,7 +233,11 @@ second (bar 17) the second note is black; corner brackets mark it.
 \subsection{Underlay} \sig{T} places its text under the notes but loosely, and
 writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. \sig{M}’s
 underlay was then checked syllable by syllable against the rules of this
-series. It keeps every firm rule: no new syllable on a fusa or a dot, a
+series. In eight places it puts a new syllable on a semiminim after a plain
+minim; there the underlay is reset (see the critical notes), and in four of
+them an inner voice leaves out a light word (\la{est} twice in the Altus,
+\la{et} once each in Altus and Tenor) or the Tenor its second \la{in}, as
+rule 13 of the series allows. The underlay now keeps every firm rule: no new syllable on a fusa or a dot, a
 syllable on the first note after every rest, no word divided by a rest, no
 elision. It departs from the sixteenth-century theorists in two ways, and in
 both the print’s Tenor does the same, so the edition follows the print.
@@ -275,8 +279,13 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
   g\sh′, ‘-ma’ on a′ (bar 6). \sig{N} is followed. Its melisma falls on the
   stressed syllable, and the Altus then says ‘vox in Rama, in Rama’ as the
   Cantus (bars 4–7) and Tenor (bars 3–9) do.}
+\cn{6}{T}{Underlay. \sig{M}: ‘in’ on e′, ‘Ra-’ on the semiminim a. Here the second
+  ‘in’ is left out and ‘Ra-’ takes e′ and the whole run.}
 \cn{8}{T}{Fusae g\sh′ f\sh′: \sig{T} without sharps; the minim g\sh′ that follows
   has its sharp in \sig{T}. \sig{N} and \sig{M} sharpen all three.}
+\cn{11–12}{A}{Underlay. \sig{M}: ‘au-di-ta est’ twice, with ‘au’, ‘di’ and ‘ta’ on
+  semiminims. Here ‘est’ is left out both times: ‘-ma’ takes e″ and c″,
+  ‘au-’ c″, ‘-di-’ b′, ‘-ta’ c″; then ‘au-’ e″, ‘-di-’ c″, ‘-ta’ c″.}
 \cn{15}{T}{e′–d′ in ligature, e′ without flat in \sig{T}. \sig{N} and \sig{M} have
   e\fl′. With e\na′ the Tenor sounds a sixth below c″ and then a fifth below
   b′; with e\fl′ it forms a minor 6/3 and then the augmented triad
@@ -294,15 +303,26 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
 \cn{17}{T}{b–a in ligature, the second note black. In imperfect time a black
   semibreve followed by short notes is worth a dotted minim, which is the
   value \sig{N} and \sig{M} give it.}
+\cn{27}{B}{Underlay. \sig{M}: ‘su-’ on the semiminim d. Here on the semibreve a, with
+  the Tenor; ‘-os’ of ‘filios’ takes the run.}
 \cn{25, 31}{T}{The figure c\sh′–b–c′–d′ at the cadence: \sig{T} prints the sharp on
   the fusa and not on the minim. The minim’s sharp is editorial. \sig{N} and \sig{M}
   have it before the note.}
+\cn{31–33}{A}{Underlay. \sig{M}: ‘con-’ on the semiminim g′. Here ‘et’ is left out:
+  ‘no-’ d′, ‘-lu-’ g′, ‘-it’ the semiminim g′ after the dotted minim, and
+  ‘con-’ f\sh′ with the run.}
+\cn{37–38}{T}{Underlay. \sig{M}: ‘-la-’ on the semiminim d′. Here ‘-so-’ takes e′ d′ c′,
+  ‘-la-’ b, ‘-ri’ c′; the following ‘et’ is left out.}
 \cn{38–39}{T}{Underlay. \sig{M}: ‘et no-lu-it (melisma) con- (melisma)
   so-la-ri’. \sig{N}: ‘no-lu-it, no-lu-it con-so-la-ri’, filling the melisma
   with another ‘noluit’. \sig{T} has ‘\& no-’ at the end of its fifth staff and
   ‘luit conso la ri’ at the start of the sixth, one statement only, so \sig{N}’s
   extra ‘noluit’ is not in the print. \sig{M} is kept: its long ‘con-’ falls
-  with the long ‘con-’ of the Cantus and Altus.}
+  with the long ‘con-’ of the Cantus and Altus. Its ‘et’ and the end of its
+  ‘con-’ give way to the changes in bars 37–40.}
+\cn{39–40}{T}{Underlay. \sig{M}: ‘-la-’ on the repeated semiminim e′. Here ‘con-’ g a,
+  ‘-so-’ b, ‘-la-’ the minim e′ and the run, so that the run falls on the
+  stressed syllable.}
 \cn{42}{C}{e″ on the second minim against the Bassus f, both newly struck: a
   passing semiminim on the beat. \sig{N} and \sig{M} agree.}
 \cn{45}{}{\sig{T} ends on a longa a′, followed by the final bar line. \sig{N} and \sig{M}
