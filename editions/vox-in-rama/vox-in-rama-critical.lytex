@@ -100,6 +100,9 @@ beneath the voices.
 
 \section*{Sources}
 
+% TITLE PAGE (principles 3.9): line ends ' | ' not yet marked; they need the
+% title page itself (Printed Sacred Music records 3388-3389, or the MMP D
+% facsimile). For Miki.
 \subsection{The print} \la{Commvniones totivs anni quibus in solennioribus
 festis Sancta Romana Ecclesia uti consueuit ad cantum Organi, per Vnam, Duas,
 Tres, Quatuor, Quinque, \& Sex voces} … Venetiis, Apud Iacobum Vincentium.
@@ -108,6 +111,9 @@ MDCXI (RISM A/I Z\,200, issued with Z\,199). Quarto partbooks and a folio
 St Bernardine in Wrocław and was in the city library until 1942. Half of it
 was lost in the war. What survives:
 
+% SHELFMARKS MISSING (principles 3.9): Wrocław BU partbooks (C I, T I,
+% A II, T II), Kraków Czartoryski Partitura, Kraków BJ Cantus; also the
+% Chicago Public Library copy of MMP D/12 read for T. For Miki.
 \begin{sigla}
 \item[PL-WRu] Wrocław, Biblioteka Uniwersytecka: Cantus primi chori, Tenor
   primi chori, Altus secundi chori, Tenor secundi chori.
@@ -144,10 +150,12 @@ complete set, and every later edition rests on their copies.
 semitone above \sig{N}, and the two are barred differently. Their underlay
 differs in two places (bars 5–6 and 38–39). Both name the 1611 print as their
 source, but neither can have been made from the partbooks alone, since the
-Altus and Bassus are lost. Two editions that agree note for note across 45
-breves, down to accidentals that \sig{T} does not print, must share a parent:
-WDMP\,12, Malinowski, or the \la{Partitura} in facsimile. Their agreement
-therefore counts as one witness, not two. \sig{M} was chosen as base text
+Altus and Bassus are lost. They share readings that \sig{T} shows to be
+editorial: the e\fl′ of bar 15, which \sig{T} prints as e\na′, and the four
+sharps that \sig{T} lacks (bars 8, 25, 31). They also share the Altus an
+octave low in bars 17–18. So one was copied from the other, or both descend
+from a common parent: WDMP\,12, Malinowski, or the \la{Partitura} in
+facsimile (principles 3.5). Their agreement counts as one witness, not two. \sig{M} was chosen as base text
 because it exists as encoded data.
 
 \subsection{Editions not seen} Adolf Chybiński and Bronisław Rutkowski edited
@@ -222,13 +230,15 @@ the performance edition is a fifth lower.
 \subsection{Accidentals} In the Tenor, accidentals before notes are those of
 \sig{T}, and accidentals above the staff are editorial. In the other voices every
 accidental is \sig{M}’s and stands before the note, whether the print had it or
-not. A sign applies only to its own note (principles 7.3), so a b after a
-b\fl\ in the same bar is b\na\ and carries no sign.
+not. Cautionaries in round brackets are editorial in every voice
+(principles 7.3).
 
 \subsection{Ligatures and coloration} The three ligatures of \sig{T}, all
 \la{cum opposita proprietate}, are shown by brackets above the notes. In the
 second (bar 17) the second note is black; corner brackets mark it.
 
+% IJ (principles 11.9): Tenor words that T gives by ij should go in angle
+% brackets. Which they are needs the facsimile of T. For Miki.
 \subsection{Underlay} \sig{T} places its text under the notes but loosely, and
 writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. In eight
 places \sig{M} puts a new syllable on a semiminim after a plain minim
@@ -240,8 +250,8 @@ print shows it (principles 10.12): every voice sets the unstressed ‘con-’ of
 sola-’, shows the same. In bars 5–6 of the
 Altus \sig{N}’s underlay is preferred, for the reason given in the notes.
 
-\subsection{Text} Spelling follows modern Latin use (\la{et} for the print’s
-ampersand, \la{ululatus} for \sig{T}’s \la{vlulatus}). Punctuation follows the
+\subsection{Text} \sig{T}’s ampersand is written \la{et}, and its v as u
+(\la{ululatus} for \la{vlulatus}; principles 11.1). Punctuation follows the
 Missal. The first word is capitalised; repeated ‘vox’ is not.
 
 %% ================================================================ TEXT
@@ -291,8 +301,10 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
   below any other note in the part, and then make it leap e′–e″ to
   ‘ploratus’. In the high clefs of this piece an Altus would hardly go below
   d′. Raised an octave, the line runs a′–c″–d″–e″ into the repeated e″ of
-  ‘ploratus’, crosses no other voice, and makes no parallels. The Altus
-  partbook is lost; the \la{Partitura} should settle it.}
+  ‘ploratus’, crosses no other voice, and makes no parallels. The error is
+  common to \sig{N} and \sig{M}, so it goes back to their parent. How it
+  arose cannot be shown while the Altus partbook is lost; an octave slip in
+  transcription is the simplest cause. The \la{Partitura} should settle it.}
 \cn{17}{T}{b–a in ligature, the second note black. In imperfect time a black
   semibreve followed by short notes is worth a dotted minim, which is the
   value \sig{N} and \sig{M} give it.}
