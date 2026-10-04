@@ -38,8 +38,8 @@ def check(pdf):
         n = len(pages)
         for i, p in enumerate(pages, 1):
             top, bot, music = ink_rows(p)
-            if i == n and n > 1 and top is not None and (bot - TOP) / (BOTTOM - TOP) < 0.12 and not music:
-                out.append(f'  p.{i}: last page nearly empty (an overflow from p.{i-1}?)')
+            if i == n and n > 1 and top is not None and top > 0.75 and not music:   # only a footer line
+                out.append(f'  p.{i}: last page holds only the foot line (an overflow from p.{i-1}?)')
             if top is None or not music or i == n:
                 continue
             fill = (bot - TOP) / (BOTTOM - TOP)

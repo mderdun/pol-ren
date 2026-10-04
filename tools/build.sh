@@ -35,7 +35,7 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
     for sys in "$out"/*/lily-*.pdf; do   # a system wider than the text block (170 mm = 482 pt) runs into the margin
       [ -e "$sys" ] || continue
       w=$(pdfinfo "$sys" | awk '/Page size/{print int($3)}')
-      [ "$w" -gt 490 ] && echo "  system $(basename "$sys"): $w pt wide, over the 482 pt text block; reset this score's breaks"
+      if [ "$w" -gt 490 ]; then echo "  system $(basename "$sys"): $w pt wide, over the 482 pt text block; reset this score's breaks"; fi
     done | sort -u
   done
 }
