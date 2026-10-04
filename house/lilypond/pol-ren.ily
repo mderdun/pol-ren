@@ -68,7 +68,8 @@ mensSign =
 fi = \once \set suggestAccidentals = ##t
 
 %% Optional editorial accidental: the note keeps the edition's reading; the
-%% bracketed sign above it is an alteration singers may take (Berger 1987).
+%% sign in square brackets above it is an alteration singers may take
+%% (Berger 1987).
 %% Post-events: b1\optFlat (lower)  c'2\optSharp (raise)  b1\optNatural
 %% The sign is worked out from the note after any transposition, so a raised
 %% g' prints a sharp at written pitch and a natural over b-flat' a minor
@@ -76,11 +77,13 @@ fi = \once \set suggestAccidentals = ##t
 #(define (pr-opt-glyph alt)
    (cond ((< alt 0) "accidentals.flat") ((> alt 0) "accidentals.sharp")
          (else "accidentals.natural")))
+%% Square brackets, as all editorial matter; round brackets are kept for
+%% cautionaries (see voiceSetup).
 #(define (pr-opt-markup glyph)
    (markup #:fontsize -2.5
-     #:concat (#:musicglyph "accidentals.leftparen"
-               #:musicglyph glyph
-               #:musicglyph "accidentals.rightparen")))
+     #:override '(thickness . 1.3) #:override '(protrusion . 0.3)
+     #:override '(padding . 0.12)
+     #:bracket (#:musicglyph glyph)))
 #(define (pr-opt-acc mode)
    (make-music 'TextScriptEvent 'direction UP 'pr-opt mode
      'text (pr-opt-markup (pr-opt-glyph (if (number? mode) mode 0)))))
@@ -104,8 +107,8 @@ optNatural = #(pr-opt-acc 'natural)
        m)
      music))
 
-%% Note supplied by the editor: small notehead.
-ed = \tweak font-size #-3 \etc
+%% Note supplied by the editor: small notehead, at cue size (Ross 189).
+ed = \tweak font-size #-2 \etc
 
 %% Note supplied where the source has none legible: square brackets.
 #(define (pr-bracket-head grob)
@@ -171,8 +174,14 @@ rubric =
 
 %% ------------------------------------------------------------ setup
 %% Call at the start of every voice, after the clef.
+%% Accidentals: a sign before a note is the source's and holds for that note
+%% only ("forget"). Where an altered pitch returns unaltered later in the same
+%% bar and octave, the bar rule a modern singer reads by would carry the
+%% alteration on, so the note gets a cautionary sign in round brackets
+%% (Caldwell 59-60, Gould 86).
 voiceSetup = {
   \accidentalStyle forget
+  \set Staff.autoCautionaries = #`(Staff ,(make-accidental-rule 'same-octave 0))
   \autoBeamOff
 }
 
@@ -245,6 +254,16 @@ voiceSetup = {
                               (ly:stencil-add acc (make-line-stencil th x a x y))))))))
             empty-stencil gaps)))))
 
+%% ------------------------------------------------------------ bar lines
+%% Final, repeat and double bar lines to plate proportions (Ross 147, 152):
+%% the thick line half a staff space, half a space of white before it; the
+%% two lines of a double bar three quarters of a space apart. LilyPond counts
+%% both in line-thicknesses, so they are worked out from the staff space.
+#(define (pr-per-lt grob x) (/ x (layout-line-thickness grob)))
+#(define (pr-bar-thick grob) (pr-per-lt grob 0.5))
+#(define (pr-bar-kern grob)
+   (pr-per-lt grob (if (equal? (ly:grob-property grob 'glyph-name "") "||") 0.75 0.5)))
+
 %% ------------------------------------------------------------ contexts
 \layout {
   \context { \Score
@@ -263,6 +282,10 @@ voiceSetup = {
                         staff-bar key-cancellation key-signature ambitus
                         time-signature custos))
     \override VoltaBracket.font-size = #-2
+    \override BarLine.thick-thickness = #pr-bar-thick
+    \override BarLine.kern = #pr-bar-kern
+    \override SpanBar.thick-thickness = #pr-bar-thick
+    \override SpanBar.kern = #pr-bar-kern
     startRepeatBarType = ".|:"
     endRepeatBarType = ":|."
     doubleRepeatBarType = ":..:"
@@ -288,6 +311,10 @@ voiceSetup = {
   %% Ties are solid; only \divTie (a divided source note) is dashed.
   \context { \Lyrics
     \override LyricText.font-size = #1.0
+    %% Extender about as heavy as a full stop (Ross 183), twice LilyPond's;
+    %% the hyphen to match it.
+    \override LyricExtender.thickness = #2.0
+    \override LyricHyphen.thickness = #1.8
     \override LyricHyphen.minimum-distance = #1.2
     \override LyricSpace.minimum-distance = #1.2
     \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #(* pr-breathe 0.9)
@@ -298,13 +325,42 @@ voiceSetup = {
   }
 }
 
-%% Voice names in small capitals, abbreviated after the first system.
+%% Voice names in small capitals, abbreviated after the first system. An
+%% editorial name (one the source does not give) is printed [Cantus] at its
+%% first appearance in the critical edition (see \prStaff).
 vname =
 #(define-scheme-function (long short) (string? string?)
    #{ \with {
         instrumentName = \markup \smallCaps #long
         shortInstrumentName = \markup \smallCaps #short
       } #})
+vnameEd =
+#(define-scheme-function (long short) (string? string?)
+   #{ \with {
+        instrumentName = \markup \concat { "[" \smallCaps #long "]" }
+        shortInstrumentName = \markup \smallCaps #short
+      } #})
+
+%% Editorial signs and names (critical edition only). A score whose source
+%% lacks them declares, in score.ly before \prScore:
+%%   prEditorialSign = ##t              mensuration sign printed [¢]
+%%   prEditorialNames = ##t             every voice name editorial, or
+%%   prEditorialNames = #'("altus")     only these (lower case)
+#(define (pr-critical?) (not (eq? (ly:parser-lookup 'prPerformance) #t)))
+#(define (pr-editorial-name? vname)
+   (and (pr-critical?)
+        (let ((v (ly:parser-lookup 'prEditorialNames)))
+          (or (eq? v #t) (and (list? v) (member vname v) #t)))))
+#(define (pr-editorial-sign?)
+   (and (pr-critical?) (eq? (ly:parser-lookup 'prEditorialSign) #t)))
+%% The sign in square brackets on the staff, where the sign stands.
+mensSignEd =
+#(define-music-function (glyph) (string?)
+   #{ \override Staff.TimeSignature.stencil =
+        #(lambda (grob)
+           (bracketify-stencil
+             (grob-interpret-markup grob (markup #:musicglyph glyph))
+             Y 0.15 0.35 0.2)) #})
 
 %% ------------------------------------------------------------ the score
 %% An edition's score.ly calls \prScore with one \prStaff per voice. The same
@@ -350,24 +406,26 @@ prStaff =
           (useclef (if (and transposed (not (string-null? pclef))) pclef clef))
           (key (pr-lookup 'prKey #{ #}))
           (sign (pr-lookup 'prSign "timesig.C22"))
-          (vname (string-downcase long))
+          (vid (string-downcase long))
           (music (pr-fix-opt (if transposed #{ \transpose #from #to #notes #} notes)))
           (incipit (if (or transposed (null? (ly:music-property inc 'elements)))
                        #{ #}
                        #{ \incipit { \prMens #inc } #})))
      #{ <<
-          \new Staff \with \vname #long #short {
+          \new Staff \with $(if (pr-editorial-name? vid) (vnameEd long short) (vname long short)) {
             $incipit
             \clef #useclef $key
             \time 2/1
-            $(if (string-null? sign) #{ \omit Staff.TimeSignature #} #{ \mensSign #sign #})
+            $(cond ((string-null? sign) #{ \omit Staff.TimeSignature #})
+                   ((pr-editorial-sign?) #{ \mensSignEd #sign #})
+                   (else #{ \mensSign #sign #}))
             \voiceSetup
-            $(if (pr-regular-rests? vname)
-                 #{ \new Voice = #vname \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $music #}
-                 #{ \new Voice = #vname $music #})
+            $(if (pr-regular-rests? vid)
+                 #{ \new Voice = #vid \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $music #}
+                 #{ \new Voice = #vid $music #})
           }
           $(make-simultaneous-music
-             (map (lambda (w) #{ \new Lyrics \lyricsto #vname $w #})
+             (map (lambda (w) #{ \new Lyrics \lyricsto #vid $w #})
                   (if (music-is-of-type? words 'simultaneous-music)
                       (ly:music-property words 'elements)
                       (list words))))
@@ -400,11 +458,38 @@ prStaff =
                    (make-music 'LineBreakEvent 'break-permission '()))))
        (iota last 1)))))
 
+%% Scale of reduction (Caldwell 23, 50): where the edition's values differ
+%% from the source's, the critical edition states the equivalence, small,
+%% above the first system, as the edition's note = the source's note.
+%% score.ly declares it before the first \prScore:
+%%   prValues = \prEquiv 1 2 "of the tablature"   (semibreve = minim of ...)
+prEquiv =
+#(define-scheme-function (ours theirs what) (ly:duration? ly:duration? markup?)
+   (markup #:fontsize -1.5
+     #:line (#:general-align Y DOWN #:note ours UP
+             #:hspace 0.2 "=" #:hspace 0.2
+             #:general-align Y DOWN #:note theirs UP
+             #:italic what)))
+#(define pr-values-done #f)
+#(define (pr-values-mark)
+   (let ((v (ly:parser-lookup 'prValues)))
+     (if (and (pr-critical?) (markup? v) (not pr-values-done))
+         (begin
+           (set! pr-values-done #t)
+           #{ \context Score {
+                \tweak break-align-symbols #'(left-edge)
+                \tweak self-alignment-X #RIGHT
+                \tweak X-offset #(lambda (g) (- (self-alignment-interface::self-aligned-on-breakable g) 1.2))
+                \tweak font-size #0
+                \textMark #v } #})
+         #{ #})))
+
 prScore =
 #(define-music-function (staves) (ly:music?)
    (let* ((perf (eq? (ly:parser-lookup 'prPerformance) #t))
           (breaks (pr-lookup (if perf 'prBreaksPerformance 'prBreaksCritical)
-                             (pr-lookup 'prBreaks '()))))
+                             (pr-lookup 'prBreaks '())))
+          (values (pr-values-mark)))
      (if (null? breaks)
-         #{ \new StaffGroup $staves #}
-         #{ \new StaffGroup << $staves \new Devnull $(pr-break-voice breaks) >> #})))
+         #{ \new StaffGroup << $staves $values >> #}
+         #{ \new StaffGroup << $staves $values \new Devnull $(pr-break-voice breaks) >> #})))
