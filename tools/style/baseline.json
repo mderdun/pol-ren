@@ -122,36 +122,12 @@
    "message": "'T is': T is lost, so past tense"
   },
   {
-   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Gn|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:80",
-   "message": "source Gn has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
    "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|H|1",
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "S113",
    "where": "editions/bogurodzica/bogurodzica-critical.tex:107",
    "message": "source H has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
-   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|K3|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:102",
-   "message": "source K3 has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
-   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|K70|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:73",
-   "message": "source K70 has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
    "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|M|1",
@@ -170,14 +146,6 @@
    "message": "source S has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
-   "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Wa|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:99",
-   "message": "source Wa has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
    "fingerprint": "S113|editions/bogurodzica/bogurodzica-critical.tex|Ł|1",
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
@@ -186,41 +154,17 @@
    "message": "source Ł has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
-   "fingerprint": "S113|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|S|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex:129",
-   "message": "source S has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
-   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-Kc|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:120",
-   "message": "source PL-Kc has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
    "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-Kj|1",
    "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "reason": "false positive: the shelfmark is given (Cim. Qu. 5822), in a form the heuristic does not recognise (4 Oct 2026)",
    "check": "S113",
    "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:123",
    "message": "source PL-Kj has no shelfmark (library and call number of the source or of the copy consulted)"
   },
   {
-   "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|PL-WRu|1",
-   "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
-   "check": "S113",
-   "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:118",
-   "message": "source PL-WRu has no shelfmark (library and call number of the source or of the copy consulted)"
-  },
-  {
    "fingerprint": "S113|editions/vox-in-rama/vox-in-rama-critical.lytex|T|1",
    "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "reason": "false positive: the shelfmark is given (Wrocław, Biblioteka Uniwersytecka, 50914 Muz.; copy consulted Chicago Public Library M2014.6 .Z5 O4 1983), in a form the heuristic does not recognise (4 Oct 2026)",
    "check": "S113",
    "where": "editions/vox-in-rama/vox-in-rama-critical.lytex:134",
    "message": "source T has no shelfmark (library and call number of the source or of the copy consulted)"

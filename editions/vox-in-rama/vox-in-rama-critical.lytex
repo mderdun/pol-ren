@@ -111,22 +111,25 @@ MDCXI (RISM A/I Z\,200, issued with Z\,199). Quarto partbooks and a folio
 St Bernardine in Wrocław and was in the city library until 1942. Half of it
 was lost in the war. What survives:
 
-% SHELFMARKS MISSING (principles 3.9): Wrocław BU partbooks (C I, T I,
-% A II, T II), Kraków Czartoryski Partitura, Kraków BJ Cantus; also the
-% Chicago Public Library copy of MMP D/12 read for T. For Miki.
 \begin{sigla}
-\item[PL-WRu] Wrocław, Biblioteka Uniwersytecka: Cantus primi chori, Tenor
-  primi chori, Altus secundi chori, Tenor secundi chori.
+\item[PL-WRu] Wrocław, Biblioteka Uniwersytecka, 50914 Muz. (formerly
+  Stadtbibliothek Breslau, Mus. 777): Cantus primi chori, Tenor primi
+  chori, Altus secundi chori, Tenor secundi chori.
 \item[PL-Kc] Kraków, Biblioteka Książąt Czartoryskich: \la{Partitura pro
-  organo}. According to the Musicare database it gives some pieces in full
-  score.
-\item[PL-Kj] Kraków, Biblioteka Jagiellońska: Cantus only.
+  organo}; no shelfmark known. According to the Musicare database it gives
+  some pieces in full score.
+\item[PL-Kj] Kraków, Biblioteka Jagiellońska, Cim. Qu. 5822: a fragment of
+  the Cantus.
 \end{sigla}
+
+\noindent A fragment of an Altus book was in the Baworowski Library in Lwów
+until the Second World War; where it is now is not known.
 
 The four voices of no.\,36 were printed in the books of the first choir. The
 Tenor primi chori survives and is the source of this edition’s Tenor. The
 Cantus primi chori also survives and should hold the Cantus, but its
-facsimile was not available. The Altus and Bassus primi chori are lost.
+facsimile was not available. The Altus and Bassus were printed in the
+Altus and Bassus primi chori, which are lost.
 Before the war Zdzisław Jachimecki and Maria Szczepańska transcribed the
 complete set, and every later edition rests on their copies.
 
@@ -134,10 +137,13 @@ complete set, and every later edition rests on their copies.
 \siglum{T} Tenor primi chori, no.\,36: ‘A 4. In festo
   Sanctorum Innocentium. 36 TENOR’ (‘For 4. On the feast of the Holy
   Innocents. 36 Tenor’). Six staves; C2 clef, sign cut-C; text
-  placed under the notes, with \textit{ij} for repeated words. Facsimile in
+  placed under the notes, with \textit{ij} for repeated words. Wrocław,
+  Biblioteka Uniwersytecka, 50914 Muz. Read in the facsimile,
   \textit{Monumenta Musicae in Polonia}, ser.\,D, vol.\,12, ed. Jerzy Morawski
-  (Kraków: PWM, 1983), read in a scan of the Chicago Public Library copy.
-  \textit{Base text for the Tenor.}
+  (Kraków: PWM, 1983): Chicago Public Library, M2014.6 .Z5 O4 1983,
+  digitised by the Internet Archive. The facsimile was retouched by its
+  editors, so a reading that rests on a fine mark (the e\na′ of bar 15)
+  needs checking against the original. \textit{Base text for the Tenor.}
 \siglum{N} \la{Vox in Rama}, notAmos Performing Editions, full score 100881
   (PDF, 2020; CPDL). Four voices and a keyboard reduction. Final E, one-sharp
   signature, note values halved, barred in a mixture of 3/2 and 2/2.
@@ -237,10 +243,9 @@ not. Cautionaries in round brackets are editorial in every voice
 \la{cum opposita proprietate}, are shown by brackets above the notes. In the
 second (bar 17) the second note is black; corner brackets mark it.
 
-% IJ (principles 11.9): Tenor words that T gives by ij should go in angle
-% brackets. Which they are needs the facsimile of T. For Miki.
 \subsection{Underlay} \sig{T} places its text under the notes but loosely, and
-writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. In eight
+writes \textit{ij} four times for a repeated phrase (bars 21–22, 33–35, 35–37,
+43–45); there the Tenor's words are in angle brackets (principles 11.9). Its words fall where \sig{M}’s do. In eight
 places \sig{M} puts a new syllable on a semiminim after a plain minim
 (principles 10.1). There the underlay is reset (see the critical notes). Four
 light words are left out: \la{est} twice in the Altus, the Tenor’s second
