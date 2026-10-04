@@ -24,6 +24,13 @@ class Analysis:
     regions: list = field(default_factory=list)
     cadential_words: dict = field(default_factory=dict)   # (voice, verse, word) -> Cadence
     entry_of: dict = field(default_factory=dict)          # (voice, ev of a head note) -> (Point, Entry)
+    resolutions: dict = field(default_factory=dict)       # (voice, arrival ev) -> ev of the voice's own resolution
+    new_text: dict = field(default_factory=dict)          # verse -> [(onset, voice)] where new text begins
+    motifs: list = field(default_factory=list)            # imitation.Point(type MOTIF): recurring texted motifs
+
+    def tail_voice(self, voice: str, verse: str, t0, t1) -> bool:
+        """Has another voice begun new text strictly between t0 and t1?"""
+        return any(t0 < t < t1 and v != voice for t, v in self.new_text.get(verse, ()))
 
     def homorhythmic(self, t) -> bool:
         return any(r.contains(t) for r in self.regions)
@@ -57,7 +64,28 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
         for e in p.entries:
             for idx in e.head:
                 a.entry_of[(e.voice, idx)] = (p, e)
+    a.resolutions = cadence.melodic_resolutions(score, a.arrivals)
+    a.new_text = _new_text(lines)
+    a.motifs = imitation.motifs(score)
     return a
+
+
+def _new_text(lines) -> dict:
+    """verse -> sorted (onset, voice) of each syllable that begins new text:
+    the first after a rest, or after a syllable ending with punctuation."""
+    out: dict = {}
+    for ln in lines:
+        evs = ln.events
+        prev = None
+        for s in ln.syls:
+            e = evs[s.ev]
+            after_rest = s.ev == 0 or evs[s.ev - 1].rest or e.after_break
+            if prev is None or prev.punct or after_rest:
+                out.setdefault(ln.verse, []).append((e.onset, ln.voice))
+            prev = s
+    for v in out.values():
+        v.sort()
+    return out
 
 
 def analyse_path(path) -> Analysis:

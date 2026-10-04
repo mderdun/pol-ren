@@ -1,0 +1,22 @@
+id: U306
+name: motif-text
+level: look
+weight: 4.0
+tier: phrase
+scope: piece
+principle: "10.10"
+authority: "Miki, review of 4 Oct 2026 ('Et noluit' passed through the voices of Vox in Rama, minim, dotted minim, crotchet, minim: 'the only real legal option for the start is for those four notes to be purely syllabic'); Towne 1991, principles 52–53; Zarlino's freedom for each part (Harrán 1973a, 50–51) is outweighed where the motif recurs as a chain"
+message: "the motif at {entry} sings '{got}' where {count} of its {n} occurrences sing '{ref}' (as {leader})"
+examples:
+  flag:
+    - voices:
+        Cantus: {notes: "r2 d'2 g'3 g'1 fis'2 e'4 r2 r8 r8", text: "et no- lu- it, _"}
+        Altus:  {notes: "r8 d2 g3 g1 fis2 e4 r2 r8", text: "et no- lu- it, _"}
+        Tenor:  {notes: "r8 r8 g,2 d3 d1 cis2 b,4 r2", text: "no- lu- it _ _"}
+      rule_voice: Tenor
+      why: "the Tenor sings the motif without its 'et' (Altus 32 in Vox in Rama)"
+  pass:
+    - voices:
+        Cantus: {notes: "r2 d'2 g'3 g'1 fis'2 e'4 r2 r8 r8", text: "et no- lu- it, _"}
+        Altus:  {notes: "r8 d2 g3 g1 fis2 e4 r2 r8", text: "et no- lu- it, _"}
+        Tenor:  {notes: "r8 r8 g,2 d3 d1 cis2 b,4 r2", text: "et no- lu- it, _"}

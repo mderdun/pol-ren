@@ -47,3 +47,18 @@ older_practice:
   layer: edition
   when: "the edition is set as older practice (editions.yaml: older_practice)"
   why: "Towne 1990, 285: poor accentuation may be an acceptable result of counterpoint in an older piece; Harrán 1997, 243, 257–260"
+
+sung_through:
+  layer: text
+  when: "the syllable is open or closed by a sonorant (m n l r; text.coda_class), so the vowel can be sung through a run"
+  why: "Miki, review of 4 Oct 2026: con- 'even though shortened by the n, can easily become a long syllable', where it- cannot"
+
+melodic_resolution:
+  layer: cadence
+  when: "the voice's own line resolves after the harmonic arrival (its last melodic move, before a rest), and the phrase's last syllable is on that note"
+  why: "Miki, review of 4 Oct 2026 (Cantus 28.1, Bassus 18.3): the last syllable on the voice's own resolution, the final move acting as a full stop"
+
+tail_voice:
+  layer: cadence
+  when: "other voices have begun new text while this voice still sings its phrase's last syllable"
+  why: "Miki, review of 4 Oct 2026 (Cantus 28.1): an outer voice that carries the old phrase across the join keeps the momentum of the tail transition"

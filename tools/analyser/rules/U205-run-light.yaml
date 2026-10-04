@@ -5,11 +5,16 @@ legacy: true
 weight: 1.0
 tier: light
 principle: "10.6"
-authority: "Calvisius 1592: unaccented syllables are not apt for melismas (Towne 1990, 271); Zarlino IX (Harrán 1973a, 44–45)"
-message: "'{txt}' over {nn} notes"
-gates: {older_practice: 0.5}
+authority: "Miki, review of 4 Oct 2026 (length in time); Calvisius 1592: unaccented syllables are not apt for melismas (Towne 1990, 271); Zarlino IX (Harrán 1973a, 44–45)"
+message: "'{txt}' over {nn} notes{time}"
+# Length in time (Miki, review of 4 Oct 2026): from min_time semiminims (three
+# minims) over min_notes notes; each further `step` semiminims adds one. A word
+# that can be sung through (in, non) counts half (gate sung_through).
+params: {min_time: 6, min_notes: 3, step: 4}
+gates: {older_practice: 0.5, sung_through: 0.5}
 examples:
   flag:
     - {notes: "f2 g1 a1 b2 c'2 a2", text: "et _ _ _ in _", at: 0}
   pass:
     - {notes: "f2 g2 a2", text: "et in te"}
+    - {notes: "f2 g1 a1 b2 c'2", text: "et _ _ in _", why: "four notes, but a fast figure a semibreve long"}

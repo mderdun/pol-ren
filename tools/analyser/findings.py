@@ -72,7 +72,7 @@ class Result:
     findings: list
 
 
-def _level(native: str, hard: bool, regret: float | None) -> str:
+def _level(native: str, hard: bool, regret: float | None, edit_only: bool = False) -> str:
     if hard:
         return "break"
     if native == "info":
@@ -80,7 +80,7 @@ def _level(native: str, hard: bool, regret: float | None) -> str:
     lv = settings()["levels"]
     if regret is None:
         return "look"
-    if regret >= lv["warn"]:
+    if regret >= lv["warn"] and not edit_only:
         return "warn"
     if regret >= lv["look"]:
         return "look"
@@ -269,6 +269,7 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
             if not h.hard and p.cost <= 0 and r.level != "info":
                 continue
             regret, alts, breakdown = None, [], []
+            edit_only = False
             span, placement = [], []
             if sp is not None and sp.syls:
                 span = [sp.first, sp.end]
@@ -298,6 +299,10 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
                     if solving:
                         best = solving[0][2]
                         regret = attributable(cur_keyed, best.keyed, cur.total - best.total, key, share)
+                        # 10.13 makes a dropped word the editor's last resort: when
+                        # only a text edit improves on the underlay, say look, not warn
+                        better = [t for t in solving if t[2].total < cur.total - 1e-9]
+                        edit_only = bool(better) and all(t[2].edit is not None for t in better)
                     else:
                         regret = 0.0
                     listed = [t for t in solving if t[2].total < cur.total - 1e-9]
@@ -331,7 +336,7 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
             fp = f"{score.slug}|{line.voice}|v{line.verse}|{h.rule}|{word}#{k}|{occ[key]}"
             src = f"{ev.src[0]}:{ev.src[1]}" if ev.src else ""
             findings.append(Finding(
-                slug=score.slug, rule=h.rule, name=r.name, level=_level(r.level, h.hard, regret),
+                slug=score.slug, rule=h.rule, name=r.name, level=_level(r.level, h.hard, regret, edit_only),
                 voice=line.voice, verse=line.verse, bar=ev.bar, where=ev.where, word=word, k=k,
                 text=syl.text if syl else "", message=r.format(h.values), principle=r.principle,
                 cost=p.cost, regret=regret, gates=[f"{n}×{f:g}" for n, f in p.gates],

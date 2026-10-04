@@ -13,12 +13,14 @@ def setup(spec):
 
 
 def test_regret_ranks_a_run_on_an_unstressed_syllable():
-    # seven notes on -mi- of DOminus; moving -mi- to the last minim puts the run on DO-
-    a, r = setup({"notes": "f4 g2 a1 g1 f1 e1 d1 e1 f2 g4", "text": "Do- mi- _ _ _ _ _ _ _ nus"})
+    # eight minims on -mi- of DOminus (long in time, not only in notes: Miki,
+    # 4 Oct 2026)
+    a, r = setup({"notes": "f4 g2 a2 g2 f2 e2 d2 e2 f2 g4", "text": "Do- mi- _ _ _ _ _ _ _ nus"})
     f = next(f for f in r.findings if f.rule == "U206")
     assert f.regret and f.regret >= 2.0 and f.level == "warn"
     assert f.alternatives and len(f.alternatives) <= 3
-    assert any("'mi'" in m for m in f.alternatives[0]["moves"])
+    # the cheapest fix now hands the run to -nus, the word's last syllable (10.3)
+    assert any("'nus'" in m or "'mi'" in m for m in f.alternatives[0]["moves"])
     assert any(x.startswith("U206") for x in f.alternatives[0]["fixes"])
 
 
@@ -60,7 +62,8 @@ def test_cadence_gate_halves_the_run_rule():
     r = run(ROOT / "editions" / "vox-in-rama" / "pdf" / "vox-in-rama.musicxml")
     f = next(f for f in r.findings if f.rule == "U206" and f.voice == "Tenor" and f.bar == 16)
     assert "cadence_approach×0.5" in f.gates
-    assert abs(f.cost - 1.0) < 1e-9          # weight 2.0, halved
+    assert "sung_through×0.5" in f.gates     # -lu- is open (Miki, 4 Oct 2026)
+    assert abs(f.cost - 0.5) < 1e-9          # weight 2.0, a breve long (amount 1), halved twice
 
 
 def test_spans_split_at_rests():

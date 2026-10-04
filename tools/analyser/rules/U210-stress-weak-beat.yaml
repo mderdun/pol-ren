@@ -1,0 +1,14 @@
+id: U210
+name: stress-weak-beat
+level: look
+weight: 1.5
+tier: stress
+principle: "10.6"
+authority: "Miki, review of 4 Oct 2026 ('-la-' of consolari pinned to the strong beat 35.3 in the Cantus; Tenor 'la' to 40.1, not a weak beat when a strong one is available); Towne 1990, R29 (Vicentino ch. 29; Stoquerus ch. 23): accented syllables on accented beats"
+message: "'{txt}' ({word}) off the tactus, and '{nxt}' after it on the {place}"
+examples:
+  flag:
+    - {notes: "f4 g2 a2 g4", text: "con- so- la- ri", at: 2, why: "-LA- on the fourth minim, -ri on the bar (Tenor 39.4)"}
+  pass:
+    - {notes: "f4 g2 a2 g4 f4", text: "con- _ so- la- ri", why: "-LA- on the bar (Tenor 40.1 as Miki would have it)"}
+    - {notes: "f4 g2 a2 g4", text: "Do- _ mi- nus", why: "the stressed syllable is on the bar"}

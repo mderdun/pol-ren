@@ -171,3 +171,107 @@ def interval_word(steps: int) -> str:
     if s == 0 and steps:
         name = "octave"
     return name + (" below" if steps < 0 else " above" if steps else "")
+
+
+# ---------------------------------------------------------------- motifs
+#
+# Points (above) join entries after rests, each voice once. They miss a motif
+# that the voices pass round while they keep singing: in *Vox in Rama* the
+# 'et noluit' head (minim, dotted minim, semiminim, minim; the repeated note on
+# the dotted figure) recurs a dozen times in bars 28-38, mostly straight after
+# a word or a weak clausula rather than after a rest, several times in the same
+# voice, at the fourth and the fifth, and once inverted (Tenor 37.4) (Miki,
+# review of 4 October 2026). A motif is found from an entry after a rest whose
+# head has a dotted value (a distinctive rhythm), and then sought at every
+# note: the same values (all but the last), repeated notes in the same places,
+# and each other interval within a step of the leader's, in the same direction
+# throughout or inverted throughout. The leader must leap (a third or more):
+# dotted scale figures are common coin. Occurrences within WINDOW of each other
+# form one chain, and an inversion joins it only inside the span of the direct
+# occurrences; a chain needs MOTIF_MIN occurrences in two voices or more.
+
+MOTIF_MIN = 3
+
+
+def _dotted(d) -> bool:
+    d = F(d)
+    return d.numerator == 3
+
+
+def _heads(score: Score):
+    for v in score.parts:
+        evs = score.voices[v]
+        for e in evs:
+            if e.rest:
+                continue
+            head = [e]
+            j = e.idx + 1
+            while len(head) < HEAD and j < len(evs) and not evs[j].rest and not evs[j].after_break:
+                head.append(evs[j])
+                j += 1
+            if len(head) < HEAD:
+                continue
+            ivs = tuple(b.diatonic - a.diatonic for a, b in zip(head, head[1:]))
+            yield v, e, head, ivs
+
+
+def motif_match(lead_ivs, lead_durs, ivs, durs) -> str | None:
+    """'exact', 'flexed', 'inverted' or None (see above)."""
+    if tuple(durs[:-1]) != tuple(lead_durs[:-1]):
+        return None
+    if any((x == 0) != (y == 0) for x, y in zip(lead_ivs, ivs)):
+        return None
+    moving = [(x, y) for x, y in zip(lead_ivs, ivs) if x]
+    if not moving:
+        return None
+    for sign, name in ((1, "exact"), (-1, "inverted")):
+        if all((y > 0) == (sign * x > 0) and abs(abs(x) - abs(y)) <= 1 for x, y in moving):
+            if name == "exact" and any(x != y for x, y in moving):
+                return "flexed"
+            return name
+    return None
+
+
+def motifs(score: Score) -> list[Point]:
+    heads = list(_heads(score))
+    seeds = [(v, e, h, ivs) for v, e, h, ivs in heads
+             if (e.idx == 0 or score.voices[v][e.idx - 1].rest or e.after_break)
+             and any(_dotted(x.dur) for x in h[:-1]) and max(abs(x) for x in ivs) >= 2]
+    seeds.sort(key=lambda t: t[1].onset)
+    taken: set = set()
+    out = []
+    for v0, e0, h0, iv0 in seeds:
+        if (v0, e0.idx) in taken:
+            continue
+        d0 = tuple(x.dur for x in h0)
+        occ = []
+        for v, e, h, ivs in heads:
+            m = motif_match(iv0, d0, ivs, tuple(x.dur for x in h))
+            if m:
+                occ.append(Entry(voice=v, ev=e.idx, head=[x.idx for x in h], intervals=ivs,
+                                 durs=tuple(x.dur for x in h), onset=e.onset, where=e.where,
+                                 exact=m == "exact",
+                                 context="rest" if (e.idx == 0 or score.voices[v][e.idx - 1].rest) else m))
+        occ.sort(key=lambda x: (x.onset, x.voice))
+        # the chain that contains the seed
+        k = next(i for i, x in enumerate(occ) if x.voice == v0 and x.ev == e0.idx)
+        lo = k
+        while lo > 0 and occ[lo].onset - occ[lo - 1].onset <= WINDOW:
+            lo -= 1
+        hi = k
+        while hi + 1 < len(occ) and occ[hi + 1].onset - occ[hi].onset <= WINDOW:
+            hi += 1
+        chain = [x for x in occ[lo:hi + 1] if (x.voice, x.ev) not in taken]
+        # an inversion belongs to the chain only inside the span of its direct
+        # occurrences (Tenor 37.4 does; 'rans, filios' at Tenor 24.3 does not)
+        direct = [x for x in chain if x.context != "inverted"]
+        if direct:
+            t0, t1 = direct[0].onset, direct[-1].onset
+            chain = [x for x in chain if x.context != "inverted" or t0 <= x.onset <= t1]
+        if len(chain) < MOTIF_MIN or len({x.voice for x in chain}) < 2:
+            continue
+        for x in chain:
+            taken.add((x.voice, x.ev))
+            x.transposition = _transposition(score, chain[0], x)
+        out.append(Point(entries=chain, type="MOTIF", motif=" ".join(f"{x:+d}" for x in iv0)))
+    return out

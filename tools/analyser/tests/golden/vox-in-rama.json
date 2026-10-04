@@ -2,56 +2,6 @@
  "edition": "vox-in-rama",
  "findings": [
   {
-   "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|2",
-   "level": "warn",
-   "where": "28.1",
-   "message": "the arrival carries 'su', and 'os,' comes after it (authentic cadence on D, full)",
-   "cost": 4.0,
-   "regret": 4.0,
-   "alternative": [
-    "'os,' 28.3 -> 28.1"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",
-   "level": "warn",
-   "where": "18.3",
-   "message": "the arrival carries 'la', and 'tus,' comes after it (clausula vera cadence on D, full)",
-   "cost": 4.0,
-   "regret": 3.0,
-   "alternative": [
-    "drop 'et' at 17.4 (10.13)",
-    "'u' 18.1 -> 17.4",
-    "'lu' 18.2 -> 18.1",
-    "'la' 18.3 -> 18.2",
-    "'tus,' 19.1 -> 18.3"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|1",
-   "level": "warn",
-   "where": "32.3",
-   "message": "6 notes on 'con' of consolari (stress on syllable 3; vowel o)",
-   "cost": 2.0,
-   "regret": 2.0,
-   "alternative": [
-    "'lu' 32.1 -> 32.2+",
-    "'it' 32.2+ -> 32.3",
-    "'con' 32.3 -> 33.2"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Cantus|v1|U206|consolari#0|1",
-   "level": "warn",
-   "where": "34.2",
-   "message": "6 notes on 'con' of consolari (stress on syllable 3; vowel o)",
-   "cost": 2.0,
-   "regret": 2.0,
-   "alternative": [
-    "'so' 35.2 -> 35.1"
-   ]
-  },
-  {
    "fingerprint": "vox-in-rama|Cantus|v1|U301|consolari#2|2",
    "level": "warn",
    "where": "39.3",
@@ -64,27 +14,110 @@
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Tenor|v1|U206|ululatus#1|1",
+   "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|1",
    "level": "look",
-   "where": "16.1",
-   "message": "6 notes on 'lu' of ululatus (stress on syllable 3; vowel u)",
-   "cost": 1.0,
-   "regret": 1.0,
+   "where": "33.4",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the bar",
+   "cost": 1.5,
+   "regret": 1.5,
    "alternative": [
-    "'lu' 16.1 -> 15.3",
-    "'la' 17.1 -> 16.1"
+    "'so' 33.3 -> 33.2",
+    "'la' 33.4 -> 33.3"
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Altus|v1|U401|ululatus#1|1",
-   "level": "info",
-   "where": "15.3",
-   "message": "'lu' starts on a dissonant note (neighbour, d4 against the Cantus)",
-   "cost": 0.5,
-   "regret": 0.5,
+   "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|2",
+   "level": "look",
+   "where": "36.4",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the half-bar",
+   "cost": 1.5,
+   "regret": 1.5,
    "alternative": [
-    "'lu' 15.3 -> 16.2",
-    "'la' 15.4 -> 17.1"
+    "'so' 36.3+ -> 36.4",
+    "'la' 36.4 -> 37.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|quia#0|1",
+   "level": "look",
+   "where": "41.4",
+   "message": "'qui' (quia) off the tactus, and 'a' after it on the bar",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'a' 43.1 -> 42.4",
+    "'non' 43.4 -> 43.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U210|consolari#2|1",
+   "level": "look",
+   "where": "39.2",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the bar",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'so' 39.1+ -> 39.2",
+    "'la' 39.2 -> 39.3"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|consolari#2|2",
+   "level": "look",
+   "where": "39.4",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the half-bar",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'con' 39.1 -> 38.4",
+    "'so' 39.3 -> 39.1",
+    "'la' 39.4 -> 39.3"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|rama#0|1",
+   "level": "look",
+   "where": "10.4",
+   "message": "'Ra' (rama) off the tactus, and 'ma' after it on the bar",
+   "cost": 1.5,
+   "regret": 1.132,
+   "alternative": [
+    "drop 'audita' at 11.2 (10.13)",
+    "'ma,' 9.1 -> 8.4",
+    "'in' 9.4 -> 10.4",
+    "'Ra' 10.4 -> 11.1",
+    "'ma' 11.1 -> 11.2+",
+    "'au' 12.2 -> 11.4",
+    "'di' 12.3+ -> 12.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|audita#1|1",
+   "level": "look",
+   "where": "11.4",
+   "message": "'di' (audita) off the tactus, and 'ta,' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.987,
+   "alternative": [
+    "drop 'audita' at 11.2 (10.13)",
+    "'ma' 11.1 -> 11.2+",
+    "'au' 12.2 -> 11.4",
+    "'di' 12.3+ -> 12.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|audita#1|2",
+   "level": "look",
+   "where": "12.3",
+   "message": "'di' (audita) off the tactus, and 'ta,' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.987,
+   "alternative": [
+    "drop 'audita' at 11.2 (10.13)",
+    "'ma' 11.1 -> 11.2+",
+    "'au' 12.2 -> 11.4",
+    "'di' 12.3+ -> 12.1",
+    "'ta,' 13.1 -> 12.2"
    ]
   },
   {
@@ -95,8 +128,7 @@
    "cost": 0.5,
    "regret": 0.5,
    "alternative": [
-    "'lu' 15.3 -> 16.2",
-    "'la' 15.4 -> 17.1"
+    "'la' 15.4 -> 16.2"
    ]
   },
   {
@@ -112,28 +144,14 @@
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U401|consolari#2|1",
+   "fingerprint": "vox-in-rama|Bassus|v1|U206|consolari#0|1",
    "level": "info",
-   "where": "33.3",
-   "message": "'la' starts on a dissonant note (accented-passing, m7 against the Tenor)",
-   "cost": 0.5,
+   "where": "31.4",
+   "message": "7 notes, 12 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
+   "cost": 1.0,
    "regret": 0.5,
    "alternative": [
-    "'so' 33.2 -> 32.4",
-    "'la' 33.3 -> 33.2"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Cantus|v1|U301|consolari#2|1",
-   "level": "info",
-   "where": "31.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it (evaded cadence on D, evaded)",
-   "cost": 2.0,
-   "regret": 0.5,
-   "alternative": [
-    "'so' 31.2 -> 31.1",
-    "'la' 31.3 -> 31.2",
-    "'ri,' 32.1 -> 31.3"
+    "'so' 33.2 -> 32.4"
    ]
   },
   {
@@ -149,15 +167,39 @@
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Altus|v1|U205|in#0|1",
+   "fingerprint": "vox-in-rama|Tenor|v1|U206|ululatus#1|1",
    "level": "info",
-   "where": "9.4",
-   "message": "'in' over 6 notes",
-   "cost": 1.5,
+   "where": "16.1",
+   "message": "6 notes, 8 semiminims, on 'lu' of ululatus (stress on syllable 3; vowel u)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'lu' 16.1 -> 15.3",
+    "'la' 17.1 -> 16.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|2",
+   "level": "info",
+   "where": "32.3",
+   "message": "6 notes, 8 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
+   "cost": 1.0,
+   "regret": 0.438,
+   "alternative": [
+    "'lu' 32.1 -> 32.2+",
+    "'it' 32.2+ -> 32.3",
+    "'con' 32.3 -> 33.2"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|1",
+   "level": "info",
+   "where": "29.2",
+   "message": "5 notes, 8 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
+   "cost": 1.0,
    "regret": 0.25,
    "alternative": [
-    "'Ra' 10.4 -> 10.3",
-    "'ma' 11.1 -> 10.4"
+    "'so' 30.2 -> 30.1"
    ]
   },
   {
@@ -173,55 +215,26 @@
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U206|consolari#0|1",
+   "fingerprint": "vox-in-rama|Tenor|v1|U206|consolari#0|1",
    "level": "info",
-   "where": "31.4",
-   "message": "7 notes on 'con' of consolari (stress on syllable 3; vowel o)",
-   "cost": 1.25,
-   "regret": 0.25,
-   "alternative": [
-    "'so' 33.2 -> 32.4",
-    "'la' 33.3 -> 33.2"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Tenor|v1|U401|rama#1|1",
-   "level": "info",
-   "where": "5.3",
-   "message": "'ma,' starts on a dissonant note (unexplained, m7 against the Cantus)",
+   "where": "29.2",
+   "message": "5 notes, 8 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
    "cost": 0.5,
    "regret": 0.25,
    "alternative": [
-    "drop 'Rama' at 6.2 (10.13)",
-    "'ma,' 5.3 -> 5.2",
-    "'vox' 9.2 -> 6.2",
-    "'in' 9.3 -> 9.1"
+    "'so' 30.2 -> 30.1"
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Cantus|v1|U401|noluit#1|1",
+   "fingerprint": "vox-in-rama|Altus|v1|U401|ululatus#1|1",
    "level": "info",
-   "where": "33.4",
-   "message": "'lu' starts on a dissonant note (unexplained, d5 against the Tenor)",
+   "where": "15.3",
+   "message": "'lu' starts on a dissonant note (neighbour, d4 against the Cantus)",
    "cost": 0.5,
-   "regret": 0.2,
-   "alternative": [
-    "'lu' 33.4+ -> 34.1",
-    "'it' 34.1 -> 34.2",
-    "'con' 34.2 -> 35.1"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U401|ploratus#2|1",
-   "level": "info",
-   "where": "18.4",
-   "message": "'tus' starts on a dissonant note (suspension, P4 against the Bassus)",
-   "cost": 0.125,
    "regret": 0.125,
    "alternative": [
-    "'plo' 18.2 -> 18.1",
-    "'ra' 18.3 -> 18.2",
-    "'tus' 18.4 -> 18.3"
+    "'lu' 15.3 -> 16.2",
+    "'la' 15.4 -> 17.1"
    ]
   },
   {
@@ -242,12 +255,39 @@
    "where": "11.2",
    "message": "'au' starts on a dissonant note (suspension, M2 against the Cantus)",
    "cost": 0.125,
-   "regret": 0.083,
+   "regret": 0.082,
+   "alternative": [
+    "drop 'audita' at 11.2 (10.13)",
+    "'ma' 11.1 -> 11.2+",
+    "'au' 12.2 -> 11.4",
+    "'di' 12.3+ -> 12.1"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U401|audita#1|1",
+   "level": "info",
+   "where": "12.3",
+   "message": "'di' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.082,
+   "alternative": [
+    "drop 'audita' at 11.2 (10.13)",
+    "'ma' 11.1 -> 11.2+",
+    "'au' 12.2 -> 11.4",
+    "'di' 12.3+ -> 12.1",
+    "'ta,' 13.1 -> 12.2"
+   ]
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U205|in#0|1",
+   "level": "info",
+   "where": "9.4",
+   "message": "'in' over 6 notes, 8 semiminims",
+   "cost": 0.75,
+   "regret": 0.036,
    "alternative": [
     "'Ra' 10.4 -> 10.3",
-    "'ma' 11.1 -> 10.4",
-    "'au' 11.2+ -> 11.1",
-    "'di' 11.4 -> 11.2+"
+    "'ma' 11.1 -> 10.4"
    ]
   },
   {
@@ -281,10 +321,10 @@
    "alternative": []
   },
   {
-   "fingerprint": "vox-in-rama|Altus|v1|U401|audita#1|1",
+   "fingerprint": "vox-in-rama|Altus|v1|U401|ploratus#2|1",
    "level": "info",
-   "where": "12.3",
-   "message": "'di' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "where": "18.4",
+   "message": "'tus' starts on a dissonant note (suspension, P4 against the Bassus)",
    "cost": 0.125,
    "regret": 0.0,
    "alternative": []
@@ -326,6 +366,33 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|noluit#0|1",
+   "level": "info",
+   "where": "31.4",
+   "message": "'no' (noluit) off the tactus, and 'lu' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U306|noluit#0|1",
+   "level": "info",
+   "where": "31.4",
+   "message": "the motif at Altus 31.4 sings 'no lu it con' where 11 of its 13 occurrences sing 'et no lu it' (as Altus 28.2)",
+   "cost": 8.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Altus|v1|U210|consolari#2|3",
+   "level": "info",
+   "where": "39.2",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Altus|v1|U401|consolari#2|1",
    "level": "info",
    "where": "39.2",
@@ -340,6 +407,15 @@
    "where": "6.3",
    "message": "the FUGA entry (Bassus 6.3) sets vox differently from the leading entry (Cantus at 1.1): syllables xxx against xxxx",
    "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Bassus|v1|U301|ululatus#2|1",
+   "level": "info",
+   "where": "18.3",
+   "message": "the arrival carries 'la', and 'tus,' comes after it, on the voice's own resolution, while other voices begin new text (clausula vera cadence on D, full)",
+   "cost": 1.0,
    "regret": 0.0,
    "alternative": []
   },
@@ -362,11 +438,47 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Bassus|v1|U208|filios#2|1",
+   "level": "info",
+   "where": "26.4",
+   "message": "'os' is stopped by 's' and cannot be sung through, but carries 6 notes (6 semiminims)",
+   "cost": 4.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Bassus|v1|U209|filios#2|1",
+   "level": "info",
+   "where": "27.3",
+   "message": "'os' to 'su' passes 2 consonants on a fusa",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Bassus|v1|U304|filios#2|1",
    "level": "info",
    "where": "27.1",
    "message": "in the homorhythmic passage 26.1-27.1, 'os' holds its syllable where the other voices change",
    "cost": 0.25,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Bassus|v1|U401|consolari#2|1",
+   "level": "info",
+   "where": "33.3",
+   "message": "'la' starts on a dissonant note (accented-passing, m7 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Bassus|v1|U210|consolari#2|1",
+   "level": "info",
+   "where": "35.4",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the bar",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -383,8 +495,8 @@
    "fingerprint": "vox-in-rama|Bassus|v1|U301|consolari#2|1",
    "level": "info",
    "where": "38.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on E, weak)",
-   "cost": 2.0,
+   "message": "the arrival carries 'la', and 'ri,' comes after it, on the voice's own resolution, while other voices begin new text (phrygian cadence on E, weak)",
+   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -407,11 +519,38 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Cantus|v1|U209|in#0|1",
+   "level": "info",
+   "where": "10.4",
+   "message": "'in' to 'Ra' passes 2 consonants on a fusa",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U210|rama#0|1",
+   "level": "info",
+   "where": "10.4",
+   "message": "'Ra' (rama) off the tactus, and 'ma' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Cantus|v1|U401|in#0|1",
    "level": "info",
    "where": "10.2",
    "message": "'in' starts on a dissonant note (neighbour, P4 against the Bassus)",
    "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U210|ululatus#2|1",
+   "level": "info",
+   "where": "19.4",
+   "message": "'la' (ululatus) off the tactus, and 'tus,' after it on the half-bar",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -430,6 +569,15 @@
    "where": "21.4",
    "message": "'Ra' starts on a dissonant note (suspension, P4 against the Bassus)",
    "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U210|plorans#0|1",
+   "level": "info",
+   "where": "22.4",
+   "message": "'plo' (plorans) off the tactus, and 'rans,' after it on the bar",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -461,6 +609,15 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Cantus|v1|U210|suos#0|1",
+   "level": "info",
+   "where": "27.2",
+   "message": "'su' (suos) off the tactus, and 'os,' after it on the half-bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Cantus|v1|U401|suos#0|1",
    "level": "info",
    "where": "27.2",
@@ -470,11 +627,29 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|2",
+   "level": "info",
+   "where": "28.1",
+   "message": "the arrival carries 'su', and 'os,' comes after it, on the voice's own resolution, while other voices begin new text (authentic cadence on D, full)",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Cantus|v1|U304|noluit#1|1",
    "level": "info",
    "where": "29.4",
    "message": "in the homorhythmic passage 29.3-30.2, 'lu' changes syllable where the other voices hold theirs",
    "cost": 0.25,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U206|consolari#0|1",
+   "level": "info",
+   "where": "30.2",
+   "message": "5 notes, 8 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
+   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -497,10 +672,55 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Cantus|v1|U301|consolari#2|1",
+   "level": "info",
+   "where": "31.3",
+   "message": "the arrival carries 'la', and 'ri,' comes after it, while other voices begin new text (evaded cadence on D, evaded)",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U401|noluit#1|1",
+   "level": "info",
+   "where": "33.4",
+   "message": "'lu' starts on a dissonant note (unexplained, d5 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Cantus|v1|U206|consolari#0|2",
+   "level": "info",
+   "where": "34.2",
+   "message": "6 notes, 8 semiminims, on 'con' of consolari (stress on syllable 3; vowel o)",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Tenor|v1|U303|vox#0|1",
    "level": "info",
    "where": "3.3",
    "message": "the FUGA entry (Tenor 3.3) sets vox differently from the leading entry (Cantus at 1.1): syllables xxx against xxxx",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U401|rama#1|1",
+   "level": "info",
+   "where": "5.3",
+   "message": "'ma,' starts on a dissonant note (unexplained, m7 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|rama#0|1",
+   "level": "info",
+   "where": "6.2",
+   "message": "'Ra' (rama) off the tactus, and 'ma,' after it on the bar",
    "cost": 1.5,
    "regret": 0.0,
    "alternative": []
@@ -515,11 +735,65 @@
    "alternative": []
   },
   {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|rama#0|2",
+   "level": "info",
+   "where": "9.4",
+   "message": "'Ra' (rama) off the tactus, and 'ma,' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|rama#0|3",
+   "level": "info",
+   "where": "10.4",
+   "message": "'Ra' (rama) off the tactus, and 'ma' after it on the bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "vox-in-rama|Tenor|v1|U401|rachel#0|1",
    "level": "info",
    "where": "19.2",
    "message": "'Ra' starts on a dissonant note (suspension, M2 against the Altus)",
    "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|rachel#0|1",
+   "level": "info",
+   "where": "21.2",
+   "message": "'Ra' (rachel) off the tactus, and 'chel' after it on the half-bar",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U208|filios#2|1",
+   "level": "info",
+   "where": "25.2",
+   "message": "'os' is stopped by 's' and cannot be sung through, but carries 3 notes (4 semiminims)",
+   "cost": 3.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U209|filios#2|1",
+   "level": "info",
+   "where": "25.4",
+   "message": "'os' to 'su' passes 2 consonants on a fusa",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|suos#0|1",
+   "level": "info",
+   "where": "25.4",
+   "message": "'su' (suos) off the tactus, and 'os,' after it on the bar",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -538,6 +812,15 @@
    "where": "25.4",
    "message": "'su' starts on a dissonant note (passing, d5 against the Altus)",
    "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U210|consolari#2|1",
+   "level": "info",
+   "where": "30.4",
+   "message": "'la' (consolari) off the tactus, and 'ri,' after it on the half-bar",
+   "cost": 1.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -581,7 +864,16 @@
    "fingerprint": "vox-in-rama|Tenor|v1|U301|consolari#2|1",
    "level": "info",
    "where": "37.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on B, weak)",
+   "message": "the arrival carries 'la', and 'ri,' comes after it, while other voices begin new text (phrygian cadence on B, weak)",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Tenor|v1|U306|consolari#3|1",
+   "level": "info",
+   "where": "37.4",
+   "message": "the motif at Tenor 37.4 sings 'ri no lu it' where 11 of its 13 occurrences sing 'et no lu it' (as Altus 28.2)",
    "cost": 2.0,
    "regret": 0.0,
    "alternative": []
