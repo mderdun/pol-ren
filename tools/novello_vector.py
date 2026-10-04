@@ -18,9 +18,10 @@ The output is vector throughout. Same seed, same page.
 import argparse, os, subprocess, tempfile
 import numpy as np
 import pymupdf
-from scipy.interpolate import RegularGridInterpolator
+import shapely
+from scipy import ndimage as ndi
 from shapely.geometry import Polygon, LineString, Point, MultiPolygon
-from shapely.ops import unary_union
+from shapely.ops import unary_union, orient
 from shapely import make_valid, segmentize
 
 MM = 72 / 25.4
@@ -28,10 +29,13 @@ MM = 72 / 25.4
 def field(w, h, cell, rng):
     """Smooth random field over the page, value ~[-1, 1], features `cell` pt."""
     nx, ny = int(w / cell) + 4, int(h / cell) + 4
-    g = rng.standard_normal((nx, ny)).astype(np.float32)
-    xs, ys = np.arange(nx) * cell - cell, np.arange(ny) * cell - cell
-    f = RegularGridInterpolator((xs, ys), g, method='cubic', bounds_error=False, fill_value=0)
-    return lambda pts: np.clip(f(pts) / 1.5, -1, 1)
+    g = ndi.spline_filter(rng.standard_normal((nx, ny)), order=3)   # once, not per call
+    def f(pts):
+        pts = np.asarray(pts, float)
+        v = ndi.map_coordinates(g, [pts[:, 0] / cell + 1, pts[:, 1] / cell + 1], order=3,
+                                mode='nearest', prefilter=False)
+        return np.clip(v / 1.5, -1, 1)
+    return f
 
 def bezier(p0, p1, p2, p3, n=8):
     t = np.linspace(0, 1, n + 1)[1:, None]
@@ -134,9 +138,13 @@ def treat(geom, k, press, fib, wander, rng):
         if p.geom_type == 'Polygon':
             ext = move(p.exterior.coords)
             ints = [move(i.coords) for i in p.interiors]
-            return Polygon(ext, ints)
+            return make_valid(Polygon(ext, ints))
         if p.geom_type in ('MultiPolygon', 'GeometryCollection'):
-            return unary_union([warp(q) for q in p.geoms if q.geom_type in ('Polygon', 'MultiPolygon')])
+            parts = [warp(q) for q in p.geoms if q.geom_type in ('Polygon', 'MultiPolygon')]
+            try:
+                return unary_union(parts)
+            except Exception:                  # rare topology clash: keep the parts as they are
+                return shapely.MultiPolygon([x for q in parts for x in (q.geoms if hasattr(q, 'geoms') else [q]) if x.geom_type == 'Polygon'])
         return p
     g = make_valid(warp(g))
     # pores in solid areas
@@ -158,16 +166,48 @@ def colour_key(d):
     if r > 0.9 and gg > 0.9 and b > 0.9: return 'white'
     return 'black'
 
-def emit(page, geom, fill):
+def path_ops(geom, h):
+    """PDF path operators for a geometry (y flipped to PDF space)."""
     polys = [geom] if geom.geom_type == 'Polygon' else [p for p in getattr(geom, 'geoms', []) if p.geom_type == 'Polygon']
-    if not polys: return
-    sh = page.new_shape()
+    out = []
     for p in polys:
+        p = orient(p, 1.0)            # holes wind against their outline: nonzero fill keeps them
         for ring in [p.exterior] + list(p.interiors):
-            pts = [pymupdf.Point(x, y) for x, y in ring.coords]
-            if len(pts) >= 3: sh.draw_polyline(pts)
-    sh.finish(fill=fill, color=None, even_odd=True, closePath=True)
-    sh.commit()
+            c = np.asarray(ring.coords)
+            if len(c) < 3: continue
+            c[:, 1] = h - c[:, 1]
+            out.append('%.2f %.2f m ' % tuple(c[0]) + ' '.join('%.2f %.2f l' % tuple(q) for q in c[1:]) + ' h')
+    return out
+
+def write_page(doc, page, layers):
+    """One content stream for the page: each colour filled once (nonzero, so
+    overlapping marks add up rather than cancel)."""
+    parts = []
+    for rgb, ops in layers:
+        if ops:
+            parts.append('%.4f %.4f %.4f rg\n' % rgb + '\n'.join(ops) + '\nf\n')
+    xref = doc.get_new_xref()
+    doc.update_object(xref, '<<>>')
+    doc.update_stream(xref, ''.join(parts).encode())
+    page.set_contents(xref)
+
+def do_page(args):
+    path, i, strength, seed = args
+    src = pymupdf.open(path); sp = src[i]
+    w, h = sp.rect.width, sp.rect.height
+    rng = np.random.default_rng(seed + i)
+    press = field(w, h, 50 * MM, rng)
+    fib = field(w, h, 0.22 * MM, rng)
+    wander = field(w, h, 1.1 * MM, rng)
+    layers = {'black': [], 'red': []}
+    for dr in sp.get_drawings():
+        key = colour_key(dr)
+        if key in (None, 'white'): continue
+        g = drawing_geom(dr)
+        if g is None or g.is_empty: continue
+        g = treat(g, strength, press, fib, wander, rng)
+        layers[key] += path_ops(g, h)
+    return w, h, layers
 
 def main():
     ap = argparse.ArgumentParser()
@@ -175,29 +215,24 @@ def main():
     ap.add_argument('--strength', type=float, default=1.5)
     ap.add_argument('--seed', type=int, default=1611)
     ap.add_argument('--pages')
+    ap.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
     a = ap.parse_args()
+    from multiprocessing import Pool
     with tempfile.TemporaryDirectory() as d:
         outl = os.path.join(d, 'outl.pdf')
         subprocess.run(['gs', '-q', '-dNOPAUSE', '-dBATCH', '-dNoOutputFonts', '-sDEVICE=pdfwrite',
                         f'-sOutputFile={outl}', a.inp], check=True)
-        src = pymupdf.open(outl); dst = pymupdf.open()
-        rng_pages = range(len(src))
+        n = len(pymupdf.open(outl))
+        pages = range(n)
         if a.pages:
-            f, _, l = a.pages.partition('-'); rng_pages = range(int(f) - 1, int(l or f))
-        for i in rng_pages:
-            sp = src[i]; w, h = sp.rect.width, sp.rect.height
-            rng = np.random.default_rng(a.seed + i)
-            press = field(w, h, 50 * MM, rng)
-            fib = field(w, h, 0.22 * MM, rng)
-            wander = field(w, h, 1.1 * MM, rng)
+            f, _, l = a.pages.partition('-'); pages = range(int(f) - 1, int(l or f))
+        jobs = [(outl, i, a.strength, a.seed) for i in pages]
+        with Pool(min(a.jobs, len(jobs))) as pool:
+            results = pool.map(do_page, jobs)
+        dst = pymupdf.open()
+        for w, h, layers in results:
             dp = dst.new_page(width=w, height=h)
-            for dr in sp.get_drawings():
-                key = colour_key(dr)
-                if key in (None, 'white'): continue
-                g = drawing_geom(dr)
-                if g is None or g.is_empty: continue
-                g = treat(g, a.strength, press, fib, wander, rng)
-                emit(dp, g, (0, 0, 0) if key == 'black' else (0x9A / 255, 0x1E / 255, 0x1E / 255))
+            write_page(dst, dp, [((0, 0, 0), layers['black']), ((0x9A / 255, 0x1E / 255, 0x1E / 255), layers['red'])])
         dst.save(a.out, garbage=4, deflate=True)
 
 if __name__ == '__main__':
