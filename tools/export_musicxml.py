@@ -126,7 +126,7 @@ class Segment:          # one \score block
 def parse_events(lines: list[str]) -> list[Segment]:
     segs: list[Segment] = []
     pending = defaultdict(list)   # (voice, t) -> [(kind, value)] for tie/slur/... events
-    lyr = defaultdict(dict)       # (voice, t) -> lyric dict
+    lyr = defaultdict(dict)       # (voice, t, verse) -> lyric dict
     for line in lines:
         f = line.split("\t")
         kind = f[0]
@@ -154,12 +154,13 @@ def parse_events(lines: list[str]) -> list[Segment]:
             pending[(voice, frac(t))].append((kind, f[3] if len(f) > 3 else ""))
         elif kind == "lyric":
             text = f[3]
+            verse = f[7] if len(f) > 7 and f[7] else "1"
             if text.strip():
-                lyr[(voice, frac(t))].update(text=text, italic=f[6] == "italic")
+                lyr[(voice, frac(t), verse)].update(text=text, italic=f[6] == "italic")
         elif kind == "lyric-hyphen":
-            lyr[(voice, frac(t))]["hyphen"] = True
+            lyr[(voice, frac(t), f[3] if len(f) > 3 and f[3] else "1")]["hyphen"] = True
         elif kind == "lyric-extender":
-            lyr[(voice, frac(t))]["extender"] = True
+            lyr[(voice, frac(t), f[3] if len(f) > 3 and f[3] else "1")]["extender"] = True
         elif kind == "bar":
             seg.bars.append((frac(t), f[3]))
         elif kind == "mark":
@@ -186,9 +187,10 @@ def parse_events(lines: list[str]) -> list[Segment]:
                 elif k == "text":
                     e.texts.append(v)
             if e.kind == "note":
-                ly = lyr.get((e.voice, e.t))
-                if ly and "text" in ly:
-                    e.lyric = ly
+                verses = {k[2]: v for k, v in lyr.items()
+                          if k[0] == e.voice and k[1] == e.t and "text" in v}
+                if verses:
+                    e.lyric = dict(sorted(verses.items(), key=lambda kv: int(kv[0])))
     return segs
 
 
@@ -328,27 +330,28 @@ def clef_xml(v: dict) -> str:
 class PartWriter:
     def __init__(self, divisions: int):
         self.div = divisions
-        self.in_word = False
+        self.in_word = {}
 
     def dur(self, length: F) -> int:
         d = length * 4 * self.div
         assert d.denominator == 1, length
         return int(d)
 
-    def lyric_xml(self, ly: dict) -> str:
+    def lyric_xml(self, ly: dict, verse: str = "1") -> str:
         hy = ly.get("hyphen", False)
+        inw = self.in_word.get(verse, False)
         if hy:
-            syl = "middle" if self.in_word else "begin"
+            syl = "middle" if inw else "begin"
         else:
-            syl = "end" if self.in_word else "single"
-        self.in_word = hy
+            syl = "end" if inw else "single"
+        self.in_word[verse] = hy
         text = ly["text"].replace("_", " ")
         style = ' font-style="italic"' if ly.get("italic") else ""
         parts = text.split("~")
         body = f"<syllabic>{syl}</syllabic>" + "<elision>\u203f</elision>".join(
             f"<text{style}>{escape(p)}</text>" for p in parts)
         ext = "<extend/>" if ly.get("extender") else ""
-        return f'<lyric number="1">{body}{ext}</lyric>'
+        return f'<lyric number="{verse}">{body}{ext}</lyric>'
 
     def note_xml(self, e: Ev | None, length: F, ntype: str, dots: int, *, first: bool, last: bool,
                  tie_in: bool, tie_out: bool, chant: bool = False, measure_rest: bool = False,
@@ -404,7 +407,7 @@ class PartWriter:
         if n:
             x.append("<notations>" + "".join(n) + "</notations>")
         if first and e.lyric:
-            x.append(self.lyric_xml(e.lyric))
+            x.extend(self.lyric_xml(ly, v) for v, ly in e.lyric.items())
         x.append("</note>")
         return "".join(x)
 

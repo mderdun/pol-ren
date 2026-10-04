@@ -174,6 +174,24 @@
            ((string? av) av)
            (else ""))))
 
+%% Verse of a Lyrics context: the digits of its stanza label ("2."), or the
+%% order in which Lyrics contexts on the same voice first appear.
+#(define prx-verse-table '())
+#(define (prx-verse ctx)
+   (let* ((st (ly:context-property ctx 'stanza #f))
+          (s (if (markup? st) (prx-clean (prx-text st)) ""))
+          (digits (list->string (filter char-numeric? (string->list s)))))
+     (if (not (string-null? digits))
+         digits
+         (let ((hit (assq ctx prx-verse-table)))
+           (if hit (cadr hit)
+               (let* ((voice (prx-assoc ctx))
+                      (n (1+ (count (lambda (e) (equal? (cadr e) voice))
+                                    (map (lambda (e) (list (car e) (caddr e))) prx-verse-table))))
+                      (v (number->string n)))
+                 (set! prx-verse-table (cons (list ctx v voice) prx-verse-table))
+                 v))))))
+
 #(define prx-lyric-engraver
    (lambda (ctx)
      (make-engraver
@@ -186,11 +204,12 @@
           (prx-emit "lyric" (prx-assoc ctx) (prx-now ctx)
                     (prx-clean (prx-text (ly:event-property ev 'text)))
                     (if hy "hyphen" "") (if ex "extender" "")
-                    (if (eq? shape 'italic) "italic" ""))))
+                    (if (eq? shape 'italic) "italic" "")
+                    (prx-verse ctx))))
        ((hyphen-event engraver ev)
-        (prx-emit "lyric-hyphen" (prx-assoc ctx) (prx-now ctx)))
+        (prx-emit "lyric-hyphen" (prx-assoc ctx) (prx-now ctx) (prx-verse ctx)))
        ((extender-event engraver ev)
-        (prx-emit "lyric-extender" (prx-assoc ctx) (prx-now ctx)))))))
+        (prx-emit "lyric-extender" (prx-assoc ctx) (prx-now ctx) (prx-verse ctx)))))))
 
 #(define prx-score-engraver
    (lambda (ctx)
