@@ -116,10 +116,18 @@ ed = \tweak font-size #-2 \etc
 sup = \once \override NoteHead.stencil = #pr-bracket-head
 
 %% Editorial suggestion outside the text of the source (performance editions
-%% only): small, in round brackets. Must be explained in the notes.
+%% only, principles 2.3): a small stemless note in square brackets, as all
+%% editorial matter; round brackets are kept for cautionaries. Use it as
+%% \sugg \parenthesize note: the brackets are drawn to the notehead's height.
+%% Must be explained in the notes.
+#(define (pr-square-paren-stencils grob)
+   (let* ((head (ly:grob-parent grob Y))
+          (ext (interval-widen (ly:grob-extent head head Y) 0.3))
+          (lp (ly:bracket Y ext 0.13 0.35)))
+     (list lp (ly:stencil-scale lp -1 1))))
 sugg = {
   \once \override NoteHead.font-size = #-2
-  \once \override Parentheses.font-size = #1.5
+  \once \override Parentheses.stencils = #pr-square-paren-stencils
   \once \override Stem.transparent = ##t
   \once \override Flag.transparent = ##t
 }
@@ -526,7 +534,11 @@ voiceSetup = {
     \override VerticalAxisGroup.nonstaff-nonstaff-spacing.padding = #(* pr-breathe 0.45)
     %% lyrics to the staff below: room for its ledger-line notes and accidentals
     \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing = #(pr-lyrics-to-staff (* pr-breathe 2.0))
+    %% Stanza numbers: regular weight (the house has no bold; LilyPond's
+    %% default is bold) and in the rubric red, as everywhere in the series.
     \override StanzaNumber.font-size = #0.6
+    \override StanzaNumber.font-series = #'medium
+    \override StanzaNumber.color = #(rgb-color 0.604 0.118 0.118)
   }
 }
 

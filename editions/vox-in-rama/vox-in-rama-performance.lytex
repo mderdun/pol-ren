@@ -9,9 +9,10 @@
 
 \begin{document}
 \makemasthead
-\scorepagebreaks{}
+\scorepagebreaks{2,4,6}
 \lilypondfile[noindent]{music/score-performance.ly}
 
+\newpage   % text, translation and notes share the last page
 \section*{Text and translation}
 
 \begin{textcols}
