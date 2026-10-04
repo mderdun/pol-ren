@@ -16,8 +16,6 @@ reported as LOOK: places to sing through and judge, not errors.
   LOOK stress-short    a stressed syllable on a shorter note than the
                        unstressed syllable after it in the same word.
   LOOK run-light       a run of 4+ notes on a light word.
-  LOOK run-vowel       a run of 4+ notes on a vowel Vicentino finds awkward
-                       in that register (i in low voices, u in high ones).
   LOOK run-unstressed  a run of 6+ notes on an unstressed, non-final
                        syllable of a word with a known stress.
 Durations are in semiminims (1 = semiminim, 2 = minim, 4 = semibreve).
@@ -136,8 +134,6 @@ def audit(path):
                         if nn >= 4:
                             out.append(('LOOK', voice, n, first['bar'], f"run-light: '{txt}' over {nn} notes"))
                     v = vowel(txt)
-                    if nn >= 4 and ((reg == 'low' and v == 'i') or (reg == 'high' and v == 'u')):
-                        out.append(('LOOK', voice, n, first['bar'], f"run-vowel: {nn} notes on '{txt}' ({v} in a {reg} voice)"))
                     if st is not None and len(w) > 1:
                         if k == st and k + 1 < len(w) - 1:   # a word-final syllable belongs on the cadence note (10.3)
                             nxt = w[k + 1][2][0]
