@@ -8,3 +8,4 @@ editions/*/build/
 editions/*/tmp*
 guides/*/tmp*
 .claude/worktrees/
+house/fonts/

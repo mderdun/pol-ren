@@ -8,6 +8,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 "$ROOT/tools/lint.sh" || { echo "fix lint first"; exit 1; }
+"$ROOT/tools/get-fonts.sh"
 build_dir() {  # $1 = directory, $2 = optional kind filter
   local src="$1" out="$1/build" name
   rm -rf "$out"; mkdir -p "$out" "$src/pdf"   # lilypond-book does not track includes

@@ -27,6 +27,9 @@
 #(set-global-staff-size
    (if (eq? (ly:parser-lookup 'prPerformance) #t) 19 17))
 \paper {
+  %% the pinned Junicode from tools/get-fonts.sh, if fetched
+  #(let ((d (string-append (dirname (ly:find-file "pol-ren.ily")) "/../fonts/junicode")))
+     (if (file-exists? d) (ly:font-config-add-directory d)))
   #(define fonts
      (make-pango-font-tree "Junicode" "Junicode" "DejaVu Sans Mono"
                            (/ staff-height pt 20)))
