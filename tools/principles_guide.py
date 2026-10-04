@@ -23,6 +23,7 @@ EDS = r"\*(?:Bogurodzica|Nunc scio|Zmierzka|Plaude|Vox)\*"
 md = re.sub(r"\s*\((?:MD\b|Editor's rule|" + EDS + r")[^()]*(?:\([^()]*\)[^()]*)*\)", "", md)
 md = re.sub(r' "There\'s literally no reason to baby the performer\."', "", md)
 md = re.sub(r"\s*\([^()]*\b\d{1,2} Oct 2026\)", "", md)     # dated working notes
+md = re.sub(r" Reading notes: [^\n]*", "", md)     # repository pointer, not for the guide
 md = re.sub(r"\(\*?\s*\)", "", md)
 
 tex = subprocess.run(["pandoc", "-f", "markdown-auto_identifiers", "-t", "latex", "--wrap=preserve", "--shift-heading-level-by=-1"],
