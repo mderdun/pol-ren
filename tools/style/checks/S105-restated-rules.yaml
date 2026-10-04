@@ -1,0 +1,24 @@
+id: S105
+name: restated-rules
+kind: source
+level: warn
+heuristic: true
+rule: "principles 13.4"
+authority: "Principles 13.4 (MD, 3 Oct 2026); house style 11: 'Never restate a series rule in an edition. Cite it by number'"
+message: "this sentence of the method seems to restate a series rule ({why}); cite the rule by number and keep to what is particular to the piece"
+applies: [critical]
+examples:
+  flag:
+    - path: editions/x/x-critical.lytex
+      text: "\\section*{Editorial method}\n\\seriesrules\nEditorial accidentals stand above the note, small, without brackets, and apply to that note only.\n\\section*{Text}"
+      why: "the wording of principles 7.2"
+    - path: editions/x/x-critical.lytex
+      text: "\\section*{Editorial method}\nWe always print the source's long at every final.\n\\section*{Text}"
+      why: "a rule stated with 'we' and 'always'"
+  pass:
+    - path: editions/x/x-critical.lytex
+      text: "\\section*{Editorial method}\nA sign applies only to its own note (principles 7.3), so a b after a b-flat in the same bar is b-natural.\n\\section*{Text}"
+      why: "cites the rule and says what it means here"
+    - path: editions/x/x-critical.lytex
+      text: "\\section*{Introduction}\nEditorial accidentals stand above the note, small, without brackets, and apply to that note only.\n\\section*{Editorial method}\nThe Tenor is edited from the print."
+      why: "only the method section is read"

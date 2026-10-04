@@ -1,0 +1,16 @@
+id: S117
+name: quotation-marks
+kind: source
+level: warn
+rule: "house style 11"
+authority: "House style 11, Conventions: 'Single curly quotation marks, double inside'"
+message: "{what}; quote in single curly quotation marks ‘…’, with “…” only inside them"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The rubric reads ``Soli debent cantare''.", why: "TeX double quotes"}
+    - {path: editions/x/x-critical.lytex, text: "The rubric reads “Soli debent cantare”.", why: "curly double quotes outside"}
+    - {path: editions/x/x-critical.lytex, text: "The rubric reads \"Soli\".", why: "straight double quotes"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "Johnstone, ‘“High” Clefs in Composition’.", why: "double inside single"}
+    - {path: guides/editorial-principles/x.tex, text: "\\href{x}{y}", why: "no quotation"}

@@ -1,0 +1,26 @@
+# Per-edition facts for the style checks that the Sources section does not
+# state in a form a program can read. Everything else is read from the
+# critical edition (tools/style/editions.py): a siglum is a source unless its
+# list is introduced as collated editions or recordings, and it is lost when
+# its entry says lost, destroyed or "no copy known".
+#
+# sigla.<X>.kind: source | edition | recording
+#   (S113 asks a shelfmark of every source and consulted copy; editions and
+#   recordings are cited, not described by shelfmark)
+# sigla.<X>.lost: true | false
+#   (S112: critical notes speak of a lost source in the past tense)
+
+vox-in-rama:
+  sigla:
+    N: {kind: edition}      # notAmos Performing Editions (CPDL, 2020)
+    M: {kind: edition}      # Marchesano (CPDL, 2009/2017)
+
+nunc-scio-vere:
+  sigla:
+    P: {kind: edition}      # Perz's reconstruction in Feicht (ed.), 1966
+
+juz-sie-zmierzka: {}
+
+plaude-euge: {}
+
+bogurodzica: {}

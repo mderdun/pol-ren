@@ -14,17 +14,22 @@ a new part); the last page is only checked for being nearly empty. Exit status i
 this is a report, not a gate.
 """
 import subprocess, sys, tempfile, os, glob
-from PIL import Image
 
 TOP, BOTTOM = 17 / 297, 1 - 23 / 297     # house text block (A4, mm)
 
 def ink_rows(png):
     """(top, bottom) of the ink as fractions of the page, and whether the
     page carries music (rows of staff lines spanning most of the width)."""
+    from PIL import Image
     im = Image.open(png).convert('L'); w, h = im.size; px = im.load()
+    return ink_rows_px(w, h, lambda x, y: px[x, y])
+
+def ink_rows_px(w, h, px):
+    """ink_rows for any greyscale page: px(x, y) -> 0..255. Shared with
+    tools/style (P206), which renders with PyMuPDF instead of pdftoppm."""
     rows, staff = [], 0
     for y in range(h):
-        dark = sum(1 for x in range(0, w, 2) if px[x, y] < 160)
+        dark = sum(1 for x in range(0, w, 2) if px(x, y) < 160)
         if dark: rows.append(y)
         if dark > 0.3 * w: staff += 1
     if not rows: return None, None, False, 0
@@ -32,22 +37,25 @@ def ink_rows(png):
     return rows[0] / h, rows[-1] / h, staff >= 10, body
 
 def check(pdf):
-    out = []
     with tempfile.TemporaryDirectory() as d:
         subprocess.run(['pdftoppm', '-r', '20', '-png', pdf, f'{d}/p'], check=True)
         pages = sorted(glob.glob(f'{d}/p-*.png'))
-        n = len(pages)
-        for i, p in enumerate(pages, 1):
-            top, bot, music, body = ink_rows(p)
-            if i == n and n > 1 and top is not None and body < 3:   # running head and foot line only
-                out.append(f'  p.{i}: last page holds only the foot line (an overflow from p.{i-1}?)')
-            if top is None or not music or i == n:
-                continue
-            fill = (bot - TOP) / (BOTTOM - TOP)
-            if fill < 0.40:
-                out.append(f'  p.{i}: short page ({fill:.0%} of the text block) before p.{i+1}')
-            if bot > BOTTOM + 0.012:
-                out.append(f'  p.{i}: ink in the bottom margin')
+        return judge([ink_rows(p) for p in pages])
+
+def judge(measured):
+    """Warnings for a document, from ink_rows() of each page in order."""
+    out = []
+    n = len(measured)
+    for i, (top, bot, music, body) in enumerate(measured, 1):
+        if i == n and n > 1 and top is not None and body < 3:   # running head and foot line only
+            out.append(f'  p.{i}: last page holds only the foot line (an overflow from p.{i-1}?)')
+        if top is None or not music or i == n:
+            continue
+        fill = (bot - TOP) / (BOTTOM - TOP)
+        if fill < 0.40:
+            out.append(f'  p.{i}: short page ({fill:.0%} of the text block) before p.{i+1}')
+        if bot > BOTTOM + 0.012:
+            out.append(f'  p.{i}: ink in the bottom margin')
     return out
 
 if __name__ == '__main__':

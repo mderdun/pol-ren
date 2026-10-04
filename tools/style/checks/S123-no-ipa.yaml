@@ -1,0 +1,14 @@
+id: S123
+name: no-ipa
+kind: source
+level: warn
+rule: "house style 10"
+authority: "House style 10, Pronunciation: 'Sounds are described by comparison with familiar words, stress by capitals (po-PROŚ-my). No IPA'"
+message: "IPA ({found}); describe the sound by comparison with familiar words"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: guides/pronunciation/pronunciation-guide.tex, text: "\\ipa{ʃ} as in ship", why: "the IPA macro"}
+    - {path: editions/x/x-performance.lytex, text: "Rachel has [x], as in loch.", why: "an IPA symbol"}
+  pass:
+    - {path: guides/pronunciation/pronunciation-guide.tex, text: "\\textit{sz} sounds as \\textit{sh} in \\textit{ship}; stress po-PROŚ-my.", why: "comparison"}

@@ -1,0 +1,13 @@
+id: P205
+name: bold-fonts
+kind: pdf
+level: error
+rule: "house style 3"
+authority: "House style 3: 'Bold: Not used'. The class maps LaTeX's bold to Junicode Medium (house/latex/pol-ren.cls), so Medium in a PDF is bold too; LilyPond sets stanza numbers and volta numerals in bold by default"
+message: "bold font {font} on p.{pages}"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: bold-font, why: "JunicodePressed-Bold"}
+  pass:
+    - {fixture: pressed-font-names, why: "regular weights"}

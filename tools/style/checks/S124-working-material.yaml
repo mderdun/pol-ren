@@ -1,0 +1,15 @@
+id: S124
+name: working-material
+kind: source
+level: error
+rule: "principles 2.4, 13.3"
+authority: "Principles 2.4 (MD): final editions contain no working material, no notes to self or status flags; 13.3: verify every claim or cut it"
+message: "working material in printed text ({found}); move it to the issue tracker or notes/"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The Altus is lost. TODO check WDMP.", why: "a note to self"}
+    - {path: editions/x/x-critical.lytex, text: "The date [check] is 1611.", why: "a status flag"}
+    - {path: editions/x/x-critical.lytex, text: "The shelfmark is ??.", why: "a placeholder"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "% TODO: a comment is not printed\nThe Altus is lost.", why: "comments are not printed"}

@@ -1,0 +1,15 @@
+id: S114
+name: british-spelling
+kind: source
+level: warn
+rule: "house style 11"
+authority: "House style 11, Conventions: 'British spelling (-ise)'"
+message: "'{word}' is American spelling; write '{uk}'"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The edition normalizes the spelling.", why: "-ize"}
+    - {path: editions/x/x-performance.lytex, text: "A centered rest; the meter is clear; the color of the voices.", why: "-er, -or"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "The edition normalises the spelling; the size of the print; the centre; the metre of the verse.", why: "British spelling; size is not -ize"}
+    - {path: editions/x/x-critical.lytex, text: "\\begin{literature}\n\\lit Smith. \\textit{Organizing Polyphony}. 1999.\n\\end{literature}", why: "titles in the literature keep their own spelling"}

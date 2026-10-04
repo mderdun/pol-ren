@@ -1,0 +1,13 @@
+id: P202
+name: red-music
+kind: pdf
+level: error
+rule: "house style 5"
+authority: "House style 5: 'Red is never used for notes, accidentals, editorial signs, sigla, or anything a reader needs. A black-and-white photocopy must lose nothing'"
+message: "music glyphs in red ({font}) on p.{pages}"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: red-music-glyph, why: "a glyph of the music font in the rubric red"}
+  pass:
+    - {fixture: house-colours, why: "red only for a text rubric"}

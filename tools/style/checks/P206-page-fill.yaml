@@ -1,0 +1,13 @@
+id: P206
+name: page-fill
+kind: pdf
+level: warn
+rule: "house style 7"
+authority: "House style 7: 'no short or crowded music pages'; tools/check_pages.py (short page before another, ink in the bottom margin, a last page holding only the foot line), run here on the committed PDF"
+message: "{what}"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: short-music-page, why: "one system at the top of a music page that is followed by another"}
+  pass:
+    - {fixture: full-music-pages, why: "music down to the foot of the text block"}

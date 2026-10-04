@@ -1,0 +1,16 @@
+id: S120
+name: voice
+kind: source
+level: warn
+heuristic: true
+rule: "principles 15.4; house style 11"
+authority: "Principles 15.4 and house style 11: 'I' for the editor's judgements and readings, impersonal wording for method; 'we' is neither"
+message: "'{found}': write 'I' for a judgement, or say it impersonally for method"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "We take b natural here.", why: "editorial 'we'"}
+    - {path: editions/x/x-critical.lytex, text: "Here our reading follows the print.", why: "editorial 'our'"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "I take b natural here. Bar lines run between the staves.", why: "'I' and impersonal method"}
+    - {path: editions/x/x-performance.lytex, text: "the prayer asks ‘that we may be delivered’", why: "a quotation"}

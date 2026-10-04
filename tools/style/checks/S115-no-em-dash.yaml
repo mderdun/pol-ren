@@ -1,0 +1,15 @@
+id: S115
+name: no-em-dash
+kind: source
+level: error
+rule: "house style 11"
+authority: "House style 11, Voice and register: 'No em dashes. Commas and full stops'"
+message: "em dash ({dash}); use a comma or a full stop (an en dash only in ranges)"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The Tenor — the only voice in print — survives.", why: "Unicode em dash"}
+    - {path: editions/x/x-critical.lytex, text: "The Tenor---the only voice---survives.", why: "TeX em dash"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "bars 17–18, c.\\,1550–1556; the Tenor, the only voice in print, survives.", why: "en dashes in ranges"}
+    - {path: editions/x/x-critical.lytex, text: "% a comment — not printed", why: "comments are not printed"}

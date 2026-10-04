@@ -1,0 +1,14 @@
+id: S121
+name: range-dash
+kind: source
+level: warn
+rule: "house style 11"
+authority: "House style 11, Conventions: dates 'c. 1550–1556'; 'En dash in ranges'"
+message: "'{found}': an en dash in a range (– or --), not a hyphen"
+applies: [critical, performance, text, guide]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "bars 17-18; c.\\,1550-1556; pp. 61-65", why: "hyphens in ranges"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "bars 17–18; c.\\,1550--1556; RISM A/I Z\\,200; IMuzUJ 014–017; \\url{https://x.org/15-0028}", why: "en dashes; a URL"}
+    - {path: editions/x/x-critical.lytex, text: "Supraphon SU 3807-2", why: "a catalogue number"}

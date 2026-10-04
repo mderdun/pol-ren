@@ -1,0 +1,13 @@
+id: P204
+name: pressed-fonts
+kind: pdf
+level: error
+rule: "house style 3, 5a"
+authority: "House style 5a: the build sets words in Junicode Pressed, the music in a pressed Emmentaler and chant in a pressed greciliae; 'Not yet pressed: the prose accidentals (TeX Gyre Pagella) and the monospaced repository address' (LMMono). House style 3: Junicode 2 throughout"
+message: "font {font} (p.{pages}) is not one of the house's pressed fonts; {hint}"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: fallback-font, why: "DejaVuSans, a fallback for a glyph Junicode lacks"}
+  pass:
+    - {fixture: pressed-font-names, why: "JunicodePressed, Pressed-20, pressedchant, TeXGyrePagella, LMMono"}

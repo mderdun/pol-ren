@@ -1,0 +1,16 @@
+id: S110
+name: note-form
+kind: source
+level: error
+rule: "house style 10, 11"
+authority: "House style 10: critical notes in three columns, bar | voice | note, bar numbers in lining figures, voices as plain small capitals; house style 11: 'In critical notes: \"29 | A\"', en dash in ranges"
+message: "critical note {where}: {what}"
+applies: [critical]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17-18}{A}{Emended.}", why: "a hyphen in a bar range"}
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17}{Altus}{b′ as in M.}", why: "the voice written out"}
+    - {path: editions/x/x-critical.lytex, text: "\\cn{bar 17}{A}{b′.}", why: "a word in the bar column"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17–18}{A}{Emended.} \\cn{25, 31}{T}{x} \\cn{1}{M 3}{x} \\cn{35}{D 4, M 4}{x} \\cn{50–56}{all}{x} \\cn{}{}{x} \\cn{text}{}{x}", why: "the house forms"}
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17--18}{A, T}{x}", why: "TeX's en dash"}

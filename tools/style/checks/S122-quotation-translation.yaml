@@ -1,0 +1,16 @@
+id: S122
+name: quotation-translation
+kind: source
+level: warn
+heuristic: true
+rule: "principles 11.7; house style 11"
+authority: "Principles 11.7 (MD, 3 Oct 2026): every quotation in a language other than English carries an English translation inline, after the original, in parentheses and quotation marks ‘…’ (‘…’); house style 11"
+message: "the quotation ‘{quote}’ looks {lang} and {what}: ‘…’ (‘…’)"
+applies: [critical, performance]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "The catalogue records ‘Soli debent cantare cum Organo’ for it.", why: "Latin, untranslated"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "The catalogue records ‘Soli debent cantare cum Organo’ (‘they are to sing alone with the organ’).", why: "translated"}
+    - {path: editions/x/x-critical.lytex, text: "Each voice states ‘Vox in Rama’ two or three times.", why: "a phrase of the set text, named"}
+    - {path: editions/x/x-critical.lytex, text: "The setting is ‘above all musical and meaningful’.", why: "English"}

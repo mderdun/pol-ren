@@ -1,0 +1,13 @@
+id: S125
+name: sign-inventory
+kind: source
+level: info
+rule: "decision 8 (4 Oct 2026); principles 8"
+authority: "Decision 8 of 4 Oct 2026: consistency of signs across the series is what matters. This lists which house signs each score uses, so that the same thing can be seen to be marked the same way in every edition (for example \\rep italics against ⟨ ⟩ for a source's ij, decision 9)"
+message: "{sign} ({meaning}): {n}×"
+applies: [music]
+examples:
+  flag:
+    - {path: editions/x/music/voices.ily, text: "a'2 \\fi gis'2 \\rep ve -- \\rep re", why: "lists \\fi and \\rep"}
+  pass:
+    - {path: editions/x/music/engraving.ily, text: "prBreaksCritical = #'(5 10)", why: "no signs"}
