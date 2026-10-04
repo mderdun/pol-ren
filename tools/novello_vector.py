@@ -4,9 +4,13 @@ for the raster original).
 
     tools/novello_vector.py IN.pdf OUT.pdf [--strength 1.5] [--seed 1611] [--pages 1-2]
 
-Every mark on the page (type and music glyphs are first turned into outlines
-with Ghostscript) becomes a polygon, and the polygon is reshaped as ink on
-soft paper would reshape it:
+Every drawn mark on the page (staff lines, stems, beams, bar lines, slurs,
+rules) becomes a polygon, and the polygon is reshaped as ink on soft paper
+would reshape it. Type and music glyphs stay live text: they are set in the
+pressed fonts (tools/make-pressed-fonts.sh), which carry the same treatment in
+their outlines. With --text outline every glyph is instead outlined with
+Ghostscript and treated here, as before the pressed fonts (slow, large files).
+The treatment:
   - ink gain: each mark grows a little and its corners round off, more where
     the plate printed heavily (a broad, faint pressure field);
   - bleed: the edge wanders with a fine paper-fibre field, so it is soft and
@@ -220,12 +224,25 @@ def main():
     ap.add_argument('--seed', type=int, default=1611)
     ap.add_argument('--pages')
     ap.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
+    ap.add_argument('--text', choices=['keep', 'outline'], default='keep',
+                    help='keep: type is left as live text (set in the pressed fonts, which carry '
+                         'their own texture) and only drawn marks are treated; outline: every '
+                         'glyph is outlined and treated here (slow, large files)')
     a = ap.parse_args()
     from multiprocessing import Pool
     with tempfile.TemporaryDirectory() as d:
-        outl = os.path.join(d, 'outl.pdf')
-        subprocess.run(['gs', '-q', '-dNOPAUSE', '-dBATCH', '-dNoOutputFonts', '-sDEVICE=pdfwrite',
-                        f'-sOutputFile={outl}', a.inp], check=True)
+        if a.text == 'outline':
+            outl = os.path.join(d, 'outl.pdf')
+            subprocess.run(['gs', '-q', '-dNOPAUSE', '-dBATCH', '-dNoOutputFonts', '-sDEVICE=pdfwrite',
+                            f'-sOutputFile={outl}', a.inp], check=True)
+            base = a.inp
+        else:
+            # drawn marks come from the page itself; the base page is the same page
+            # with its vector graphics removed, i.e. the type (and any images) alone
+            outl = a.inp
+            base = os.path.join(d, 'text.pdf')
+            subprocess.run(['gs', '-q', '-dNOPAUSE', '-dBATCH', '-dFILTERVECTOR', '-sDEVICE=pdfwrite',
+                            f'-sOutputFile={base}', a.inp], check=True)
         n = len(pymupdf.open(outl))
         pages = range(n)
         if a.pages:
@@ -235,6 +252,7 @@ def main():
             results = pool.map(do_page, jobs)
         dst = pymupdf.open()
         orig = pymupdf.open(a.inp)
+        basedoc = pymupdf.open(base)
         for i, (w, h, layers) in zip(pages, results):
             dp = dst.new_page(width=w, height=h)
             ink = 'q 0.01 0 0 0.01 0 0 cm\n' + ''.join('%.4f %.4f %.4f rg\n' % rgb + '\n'.join(ops) + '\nf\n'
@@ -242,10 +260,12 @@ def main():
                                            ((0x9A / 255, 0x1E / 255, 0x1E / 255), layers['red'])] if ops) + 'Q\n'
             # The original page rides along, clipped to nothing: it draws no ink but
             # keeps the text searchable and selectable, as in the plain PDF.
-            dp.show_pdf_page(dp.rect, orig, i)
+            # (keep: the type-only page is shown as it is, under the treated ink.)
+            dp.show_pdf_page(dp.rect, basedoc, i)
             xref = dp.get_contents()[0]
-            hidden = dst.xref_stream(xref)
-            dst.update_stream(xref, b'q 0 0 0 0 re W n\n' + hidden + b'\nQ\n' + ink.encode())
+            under = dst.xref_stream(xref)
+            clip = b'q 0 0 0 0 re W n\n' if a.text == 'outline' else b'q\n'
+            dst.update_stream(xref, clip + under + b'\nQ\n' + ink.encode())
             for link in orig[i].get_links():
                 link.pop('xref', None)
                 try: dp.insert_link(link)

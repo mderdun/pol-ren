@@ -9,3 +9,4 @@ editions/*/tmp*
 guides/*/tmp*
 .claude/worktrees/
 house/fonts/
+__pycache__/

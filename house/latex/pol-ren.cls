@@ -58,21 +58,31 @@
 
 %% ------------------------------------------------------------ type
 %% The pinned release fetched by tools/get-fonts.sh, else the system copy.
+%% In the finished build (tools/build.sh, unless NOVELLO=0) the type is set in
+%% Junicode Pressed (tools/make-pressed-fonts.sh): the same metrics, with the
+%% series' ink-on-paper texture in the outlines.
+\def\pr@juniname{Junicode}
+\newif\ifpr@pressed
 \def\pr@junipath{../../../house/fonts/junicode/}
 \IfFileExists{\pr@junipath Junicode-Regular.otf}{}{%
   \def\pr@junipath{/usr/share/fonts/opentype/junicode/}%
   \IfFileExists{\pr@junipath Junicode-Regular.otf}{}{\def\pr@junipath{}}}
-\setmainfont{Junicode}[
+\ifnum\directlua{tex.print(os.getenv('NOVELLO') == '0' and 0 or 1)}=1
+  \IfFileExists{../../../house/fonts/pressed/JunicodePressed-Regular.otf}{%
+    \def\pr@juniname{JunicodePressed}\pr@pressedtrue%
+    \def\pr@junipath{../../../house/fonts/pressed/}}{}
+\fi
+\setmainfont{\pr@juniname}[
   Path=\pr@junipath, Extension=.otf,
   UprightFont=*-Regular, ItalicFont=*-Italic,
   BoldFont=*-Medium, BoldItalicFont=*-MediumItalic,
   Numbers=OldStyle, Ligatures=TeX]
 %% Expanded width, for titles and spaced capitals.
-\newfontfamily\expfont{Junicode}[
+\newfontfamily\expfont{\pr@juniname}[
   Path=\pr@junipath, Extension=.otf,
   UprightFont=*-Exp, ItalicFont=*-ExpItalic,
   Numbers=OldStyle, Ligatures=TeX]
-\newfontfamily\ornfont{Junicode}[Path=\pr@junipath, Extension=.otf, UprightFont=*-Regular]
+\newfontfamily\ornfont{\pr@juniname}[Path=\pr@junipath, Extension=.otf, UprightFont=*-Regular]
 
 %% Figures: old-style in prose; lining tabular in apparatus columns.
 \newcommand\lnum[1]{{\addfontfeatures{Numbers={Lining,Monospaced}}#1}}
@@ -258,7 +268,8 @@
    \ifx\pr@kind\pr@guidekind\else The music itself is in the public domain.\fi\par
    Source files, corrections and later editions:
    \url{https://\pr@repo}\ifx\pr@slug\@empty\else\,/\,\texttt{\small editions/\pr@slug}\fi.\par
-   Set in Junicode\ifx\pr@kind\pr@guidekind\else; music engraved with LilyPond and Gregorio\fi.\par}
+   Set in Junicode by Peter S. Baker\def\pr@tmp{JunicodePressed}\ifx\pr@juniname\pr@tmp, in a pressed
+   variant made for the series\fi\ifx\pr@kind\pr@guidekind\else; music engraved with LilyPond and Gregorio\fi.\par}
   \clearpage}
 
 %% Performance edition: a masthead at the top of the first page; the
@@ -456,6 +467,8 @@
     \grechangestyle{annotation}{\small\color{rubric}}%
     \grechangestyle{initial}{\color{rubric}\fontsize{38}{38}\selectfont}%
     \ifpr@critical\grechangestaffsize{18}\else\grechangestaffsize{21}\fi
+    %% the pressed copy of greciliae (tools/make-pressed-fonts.sh; TTFONTS from tools/build.sh)
+    \ifpr@pressed\IfFontExistsTF{pressedchant.ttf}{\gresetgregoriofont{pressedchant}}{}\fi
   }{}}
 
 \endinput

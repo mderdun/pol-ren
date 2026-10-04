@@ -9,11 +9,13 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 "$ROOT/tools/lint.sh" || { echo "fix lint first"; exit 1; }
 "$ROOT/tools/get-fonts.sh"
+if [ "${NOVELLO:-1}" != 0 ]; then "$ROOT/tools/make-pressed-fonts.sh"; fi
 build_dir() {  # $1 = directory, $2 = optional kind filter
   local src="$1" out="$1/build" name
   rm -rf "$out"; mkdir -p "$out" "$src/pdf"   # lilypond-book does not track includes
   [ "$(basename "$src")" = editorial-principles ] && python3 "$ROOT/tools/principles_guide.py" "$out/principles-body.tex"
   export TEXINPUTS="$ROOT/house/latex//:$src//:"
+  export TTFONTS="$ROOT/house/fonts/pressed//:"   # the pressed chant font, then the usual places
   for f in "$src"/*.lytex "$src"/*.tex; do
     [ -e "$f" ] || continue
     name="$(basename "${f%.*}")"
@@ -21,7 +23,7 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
     [ -n "${2:-}" ] && [[ "$name" != *"-$2" ]] && continue
     if [[ "$f" == *.lytex ]]; then
       (cd "$src" && lilypond-book --pdf --latex-program=lualatex \
-         --include="$ROOT/house/lilypond" --include="$src/music" \
+         --include="$ROOT/house/lilypond" --include="$src/music" --include="$ROOT/house/fonts/pressed" \
          --output="$out" "$name.lytex" >"$out/$name.book.log" 2>&1) \
          || { tail -20 "$out/$name.book.log"; exit 1; }
     else
