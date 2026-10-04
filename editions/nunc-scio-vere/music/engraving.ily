@@ -5,9 +5,9 @@
 
 %% System breaks, as absolute bar numbers after which a system ends.
 prBreaksCriticalAnt = #'(6 12 19 25 31 38 44 50)
-prBreaksPerformanceAnt = #'(8 16 24 32 40 48)
+prBreaksPerformanceAnt = #'(6 12 19 25 31 38 44 50)   % eight bars overran the line at staff size 19
 prBreaksCriticalDox = #'(62 67 72 77 82)
-prBreaksPerformanceDox = #'(64 72 80)
+prBreaksPerformanceDox = #'(62 67 72 77 82)
 
 %% ------------------------------------------------------------ helpers
 %% Proposed for the house: a score in several parts.
