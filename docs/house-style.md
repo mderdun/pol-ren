@@ -88,7 +88,7 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 
 **Critical.** Title page between thick-and-thin rules: series and number, composer, title, subtitle, fleuron, forces, poet, "Critical edition", source line, editor, edition and year. Verso: contents and colophon with licence. Then the preface sections, text, score with its own heading, critical notes and literature.
 
-**Performance.** No title page. A masthead at the top of page 1: series and "Performance edition", title, subtitle, poet left and composer right, and one italic line if the score is transposed. No context before the music: setting the scene belongs to the director and to the rehearsal notes. The score starts on page 1, with the stanzas after it. Then Text and translation and the For rehearsal notes in two columns, with a one-line colophon at the foot.
+**Performance.** No title page. A masthead at the top of page 1: series and "Performance edition" in the running-head position, then title, subtitle, and one line with the poet left, the composer right and, if the score is transposed, the pitch in small italic between them. No context before the music: setting the scene belongs to the director and to the rehearsal notes. The score starts on page 1, with the stanzas after it. Then Text and translation and the For rehearsal notes in two columns, with a one-line colophon at the foot.
 
 **Guide.** As a critical edition without music: title page, contents and colophon, then prose and tables.
 
@@ -105,9 +105,12 @@ Nothing else. No borders around music, no tinted boxes, no icons.
 - In a performance edition a rest that fills a whole bar is a whole-bar rest, centred in the bar (Gould 159).
 - **Page fill.** Spare height on a music page goes into every gap alike, the staff gaps inside the systems and the gaps between systems, at most three staff spaces each. A four-voice system so takes three quarters of it inside itself, and the gap between systems stays the widest on the page (Ross 69, Gould 488). Facing music pages are spaced alike; the last page of a score is no looser than the one before. The build does this in a second pass (`tools/stretch_systems.py`; `STRETCH=0` skips it).
 - Bar numbers in small italic at the start of each system only.
+- Stanza numbers in the score (before the first syllable of each stanza's line) red and regular weight, as beside the stanzas; in chant, `<c>2.</c>` in the gabc.
 - **No notes on the music page.** Tried in *Vox in Rama* (Oct 2026) and dropped: a sign the score already marks as editorial (small, in brackets) needs no gloss on the page, and anything more belongs in the rehearsal notes. (Editor's rule.)
+- **On-score annotation** (critical edition). What the score page says about the score as a whole stands above the music, small, italic and left-aligned, never as a line under the score: the note-value equivalence above the first system (`prEquiv`); a statement that holds for the whole score and is marked nowhere in it, such as a chant's editorial bar lines (`\scorenote`, between `\scorehead` and the score); [c.f.] over its span; rubrics, in red, over their system. Anything about a single reading belongs in the critical notes. (Editor's rule, 4 Oct 2026.)
 - **Accidentals.** Source accidentals plain, before the note; each holds for its own note only. Editorial ficta (`\fi`) small, above the note. Optional editorial accidentals above the note in square brackets, as all editorial matter (`\optFlat` lowers, `\optSharp` raises, `\optNatural` cancels); the printed sign is worked out after transposition, so a raised b♭ in a performance edition shows a natural. Cautionaries in round brackets before the note: where an altered pitch returns unaltered later in the same bar and octave, so that a singer reading by the modern bar rule is not misled (Caldwell 59–60, Gould 86).
 - Notes supplied by the editor (`\ed`) small, at cue size (Ross 189).
+- Editorial suggestions (`\sugg`, performance edition only, principles 2.3) small and stemless, in square brackets as all editorial matter; round brackets are for cautionaries only.
 - Ties are solid. A dashed tie means a source note divided to carry text (`\divTie`) and nothing else.
 - Editorial underlay in italics: `\edText` for a whole line, `\rep` for one syllable.
 - Rubrics red italic, left-aligned over the system.

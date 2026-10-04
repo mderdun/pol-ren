@@ -18,76 +18,12 @@
    "message": "font DejaVuSans (p.2) is not one of the house's pressed fonts; probably a fallback for a glyph the house fonts lack"
   },
   {
-   "fingerprint": "P205|editions/bogurodzica/pdf/bogurodzica-critical.pdf|JunicodePressed-Medium|1",
-   "status": "pending",
-   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
-   "check": "P205",
-   "where": "editions/bogurodzica/pdf/bogurodzica-critical.pdf p.6",
-   "message": "bold font JunicodePressed-Medium on p.6"
-  },
-  {
-   "fingerprint": "P205|editions/bogurodzica/pdf/bogurodzica-performance.pdf|JunicodePressed-Medium|1",
-   "status": "pending",
-   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
-   "check": "P205",
-   "where": "editions/bogurodzica/pdf/bogurodzica-performance.pdf p.1",
-   "message": "bold font JunicodePressed-Medium on p.1"
-  },
-  {
-   "fingerprint": "P205|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-critical.pdf|JunicodePressed-Bold|1",
-   "status": "pending",
-   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
-   "check": "P205",
-   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-critical.pdf p.7",
-   "message": "bold font JunicodePressed-Bold on p.7"
-  },
-  {
-   "fingerprint": "P205|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf|JunicodePressed-Bold|1",
-   "status": "pending",
-   "reason": "pending: stanza numbers in the score are bold (LilyPond's StanzaNumber default; Junicode Medium in gregorio's chant score); house style 3 has no bold. The fix is one override in house/lilypond (and the gregorio stanza style). For Miki or the house-file agent.",
-   "check": "P205",
-   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf p.1",
-   "message": "bold font JunicodePressed-Bold on p.1"
-  },
-  {
    "fingerprint": "P206|editions/nunc-scio-vere/pdf/nunc-scio-vere-critical.pdf|short page ( of the text block) before p.11|1",
    "status": "pending",
    "reason": "pending review: present when the style CI was introduced (4 October 2026)",
    "check": "P206",
    "where": "editions/nunc-scio-vere/pdf/nunc-scio-vere-critical.pdf p.10",
    "message": "p.10: short page (5% of the text block) before p.11"
-  },
-  {
-   "fingerprint": "P208|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf|p1:s1|1",
-   "status": "pending",
-   "reason": "The page has almost no spare height (stretch +0.1 to +0.3 staff spaces), so the gap between systems cannot be widened without moving a system to another page; needs a page-break decision from Miki (4 Oct 2026).",
-   "check": "P208",
-   "where": "editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf p.1",
-   "message": "p.1: the gap between systems 1 and 2 is 13.3 spaces, not more than the widest staff gap beside it (14.4); give the spare height to the staff gaps (Ross 69) or to the system gap"
-  },
-  {
-   "fingerprint": "P208|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|p2:s1|1",
-   "status": "pending",
-   "reason": "The page has almost no spare height (stretch +0.1 to +0.3 staff spaces), so the gap between systems cannot be widened without moving a system to another page; needs a page-break decision from Miki (4 Oct 2026).",
-   "check": "P208",
-   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.2",
-   "message": "p.2: the gap between systems 1 and 2 is 10.8 spaces, not more than the widest staff gap beside it (12.4); give the spare height to the staff gaps (Ross 69) or to the system gap"
-  },
-  {
-   "fingerprint": "P208|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|p2:s2|1",
-   "status": "pending",
-   "reason": "The page has almost no spare height (stretch +0.1 to +0.3 staff spaces), so the gap between systems cannot be widened without moving a system to another page; needs a page-break decision from Miki (4 Oct 2026).",
-   "check": "P208",
-   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.2",
-   "message": "p.2: the gap between systems 2 and 3 is 10.6 spaces, not more than the widest staff gap beside it (12.4); give the spare height to the staff gaps (Ross 69) or to the system gap"
-  },
-  {
-   "fingerprint": "P208|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|p3:s1|1",
-   "status": "pending",
-   "reason": "The page has almost no spare height (stretch +0.1 to +0.3 staff spaces), so the gap between systems cannot be widened without moving a system to another page; needs a page-break decision from Miki (4 Oct 2026).",
-   "check": "P208",
-   "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.3",
-   "message": "p.3: the gap between systems 1 and 2 is 11.0 spaces, not more than the widest staff gap beside it (11.0); give the spare height to the staff gaps (Ross 69) or to the system gap"
   },
   {
    "fingerprint": "P210|editions/juz-sie-zmierzka/pdf/juz-sie-zmierzka-performance.pdf|turn-after-10|1",
@@ -122,28 +58,20 @@
    "message": "turn p.5→6 falls after bar 77, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
   },
   {
-   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-10|1",
+   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-11|1",
    "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "reason": "pending review: page turns moved when the performance edition went to two systems a page (4 Oct 2026); a system holds six bars at most, so the turn cannot also fall on a rest in every voice",
    "check": "P210",
    "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.1",
-   "message": "turn p.1→2 falls after bar 10, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
+   "message": "turn p.1→2 falls after bar 11, where Cantus, Altus, Tenor sing on; a turn wants a rest or a section end in every voice"
   },
   {
-   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-39|1",
+   "fingerprint": "P210|editions/vox-in-rama/pdf/vox-in-rama-performance.pdf|turn-after-34|1",
    "status": "pending",
-   "reason": "pending review: present when the style CI was introduced (4 October 2026)",
+   "reason": "pending review: page turns moved when the performance edition went to two systems a page (4 Oct 2026); a system holds six bars at most, so the turn cannot also fall on a rest in every voice",
    "check": "P210",
    "where": "editions/vox-in-rama/pdf/vox-in-rama-performance.pdf p.3",
-   "message": "turn p.3→4 falls after bar 39, where Cantus, Altus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
-  },
-  {
-   "fingerprint": "S104|editions/bogurodzica/bogurodzica-critical.tex|musicnote|1",
-   "status": "pending",
-   "reason": "pending: 'Bar lines are editorial. Neume groups follow K.' under the chant score; house style 9 says no notes on the music page. Miki to decide: move it to the method, or accept for chant.",
-   "check": "S104",
-   "where": "editions/bogurodzica/bogurodzica-critical.tex:152",
-   "message": "\\musicnote after the score on a music page; a sign the score marks as editorial needs no gloss there (rehearsal or critical notes instead)"
+   "message": "turn p.3→4 falls after bar 34, where Cantus, Tenor, Bassus sing on; a turn wants a rest or a section end in every voice"
   },
   {
    "fingerprint": "S105|editions/juz-sie-zmierzka/juz-sie-zmierzka-critical.lytex|stanzas and are underlaid since most|1",

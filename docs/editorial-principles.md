@@ -20,7 +20,7 @@ Every piece is published as a critical edition and a performance edition.
 2. **Pitch is the one exception.** The critical edition stays at written pitch. The performance edition may be transposed when the written pitch does not suit a modern SATB choir, and its clefs follow the new ranges (an Altus in the octave treble clef becomes a treble clef). The masthead says so in one line, and a transposed edition drops the incipits, which would show the source's pitch.
    - *High clefs (chiavette)*: transpose by the period's own interval, argued from period theory in the critical edition. *Vox in Rama* goes a fifth down. (MD, *Vox*)
    - *Low clefs (chiavi naturali)*: no period rule asks for upward transposition; written pitch fixed only the relation between the voices, and the pitch was set by the director or the organ. Choose the interval from the voice ranges, by the time each voice spends in its comfortable range, not by its extremes alone. *Już się zmierzka* goes a minor third up. (MD, 3 Oct 2026)
-3. **Editorial suggestions** that go beyond the source (an octave drop at a final, say) appear only in the performance edition, as small notes in round brackets, explained in one sentence. (MD, *Vox*)
+3. **Editorial suggestions** that go beyond the source (an octave drop at a final, say) appear only in the performance edition, as small notes in square brackets, explained in one sentence. (MD, *Vox*; square, 4 Oct 2026)
 4. **Final editions contain no working material.** No scripts, statistics, "consulted" remarks, notes to self or status flags. The research record lives in this repository (issues and `notes/`). (MD, *Bogurodzica*, *Nunc scio*)
 5. **Gaps.** Name only gaps in the primary sources (a lost print, an unseen facsimile, an uncollated witness), in one sentence in the Sources section. Unseen secondary literature is not listed; it goes to the issue tracker. (MD, 3 Oct 2026)
 
@@ -96,10 +96,10 @@ Every piece is published as a critical edition and a performance edition.
 | Mensuration sign supplied | in square brackets, [¢] |
 | Voice name supplied (critical edition) | in square brackets, [Cantus] |
 | Cantus firmus entry | [c.f.] above the staff |
-| Editorial suggestion (performance edition only) | small note in round brackets |
+| Editorial suggestion (performance edition only) | small note in square brackets |
 | Emendation | silent in the score; critical note opens "Emended." (13.6) |
 
-Square brackets mark editorial matter, an optional accidental included. Round brackets mark what changes no reading: a cautionary, and a suggestion in the performance edition (2.3). Each sign has one meaning, and the same meaning in every edition of the series; the build checks enforce it. A sign is judged in its context, not by what it might mean in another kind of score: italic text under a repeat reads plainly as a repeat to a singer, so a sign is not changed only because a modern reader might meet it elsewhere with another meaning. (Gould 494; MD, 4 Oct 2026)
+Square brackets mark editorial matter, an optional accidental and a suggestion in the performance edition (2.3) included. Round brackets mark only what changes no reading: a cautionary. Each sign has one meaning, and the same meaning in every edition of the series; the build checks enforce it. A sign is judged in its context, not by what it might mean in another kind of score: italic text under a repeat reads plainly as a repeat to a singer, so a sign is not changed only because a modern reader might meet it elsewhere with another meaning. (Gould 494; MD, 4 Oct 2026)
 
 ## 9. Repeats and structure
 

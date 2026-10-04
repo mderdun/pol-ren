@@ -274,22 +274,27 @@
 
 %% Performance edition: a masthead at the top of the first page; the
 %% music follows on the same page.
+%% The series line stands where the running head stands on the other pages,
+%% so the text block starts with the title and page 1 keeps its height for
+%% the music.
+\fancypagestyle{pr@mast}{%
+  \fancyhf{}\renewcommand\headrulewidth{0pt}%
+  \fancyhead[C]{\footnotesize\red{\spacedsc{\pr@series}}\enspace\red{\ornfont ·}\enspace\spacedsc{Performance edition}}}
 \newcommand\makemasthead{%
-  \thispagestyle{pr@plain}%
+  \thispagestyle{pr@mast}%
   \begin{center}
-    {\footnotesize\red{\spacedsc{\pr@series}}\enspace\red{\ornfont ·}\enspace\footnotesize\spacedsc{Performance edition}\par}
-    \vspace{5mm}
     {\fontsize{24}{28}\selectfont\pr@title\par}
     \ifx\pr@subtitle\@empty\else\vspace{1.5mm}{\large\itshape\pr@subtitle\par}\fi
     \vspace{3mm}
   \end{center}
+  %% Poet left, composer right; the pitch line of a transposed score in the
+  %% middle of the same line, so the music starts one line higher.
   {\small\noindent
-   \begin{tabularx}{\textwidth}{@{}X r@{}}
+   \begin{tabularx}{\textwidth}{@{}X c >{\raggedleft\arraybackslash}X@{}}
    \ifx\pr@poet\@empty\else\pr@poet\fi &
+   \ifx\pr@pitchline\@empty\else{\footnotesize\itshape\pr@pitchline}\fi &
    \spacedsc{\pr@composer}\ifx\pr@composerdates\@empty\else\ \pr@composerdates\fi
    \end{tabularx}\par}
-  \ifx\pr@pitchline\@empty\else
-    \vspace{1mm}{\centering\footnotesize\itshape\pr@pitchline\par}\fi
   \vspace{4mm}}
 
 %% Score heading inside the critical edition (title page already given).
@@ -356,6 +361,11 @@
 \newcommand\pagenote[1]{{\renewcommand\thefootnote{}\renewcommand\@makefntext[1]{\noindent\itshape##1}%
   \footnotetext{#1}}}
 \newcommand\musicnote[1]{\par{\small\itshape\centering #1\par}}
+%% A statement about the score as a whole, on the score page of a critical
+%% edition (house-style §9, on-score annotation): small italic, left-aligned
+%% above the first system, where the note-value equivalence stands in a
+%% LilyPond score. Put it between \scorehead and the score.
+\newcommand\scorenote[1]{\par\noindent{\footnotesize\itshape #1\par}\nopagebreak\vspace{1mm}}
 
 %% ------------------------------------------------------------ apparatus
 %% Sources: siglum in a hanging column of small capitals.
@@ -486,6 +496,8 @@
 \AtBeginDocument{%
   \@ifpackageloaded{gregoriotex}{%
     \grechangestyle{annotation}{\small\color{rubric}}%
+    %% stanza numbers in the chant, <c>2.</c> in the gabc: red, regular weight
+    \definecolor{gregoriocolor}{RGB}{154,30,30}%
     \grechangestyle{initial}{\color{rubric}\fontsize{38}{38}\selectfont}%
     \ifpr@critical\grechangestaffsize{18}\else\grechangestaffsize{21}\fi
     %% the pressed copy of greciliae (tools/make-pressed-fonts.sh; TTFONTS from tools/build.sh)
