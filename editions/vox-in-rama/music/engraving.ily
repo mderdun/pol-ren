@@ -26,3 +26,17 @@ prBreaksPerformance = #'(6 11 17 22 28 34 39)
 %% in the critical edition; the other voices come from M and are cut at the
 %% bar lines as in the performance edition (principles 5.8).
 prRegularRests = #'("cantus" "altus" "bassus")
+
+%% Text the source gives by ij (principles 8, 11.9): written out in angle
+%% brackets, opened on the first syllable of the passage (\ijOpen) and closed
+%% on its last (\ijClose). The bracket hangs outside the syllable, so that the
+%% syllable keeps its alignment under the note. Not yet in the house file;
+%% the four passages of T are listed in the method.
+#(define (pr-ij-bracket grob glyph side)
+   (let* ((s (lyric-text::print grob))
+          (b (grob-interpret-markup grob (make-simple-markup glyph)))
+          (c (ly:stencil-combine-at-edge s X side b 0.05)))
+     (ly:make-stencil (ly:stencil-expr c)
+                      (ly:stencil-extent s X) (ly:stencil-extent c Y))))
+ijOpen  = \once \override LyricText.stencil = #(lambda (grob) (pr-ij-bracket grob "⟨" LEFT))
+ijClose = \once \override LyricText.stencil = #(lambda (grob) (pr-ij-bracket grob "⟩" RIGHT))
