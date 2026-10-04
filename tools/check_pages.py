@@ -27,8 +27,9 @@ def ink_rows(png):
         dark = sum(1 for x in range(0, w, 2) if px[x, y] < 160)
         if dark: rows.append(y)
         if dark > 0.3 * w: staff += 1
-    if not rows: return None, None, False
-    return rows[0] / h, rows[-1] / h, staff >= 10
+    if not rows: return None, None, False, 0
+    body = sum(1 for y in rows if TOP + 0.04 < y / h < BOTTOM - 0.01)
+    return rows[0] / h, rows[-1] / h, staff >= 10, body
 
 def check(pdf):
     out = []
@@ -37,8 +38,8 @@ def check(pdf):
         pages = sorted(glob.glob(f'{d}/p-*.png'))
         n = len(pages)
         for i, p in enumerate(pages, 1):
-            top, bot, music = ink_rows(p)
-            if i == n and n > 1 and top is not None and top > 0.75 and not music:   # only a footer line
+            top, bot, music, body = ink_rows(p)
+            if i == n and n > 1 and top is not None and body < 3:   # running head and foot line only
                 out.append(f'  p.{i}: last page holds only the foot line (an overflow from p.{i-1}?)')
             if top is None or not music or i == n:
                 continue
