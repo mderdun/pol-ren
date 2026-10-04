@@ -66,28 +66,20 @@
    "message": "'an' (angelum) shorter and weaker than the syllable after it"
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U203|et#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Altus v1 bar 38.3",
-   "message": "'et' straight after 3 short notes; the white note before them is free"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v1|U205|et#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U205",
-   "where": "Altus v1 bar 27.1",
-   "message": "'et' over 4 notes"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Altus|v1|U301|dominus#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v1 bar 17.1",
    "message": "the arrival carries 'mi', and 'nus' comes after it (phrygian cadence on E)"
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U301",
+   "where": "Altus v1 bar 49.1",
+   "message": "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C)"
   },
   {
    "fingerprint": "nunc-scio-vere|Altus|v1|U301|suum#0|1",
@@ -98,52 +90,12 @@
    "message": "the arrival carries 'su', and 'um:' comes after it (clausula vera cadence on C)"
   },
   {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U202|gloria#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U202",
-   "where": "Altus v2 bar 60.4",
-   "message": "'Glo' (gloria) shorter and weaker than the syllable after it"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Altus|v2|U206|principio#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U206",
-   "where": "Altus v2 bar 73.3",
-   "message": "6 notes on 'prin' of principio (stress on syllable 2; vowel i)"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Altus|v2|U301|sancto#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Altus v2 bar 69.1",
    "message": "the arrival carries 'San', and 'cto.' comes after it (clausula vera cadence on C)"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U202|dominus#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U202",
-   "where": "Bassus v1 bar 17.4",
-   "message": "'Do' (dominus) shorter and weaker than the syllable after it"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U203|scio#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Bassus v1 bar 10.1",
-   "message": "'sci' straight after 2 short notes; the white note before them is free"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v1|U204|herodis#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U204",
-   "where": "Bassus v1 bar 33.4",
-   "message": "'ro' starts on the top of a rising octave"
   },
   {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U204|quia#0|1",
@@ -154,6 +106,14 @@
    "message": "'qui' starts on the top of a rising octave"
   },
   {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U206|eripuit#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U206",
+   "where": "Bassus v1 bar 26.4",
+   "message": "7 notes on 'e' of eripuit (stress on syllable 2; vowel e)"
+  },
+  {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U301|dominus#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -162,28 +122,28 @@
    "message": "'nus,' starts before the arrival (evaded cadence on A)"
   },
   {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U301|vere#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U301",
+   "where": "Bassus v1 bar 11.1",
+   "message": "the arrival carries 've', and 're,' comes after it (clausula vera cadence on G)"
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U302|iudaeorum#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U302",
+   "where": "Bassus v1 bar 54.1",
+   "message": "3 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3"
+  },
+  {
    "fingerprint": "nunc-scio-vere|Bassus|v1|U303|nunc#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U303",
    "where": "Bassus v1 bar 1.3",
    "message": "the FUGA entry (Bassus 1.3) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U201|in#0|2",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U201",
-   "where": "Bassus v2 bar 78.1",
-   "message": "'in' on the bar, minim"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Bassus|v2|U302|saeculorum#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U302",
-   "where": "Bassus v2 bar 83.1",
-   "message": "4 notes on 'cu' of saeculorum, the last word before the cadence; its stress is on syllable 3"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U301|iudaeorum#2|1",
@@ -202,36 +162,12 @@
    "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E)"
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|angelum#1|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U302",
-   "where": "Cantus v1 bar 18.3",
-   "message": "4 notes on 'ge' of angelum, the last word before the cadence; its stress is on syllable 1"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U302|dominus#1|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U302",
-   "where": "Cantus v1 bar 16.1",
-   "message": "7 notes on 'mi' of dominus, the last word before the cadence; its stress is on syllable 1"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|exspectatione#3|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U302",
-   "where": "Cantus v1 bar 44.1",
-   "message": "6 notes on 'ti' of exspectatione, the last word before the cadence; its stress is on syllable 5"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|herodis#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U302",
-   "where": "Cantus v1 bar 32.1",
-   "message": "4 notes on 'He' of herodis, the last word before the cadence; its stress is on syllable 2"
+   "where": "Cantus v1 bar 16.4",
+   "message": "4 notes on 'mi' of dominus, the last word before the cadence; its stress is on syllable 1"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U302|iudaeorum#0|1",
@@ -239,7 +175,15 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U302",
    "where": "Cantus v1 bar 51.4",
-   "message": "7 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3"
+   "message": "4 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3"
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U303|nunc#0|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U303",
+   "where": "Cantus v1 bar 2.1",
+   "message": "the FUGA entry (Cantus 2.1) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x"
   },
   {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U202|spiritui#0|1",
@@ -250,6 +194,14 @@
    "message": "'Spi' (spiritui) shorter and weaker than the syllable after it"
   },
   {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U203|gloria#1|1",
+   "status": "pending",
+   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
+   "rule": "U203",
+   "where": "Cantus v2 bar 60.3",
+   "message": "'ri' straight after 2 short notes; the white note before them is free"
+  },
+  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U204|spiritui#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
@@ -258,28 +210,12 @@
    "message": "'Spi' starts on the top of a rising octave"
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v2|U205|et#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U205",
-   "where": "Cantus v2 bar 71.4",
-   "message": "'et' over 5 notes"
-  },
-  {
    "fingerprint": "nunc-scio-vere|Cantus|v2|U301|sancto#0|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U301",
    "where": "Cantus v2 bar 68.3",
    "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F)"
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U203|exspectatione#0|1",
-   "status": "pending",
-   "reason": "pending review: present when the analyser was introduced (4 October 2026)",
-   "rule": "U203",
-   "where": "Tenor v1 bar 42.1",
-   "message": "'ex' straight after 3 short notes; the white note before them is free"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U206|angelum#1|1",
@@ -306,12 +242,12 @@
    "message": "4 notes on 'mi' of dominus, the last word before the cadence; its stress is on syllable 1"
   },
   {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|iudaeorum#1|1",
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|eripuit#2|1",
    "status": "pending",
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U302",
-   "where": "Tenor v1 bar 53.1",
-   "message": "3 notes on 'dae' of iudaeorum, the last word before the cadence; its stress is on syllable 3"
+   "where": "Tenor v1 bar 28.2",
+   "message": "5 notes on 'pu' of eripuit, the last word before the cadence; its stress is on syllable 2"
   },
   {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U303|nunc#0|1",
@@ -343,7 +279,7 @@
    "reason": "pending review: present when the analyser was introduced (4 October 2026)",
    "rule": "U303",
    "where": "Tenor v2 bar 77.1",
-   "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against x-x"
+   "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against xxx"
   },
   {
    "fingerprint": "plaude-euge|Discantus|v1|U201|sed#0|1",
