@@ -102,7 +102,7 @@ The self-check (`selfcheck.py`). For every voice and verse it counts the syllabl
 
 ## Tests
 
-`tools/analyser/tests/`: the rule examples; the port against `tools/underlay_audit.py` on every edition and on the *Vox in Rama* of commit bb75083, before the review fixed its eight breaks; unit tests for each layer; the model (legality, regret, anchors, gates); the self-check; the baseline; and golden snapshots of every edition's findings and layers (`tests/golden/`). A change to a snapshot is a fix or a regression: look at the diff before `golden --update`.
+`tools/analyser/tests/`: the rule examples; the port against `tools/underlay_audit.py` on every edition and on the *Vox in Rama* of commit bb75083, before the review fixed its eight breaks; unit tests for each layer; the model (legality, regret, anchors, gates); the review cases (on the pre-review *Vox in Rama* the model finds a move-only fix where the review did, Bassus 27 and Tenor 40, and none where the review dropped a word, Altus 12 and Tenor 37; at Altus 11 it finds a lawful reading the review did not consider); the self-check; the baseline; and golden snapshots of every edition's findings and layers (`tests/golden/`). A change to a snapshot is a fix or a regression: look at the diff before `golden --update`.
 
 ## Known limits
 
