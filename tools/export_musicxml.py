@@ -5,7 +5,9 @@
     tools/export_musicxml.py vox-in-rama ...  some editions
     tools/export_musicxml.py --events DIR     also keep the LilyPond event dumps in DIR
 
-Writes editions/<slug>/pdf/<slug>.musicxml (critical score, written pitch).
+Writes editions/<slug>/pdf/<slug>.musicxml (critical score, written pitch), and
+beside it <slug>.srcmap.tsv: for each note, the LilyPond file, line and column
+it comes from (used by tools/analyser to point findings at voices.ily).
 
 Polyphonic editions: the scores use house Scheme functions (\\prScore,
 \\prStaff ...) that only LilyPond itself can evaluate, so the score is not
@@ -111,6 +113,7 @@ class Ev:
     lig: list = field(default_factory=list)
     slur: list = field(default_factory=list)
     arts: list = field(default_factory=list)
+    origin: tuple | None = None      # (file, line, column) of the note in the LilyPond source
 
 
 @dataclass
@@ -152,6 +155,8 @@ def parse_events(lines: list[str]) -> list[Segment]:
             seg.events.append(e)
         elif kind in ("tie", "slur", "lig", "art", "text"):
             pending[(voice, frac(t))].append((kind, f[3] if len(f) > 3 else ""))
+        elif kind == "origin":
+            pending[(voice, frac(t))].append((kind, (f[3], f[4], f[5])))
         elif kind == "lyric":
             text = f[3]
             verse = f[7] if len(f) > 7 and f[7] else "1"
@@ -186,6 +191,8 @@ def parse_events(lines: list[str]) -> list[Segment]:
                     e.arts.append(v)
                 elif k == "text":
                     e.texts.append(v)
+                elif k == "origin" and e.origin is None:
+                    e.origin = v
             if e.kind == "note":
                 verses = {k[2]: v for k, v in lyr.items()
                           if k[0] == e.voice and k[1] == e.t and "text" in v}
@@ -331,6 +338,7 @@ class PartWriter:
     def __init__(self, divisions: int):
         self.div = divisions
         self.in_word = {}
+        self.srcmap = []      # (measure number, position in the measure, origin)
 
     def dur(self, length: F) -> int:
         d = length * 4 * self.div
@@ -487,6 +495,8 @@ def render_voice_measures(pw: PartWriter, seg: Segment, voice: str, ms: list[Mea
             first, last = i == 0, i == len(notes) - 1
             body = bodies[m.number]
             if is_note and first:
+                if e.origin:
+                    pw.srcmap.append((m.number, a - m.start, e.origin))
                 for tx in e.texts:
                     body.append(words(tx, italic=tx.startswith("[")))
                 if "start" in e.lig:
@@ -521,7 +531,28 @@ def silent_measures(pw: PartWriter, ms: list[Measure]) -> list[str]:
                         tie_out=False, measure_rest=True) for m in ms]
 
 
+# Source map of the last write_score: (part name, measure number, position in
+# the measure in whole notes, (file, line, column)). Written beside the
+# MusicXML as <slug>.srcmap.tsv so that tools/analyser can point at voices.ily.
+SRCMAP: list = []
+
+
+def write_srcmap(ed: Path, path: Path) -> None:
+    rows = ["part\tmeasure\tposition\tfile\tline\tcolumn"]
+    for part, measure, pos, (fname, line, col) in SRCMAP:
+        fp = Path(fname)
+        if not fp.is_absolute():
+            fp = (ed / "music" / fp) if (ed / "music" / fp).exists() else (ROOT / fp)
+        try:
+            fname = fp.resolve().relative_to(ROOT).as_posix()
+        except ValueError:
+            fname = fp.name
+        rows.append(f"{part}\t{measure}\t{pos}\t{fname}\t{line}\t{col}")
+    path.write_text("\n".join(rows) + "\n", encoding="utf-8")
+
+
 def write_score(meta: dict, segs: list[Segment], sign_symbol: str | None) -> str:
+    SRCMAP.clear()
     # parts in order of first appearance
     order, heads = [], {}
     for seg in segs:
@@ -539,6 +570,7 @@ def write_score(meta: dict, segs: list[Segment], sign_symbol: str | None) -> str
         ms = build_measures(seg, prefix=("v" if free_n == 1 else f"v{free_n}-") if free else "")
         seg_ms.append(ms)
     pid = {v: f"P{i + 1}" for i, v in enumerate(order)}
+    part_names = {}
     out = ['<?xml version="1.0" encoding="UTF-8" standalone="no"?>',
            '<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" '
            '"http://www.musicxml.org/dtds/partwise.dtd">',
@@ -577,6 +609,7 @@ def write_score(meta: dict, segs: list[Segment], sign_symbol: str | None) -> str
         short = h["short"]
         if name == "℣.":       # the chant psalm verse of Nunc scio vere
             name, short = "Versus (chant)", "℣."
+        part_names[v] = name
         out.append(f'<score-part id="{pid[v]}"><part-name>{escape(name)}</part-name>'
                    + (f"<part-abbreviation>{escape(short)}</part-abbreviation>" if short else "")
                    + "</score-part>")
@@ -638,6 +671,7 @@ def write_score(meta: dict, segs: list[Segment], sign_symbol: str | None) -> str
                     out.append('<barline location="right">' + style + "".join(ending + rep) + "</barline>")
                 out.append("</measure>")
                 first_attr = False
+        SRCMAP.extend((part_names[v],) + x for x in pw.srcmap)
         out.append("</part>")
     out.append("</score-partwise>")
     return "\n".join(out) + "\n"
@@ -788,6 +822,7 @@ def export(ed: Path, keep: Path | None) -> Path:
         src = score.read_text(encoding="utf-8")
         sign = "none" if re.search(r'^\s*prSign\s*=\s*""', src, re.M) else "cut"
         out.write_text(write_score(meta, segs, sign), encoding="utf-8")
+        write_srcmap(ed, out.with_suffix(".srcmap.tsv"))
     else:
         gabc = sorted(p for p in (ed / "music").glob("*.gabc") if "performance" not in p.name)
         if not gabc:
