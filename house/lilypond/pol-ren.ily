@@ -410,6 +410,50 @@ voiceSetup = {
 #(define (pr-bar-kern grob)
    (pr-per-lt grob (if (equal? (ly:grob-property grob 'glyph-name "") "||") 0.75 0.5)))
 
+%% ------------------------------------------------------------ page fill
+%% Spare height on a music page goes mostly to the gaps between the staves
+%% of its systems, not between the systems (Ross 69). lilypond-book hands
+%% LaTeX one picture per system, so this takes two passes (tools/build.sh,
+%% tools/stretch_systems.py): the first build records each system's staves
+%% (PR_SYSLOG) and LaTeX each page's slack; the second gives each system
+%% the extra room worked out for its page (PR_STRETCH), added below the
+%% lyrics of every staff but the last.
+%% Systems are known by (score, system) in the order LilyPond lays them out,
+%% which is the order lilypond-book numbers them; incipit staves are not
+%% systems.
+#(define pr-stretch-data
+   (let ((f (getenv "PR_STRETCH")))
+     (if (and f (file-exists? f)) (with-input-from-file f read) '())))
+#(define pr-syslog
+   (let ((f (getenv "PR_SYSLOG"))) (and f (not (string-null? f)) (open-file f "a"))))
+#(define pr-scores '())
+#(define (pr-system-key sys)
+   (let* ((orig (ly:grob-original sys))
+          (pieces (if (ly:grob? orig) (ly:spanner-broken-into orig) '()))
+          (local (list-index (lambda (s) (eq? s sys)) pieces)))
+     (and local
+          (begin
+            (if (not (memq orig pr-scores)) (set! pr-scores (append pr-scores (list orig))))
+            (cons (list-index (lambda (o) (eq? o orig)) pr-scores) local)))))
+#(define (pr-main-layout? grob)
+   (not (ly:output-def-lookup (ly:grob-layout grob) 'indent-incipit-default #f)))
+#(define (pr-log-staff grob)
+   (let ((sys (ly:grob-system grob)))
+     (if (and pr-syslog (ly:grob? sys) (pr-main-layout? grob))
+         (let ((k (pr-system-key sys)))
+           (if k (begin (format pr-syslog "~a ~a\n" (car k) (cdr k))
+                        (force-output pr-syslog)))))))
+#(define (pr-system-extra grob)
+   (let ((sys (ly:grob-system grob)))
+     (if (and (pair? pr-stretch-data) (ly:grob? sys) (pr-main-layout? grob))
+         (let ((k (pr-system-key sys)))
+           (or (and k (assoc-ref pr-stretch-data k)) 0))
+         0)))
+#(define (pr-lyrics-to-staff base)
+   (ly:make-unpure-pure-container
+    (lambda (grob) `((padding . ,(+ base (pr-system-extra grob)))))
+    (lambda (grob start end) `((padding . ,base)))))
+
 %% ------------------------------------------------------------ contexts
 \layout {
   \context { \Score
@@ -453,6 +497,7 @@ voiceSetup = {
     \override AccidentalSuggestion.font-size = #-1.5
     \override AccidentalSuggestion.parenthesized = ##f
     \override Ambitus.X-offset = #0.6
+    \override StaffSymbol.after-line-breaking = #pr-log-staff
   }
   %% Ties are solid; only \divTie (a divided source note) is dashed.
   \context { \Lyrics
@@ -468,7 +513,7 @@ voiceSetup = {
     \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #(* pr-breathe 0.9)
     \override VerticalAxisGroup.nonstaff-nonstaff-spacing.padding = #(* pr-breathe 0.45)
     %% lyrics to the staff below: room for its ledger-line notes and accidentals
-    \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing.padding = #(* pr-breathe 2.0)
+    \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing = #(pr-lyrics-to-staff (* pr-breathe 2.0))
     \override StanzaNumber.font-size = #0.6
   }
 }

@@ -329,7 +329,28 @@
 \NewDocumentCommand\pr@sysbreak{m}{
   \clist_if_in:NnTF \g_pr_pbreaks_clist {#1} {\newpage} {}}
 \ExplSyntaxOff
-\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}\pr@sysbreak{#1}\noindent}
+\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}%
+  \ifcsname pr@sysskip@\the\numexpr#1+1\endcsname
+    \vspace{\csname pr@sysskip@\the\numexpr#1+1\endcsname}\fi
+  \pr@sysbreak{#1}\noindent
+  \expandafter\pr@sysmark\expandafter{\the\numexpr#1+1\relax}}
+%% Extra space before system n, from the page-fill pass (see below).
+\def\prsysskip#1#2{\expandafter\def\csname pr@sysskip@#1\endcsname{#2}}
+\AtBeginDocument{\InputIfFileExists{\jobname.prskip}{}{}}
+\def\preLilyPondExample{\pr@sysmark{1}}
+%% Page fill (house-style §9, Ross 69): for tools/stretch_systems.py, record
+%% in \jobname.prsys which page each system lands on (S page system) and how
+%% much height each page leaves unused at natural spacing (P page slack).
+%% The build then gives most of that slack to the staff gaps inside the
+%% systems (pol-ren.ily, PR_STRETCH) and builds again.
+\newwrite\pr@sysout
+\AtBeginDocument{\immediate\openout\pr@sysout=\jobname.prsys\relax}
+\def\pr@sysmark#1{\write\pr@sysout{S \thepage\space #1}}
+\let\pr@makecol\@makecol
+\def\@makecol{%
+  \setbox\z@\vbox{\unvcopy\@cclv}%
+  \immediate\write\pr@sysout{P \thepage\space\the\dimexpr\textheight-\ht\z@\relax}%
+  \pr@makecol}
 %% A note at the foot of a music page, for a sign on that page that singers
 %% cannot read without it. Use sparingly: house-style §9.
 \newcommand\pagenote[1]{{\renewcommand\thefootnote{}\renewcommand\@makefntext[1]{\noindent\itshape##1}%
