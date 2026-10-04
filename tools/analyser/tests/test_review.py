@@ -52,3 +52,24 @@ def test_page_with_the_score(tmp_path):
     assert "textedit://" not in text
     for layer in ("cad", "dis", "phr", "imi", "hom"):
         assert f'class="layer layer-{layer}"' in text
+
+
+def test_key_words_in_context(tmp_path, monkeypatch):
+    # Miki, second review: key words "in context of the verse (and with
+    # translations), rather than alphabetically"
+    monkeypatch.setattr(review, "render_svg", lambda slug: [])
+    text = review.build(VOX, tmp_path / "vox.html").read_text(encoding="utf-8")
+    sec = text[text.index('id="keywords"'):]
+    lines = re.findall(r'<td class="kwl">(.*?)</td><td class="kwt">(.*?)</td>', sec)
+    assert len(lines) == 5
+    assert lines[0][1] == "A voice was heard in Rama," and "Rama" in re.sub(r"<[^>]+>", "", lines[0][0])
+    assert lines[3][1] == "and she would not be comforted,"
+    # consolari: proposed, the stress on -la- underlined, in the text's order
+    assert '<span class="kw kw-prop"' in lines[3][0] and "<u>la</u>" in lines[3][0]
+    assert sec.index("A voice was heard") < sec.index("because they are not.")
+
+
+def test_key_words_without_translation(monkeypatch):
+    from tools.analyser import keytext
+    tb = keytext.text_blocks("bogurodzica")
+    assert not tb["blocks"] and "No text-and-translation table" in tb["missing"]

@@ -14,6 +14,7 @@ Strength levels: 3 bar (breve), 2 half-bar (semibreve tactus), 1 minim,
 """
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 from fractions import Fraction as F
 
 from .model import Event
@@ -54,6 +55,94 @@ def syncopated(e: Event) -> bool:
         return False
     nxt = (e.pos // TACTUS + 1) * TACTUS
     return e.pos + e.dur > nxt
+
+
+@dataclass
+class Displaced:
+    """A span where the music plays against the tactus (Miki, second review
+    of 4 October 2026: Vox Altus 10.4, 'the 3 top parts are clearly playing
+    against the tactus here'; Altus 15, 'la' in a figure 'suggesting
+    hemiola'). Inside it, for the voices listed, the pulse falls `shift`
+    semiminims after the tactus."""
+    t0: F                   # onset of the first displaced note
+    t1: F                   # end of the last, plus a tactus
+    voices: tuple
+    kind: str               # shared (syncopation in 2+ voices together) | hemiola (one voice)
+    shift: F
+    where: str              # bar.minim of the first displaced note
+    notes: list = field(default_factory=list)   # (voice, event idx)
+
+    def contains(self, voice: str, t) -> bool:
+        return voice in self.voices and self.t0 <= t < self.t1
+
+
+def _displaced_long(e: Event) -> bool:
+    """Starts a minim (or a minim and a half) off the tactus, is a dotted minim
+    or longer, and sounds across the next tactus."""
+    return (not e.rest and e.pos % 2 == 0 and e.pos % TACTUS != 0
+            and e.dur >= 3 and syncopated(e))
+
+
+def displaced_spans(score, voices=None, verse: str = "1") -> list[Displaced]:
+    """Displaced accent: (1) syncopation shared by two or more voices, their
+    displaced long notes starting within a semiminim of each other, and at
+    least two of them taking a new syllable (the words are declaimed on the
+    displaced pulse), extended by any displaced long note within a tactus of
+    the span; (2) a hemiola-like figure in one voice, two or more displaced
+    notes of a semibreve or more in a row, the first taking a syllable. Each
+    span lasts until a tactus after its last displaced note. A suspension
+    held over in one voice is not a span: the other voices keep the tactus."""
+    voices = list(voices or score.parts)
+    disp = {v: [e for e in score.voices[v] if _displaced_long(e)] for v in voices}
+    out: list[Displaced] = []
+    allnotes = sorted(((e.onset, v, e) for v in voices for e in disp[v]), key=lambda x: (x[0], x[1]))
+    used: set = set()
+    for i, (t, v, e) in enumerate(allnotes):
+        if (v, e.idx) in used:
+            continue
+        partners = [(v2, e2) for t2, v2, e2 in allnotes if v2 != v and abs(t2 - t) <= 1]
+        if not partners:
+            continue
+        members = {(v, e.idx): e, **{(v2, e2.idx): e2 for v2, e2 in partners}}
+        if sum(1 for x in members.values() if verse in x.lyrics) < 2:
+            continue
+        t0, t1 = min(x.onset for x in members.values()), max(x.end for x in members.values())
+        grew = True
+        while grew:
+            grew = False
+            for t2, v2, e2 in allnotes:
+                if (v2, e2.idx) not in members and t0 - TACTUS <= t2 <= t1 + TACTUS:
+                    members[(v2, e2.idx)] = e2
+                    t0, t1 = min(t0, t2), max(t1, e2.end)
+                    grew = True
+        used.update(members)
+        first = min(members.values(), key=lambda x: x.onset)
+        out.append(Displaced(t0=t0, t1=t1 + TACTUS, voices=tuple(sorted({k[0] for k in members})),
+                             kind="shared", shift=first.pos % TACTUS, where=first.where,
+                             notes=sorted(members)))
+    for v in voices:
+        evs = score.voices[v]
+        run: list = []
+        for e in evs + [None]:
+            if e is not None and _displaced_long(e) and e.dur >= TACTUS and (not run or run[-1].idx == e.idx - 1):
+                run.append(e)
+                continue
+            if len(run) >= 2 and verse in run[0].lyrics and not any(d.contains(v, run[0].onset) for d in out):
+                out.append(Displaced(t0=run[0].onset, t1=run[-1].end + TACTUS, voices=(v,), kind="hemiola",
+                                     shift=run[0].pos % TACTUS, where=run[0].where,
+                                     notes=[(v, x.idx) for x in run]))
+            run = [e] if e is not None and _displaced_long(e) and e.dur >= TACTUS else []
+    out.sort(key=lambda d: (d.t0, d.voices))
+    return out
+
+
+def pulse_on_beat(e: Event, spans=()) -> bool:
+    """On a beat: the tactus, or inside a displaced span for this voice, the
+    tactus or the displaced pulse (the music plays against the tactus there
+    without abolishing it)."""
+    if on_beat(e):
+        return True
+    return any(d.contains(e.voice, e.onset) and (e.pos - d.shift) % TACTUS == 0 for d in spans)
 
 
 def describe(e: Event) -> str:

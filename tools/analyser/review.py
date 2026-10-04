@@ -33,6 +33,7 @@ from pathlib import Path
 import yaml
 
 from . import baseline as B
+from . import keytext as KT
 from .findings import LEVEL_ORDER, run
 from .ingest import ROOT
 from .rules import load, settings
@@ -620,6 +621,82 @@ def tables(a) -> str:
     return "".join(out)
 
 
+def key_context_html(a) -> str:
+    """Key words in the text, line by line, with the translation beside each
+    line (keytext.py); confirmed and proposed key words marked apart, the
+    stressed syllable underlined."""
+    sc = a.score
+    keys = KT.key_entries(sc.config, sc.lang)
+    if not keys:
+        return '<p class="note">This edition lists no key words (editions.yaml).</p>'
+    tb = KT.text_blocks(sc.slug)
+    out = ['<p class="note">The text as the edition prints it, a line per row, with the edition\'s translation. '
+           '<span class="kw kw-conf">Confirmed</span> key words count (gate key_word); '
+           '<span class="kw kw-prop">proposed</span> ones have no effect until confirmed in editions.yaml. '
+           'The stressed syllable is underlined.' + (f' Text from {_esc(tb["source"])}.' if tb["source"] else "")
+           + '</p>']
+    found: set = set()
+    if tb["missing"]:
+        out.append(f'<p class="note"><span class="pill pill-warn">no translation</span> {_esc(tb["missing"])}</p>')
+    for b in tb["blocks"]:
+        out.append('<div class="scroll"><table class="kwc"><thead><tr><th>Text</th><th>Translation</th></tr></thead><tbody>')
+        for line, trans in b:
+            toks, f = KT.mark_line(line, sc.lang, keys)
+            found |= f
+            cells = []
+            for t, info in toks:
+                if info is None:
+                    cells.append(_esc(t))
+                    continue
+                sy = "".join(f'<u>{_esc(x)}</u>' if st else _esc(x) for x, st in info["syls"])
+                cls = "kw-conf" if info["confirmed"] else "kw-prop"
+                cells.append(f'<span class="kw {cls}" title="{_esc(info["source"])}; stress: {_esc(info["stress_src"])}">{sy}</span>')
+            tr = _esc(trans) if trans is not None else '<span class="note">no translation for this line</span>'
+            out.append(f'<tr><td class="kwl">{"".join(cells)}</td><td class="kwt">{tr}</td></tr>')
+        out.append("</tbody></table></div>")
+    missing = [k["word"] for n, k in keys.items() if n not in found]
+    if missing and tb["blocks"]:
+        out.append('<p class="note">Key words not found in the printed text: ' + _esc(", ".join(missing)) + '.</p>')
+    elif missing:
+        out.append('<p class="note">' + _esc(", ".join(f'{k["word"]} ({k["source"]})' for k in keys.values())) + '.</p>')
+    return "".join(out)
+
+
+def metre_tables(a) -> str:
+    """Spans against the tactus (meter.displaced_spans) and upper-voice duos
+    (texture.duos): information for the reader, from Miki's second review."""
+    sc = a.score
+    out = ['<section class="tbl" id="t-disp"><h3>Against the tactus</h3>'
+           '<p class="note">Syncopation declaimed by two or more voices together, or a hemiola-like chain of '
+           'syncopated semibreves in one voice. Inside a span U210 also accepts the displaced pulse as a beat, '
+           'and U201 and U202 count half (gate against_tactus).</p>'
+           '<div class="scroll"><table><thead><tr><th>From</th><th>Kind</th><th>Voices</th><th>Displaced notes</th>'
+           '</tr></thead><tbody>']
+    for d in a.displaced:
+        ids = [f"{v}:{i}" for v, i in d.notes]
+        notes = ", ".join(f"{v} {sc.voices[v][i].where}" for v, i in d.notes)
+        out.append(f'<tr class="pick" data-notes="{_notes_attr(ids)}" tabindex="0"><td class="num">{_esc(d.where)}</td>'
+                   f'<td>{_esc(d.kind)}</td><td>{_esc(", ".join(d.voices))}</td><td>{_esc(notes)}</td></tr>')
+    if not a.displaced:
+        out.append('<tr><td colspan="4" class="note">None found.</td></tr>')
+    out.append("</tbody></table></div></section>")
+    out.append('<section class="tbl" id="t-duo"><h3>Upper-voice duos</h3>'
+               '<p class="note">The two highest voices begin new text together, then share some of their note '
+               'onsets but not all: they come in and out of each other\'s rhythms. Information only.</p>'
+               '<div class="scroll"><table><thead><tr><th>Bars</th><th>Voices</th><th class="num">Onsets shared</th>'
+               '<th>Part at</th><th>Meet again at</th></tr></thead><tbody>')
+    for d in a.duos:
+        ids = [f"{v}:{e.idx}" for v in d.voices for e in sc.voices[v] if not e.rest and d.contains(e.onset)]
+        out.append(f'<tr class="pick" data-notes="{_notes_attr(ids)}" tabindex="0">'
+                   f'<td class="num">{_esc(d.first_where)}–{_esc(d.last_where)}</td><td>{_esc(" and ".join(d.voices))}</td>'
+                   f'<td class="num">{int(d.shared * 100)}%</td><td>{_esc(", ".join(d.apart))}</td>'
+                   f'<td>{_esc(", ".join(d.together))}</td></tr>')
+    if not a.duos:
+        out.append('<tr><td colspan="5" class="note">None found.</td></tr>')
+    out.append("</tbody></table></div></section>")
+    return "".join(out)
+
+
 def lexicon_html(rows: list) -> str:
     out = ['<div class="scroll"><table class="lex"><thead><tr><th>Word</th><th>Syllables</th><th>Class</th>'
            '<th class="num">Sung</th><th>Stress from</th><th>Key word</th></tr></thead><tbody>']
@@ -735,10 +812,10 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
     <h2 class="h-small">Analysis</h2>
     <p class="facts">{kinds.get('full', 0)} cadences, {kinds.get('evaded', 0) + kinds.get('abandoned', 0)} evaded or
     abandoned, {kinds.get('weak', 0)} weak figures · {len(a.points)} points of imitation ·
-    {len(a.regions)} homorhythmic passages · {sum(1 for d in a.dissonances.values() if d.label == 'suspension')} suspensions ·
+    {len(a.regions)} homorhythmic passages · {len(a.displaced)} spans against the tactus · {len(a.duos)} upper-voice duos · {sum(1 for d in a.dissonances.values() if d.label == 'suspension')} suspensions ·
     {len(lex)} words, {sum(1 for r in lex if not r['known'])} not in the lexicon.</p>
-    <p class="note">Key words: {('confirmed ' + _esc(', '.join(kw_conf)) + '. ') if kw_conf else 'none confirmed. '}
-    {('Proposed, not yet in effect: ' + _esc(', '.join(kw_prop)) + '.') if kw_prop else ''}</p>
+    <p class="note">Key words: {len(kw_conf)} confirmed, {len(kw_prop)} proposed (not yet in effect);
+    <a href="#keywords">read them in the text, with the translation</a>.</p>
   </div>
 </section>
 
@@ -785,6 +862,12 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
   <h2>Analysis layers</h2>
   <p class="note">Positions are bar.minim (16.3 is the third minim of bar 16). Click a row to find its notes in the score.</p>
   {tables(a)}
+  {metre_tables(a)}
+</section>
+
+<section class="keywords" id="keywords" aria-label="Key words in context">
+  <h2>Key words in context</h2>
+  {key_context_html(a)}
 </section>
 
 <section class="lexicon" aria-label="Lexicon">

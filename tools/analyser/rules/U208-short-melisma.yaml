@@ -4,16 +4,24 @@ level: look
 weight: 3.0
 tier: stress
 principle: "10.6"
-authority: "Miki, review of 4 Oct 2026 (Cantus 34.2: 'it' melismatic 'I would not think to allow this as a legal option'; 'con' can be sung through). The period theorists speak of short syllables by quantity (Zarlino IX, Harrán 1973a, 44–45), not by coda: this definition is a singer's, not theirs."
-message: "'{txt}' is stopped by '{coda}' and cannot be sung through, but carries {nn} notes ({time} semiminims)"
+authority: "Miki, reviews of 4 Oct 2026 (Cantus 34.2: 'it' melismatic 'I would not think to allow this as a legal option'; 'con' can be sung through; second review: 'penalise fricatives far less than stops. Fricatives are often fine (particularly s ...)', and 'limit to latin only', Polish being 'a much more fricative language'). The period theorists speak of short syllables by quantity (Zarlino IX, Harrán 1973a, 44–45), not by coda: this definition is a singer's, not theirs."
+message: "'{txt}' is closed by '{coda}' ({kind}), and carries {nn} notes ({time} semiminims)"
+# Latin only (Miki, second review): Polish is too fricative a language for
+# the rule to hold; its clusters are U209's business.
+applies: {lang: [la]}
 # A melisma counts from three notes, or two lasting more than two_note_time
-# semiminims; the amount is its length in `unit`s (semibreves). A phrase's last
-# syllable counts `final` of that: its consonant is sung after the held vowel,
-# and its cadential tail is 10.3's business, so 0 leaves it out.
-params: {two_note_time: 4, unit: 4, final: 0}
+# semiminims; the amount is its length in `unit`s (semibreves), times the
+# coda's factor in `kinds` (text.coda_kind): a stop (t d k g p b, Latin c)
+# stops the vowel; a fricative (f, x) far less; an s least of all. A phrase's
+# last syllable counts `final` of that: its consonant is sung after the held
+# vowel, and its cadential tail is 10.3's business, so 0 leaves it out.
+params: {two_note_time: 4, unit: 4, final: 0, kinds: {stop: 1.0, fricative: 0.2, sibilant: 0.1}}
 examples:
   flag:
-    - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "no- lu- it _ _ _ con", at: 2, why: "Cantus 34.2, alternatives 2 and 3 of the analyser's first report"}
+    - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "no- lu- it _ _ _ con", at: 2, why: "Cantus 34.2, alternatives 2 and 3 of the analyser's first report: a stop"}
+    - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "no- lu- et _ _ _ con", at: 2, why: "'et' is stopped by t"}
+    - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "plo- ra- tus _ _ _ et", at: 2, why: "'tus' still counts, at a tenth of a stop's weight (an s)"}
   pass:
     - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "no- lu- it con- _ _ so", why: "'con' can be sung through (Miki, Altus 32)"}
     - {notes: "f3 g1 a2", text: "et _ in", why: "two notes, a semibreve: a dotted figure, not a melisma"}
+    - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "nie- bios- kich _ _ _ chwał", lang: pl, why: "Polish is exempt (Miki, second review: 'limit to latin only')"}

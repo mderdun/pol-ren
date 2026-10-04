@@ -66,11 +66,15 @@ def test_the_review_drops_are_proposed():
             assert any(x.startswith("edit ") for x in first["introduces"])
 
 
-def test_altus_11_differs_from_the_review():
-    # the review drops est; the model keeps it by drawing Ra-ma back a minim,
-    # onto the repeated d''. A different lawful reading, for the editor to sing.
+def test_altus_11_ra_stays_on_10_4():
+    # the first analyser kept est by drawing Ra-ma back a minim onto 10.3.
+    # Miki's second review (4 October 2026): "the 3 top parts are clearly
+    # playing against the tactus here, so Ra on 10.4 is appropriate". Bar 10
+    # is now a displaced span, U210 measures Ra against the displaced pulse,
+    # and moving Ra gains nothing: the review's own drop of est comes first.
     f = at("Altus", 11)[0]
-    assert f.alternatives and f.alternatives[0]["moves"][0] == "'Ra' 10.4 -> 10.3"
+    assert f.alternatives and f.alternatives[0]["moves"][0].startswith("drop 'est'")
+    assert f.alternatives[0]["moves"][0] != "'Ra' 10.4 -> 10.3"
 
 
 # ---------------------------------------------------------------------------
@@ -191,3 +195,56 @@ def test_miki_drop_only_findings_are_look():
             if f.level == "warn":
                 better = [a for a in f.alternatives if a["cost"] < 0]
                 assert better and not all(a["edit"] for a in better), (f.voice, f.where, f.rule)
+
+
+# ---------------------------------------------------------------------------
+# Miki's second review of 4 October 2026 (books/MIKI-VOX-REVIEW-2-2026-10-04.txt),
+# on the Vox in Rama of commit ee0dcc9, after his first verdicts were applied.
+
+N = run(FIXTURES / "vox-in-rama-ee0dcc9.musicxml")
+NA = N.analysis
+
+
+def _u210(voice, where):
+    return [f for f in N.findings if f.rule == "U210" and f.voice == voice and f.where == where]
+
+
+def _onset(voice, where):
+    return next(e.onset for e in NA.score.voices[voice] if e.where == where and not e.rest)
+
+
+def test_miki2_quia_not_flagged():
+    # Altus 41.4: QUI-a; qui has no beat it could take, 'a' on the bar is fine
+    from tools.analyser.text import lexicon
+    assert lexicon("la").entries["quia"].stress == 0
+    assert not _u210("Altus", "41.4")
+
+
+def test_miki2_bar_10_plays_against_the_tactus():
+    # Altus 10.4 'Ra': "the 3 top parts are clearly playing against the tactus"
+    t = _onset("Altus", "10.4")
+    assert any(d.kind == "shared" and {"Cantus", "Altus", "Tenor"} <= set(d.voices) and d.contains("Altus", t)
+               for d in NA.displaced)
+    assert not _u210("Altus", "10.4")
+
+
+def test_miki2_bar_15_hemiola():
+    # Altus 15.4 'la' of ululatus off the tactus, the note values suggesting hemiola
+    t = _onset("Altus", "15.4")
+    assert any(d.kind == "hemiola" and d.contains("Altus", t) for d in NA.displaced)
+    assert not _u210("Altus", "15.4")
+
+
+def test_miki2_u208_latin_only_and_fricatives_mild():
+    from tools.analyser.rules import load
+    assert load()["U208"].langs == ("la",)
+    sib = [f for f in N.findings if f.rule == "U208" and f.text.startswith("os")]
+    stop = [f for f in N.findings if f.rule == "U208" and f.text.startswith("it")]
+    assert sib and stop and max(f.cost for f in sib) < min(f.cost for f in stop)
+
+
+def test_miki2_upper_duo():
+    # the Altus and Cantus "coming in and out of each others rhythms but
+    # starting together": the top two voices are labelled as a duo
+    assert NA.duos and all(d.voices == ("Cantus", "Altus") for d in NA.duos)
+    assert all(d.apart for d in NA.duos)

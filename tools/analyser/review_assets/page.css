@@ -198,7 +198,15 @@ th { font-weight: 600; color: var(--muted); font-size: 0.78rem; text-transform: 
 .layer-hl circle { fill: var(--ov-cad); fill-opacity: 0.14; stroke: var(--ov-cad); stroke-width: 0.18; }
 
 /* tables */
-.layers, .lexicon { border-top: 1px solid var(--rule); }
+.layers, .lexicon, .keywords { border-top: 1px solid var(--rule); }
+.kwc { width: 100%; }
+.kwc td { vertical-align: top; }
+td.kwl { font-style: italic; width: 55%; }
+td.kwt { color: var(--muted); }
+.kw { font-style: normal; padding: 0 2px; }
+.kw u { text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.kw-conf { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.kw-prop { border-bottom: 1px dashed var(--accent); }
 .scroll { overflow-x: auto; }
 .tbl table, .lex { width: 100%; }
 td.txt { font-style: italic; }
