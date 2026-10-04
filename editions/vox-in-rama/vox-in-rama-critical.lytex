@@ -162,6 +162,7 @@ facsimiles of the Cantus primi chori (MMP D/11) and the \la{Partitura}
 (MMP D/15) have not been seen.
 
 \section*{Editorial method}
+\seriesrules
 
 \subsection{Status of the text} The Tenor is edited from the 1611 print. The
 other three voices come from \sig{M}, a modern edition at least two steps removed
@@ -178,9 +179,7 @@ Altus at bars 17–18 (see the notes).
 the piece on A with no signature, a fourth above \sig{N} and a major third above
 \sig{M}. Note values are those of \sig{T}, twice those of \sig{N} and \sig{M}. The sign cut-C is
 \sig{T}’s; the edition assumes it stood in every voice. A bar is one breve, the
-tactus. Bar lines are drawn between the staves only (\textit{Mensurstriche}).
-A note that runs across a bar line keeps its single value; the edition adds
-no ties. The incipit before the Tenor gives the clef, sign and first note of
+tactus. The incipit before the Tenor gives the clef, sign and first note of
 \sig{T}; the clefs of the other voices are not known, and they have no incipit.
 The range of each voice is shown at the head of its staff. The final notes are
 longae, as in \sig{T}.
@@ -223,28 +222,22 @@ the performance edition is a fifth lower.
 \subsection{Accidentals} In the Tenor, accidentals before notes are those of
 \sig{T}, and accidentals above the staff are editorial. In the other voices every
 accidental is \sig{M}’s and stands before the note, whether the print had it or
-not. As in the sources of the period, a sign applies only to the note it
-stands against. A b after a b\fl\ in the same bar is b\na\ and carries no sign.
+not. A sign applies only to its own note (principles 7.3), so a b after a
+b\fl\ in the same bar is b\na\ and carries no sign.
 
 \subsection{Ligatures and coloration} The three ligatures of \sig{T}, all
 \la{cum opposita proprietate}, are shown by brackets above the notes. In the
 second (bar 17) the second note is black; corner brackets mark it.
 
 \subsection{Underlay} \sig{T} places its text under the notes but loosely, and
-writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. \sig{M}’s
-underlay was then checked syllable by syllable against the rules of this
-series. In eight places it puts a new syllable on a semiminim after a plain
-minim; there the underlay is reset (see the critical notes), and in four of
-them an inner voice leaves out a light word (\la{est} twice in the Altus,
-\la{et} once each in Altus and Tenor) or the Tenor its second \la{in}, as
-rule 13 of the series allows. The underlay now keeps every firm rule: no new syllable on a fusa or a dot, a
-syllable on the first note after every rest, no word divided by a rest, no
-elision. It departs from the sixteenth-century theorists in two ways, and in
-both the print’s Tenor does the same, so the edition follows the print.
-First, a semiminim after a dotted minim takes a syllable (‘fí-li-os’,
-‘nó-lu-it’), which Zarlino forbids but which is ordinary by 1611. Second,
-every voice sets the unstressed ‘con-’ of ‘consolari’ to a melisma of five to
-seven notes; \sig{T}’s spacing, ‘con … sola-’, shows the same. In bars 5–6 of the
+writes \textit{ij} where words repeat. Its words fall where \sig{M}’s do. In eight
+places \sig{M} puts a new syllable on a semiminim after a plain minim
+(principles 10.1). There the underlay is reset (see the critical notes), and
+five light words are left out: \la{est} twice in the Altus, \la{et} once each
+in Altus and Tenor, and the Tenor’s second \la{in} (principles 10.13). One departure from the series rules is kept because the
+print shows it (principles 10.12): every voice sets the unstressed ‘con-’ of
+‘consolari’ to a melisma of five to seven notes, and \sig{T}’s spacing, ‘con …
+sola-’, shows the same. In bars 5–6 of the
 Altus \sig{N}’s underlay is preferred, for the reason given in the notes.
 
 \subsection{Text} Spelling follows modern Latin use (\la{et} for the print’s

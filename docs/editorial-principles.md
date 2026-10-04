@@ -58,6 +58,8 @@ Every piece is published as a critical edition and a performance edition.
    - A long that must end with the other voices but enters late is scaled to its real length (*Vox*). A maxima in one voice only may be given as a long, with a note.
    (MD, 3 Oct 2026)
 
+8. **Rests.** In the performance edition every rest is cut at the bar lines and grouped by the bar, so that entries can be counted; notes are never cut (5.3), because a cut note implies a tie, while a cut rest changes nothing that sounds. The critical edition keeps the rests of a primary source as written, with their groupings; voices taken from a modern edition are regularised as in the performance edition. (MD, 4 Oct 2026)
+
 ## 6. Clefs and voice names
 
 1. **Voice names** are the source's (Cantus, Altus, Tenor, Bassus; Discantus, Medius, Tenor), in Latin, in small capitals, abbreviated after the first system.
@@ -101,7 +103,7 @@ Every piece is published as a critical edition and a performance edition.
 
 **Firm rules** (kept without exception unless the source itself breaks them):
 
-1. A new syllable only on a minim or longer, or on a semiminim straight after a dotted minim; never on a fusa or a dot. Lanfranco (1533) and Vicentino (1555) allow the semiminim after a dotted minim, and the sources do it (the 1611 Tenor of *Vox in Rama*); Zarlino (1558) is stricter. Prefer the longer note where the music allows. (MD, 3 Oct 2026: the best-supported rule wins)
+1. A new syllable only on a minim or longer, or on a semiminim straight after a dotted minim, and then the note after that semiminim takes a syllable too; never on a fusa or a dot. Prefer the longer note where the music allows. The semiminim after a dotted minim, and the syllable on the note after it (MD, 4 Oct 2026): Lanfranco (1533) allows it "rarely" and gives a syllable to the white note after it as well; Zarlino's rules V–VI (1558) permit it by implication and let the next note take a syllable too; Vicentino (1555) calls it no great fault (Harrán 1973a, 40–41; 1973b, 623). Stoquerus reports that the older composers often texted it and the newer ones, under ¢, did not (Rotola ed., 201, 221). The sources do it (the 1611 Tenor of *Vox in Rama*). Under C rather than ¢, semiminims count as minims and take syllables freely (Stoquerus, 227, 243; Harrán 1973a, 40). (MD, 3 Oct 2026: the best-supported rule wins)
 2. A syllable on the first note after a rest.
 3. The last syllable of a phrase on its last (cadence) note.
 4. No rest divides a word. (MD, *Plaude*)
@@ -109,16 +111,18 @@ Every piece is published as a critical edition and a performance edition.
 
 **Method.**
 
-6. **Text first.** The words lead; the notes are fitted to them, not the other way round. Map the cadences and place each line's last syllable on its arrival note. Then weigh the words: the syllable that carries the line (its stressed syllable, its key word) takes the melisma, the long note or the melodic high point; a light word (a preposition, a conjunction, a pronoun, an unstressed syllable) takes one or two notes and never a long run. The voices need not change syllable together: one may arrive early or late on a word, and that push and pull is part of the texture. Never count syllables against notes mechanically. This matters most where an edition underlays from scratch. (MD, *Plaude*; MD, 3 Oct 2026, *Zmierzka*)
+6. **Words and music together.** Neither leads by rule. Map the cadences and place each line's last syllable on its arrival note. Where the music declaims, the words shape it: the stressed syllable or the key word takes the long note or the high point. Where the line sings, let it: a long run is right where the syllable can carry it, a stressed or key syllable or an open one. Vowel difficulty in a given range (Vicentino's register scheme, Harrán 1973b, 628) is not in itself a reason to change the underlay. Follow the momentum of the language. Light words and syllables (*et*, *in*, *de*, the unstressed syllable before a stress) tend to fall off the beat inside moving figures and to lead into the stressed or open syllable on the beat; on long notes, where the choice is textural rather than declamatory, they may stand on the beat. A rising octave is taken inside one syllable: start the syllable on the lower note rather than changing on the upper one, preferably by drawing the next syllable back onto the lower note rather than stretching the previous one into the leap. A falling octave may carry a change on its landing note, or not. Where the lower note is a cadence note carrying a phrase's last syllable (10.3), that rule wins. (MD, 4 Oct 2026) After a run of short notes, change syllable before the run rather than on the white note straight after it, where the notes allow (Lanfranco 1533, rule VI, in Harrán 1973a, 41). The voices need not change syllable together. These are tendencies to weigh by ear, not rules to count: sing every line before settling it. This matters most where an edition underlays from scratch. (MD, 3–4 Oct 2026, *Zmierzka*, *Nunc scio*)
 7. **Wacław's own practice** (Kraków *Lamentationes*, 1553): mostly syllabic, repeated notes take new syllables; one melisma before each cadence, on the stressed syllable of the last word; the final syllable on the cadence note; short repeats *ij*, longer ones written out. (*Nunc scio*)
 8. **Accent** follows the penultimate rule as taught in Kraków (Sebastian z Felsztyna, 1518). (*Nunc scio*)
-9. **Repeated notes** take a new syllable unless semiminims (Stoquerus). Long free melismas may be replaced by repeating the clause.
+9. **Repeated notes** take a new syllable. The one exception (Stoquerus, ch. 15, Rotola ed., 175–181): two notes on the same pitch whose first is a semiminim or shorter and follows a note or dot of its own value; then the second takes the syllable, or better neither does. Long free melismas may be replaced by repeating the clause.
 10. **Imitation.** A point of imitation carries the words of its head motif wherever it recurs. (*Nunc scio*)
 11. **Source guides.** Where the source prints text in blocks, use its spacing (gaps mark melismas) and the voice whose text fits note for note. (*Zmierzka*)
 12. **Departures** from the theorists that the source itself shows are kept and noted. (*Vox*)
 13. **Lower voices** that are editorially texted may skip words to keep long notes, as long as their text makes sense alone. Divide notes only where text requires it, mark the division with a dashed tie, and avoid movement before the penultimate bar at a final cadence. (MD, *Plaude*)
 14. **Strophic songs.** Underlay as many stanzas as the music needs. Where the underlay is the same in every stanza, stanza 1 goes under the notes and the rest follow the score. Where a later stanza needs different underlay (a different stress pattern, an extra syllable, a melisma that would fall on a weak syllable), that stanza goes under the notes too. Weigh how the piece is usually performed: if most performances sing one or two stanzas, those two matter most. (MD, 3 Oct 2026; *Zmierzka* underlays stanzas 1 and 2, each with its own underlay)
 15. Theorists are cited by paraphrase; direct quotation is not needed. (MD, *Nunc scio*)
+
+*Literature for this section*: Harrán, D., 'New Light on the Question of Text Underlay Prior to Zarlino', *Acta Musicologica* 45 (1973a), 24–56; Harrán, 'Vicentino and His Rules of Text Underlay', *Musical Quarterly* 59 (1973b), 620–632; Harrán, 'How to "Lay" the "Lay": New Thoughts on Text Underlay', *Musica Disciplina* 51 (1997), 231–262; Towne, G., 'A Systematic Formulation of Sixteenth-Century Text Underlay Rules', *Musica Disciplina* 44 (1990), 255–287, and 45 (1991), 143–168; Stoquerus, Caspar, *De musica verbali libri duo*, ed. and trans. A. C. Rotola (Lincoln, 1988). Reading notes: docs/research/literature/.
 
 ## 11. Text
 
@@ -148,6 +152,8 @@ Every piece is published as a critical edition and a performance edition.
 1. Context is welcome in both: "enough paratext for both performers and critical readers". (MD) In the performance edition it is limited to what changes how one sings.
 2. Distinguish verified citations from the editor's own readings. Write "my own reading" where no published study makes the link. (*Zmierzka*)
 3. Verify every claim before printing it; cut what cannot be verified. (*Plaude*, *Zmierzka*)
+4. **Do not restate the series rules in an edition.** The rules live in one place, the series guide *Editorial principles* (this document, also kept in the repository as docs/editorial-principles.md). An edition's method section says only what is particular to the piece: its sources, the choices the rules leave open, and every departure from a rule, with the reason. Where a rule is meant, name it and cite it by number ("principles 10.1"). Restating rules makes the editions repetitive and lets them drift out of step with each other and with this file. (MD, 3 Oct 2026)
+5. **The performance edition argues from the music, not from names.** It gives the reason for a choice in general terms ("as an organ would have done"), never by pointing to what a particular ensemble, recording or modern edition does. Specific citations, if they matter, belong in the critical edition. (MD, 3 Oct 2026)
 
 ## 14. Names, attribution, rights
 

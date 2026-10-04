@@ -57,6 +57,10 @@ Red is used for: the series line, the fleuron that opens a part, the drop initia
 
 Red is never used for notes, accidentals, editorial signs, sigla, or anything a reader needs. A black-and-white photocopy must lose nothing.
 
+## 5a. Finish
+
+Every PDF is printed through a plate-and-paper finish (`tools/novello_vector.py`, strength 1.5, white page): each mark gains a little ink, its corners round, its edge wanders with a fine paper-fibre field, and solid heads get the odd pore. It stays vector, in black and the one red, and the text stays searchable. The texture is generated from a fixed seed, so a rebuild prints the same page. It is the series' look; it carries no information. `NOVELLO=0 make` gives the plain PDF for proofing.
+
 ## 6. Ornament
 
 | Mark | Glyph | Where |
@@ -124,7 +128,7 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 - No puffery or mood words: not "beautiful", "haunting", "pivotal". Describe the music: its range, its cadences, what the Tenor does.
 - No em dashes. Commas and full stops; parentheses only for references and glosses. Colons only before a list or a quotation.
 - Every claim verified or cut. Unverified material goes to the issue tracker, not into the edition.
-- The performance edition speaks to singers and directors: what to sing, how fast, what the signs mean, what the words say, and enough about the piece to rehearse it with understanding. Nothing about how the edition was made beyond one line.
+- The performance edition speaks to singers and directors: what to sing, how fast, what the signs mean, what the words say, and enough about the piece to rehearse it with understanding. Nothing about how the edition was made beyond one line. Reasons are given in general terms ("as an organ would have done"), never by naming an ensemble, a recording or another edition; those citations belong in the critical edition.
 
 **Terms** (use these, not their synonyms)
 
@@ -149,3 +153,4 @@ The prose is academic in what it claims and plain in how it says it. Argue from 
 - References in prose: "bar 29, Altus". In critical notes: "29 | A".
 - Polish names with their diacritics, always.
 - Every edition's prose gets an unslop pass before release. (Editor's rule.)
+- Never restate a series rule in an edition. Cite it by number ("as the series rules require (principles 10.1)") and spend the words on what is particular to the piece. The rules are in the series guide *Editorial principles*. (Editor's rule.)

@@ -142,35 +142,30 @@ not yet been collated. Editions collated:
 listed in the critical notes.
 
 \section*{Editorial method}
+\seriesrules
 
 \subsection{Pitch, values and barring} As in \sig{A}: final D, no signature, no
 reduction of note values, and the print’s cut-C. A bar is one breve, the
-tactus of cut-C. Light bar lines run between the staves only, so that none
-cuts through a note; a note that runs across one keeps its single value, and
-no ties are added. They serve ensemble and rehearsal, and the parts can be
-read past them. The
-incipit before each staff gives the clef, sign and first note of \sig{A}, and the
-range of each voice follows it. The final notes are longae, as in \sig{A}, and are held until all voices have finished; no fermata is added.
+tactus of cut-C. The incipits are those of \sig{A}, and the final longae are
+\sig{A}’s (principles 5.7).
 
 \subsection{Clefs and voices} The voice names are those of \sig{A}. Altus and Tenor
 use the octave-transposing treble clef. Written ranges: Cantus c′–d″, Altus
 d–a′, Tenor d–e′, Bassus G–a.
 
 \subsection{Accidentals} \sig{A} prints none, so every accidental here is editorial.
-They stand above the note and apply to that note only. They raise the
+They raise the
 cadences where a sixth opens to an octave, in bars 2, 4, 9 and 29. The fifth
 such cadence, bar 19, is left as printed. Two signs are optional: a sharp in
-bar 4 (Cantus) and a flat in bar 29 (Altus). An accidental in brackets above a note is optional: the note as printed is the edition’s reading, and the bracketed sign an alteration singers may make.
+bar 4 (Cantus) and a flat in bar 29 (Altus) (principles 7.2).
 
 \subsection{Underlay} \sig{A} prints each voice’s text as a block under the staff,
 so the underlay is editorial. Three things in \sig{A} guide it. The Tenor’s text
 fits its notes exactly, one syllable to a note. Where \sig{A} spaces the words of
 the Cantus and Bassus apart, it leaves room for a melisma. The line breaks of
-the other voices give only a rough guide. Elsewhere the underlay follows the
-rules of this series: no new syllable on a semiminim, except straight after a
-dotted minim, or on a fusa; a repeated note takes a new syllable where the
-text allows; the last syllable of a line falls on its cadence note. Where
-these leave a choice, the words decide. The syllable that carries a line
+the other voices give only a rough guide. Elsewhere the series rules apply
+(principles 10.1–10.9). Where they leave a choice, I weigh the words
+against the line (principles 10.6). The syllable that carries a line
 takes its melisma or its high point (\pl{PO-moc, CZAR-tów, chy-TRO-ści});
 a light word such as \pl{o} or \pl{nas} takes one or two notes. The voices
 do not always change syllable together. At the two main cadences the Cantus
@@ -230,23 +225,20 @@ pitch and in the values of this edition. Bar numbers agree in all four.
 \cn{8–9}{A}{\sig{PWM}, \sig{K}: ‘ga’ on the semiminim c′, ‘o’ on f. Here ‘ga’ on f and
   ‘o’ on e, so that ‘pomoc’ falls with the Cantus and Tenor.}
 \cn{12–13}{C, B}{Parallel fifths d′–g′ over g–c. They stand in \sig{A}.}
-\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on c″,
-  bar 16, the semiminim straight after the dotted minim of ‘od’. ‘Czar-’ takes
-  the leap c′–c″ and the run down from it, and ‘-tów’ the dotted minim e′ and
-  the semiminim after it, so that ‘nas o-bro-’ falls on g′ a′ g\sh′ as ‘chy-tro-’
-  does at the final cadence. In stanza 2 ‘wiecz-’ takes c′, ‘-ny’ the run, and
-  ‘spra-’ the semibreve a′.}
+\cn{13–16}{C, A, B}{Rising octaves inside one syllable (principles 10.6).}
+\cn{15–17}{C}{\sig{PWM}, \sig{K}, \sig{M}: ‘złych’ on the semiminim g′, bar 17. Here on b′,
+  bar 16 (principles 10.1). ‘Czar-’ takes the leap c′–c″ and its run, ‘-tów’
+  e′ f′, so that ‘nas o-bro-’ falls on g′ a′ g\sh′ as ‘chy-tro-’ does at the
+  final cadence. Stanza 2: ‘wiecz-’ c′, ‘-ny’ the run, ‘spra-’ a′.}
 \cn{19}{C}{g′ left as printed: the minor sixth b–g′ gives a softer close at
   the middle of the stanza than the raised cadences around it.}
-\cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on b, straight after
-  the dotted minim.}
+\cn{23}{A}{\sig{K}, \sig{M}: ‘-cej’ on the second semiminim a. Here on the dotted minim c′ (principles 10.1).}
 \cn{27–29}{C}{\sig{PWM}, \sig{K}, \sig{M} put ‘ją’ on the e′ of bar 27. Here ‘ją’ c′ and
   ‘swej’ d′, bar 28, each with the minim after it; ‘chy-’ the semibreve d′ and
   ‘-tro-’ c\sh′, a minim after the other voices. \sig{A} leaves a gap after ‘Vżywá’,
   which keeps the e′ of bar 27 within the melisma. Stanza 2: ‘na-’ c′, ‘-sze’
   d′, ‘wo-’ e′ and the semibreve d′, ‘-ła-’ c\sh′.}
-\cn{28}{A}{\sig{M}: ‘ją’ on the second semiminim c′. Here on d′, straight after the
-  dotted minim.}
+\cn{28}{A}{\sig{M}: ‘ją’ on the second semiminim c′. Here on the dotted minim e′ (principles 10.1).}
 \cn{29}{A}{\sig{PWM}, \sig{K} and \sig{M} flatten b (\la{una nota super la}). Left as in \sig{A}:
   b\fl\ would sound a tritone against e′ in the Cantus, and b is the sixth
   degree of the D mode. The flat is printed in brackets as an option.

@@ -27,6 +27,9 @@
 #(set-global-staff-size
    (if (eq? (ly:parser-lookup 'prPerformance) #t) 19 17))
 \paper {
+  %% the pinned Junicode from tools/get-fonts.sh, if fetched
+  #(let ((d (string-append (dirname (ly:find-file "pol-ren.ily")) "/../fonts/junicode")))
+     (if (file-exists? d) (ly:font-config-add-directory d)))
   #(define fonts
      (make-pango-font-tree "Junicode" "Junicode" "DejaVu Sans Mono"
                            (/ staff-height pt 20)))
@@ -119,6 +122,22 @@ colNote = ^\markup \raise #0.5 \abs-fontsize #9 \concat { "‚åú" \hspace #2.2 "‚å
 
 %% Cantus firmus entry.
 cf = ^\markup \abs-fontsize #8.5 \italic "[c.f.]"
+%% Cantus firmus over its whole span: \cfStart on its first note, \cfEnd on
+%% its last. The label repeats at the start of every system it crosses, and
+%% a light dashed line shows how far it runs.
+cfStart = -\tweak direction #UP
+  -\tweak style #'dashed-line
+  -\tweak dash-fraction #0.2
+  -\tweak dash-period #1.6
+  -\tweak thickness #0.6
+  -\tweak bound-details.left.text \markup \abs-fontsize #8.5 \italic "[c.f.] "
+  -\tweak bound-details.left-broken.text \markup \abs-fontsize #8.5 \italic "[c.f.] "
+  -\tweak bound-details.left.stencil-align-dir-y #CENTER
+  -\tweak bound-details.left-broken.stencil-align-dir-y #CENTER
+  -\tweak bound-details.right.text \markup \draw-line #'(0 . -0.8)
+  -\tweak bound-details.right-broken.text ##f
+  \startTextSpan
+cfEnd = \stopTextSpan
 
 %% Divided note (a source note split to carry text): dashed tie.
 divTie = { \once \tieDashed \once \override Tie.dash-definition = #'((0 1 0.4 0.75)) }
@@ -147,6 +166,70 @@ voiceSetup = {
 %% Drawn between the staves only, as dashed black lines: the score reads as
 %% parts first and as a timed score second. No colour but black and red.
 \defineBarLine "-span!" #'(#f #f "!")
+%% The dashed line stops half a staff space short of each staff, and further
+%% where a note, stem or accidental stands out from that staff in its way.
+#(define (pr-knockout-holes grob sys cx y0)
+   (let ((pad 0.4))
+     (filter-map
+      (lambda (g)
+        (and (or (grob::has-interface g 'note-head-interface)
+                 (grob::has-interface g 'stem-interface)
+                 (grob::has-interface g 'accidental-interface)
+                 (grob::has-interface g 'dots-interface)
+                 (grob::has-interface g 'flag-interface))
+             (let* ((gx (ly:grob-extent g sys X))
+                    ;; a note head outside the staff carries a ledger line wider than itself
+                    (px (if (grob::has-interface g 'note-head-interface) (+ pad 0.45) pad)))
+               (and (interval-sane? gx)
+                    (< (car gx) (+ cx px)) (> (cdr gx) (- cx px))
+                    (let ((gy (ly:grob-extent g sys Y)))
+                      (and (interval-sane? gy)
+                           (cons (- (car gy) y0 pad) (+ (- (cdr gy) y0) pad))))))))
+      (ly:grob-array->list (ly:grob-object sys 'all-elements)))))
+%% Gap (staff spaces) between the dashed line and the staves it joins.
+#(define pr-span-gap (let ((v (ly:parser-lookup 'prSpanGap))) (if (number? v) v 0.5)))
+#(define (pr-span-bar grob)
+   (let ((default (ly:span-bar::print grob)))
+     (if (not (and (ly:stencil? default)
+                   (member (ly:grob-property grob 'glyph-name "") '("!" "-span!"))))
+         default
+         (let* ((sys (ly:grob-system grob))
+                (y0 (ly:grob-relative-coordinate grob sys Y))
+                (xe (ly:stencil-extent default X))
+                (cx (+ (ly:grob-relative-coordinate grob sys X) (interval-center xe)))
+                (holes (pr-knockout-holes grob sys cx y0))
+                ;; the gaps between the staves this span bar joins, in its own coordinates
+                (staves (sort (filter-map
+                               (lambda (b)
+                                 (let ((ss (ly:grob-object b 'staff-symbol)))
+                                   (and (ly:grob? ss)
+                                        (let ((e (ly:grob-extent ss sys Y)))
+                                          (cons (- (car e) y0) (- (cdr e) y0))))))
+                               (ly:grob-array->list (ly:grob-object grob 'elements)))
+                              (lambda (a b) (> (car a) (car b)))))
+                (gaps (let g ((l staves) (acc '()))
+                        (if (or (null? l) (null? (cdr l))) (reverse acc)
+                            (g (cdr l) (cons (cons (cdr (cadr l)) (car (car l))) acc)))))
+                (th (* (ly:staff-symbol-line-thickness grob)
+                       (ly:grob-property grob 'hair-thickness 1.9)))
+                (on 0.4) (off 0.6) (x (interval-center xe)))
+           (fold
+            (lambda (gap acc)
+              ;; Each end stops a fixed distance from its staff, or further when a
+              ;; note, stem or accidental near the line stands out from that staff.
+              ;; Only the ends move: the line is never broken in the middle.
+              (let* ((lo0 (car gap)) (hi0 (cdr gap)) (mid (/ (+ lo0 hi0) 2))
+                     (hi (fold (lambda (h m) (if (> (cdr h) mid) (min m (car h)) m))
+                               (- hi0 pr-span-gap) holes))
+                     (lo (fold (lambda (h m) (if (< (car h) mid) (max m (cdr h)) m))
+                               (+ lo0 pr-span-gap) holes)))
+                (let loop ((y hi) (acc acc))
+                  (if (<= y lo)
+                      acc
+                      (let ((a (max lo (- y on))))
+                        (loop (- y on off)
+                              (ly:stencil-add acc (make-line-stencil th x a x y))))))))
+            empty-stencil gaps)))))
 
 %% ------------------------------------------------------------ contexts
 \layout {
@@ -172,6 +255,7 @@ voiceSetup = {
     sectionBarType = "||"
   }
   \context { \StaffGroup
+    \override SpanBar.stencil = #pr-span-bar
     \override SystemStartBracket.collapse-height = #4
     \override StaffGrouper.staff-staff-spacing.padding = #(* pr-breathe 1.6)
     \override StaffGrouper.staffgroup-staff-spacing.padding = #(* pr-breathe 1.6)
@@ -228,6 +312,16 @@ prMens = {
   \time 2/2
 }
 
+%% Rests (principles 5.8): in a performance edition every rest is cut at the
+%% bar lines, so that entries can be counted by the bar. A critical edition
+%% keeps the rests of a primary source as written; voices that come from a
+%% modern edition can be regularised there too, by listing them in the
+%% edition's music/engraving.ily:  prRegularRests = #'("cantus" "altus")
+#(define (pr-regular-rests? vname)
+   (or (eq? (ly:parser-lookup 'prPerformance) #t)
+       (let ((l (ly:parser-lookup 'prRegularRests)))
+         (and (list? l) (member vname l) #t))))
+
 %% \prStaff long short incipit clef perf-clef notes words
 %%   words: one \lyricmode block, or << \stanzaOne \stanzaTwo >> for several
 %%   incipit: music for the incipit staff (clef, sign, first note), or {} for none
@@ -254,7 +348,9 @@ prStaff =
             \time 2/1
             $(if (string-null? sign) #{ \omit Staff.TimeSignature #} #{ \mensSign #sign #})
             \voiceSetup
-            \new Voice = #vname $music
+            $(if (pr-regular-rests? vname)
+                 #{ \new Voice = #vname \with { \remove "Rest_engraver" \consists "Completion_rest_engraver" completionUnit = #(ly:make-moment 1/1) } $music #}
+                 #{ \new Voice = #vname $music #})
           }
           $(make-simultaneous-music
              (map (lambda (w) #{ \new Lyrics \lyricsto #vname $w #})

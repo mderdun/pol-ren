@@ -8,9 +8,11 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 "$ROOT/tools/lint.sh" || { echo "fix lint first"; exit 1; }
+"$ROOT/tools/get-fonts.sh"
 build_dir() {  # $1 = directory, $2 = optional kind filter
   local src="$1" out="$1/build" name
   rm -rf "$out"; mkdir -p "$out" "$src/pdf"   # lilypond-book does not track includes
+  [ "$(basename "$src")" = editorial-principles ] && python3 "$ROOT/tools/principles_guide.py" "$out/principles-body.tex"
   export TEXINPUTS="$ROOT/house/latex//:$src//:"
   for f in "$src"/*.lytex "$src"/*.tex; do
     [ -e "$f" ] || continue
@@ -31,6 +33,18 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
     rm -f "$src"/tmp*.out "$src"/tmp*.pdf "$src"/tmp*.aux "$src"/tmp*.log   # lilypond-book page probes
     echo "built ${src#$ROOT/}/pdf/$name.pdf ($(pdfinfo "$src/pdf/$name.pdf" | awk '/^Pages/{print $2}') pp.)"
     python3 "$ROOT/tools/check_pages.py" "$src/pdf/$name.pdf"
+    # house finish: plate-and-paper texture, vector, text kept searchable
+    # (tools/novello_vector.py). NOVELLO=0 tools/build.sh ... skips it for a quick look.
+    if [ "${NOVELLO:-1}" != 0 ]; then
+      cp "$src/pdf/$name.pdf" "$out/$name.plain.pdf"
+      python3 "$ROOT/tools/novello_vector.py" "$out/$name.plain.pdf" "$src/pdf/$name.pdf" \
+        || { echo "texture failed for $name"; exit 1; }
+    fi
+    for sys in "$out"/*/lily-*.pdf; do   # a system wider than the text block (170 mm = 482 pt) runs into the margin
+      [ -e "$sys" ] || continue
+      w=$(pdfinfo "$sys" | awk '/Page size/{print int($3)}')
+      if [ "$w" -gt 490 ]; then echo "  system $(basename "$sys"): $w pt wide, over the 482 pt text block; reset this score's breaks"; fi
+    done | sort -u
   done
 }
 if [ $# -eq 0 ]; then

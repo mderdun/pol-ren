@@ -15,3 +15,8 @@ suggFinal =
 %% (40-45). The Cantus begins each new phrase at the start of a system.
 prBreaksCritical = #'(5 10 15 20 24 28 34 39)
 prBreaksPerformance = #'(5 10 15 20 24 28 34 39)
+
+%% Rests: only the Tenor is a primary source (T), so its rests stand as printed
+%% in the critical edition; the other voices come from M and are cut at the
+%% bar lines as in the performance edition (principles 5.8).
+prRegularRests = #'("cantus" "altus" "bassus")
