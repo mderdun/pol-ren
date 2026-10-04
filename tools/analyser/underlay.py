@@ -54,6 +54,7 @@ class Candidate:
     local: float = 0.0
     piece: float = 0.0
     hard: bool = False
+    hard_syls: set = field(default_factory=set)   # syllables with a firm-rule break
     priced: list = field(default_factory=list)
 
     @property
@@ -138,10 +139,11 @@ class Model:
                 q, end = self._next_outside(sp), sp.end
             cost, hard, priced = self.seg(i, p, q, end)
             c.local += cost
-            c.hard = c.hard or hard
+            c.hard_syls.update(x.hit.syl for x in priced if x.hit.hard)
             c.priced.extend(priced)
         if starts and starts[0] != sp.first:
-            c.hard = True
+            c.hard_syls.add(sp.syls[0])
+        c.hard = bool(c.hard_syls)
         full = list(self.cur)
         for j, i in enumerate(sp.syls):
             full[i] = starts[j]
@@ -165,6 +167,7 @@ class Model:
             return self._search[key]
         K = int(self.cfg.get("kbest", 12))
         n = len(sp.syls)
+        affected = self.affected(sp, window)
         cur = [self.cur[i] for i in sp.syls]
         fixed = {0: sp.first}
         fixed.update({x: cur[x] for x in range(1, n) if x not in window})
@@ -189,7 +192,7 @@ class Model:
                     if q <= p:
                         continue
                     cost, hard, _ = self.seg(i, p, q, q)
-                    if hard:
+                    if hard and i in affected:
                         continue
                     for c0, path in lst:
                         cands.append((c0 + cost, path + (q,)))
@@ -204,15 +207,24 @@ class Model:
             q_out = self._next_outside(sp)
             for p, lst in states.items():
                 cost, hard, _ = self.seg(i, p, q_out, sp.end)
-                if hard:
+                if hard and i in affected:
                     continue
                 for c0, path in lst:
                     finals.append((c0 + cost, path))
         finals = heapq.nsmallest(K, finals)
         out = [self.evaluate_span(sp, path) for _, path in finals]
-        out = [c for c in out if not c.hard]
+        # legal where it matters: breaks elsewhere in the span stay as they are
+        out = [c for c in out if not (c.hard_syls & affected)]
         out.sort(key=lambda c: (round(c.total, 6), c.starts))
         self._search[key] = out
+        return out
+
+    def affected(self, sp: Span, window: tuple) -> set:
+        """Syllables whose notes a move in the window can change: the window
+        and the syllable before it."""
+        out = {sp.syls[j] for j in window}
+        if window and window[0] > 0:
+            out.add(sp.syls[window[0] - 1])
         return out
 
     def window_for(self, sp: Span, syl: int) -> tuple:

@@ -21,9 +21,10 @@ LEVEL_ORDER = {"break": 0, "warn": 1, "look": 2, "info": 3}
 @dataclass
 class Alternative:
     moves: list
-    cost: float
+    cost: float                 # change in cost; for a break, the alternative's own cost
     fixes: list
     introduces: list
+    basis: str = "change"       # change | total (the current underlay is not legal)
 
 
 @dataclass
@@ -150,25 +151,27 @@ def run(path: str | Path, *, analysis: Analysis | None = None) -> Result:
                 wsyls = {sp.syls[j] for j in window} | ({sp.syls[window[0] - 1]} if window[0] > 0 else set())
                 cur = m.current(sp)
                 cands = m.search(sp, window, anchors=h.rule != "U301")
+                cur_hard = bool(cur.hard_syls & m.affected(sp, window))
                 breakdown = [_fmt_cost(x) for x in cur.priced if x.hit.syl in wsyls and x.cost > 0]
                 if cands:
                     # regret: the best candidate that solves this finding (its rule
                     # costs less on its syllable), against the underlay as it is
                     mine = _own(cur, h)
                     solving = [c for c in cands if _own(c, h) < mine - 1e-9]
-                    if not cur.hard:
+                    if not cur_hard:
                         regret = max(0.0, cur.total - solving[0].total) if solving else 0.0
                     cur_rules = _by_rule(cur, wsyls)
-                    for c in solving if not cur.hard else cands:
+                    for c in solving if not cur_hard else cands:
                         if c.starts == cur.starts:
                             continue
-                        if not cur.hard and c.total >= cur.total - 1e-9:
+                        if not cur_hard and c.total >= cur.total - 1e-9:
                             continue
                         alt_rules = _by_rule(c, wsyls)
                         fixes, intro = _diff(cur_rules, alt_rules)
                         alts.append(Alternative(moves=_moves(line, sp, cur, c), cost=round(c.total - cur.total, 3)
-                                                if not cur.hard else round(c.total, 3),
-                                                fixes=fixes, introduces=intro))
+                                                if not cur_hard else round(c.total, 3),
+                                                fixes=fixes, introduces=intro,
+                                                basis="total" if cur_hard else "change"))
                         if len(alts) >= settings()["alternatives"]:
                             break
             syl = line.syls[h.syl] if h.syl < len(line.syls) else None

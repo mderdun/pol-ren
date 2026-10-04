@@ -29,8 +29,12 @@ def text(res: Result, *, show_info: bool = False, verbose: bool = False) -> str:
                 out.append(f"      at {f.src}")
             if f.breakdown:
                 out.append("      costs here: " + "; ".join(f.breakdown))
+            if f.level == "break" and not f.alternatives:
+                out.append("      no legal underlay here moves syllables only; a text change may be needed "
+                           "(10.13: a repeated word dropped)")
             for a in f.alternatives:
-                out.append(f"      try: {', '.join(a['moves'])} ({a['cost']:+.2f}"
+                cost = f"cost {a['cost']:.2f}" if a.get("basis") == "total" else f"{a['cost']:+.2f}"
+                out.append(f"      try: {', '.join(a['moves'])} ({cost}"
                            + (f"; fixes {', '.join(a['fixes'])}" if a['fixes'] else "")
                            + (f"; costs {', '.join(a['introduces'])}" if a['introduces'] else "") + ")")
             if f.baseline:
@@ -107,12 +111,13 @@ def github(results: list[Result], new: dict, limit: int = 40) -> list[str]:
     for r in results:
         for f in new.get(r.slug, [])[:limit]:
             kind = "error" if f.level == "break" else "warning"
-            loc = ""
+            params = []
             if f.src:
                 file, line = f.src.rsplit(":", 1)
-                loc = f" file={file},line={line}"
+                params += [f"file={file}", f"line={line}"]
+            params.append(f"title=underlay {f.rule}")
             msg = f"{f.rule} {f.voice} v{f.verse} bar {f.where}: {f.message}".replace("\n", " ")
-            out.append(f"::{kind}{loc},title=underlay {f.rule}::{msg}")
+            out.append(f"::{kind} {','.join(params)}::{msg}")
     return out
 
 
