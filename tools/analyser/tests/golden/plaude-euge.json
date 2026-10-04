@@ -1,0 +1,286 @@
+{
+ "edition": "plaude-euge",
+ "findings": [
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U201|sed#0|1",
+   "level": "look",
+   "where": "28.1",
+   "message": "'sed' on the bar, minim",
+   "cost": 0.75,
+   "regret": 1.0,
+   "alternative": [
+    "'spi' 26.3 -> 26.2",
+    "'ce' 27.1 -> 26.3",
+    "'sed' 28.1 -> 26.4",
+    "'mi' 28.2 -> 27.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|sed#0|1",
+   "level": "info",
+   "where": "28.1",
+   "message": "'sed' starts on a dissonant note (accented-passing, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 1.0,
+   "alternative": [
+    "'spi' 26.3 -> 26.2",
+    "'ce' 27.1 -> 26.3",
+    "'sed' 28.1 -> 26.4",
+    "'mi' 28.2 -> 27.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|virginum#1|1",
+   "level": "info",
+   "where": "8.2",
+   "message": "'gi' starts on a dissonant note (passing, m7 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'gi' 8.2 -> 8.4"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|virginum#1|1",
+   "level": "info",
+   "where": "9.2",
+   "message": "'gi' starts on a dissonant note (neighbour, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'vir' 9.1 -> 8.4",
+    "'gi' 9.2 -> 9.1",
+    "'sa' 10.3 -> 10.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|salus#1|1",
+   "level": "info",
+   "where": "10.4",
+   "message": "'lus' starts on a dissonant note (anticipation, m7 against the Discantus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'sa' 10.3 -> 10.1",
+    "'lus' 10.4 -> 10.3"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|respice#1|1",
+   "level": "info",
+   "where": "35.3",
+   "message": "'spi' starts on a dissonant note (accented-passing, m7 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.25,
+   "alternative": [
+    "'spi' 35.3 -> 35.4"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|confidencium#2|1",
+   "level": "info",
+   "where": "18.3",
+   "message": "'den' starts on a dissonant note (anticipation, m7 against the Discantus)",
+   "cost": 0.5,
+   "regret": 0.25,
+   "alternative": [
+    "'con' 18.1 -> 17.3",
+    "'fi' 18.2 -> 18.1",
+    "'den' 18.3 -> 18.2"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|respice#1|1",
+   "level": "info",
+   "where": "35.3",
+   "message": "'spi' starts on a dissonant note (accented-passing, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.25,
+   "alternative": [
+    "'re' 35.1 -> 34.4",
+    "'spi' 35.3 -> 35.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Tenor|v1|U304|hos#0|1",
+   "level": "info",
+   "where": "29.3",
+   "message": "in the homorhythmic passage 27.1-30.1, 'hos' holds its syllable where the other voices change",
+   "cost": 0.25,
+   "regret": 0.25,
+   "alternative": [
+    "'o' 30.1 -> 29.3",
+    "'cu' 30.3 -> 30.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U201|in#0|1",
+   "level": "info",
+   "where": "12.1",
+   "message": "'in' on the bar, minim",
+   "cost": 0.75,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|confidencium#3|1",
+   "level": "info",
+   "where": "15.4",
+   "message": "'ci' starts on a dissonant note (echappee, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|confidencium#2|1",
+   "level": "info",
+   "where": "18.3",
+   "message": "'den' starts on a dissonant note (echappee, m7 against the Medius)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|laudantes#0|1",
+   "level": "info",
+   "where": "20.3",
+   "message": "'lau' starts on a dissonant note (accented-passing, M2 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|misericordie#2|1",
+   "level": "info",
+   "where": "28.4",
+   "message": "'ri' starts on a dissonant note (echappee, M2 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U201|in#0|1",
+   "level": "info",
+   "where": "12.1",
+   "message": "'in' on the bar, minim",
+   "cost": 0.75,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|confidencium#0|1",
+   "level": "info",
+   "where": "12.3",
+   "message": "'con' starts on a dissonant note (accented-passing, M2 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|nec#0|1",
+   "level": "info",
+   "where": "25.4",
+   "message": "'nec' starts on a dissonant note (echappee, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U201|sed#0|1",
+   "level": "info",
+   "where": "28.1",
+   "message": "'sed' on the bar, minim",
+   "cost": 0.75,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Medius|v1|U401|misericordie#5|1",
+   "level": "info",
+   "where": "29.3",
+   "message": "'e' starts on a dissonant note (accented-passing, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Tenor|v1|U401|despice#1|1",
+   "level": "info",
+   "where": "26.3",
+   "message": "'spi' starts on a dissonant note (neighbour, m7 against the Discantus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "plaude-euge|Tenor|v1|U401|respice#1|1",
+   "level": "info",
+   "where": "35.3",
+   "message": "'spi' starts on a dissonant note (neighbour, P4 against the Medius)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  }
+ ],
+ "cadences": [
+  "4.1 phrygian on A (CTb)",
+  "19.1 phrygian on A (ACT)",
+  "21.1 clausula vera on C (ACT)"
+ ],
+ "dissonance": [
+  "10.4 Discantus echappee",
+  "10.4 Medius anticipation",
+  "12.3 Medius accented-passing",
+  "14.4 Discantus echappee",
+  "15.4 Discantus echappee",
+  "17.4 Discantus echappee",
+  "18.3 Discantus echappee",
+  "18.3 Medius anticipation",
+  "2.3 Tenor echappee",
+  "20.3 Discantus accented-passing",
+  "22.4 Discantus echappee",
+  "23.2 Medius anticipation",
+  "25.4 Medius echappee",
+  "26.3 Tenor neighbour",
+  "28.1 Discantus accented-passing",
+  "28.4 Discantus echappee",
+  "29.3 Medius accented-passing",
+  "3.4 Discantus echappee",
+  "32.2 Discantus neighbour",
+  "32.4 Medius neighbour",
+  "35.2 Medius neighbour",
+  "35.3 Discantus accented-passing",
+  "35.3 Medius accented-passing",
+  "35.3 Tenor neighbour",
+  "9.2 Medius neighbour"
+ ],
+ "points": [],
+ "homorhythm": [
+  "10.3-17.1",
+  "18.1-22.1",
+  "27.1-30.1",
+  "31.1-34.3",
+  "35.1-36.1"
+ ],
+ "phrases": [
+  "Discantus v1 1.1-5.1 rest: Plaude euge theotocos",
+  "Discantus v1 6.1-9.1 rest: regina virginum",
+  "Discantus v1 10.1-16.1 end: salus hominum in te confidencium confidencium",
+  "Discantus v1 17.1-33.1 end: um confidencium Te laudantes inspice miseros nec despice sed misericordie oculis hos respice",
+  "Discantus v1 34.1-36.1 rest: lis hos respice",
+  "Medius v1 1.1-6.1 rest: Plaude euge theotocos",
+  "Medius v1 7.3-16.1 end: regina virginum salus hominum in te confidencium confidencium",
+  "Medius v1 17.1-19.1 cadence: um confidencium",
+  "Medius v1 20.1-33.1 end: Te laudantes inspice miseros nec despice sed misericordie oculis hos respice",
+  "Medius v1 34.1-36.1 rest: lis hos respice",
+  "Tenor v1 1.1-16.1 end: Plaude theotocos regina virginum salus confidencium confidencium",
+  "Tenor v1 17.1-19.1 cadence: um confidencium",
+  "Tenor v1 20.1-33.1 end: Te laudantes inspice nec despice sed hos oculis respice",
+  "Tenor v1 34.1-36.1 rest: lis respice"
+ ],
+ "selfcheck": [
+  "Discantus v1 70 70 70 70",
+  "Medius v1 70 70 70 70",
+  "Tenor v1 53 53 53 48"
+ ]
+}

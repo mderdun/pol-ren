@@ -1,0 +1,1254 @@
+{
+ "edition": "nunc-scio-vere",
+ "findings": [
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|angelum#1|1",
+   "level": "warn",
+   "where": "18.3",
+   "message": "4 notes on 'ge' of angelum, the last word before the cadence; its stress is on syllable 1",
+   "cost": 2.667,
+   "regret": 7.333,
+   "alternative": [
+    "'nus' 17.3 -> 16.2",
+    "'an' 18.1 -> 17.3",
+    "'ge' 18.3 -> 18.1",
+    "'lum' 20.3 -> 18.3",
+    "'su' 21.3 -> 20.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U301|iudaeorum#2|1",
+   "level": "warn",
+   "where": "55.3",
+   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E)",
+   "cost": 4.0,
+   "regret": 7.167,
+   "alternative": [
+    "'Iu' 51.4 -> 52.4",
+    "'dae' 53.2 -> 53.1",
+    "'o' 53.3 -> 53.2",
+    "'rum.' 56.3 -> 55.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|dominus#1|1",
+   "level": "warn",
+   "where": "16.1",
+   "message": "7 notes on 'mi' of dominus, the last word before the cadence; its stress is on syllable 1",
+   "cost": 4.667,
+   "regret": 5.667,
+   "alternative": [
+    "'sit' 14.3 -> 15.1",
+    "'Do' 15.1 -> 15.3",
+    "'nus' 17.3 -> 16.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|iudaeorum#0|1",
+   "level": "warn",
+   "where": "51.4",
+   "message": "7 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3",
+   "cost": 4.667,
+   "regret": 4.792,
+   "alternative": [
+    "'ple' 50.4 -> 50.2",
+    "'bis' 51.3 -> 51.2",
+    "'Iu' 51.4 -> 52.4",
+    "'dae' 53.2 -> 53.1",
+    "'o' 53.3 -> 53.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U301|iudaeorum#2|1",
+   "level": "warn",
+   "where": "55.3",
+   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E)",
+   "cost": 4.0,
+   "regret": 4.5,
+   "alternative": [
+    "'dae' 53.1 -> 52.4",
+    "'o' 54.1 -> 53.1",
+    "'rum.' 56.3 -> 55.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U301|dominus#1|1",
+   "level": "warn",
+   "where": "17.1",
+   "message": "the arrival carries 'mi', and 'nus' comes after it (phrygian cadence on E)",
+   "cost": 4.0,
+   "regret": 4.0,
+   "alternative": [
+    "'mi' 17.1 -> 16.4",
+    "'nus' 17.3 -> 17.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U301|vere#0|1",
+   "level": "warn",
+   "where": "5.3",
+   "message": "the arrival carries 've', and 're,' comes after it (phrygian cadence on E)",
+   "cost": 4.0,
+   "regret": 4.0,
+   "alternative": [
+    "'ve' 3.4 -> 5.1",
+    "'re,' 5.1 -> 5.3",
+    "'ve' 5.3 -> 6.2",
+    "'re,' 6.2 -> 6.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|exspectatione#3|1",
+   "level": "warn",
+   "where": "44.1",
+   "message": "6 notes on 'ti' of exspectatione, the last word before the cadence; its stress is on syllable 5",
+   "cost": 4.0,
+   "regret": 4.0,
+   "alternative": [
+    "'o' 45.4 -> 44.4",
+    "'ne' 46.4 -> 45.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U301|saeculorum#3|1",
+   "level": "warn",
+   "where": "81.3",
+   "message": "'rum,' starts before the arrival (clausula vera cadence on G)",
+   "cost": 4.0,
+   "regret": 4.0,
+   "alternative": [
+    "'sae' 82.1 -> 81.3",
+    "'cu' 82.3 -> 82.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U202|dominus#0|1",
+   "level": "warn",
+   "where": "17.4",
+   "message": "'Do' (dominus) shorter and weaker than the syllable after it",
+   "cost": 1.333,
+   "regret": 3.458,
+   "alternative": [
+    "'mi' 16.4 -> 16.2",
+    "'Do' 17.4 -> 17.3",
+    "'mi' 18.2 -> 17.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U301|dominus#2|1",
+   "level": "warn",
+   "where": "17.3",
+   "message": "'nus,' starts before the arrival (evaded cadence on A)",
+   "cost": 2.0,
+   "regret": 3.458,
+   "alternative": [
+    "'mi' 16.4 -> 16.2",
+    "'nus,' 17.1 -> 16.4",
+    "'Do' 17.4 -> 17.1",
+    "'mi' 18.2 -> 17.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U202|gloria#0|1",
+   "level": "warn",
+   "where": "60.4",
+   "message": "'Glo' (gloria) shorter and weaker than the syllable after it",
+   "cost": 1.333,
+   "regret": 3.208,
+   "alternative": [
+    "'Glo' 60.4 -> 59.4",
+    "'a' 62.1 -> 62.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|dominus#1|1",
+   "level": "warn",
+   "where": "16.2",
+   "message": "4 notes on 'mi' of dominus, the last word before the cadence; its stress is on syllable 1",
+   "cost": 2.667,
+   "regret": 2.667,
+   "alternative": [
+    "'sit' 14.3 -> 15.1",
+    "'Do' 15.1 -> 16.2",
+    "'mi' 16.2 -> 17.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U302|saeculorum#1|1",
+   "level": "warn",
+   "where": "83.1",
+   "message": "4 notes on 'cu' of saeculorum, the last word before the cadence; its stress is on syllable 3",
+   "cost": 2.667,
+   "regret": 2.667,
+   "alternative": [
+    "'lo' 84.1 -> 83.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|herodis#0|1",
+   "level": "warn",
+   "where": "32.1",
+   "message": "4 notes on 'He' of herodis, the last word before the cadence; its stress is on syllable 2",
+   "cost": 2.667,
+   "regret": 2.667,
+   "alternative": [
+    "'ma' 31.1 -> 30.3",
+    "'nu' 31.3 -> 31.1",
+    "'He' 32.1 -> 31.3",
+    "'ro' 34.1 -> 32.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U301|suum#0|1",
+   "level": "warn",
+   "where": "23.1",
+   "message": "the arrival carries 'su', and 'um:' comes after it (clausula vera cadence on C)",
+   "cost": 4.0,
+   "regret": 2.5,
+   "alternative": [
+    "'um:' 23.3 -> 23.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U301|sancto#0|1",
+   "level": "warn",
+   "where": "68.3",
+   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F)",
+   "cost": 2.0,
+   "regret": 2.5,
+   "alternative": [
+    "'San' 66.3 -> 65.4",
+    "'cto,' 66.4 -> 66.2",
+    "'San' 67.4 -> 66.3",
+    "'cto.' 68.4 -> 68.3",
+    "'Si' 69.2 -> 68.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U301|sancto#0|1",
+   "level": "warn",
+   "where": "68.3",
+   "message": "the arrival carries 'San', and 'cto.' comes after it (evaded cadence on F)",
+   "cost": 2.0,
+   "regret": 2.5,
+   "alternative": [
+    "'i' 67.2 -> 66.3",
+    "'San' 68.1 -> 67.1",
+    "'cto.' 69.1 -> 68.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U301|sancto#0|1",
+   "level": "warn",
+   "where": "69.1",
+   "message": "the arrival carries 'San', and 'cto.' comes after it (clausula vera cadence on C)",
+   "cost": 4.0,
+   "regret": 2.5,
+   "alternative": [
+    "'San' 68.1 -> 67.3",
+    "'cto,' 68.2 -> 68.1",
+    "'San' 69.1 -> 68.2",
+    "'cto.' 69.3 -> 69.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U202|spiritui#0|1",
+   "level": "warn",
+   "where": "64.2",
+   "message": "'Spi' (spiritui) shorter and weaker than the syllable after it",
+   "cost": 1.5,
+   "regret": 2.25,
+   "alternative": [
+    "'Spi' 64.2 -> 64.3",
+    "'ri' 64.3 -> 65.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U204|spiritui#0|1",
+   "level": "warn",
+   "where": "64.2",
+   "message": "'Spi' starts on the top of a rising octave",
+   "cost": 0.75,
+   "regret": 2.25,
+   "alternative": [
+    "'Spi' 64.2 -> 64.3",
+    "'ri' 64.3 -> 65.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U206|principio#0|1",
+   "level": "warn",
+   "where": "73.3",
+   "message": "6 notes on 'prin' of principio (stress on syllable 2; vowel i)",
+   "cost": 2.0,
+   "regret": 2.0,
+   "alternative": [
+    "'ci' 74.4 -> 74.3",
+    "'pi' 75.2 -> 74.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U206|angelum#1|1",
+   "level": "warn",
+   "where": "19.3",
+   "message": "6 notes on 'ge' of angelum (stress on syllable 1; vowel e)",
+   "cost": 2.0,
+   "regret": 2.0,
+   "alternative": [
+    "'lum' 20.4 -> 20.3",
+    "'su' 22.1 -> 20.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|iudaeorum#1|1",
+   "level": "warn",
+   "where": "53.1",
+   "message": "3 notes on 'dae' of iudaeorum, the last word before the cadence; its stress is on syllable 3",
+   "cost": 2.0,
+   "regret": 2.0,
+   "alternative": [
+    "'bis' 51.3 -> 51.1",
+    "'Iu' 52.3 -> 51.3",
+    "'dae' 53.1 -> 52.3",
+    "'o' 54.1 -> 52.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U303|et#0|1",
+   "level": "warn",
+   "where": "77.1",
+   "message": "the DUO entry (Tenor 77.1) sets et differently from the leading entry (Cantus at 76.1): syllables xx-x against x-x",
+   "cost": 3.0,
+   "regret": 2.0,
+   "alternative": [
+    "'sae' 78.3 -> 78.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U202|angelum#0|1",
+   "level": "look",
+   "where": "18.2",
+   "message": "'an' (angelum) shorter and weaker than the syllable after it",
+   "cost": 1.5,
+   "regret": 1.625,
+   "alternative": [
+    "'ge' 19.2 -> 19.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U303|nunc#0|1",
+   "level": "look",
+   "where": "1.3",
+   "message": "the FUGA entry (Bassus 1.3) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'sci' 3.2 -> 2.3",
+    "'o' 3.3 -> 3.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U205|et#0|1",
+   "level": "look",
+   "where": "71.4",
+   "message": "'et' over 5 notes",
+   "cost": 1.25,
+   "regret": 1.5,
+   "alternative": [
+    "'et' 71.4 -> 72.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U303|nunc#0|1",
+   "level": "look",
+   "where": "3.3",
+   "message": "the FUGA entry (Tenor 3.3) sets nunc differently from the leading entry (Altus at 1.1): syllables x against x-x",
+   "cost": 1.5,
+   "regret": 1.5,
+   "alternative": [
+    "'sci' 6.1 -> 4.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U205|et#0|1",
+   "level": "look",
+   "where": "27.1",
+   "message": "'et' over 4 notes",
+   "cost": 1.0,
+   "regret": 1.0,
+   "alternative": [
+    "'e' 28.1 -> 27.3",
+    "'ri' 28.2 -> 28.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U201|in#0|2",
+   "level": "look",
+   "where": "78.1",
+   "message": "'in' on the bar, minim",
+   "cost": 1.0,
+   "regret": 1.0,
+   "alternative": [
+    "'in' 78.1 -> 77.4",
+    "'sae' 78.2 -> 78.1",
+    "'cu' 79.1 -> 78.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U203|et#0|1",
+   "level": "look",
+   "where": "38.3",
+   "message": "'et' straight after 3 short notes; the white note before them is free",
+   "cost": 0.75,
+   "regret": 0.75,
+   "alternative": [
+    "'et' 38.3 -> 39.3",
+    "'de' 39.3 -> 40.1",
+    "'om' 40.1 -> 40.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U203|scio#0|1",
+   "level": "look",
+   "where": "10.1",
+   "message": "'sci' straight after 2 short notes; the white note before them is free",
+   "cost": 0.75,
+   "regret": 0.75,
+   "alternative": [
+    "'ve' 8.3 -> 8.2",
+    "'sci' 10.1 -> 9.2",
+    "'o' 10.2 -> 10.1",
+    "'ve' 11.1 -> 10.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U204|quia#0|1",
+   "level": "look",
+   "where": "14.1",
+   "message": "'qui' starts on the top of a rising octave",
+   "cost": 0.75,
+   "regret": 0.75,
+   "alternative": [
+    "'qui' 14.1 -> 14.3",
+    "'a' 14.3 -> 15.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U204|herodis#1|1",
+   "level": "look",
+   "where": "33.4",
+   "message": "'ro' starts on the top of a rising octave",
+   "cost": 0.75,
+   "regret": 0.75,
+   "alternative": [
+    "'nu' 31.4 -> 31.2",
+    "'ro' 33.4 -> 33.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U203|exspectatione#0|1",
+   "level": "look",
+   "where": "42.1",
+   "message": "'ex' straight after 3 short notes; the white note before them is free",
+   "cost": 0.75,
+   "regret": 0.75,
+   "alternative": [
+    "'ex' 42.1 -> 41.2",
+    "'spe' 42.3 -> 42.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U401|plebis#0|1",
+   "level": "info",
+   "where": "50.4",
+   "message": "'ple' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 4.792,
+   "alternative": [
+    "'ple' 49.1 -> 47.3",
+    "'ple' 50.4 -> 50.2",
+    "'bis' 51.3 -> 51.2",
+    "'Iu' 51.4 -> 53.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U401|dominus#1|1",
+   "level": "info",
+   "where": "18.2",
+   "message": "'mi' starts on a dissonant note (suspension, M2 against the Cantus)",
+   "cost": 0.125,
+   "regret": 3.458,
+   "alternative": [
+    "'Do' 17.4 -> 17.3",
+    "'mi' 18.2 -> 17.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|gloria#0|1",
+   "level": "info",
+   "where": "60.4",
+   "message": "'Glo' starts on a dissonant note (suspension, m7 against the Tenor)",
+   "cost": 0.125,
+   "regret": 3.208,
+   "alternative": [
+    "'Glo' 60.4 -> 59.4",
+    "'a' 62.1 -> 62.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|gloria#1|1",
+   "level": "info",
+   "where": "61.2",
+   "message": "'ri' starts on a dissonant note (suspension, P4 against the Tenor)",
+   "cost": 0.125,
+   "regret": 2.958,
+   "alternative": [
+    "'Glo' 60.4 -> 59.4",
+    "'ri' 61.2 -> 60.3",
+    "'a' 62.1 -> 60.4",
+    "'Pa' 62.3 -> 62.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U304|gloria#2|1",
+   "level": "info",
+   "where": "62.2",
+   "message": "in the homorhythmic passage 62.2-63.1, 'a' holds its syllable where the other voices change",
+   "cost": 0.25,
+   "regret": 2.958,
+   "alternative": [
+    "'Glo' 60.4 -> 59.4",
+    "'ri' 61.2 -> 60.3",
+    "'a' 62.1 -> 60.4",
+    "'Pa' 62.3 -> 62.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|angelum#1|1",
+   "level": "info",
+   "where": "19.2",
+   "message": "'ge' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 1.625,
+   "alternative": [
+    "'ge' 19.2 -> 19.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U304|et#0|1",
+   "level": "info",
+   "where": "72.4",
+   "message": "in the homorhythmic passage 72.3-73.3, 'et' holds its syllable where the other voices change",
+   "cost": 0.25,
+   "regret": 1.5,
+   "alternative": [
+    "'et' 71.4 -> 72.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U401|principio#1|1",
+   "level": "info",
+   "where": "73.3",
+   "message": "'ci' starts on a dissonant note (unexplained, P4 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.75,
+   "alternative": [
+    "'in' 73.1 -> 73.2",
+    "'prin' 73.2 -> 73.3",
+    "'ci' 73.3 -> 74.1",
+    "'pi' 74.1 -> 74.2"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U302|exspectatione#2|1",
+   "level": "info",
+   "where": "41.3",
+   "message": "5 notes on 'cta' of exspectatione, the last word before the cadence; its stress is on syllable 5",
+   "cost": 3.333,
+   "regret": 0.667,
+   "alternative": [
+    "'ti' 42.3 -> 42.2",
+    "'o' 42.4 -> 42.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|sicut#0|1",
+   "level": "info",
+   "where": "72.2",
+   "message": "'si' starts on a dissonant note (passing, A4 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'si' 72.2 -> 72.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U401|vere#0|1",
+   "level": "info",
+   "where": "5.1",
+   "message": "'ve' starts on a dissonant note (unexplained, M2 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'ve' 5.1 -> 5.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|spiritui#3|1",
+   "level": "info",
+   "where": "65.3",
+   "message": "'i' starts on a dissonant note (accented-passing, P4 against the Bassus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'tu' 65.2 -> 65.1",
+    "'i' 65.3 -> 65.2",
+    "'San' 66.3 -> 65.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|sancto#0|1",
+   "level": "info",
+   "where": "67.4",
+   "message": "'San' starts on a dissonant note (neighbour, P4 against the Bassus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'San' 66.3 -> 65.4",
+    "'San' 67.4 -> 67.3",
+    "'Si' 69.2 -> 69.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U401|eripuit#3|1",
+   "level": "info",
+   "where": "29.1",
+   "message": "'it' starts on a dissonant note (neighbour, m7 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'it' 29.1 -> 29.3",
+    "'me' 29.3 -> 30.1",
+    "'de' 30.1 -> 30.3"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|sancto#0|1",
+   "level": "info",
+   "where": "68.1",
+   "message": "'San' starts on a dissonant note (neighbour, m7 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'i' 67.2 -> 66.3",
+    "'San' 68.1 -> 67.1"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|amen#0|1",
+   "level": "info",
+   "where": "86.2",
+   "message": "'A' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.125,
+   "alternative": [
+    "'A' 86.2 -> 86.4"
+   ]
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|scio#0|1",
+   "level": "info",
+   "where": "6.3",
+   "message": "'sci' starts on a dissonant note (suspension, M2 against the Cantus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U302|herodis#0|1",
+   "level": "info",
+   "where": "32.4",
+   "message": "3 notes on 'He' of herodis, the last word before the cadence; its stress is on syllable 2",
+   "cost": 2.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v1|U401|plebis#0|1",
+   "level": "info",
+   "where": "48.2",
+   "message": "'ple' starts on a dissonant note (suspension, m7 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U303|gloria#0|1",
+   "level": "info",
+   "where": "58.1",
+   "message": "the FUGA entry (Altus 58.1) sets gloria differently from the leading entry (Cantus at 57.1): syllables xxx against xxxx",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U207|spiritui#3|1",
+   "level": "info",
+   "where": "67.1",
+   "message": "'i' runs over a repeated E4; the second note could take the next syllable",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|sancto#1|1",
+   "level": "info",
+   "where": "68.2",
+   "message": "'cto,' starts on a dissonant note (suspension, m7 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Altus|v2|U401|et#0|1",
+   "level": "info",
+   "where": "79.2",
+   "message": "'et' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U205|et#0|1",
+   "level": "info",
+   "where": "23.4",
+   "message": "'et' over 4 notes",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U301|herodis#1|1",
+   "level": "info",
+   "where": "35.1",
+   "message": "the arrival carries 'ro', and 'dis,' comes after it (clausula vera cadence on C)",
+   "cost": 4.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v1|U303|et#0|1",
+   "level": "info",
+   "where": "36.2",
+   "message": "the FUGA entry (Bassus 36.2) sets et differently from the leading entry (Altus at 35.4): syllables xxxx against xx-x",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U201|in#0|1",
+   "level": "info",
+   "where": "73.1",
+   "message": "'in' on the bar, minim",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Bassus|v2|U401|saeculorum#3|1",
+   "level": "info",
+   "where": "81.1",
+   "message": "'rum,' starts on a dissonant note (neighbour, m7 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U303|nunc#0|1",
+   "level": "info",
+   "where": "2.1",
+   "message": "the FUGA entry (Cantus 2.1) sets nunc differently from the leading entry (Altus at 1.1): syllables x-xx against x-x",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U401|vere#1|1",
+   "level": "info",
+   "where": "5.1",
+   "message": "'re,' starts on a dissonant note (unexplained, M2 against the Bassus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U207|scio#1|1",
+   "level": "info",
+   "where": "9.3",
+   "message": "'o' runs over a repeated A4; the second note could take the next syllable",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U303|quia#0|1",
+   "level": "info",
+   "where": "13.1",
+   "message": "the DUO entry (Cantus 13.1) sets quia differently from the leading entry (Tenor at 12.3): syllables xxxx against xxx",
+   "cost": 1.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U303|et#0|1",
+   "level": "info",
+   "where": "39.1",
+   "message": "the FUGA entry (Cantus 39.1) sets et differently from the leading entry (Altus at 35.4): syllables xx against xx-x",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|gloria#2|1",
+   "level": "info",
+   "where": "58.1",
+   "message": "'a' starts on a dissonant note (suspension, m7 against the Altus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|patri#0|1",
+   "level": "info",
+   "where": "58.4",
+   "message": "'Pa' starts on a dissonant note (suspension, A4 against the Altus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|patri#1|1",
+   "level": "info",
+   "where": "59.4",
+   "message": "'tri,' starts on a dissonant note (suspension, P4 against the Tenor)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Cantus|v2|U401|semper#0|1",
+   "level": "info",
+   "where": "73.3",
+   "message": "'sem' starts on a dissonant note (unexplained, P4 against the Bassus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U207|scio#1|1",
+   "level": "info",
+   "where": "7.1",
+   "message": "'o' runs over a repeated A3; the second note could take the next syllable",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U401|eripuit#0|1",
+   "level": "info",
+   "where": "24.4",
+   "message": "'e' starts on a dissonant note (passing, d5 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U207|herodis#1|1",
+   "level": "info",
+   "where": "32.3",
+   "message": "'ro' runs over a repeated F3; the second note could take the next syllable",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v1|U302|exspectatione#1|1",
+   "level": "info",
+   "where": "45.4",
+   "message": "3 notes on 'spe' of exspectatione, the last word before the cadence; its stress is on syllable 5",
+   "cost": 2.0,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U303|gloria#0|1",
+   "level": "info",
+   "where": "60.1",
+   "message": "the FUGA entry (Tenor 60.1) sets gloria differently from the leading entry (Cantus at 57.1): syllables xx-x against xxxx",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U201|et#0|1",
+   "level": "info",
+   "where": "63.1",
+   "message": "'et' on the bar, minim",
+   "cost": 1.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|filio#0|1",
+   "level": "info",
+   "where": "63.2",
+   "message": "'Fi' starts on a dissonant note (suspension, m7 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|filio#1|1",
+   "level": "info",
+   "where": "63.4",
+   "message": "'li' starts on a dissonant note (suspension, P4 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|nunc#0|1",
+   "level": "info",
+   "where": "73.3",
+   "message": "'nunc,' starts on a dissonant note (neighbour, m7 against the Cantus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|saeculorum#1|1",
+   "level": "info",
+   "where": "83.4",
+   "message": "'cu' starts on a dissonant note (suspension, m7 against the Bassus)",
+   "cost": 0.125,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "nunc-scio-vere|Tenor|v2|U401|saeculorum#2|1",
+   "level": "info",
+   "where": "84.2",
+   "message": "'lo' starts on a dissonant note (neighbour, d5 against the Altus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  }
+ ],
+ "cadences": [
+  "5.3 phrygian on E (CTb)",
+  "10.1 clausula vera on C (CT)",
+  "11.1 clausula vera on G (ACT)",
+  "11.3 evaded on C (BCTb)",
+  "17.1 phrygian on E (ACT)",
+  "17.3 evaded on A (BCTb)",
+  "19.1 clausula vera on F (ACT)",
+  "23.1 clausula vera on C (ACT)",
+  "23.3 clausula vera on F (ACT)",
+  "25.1 clausula vera on C (ACT)",
+  "29.3 evaded on G (CTbb)",
+  "35.1 clausula vera on C (ACT)",
+  "35.3 authentic on F (BCT)",
+  "44.3 clausula vera on F (ACT)",
+  "46.3 phrygian on E (CTb)",
+  "48.3 evaded on F (ACTb)",
+  "49.1 clausula vera on C (ACT)",
+  "51.3 evaded on D (CTb)",
+  "55.3 phrygian on E (CTb)",
+  "59.2 evaded on C (tt)",
+  "68.3 evaded on F (ACTb)",
+  "69.1 clausula vera on C (ACT)",
+  "72.3 phrygian on E (ACT)",
+  "74.1 evaded on C (BCTb)",
+  "76.1 clausula vera on C (CT)",
+  "81.3 clausula vera on G (ACT)",
+  "82.3 phrygian on B (CT)",
+  "84.3 clausula vera on A (ACT)",
+  "86.3 phrygian on E (ACT)",
+  "87.1 evaded on A (BCTb)"
+ ],
+ "dissonance": [
+  "10.2 Cantus suspension 4-3",
+  "10.4 Cantus suspension 4-3",
+  "12.4 Altus suspension 4-3",
+  "13.1 Altus neighbour",
+  "14.1 Tenor neighbour",
+  "14.3 Altus neighbour",
+  "16.4 Cantus suspension 4-3",
+  "17.1 Cantus neighbour",
+  "18.2 Bassus suspension 2-3",
+  "19.2 Altus suspension 4-3",
+  "19.3 Altus neighbour",
+  "2.3 Altus neighbour",
+  "22.2 Cantus suspension 4-3",
+  "22.4 Altus unexplained",
+  "22.4 Cantus unexplained",
+  "22.4 Tenor neighbour",
+  "23.1 Cantus neighbour",
+  "23.1 Tenor neighbour",
+  "24.2 Bassus neighbour",
+  "28.3 Cantus anticipation",
+  "28.4 Cantus suspension 4-3",
+  "29.1 Tenor neighbour",
+  "31.4 Altus neighbour",
+  "32.2 Bassus neighbour",
+  "33.1 Altus neighbour",
+  "34.3 Cantus anticipation",
+  "34.4 Altus neighbour",
+  "34.4 Cantus suspension 4-3",
+  "42.1 Bassus neighbour",
+  "43.2 Tenor neighbour",
+  "44.2 Tenor suspension 7-1",
+  "44.3 Cantus neighbour",
+  "45.4 Altus neighbour",
+  "46.2 Tenor neighbour",
+  "46.4 Altus neighbour",
+  "47.4 Cantus suspension 4-3",
+  "48.1 Tenor neighbour",
+  "48.2 Altus suspension 7-6",
+  "48.4 Altus neighbour",
+  "5.1 Bassus unexplained",
+  "5.1 Cantus unexplained",
+  "5.1 Tenor accented-passing",
+  "50.2 Altus neighbour",
+  "50.4 Cantus suspension 4-3",
+  "52.2 Cantus neighbour",
+  "53.4 Altus neighbour",
+  "54.4 Cantus suspension 2-1",
+  "58.1 Cantus suspension 7-6",
+  "58.4 Cantus suspension 4-3",
+  "59.2 Cantus neighbour",
+  "59.4 Cantus suspension 4-3",
+  "6.3 Altus suspension 2-4",
+  "6.3 Cantus unexplained",
+  "6.4 Altus neighbour",
+  "60.2 Altus neighbour",
+  "60.2 Cantus neighbour",
+  "60.4 Altus suspension 7-6",
+  "61.2 Altus suspension 4-3",
+  "61.4 Altus neighbour",
+  "63.2 Tenor suspension 7-6",
+  "63.4 Tenor suspension 4-3",
+  "65.3 Cantus accented-passing",
+  "67.2 Altus neighbour",
+  "67.2 Cantus neighbour",
+  "67.4 Cantus neighbour",
+  "67.4 Tenor neighbour",
+  "68.1 Tenor neighbour",
+  "68.2 Altus suspension 7-6",
+  "71.3 Altus neighbour",
+  "73.3 Bassus unexplained",
+  "73.3 Cantus unexplained",
+  "73.3 Tenor neighbour",
+  "74.1 Altus neighbour",
+  "75.2 Tenor suspension 7-6",
+  "75.4 Tenor neighbour",
+  "79.2 Altus suspension 4-3",
+  "8.2 Tenor suspension 4-3",
+  "80.4 Bassus neighbour",
+  "80.4 Cantus neighbour",
+  "81.1 Bassus neighbour",
+  "81.2 Tenor neighbour",
+  "83.4 Tenor suspension 7-6",
+  "84.2 Tenor neighbour",
+  "85.2 Bassus neighbour",
+  "85.2 Cantus neighbour",
+  "86.2 Cantus suspension 4-3",
+  "9.3 Cantus neighbour"
+ ],
+ "points": [
+  "FUGA -2 +3 -1: Altus 1.1, Bassus 1.3, Cantus 2.1, Tenor 3.3",
+  "DUO +0 +0 -2: Tenor 12.3, Cantus 13.1",
+  "DUO -1 -1 +1: Tenor 19.1, Altus 22.2",
+  "FUGA +0 -2 +3: Altus 35.4, Bassus 36.2, Tenor 38.3, Cantus 39.1",
+  "FUGA +1 +2 -1: Cantus 57.1, Altus 58.1, Tenor 60.1, Bassus 63.1",
+  "DUO -3 +1 +2: Cantus 76.1, Tenor 77.1"
+ ],
+ "homorhythm": [
+  "62.2-63.1",
+  "72.3-73.3"
+ ],
+ "phrases": [
+  "Cantus v1 2.1-5.2 punctuation: Nunc scio vere,",
+  "Cantus v1 5.3-6.4 rest: vere,",
+  "Cantus v1 8.3-11.3 rest: scio vere,",
+  "Cantus v1 13.1-17.3 cadence: quia misit Dominus",
+  "Cantus v1 18.1-23.3 cadence: angelum suum:",
+  "Cantus v1 24.1-29.3 cadence: et eripuit me",
+  "Cantus v1 30.1-35.3 rest: de manu Herodis,",
+  "Cantus v1 39.1-48.3 cadence: et de omni exspectatione",
+  "Cantus v1 49.1-50.3 punctuation: plebis,",
+  "Cantus v1 50.4-51.3 cadence: plebis",
+  "Cantus v1 51.4-56.3 rest: Iudaeorum.",
+  "Cantus v1 57.1-63.1 rest: ",
+  "Cantus v1 63.4-68.3 cadence: ",
+  "Cantus v1 68.4-74.1 rest: ",
+  "Cantus v1 76.1-82.3 cadence: ",
+  "Cantus v1 83.1-84.1 rest: ",
+  "Cantus v1 84.4-87.1 rest: ",
+  "Cantus v2 2.1-6.4 rest: ",
+  "Cantus v2 8.3-11.3 rest: ",
+  "Cantus v2 13.1-35.3 rest: ",
+  "Cantus v2 39.1-56.3 rest: ",
+  "Cantus v2 57.1-60.3 punctuation: Gloria Patri,",
+  "Cantus v2 60.4-61.3 punctuation: Patri,",
+  "Cantus v2 62.2-63.1 rest: et Filio,",
+  "Cantus v2 63.4-67.3 punctuation: et Spiritui Sancto,",
+  "Cantus v2 67.4-69.1 punctuation: Sancto.",
+  "Cantus v2 69.2-71.3 punctuation: Sicut erat in principio,",
+  "Cantus v2 71.4-73.1 punctuation: et nunc,",
+  "Cantus v2 73.2-74.1 rest: et semper,",
+  "Cantus v2 76.1-82.1 punctuation: et in saecula saeculorum,",
+  "Cantus v2 82.2-84.1 rest: saeculorum.",
+  "Cantus v2 84.4-86.1 punctuation: Amen,",
+  "Cantus v2 86.2-87.1 rest: Amen.",
+  "Altus v1 1.1-5.2 punctuation: Nunc scio vere,",
+  "Altus v1 5.3-6.2 punctuation: vere,",
+  "Altus v1 6.3-9.2 rest: scio vere,",
+  "Altus v1 10.1-13.3 punctuation: scio vere,",
+  "Altus v1 14.1-17.3 rest: quia misit Dominus",
+  "Altus v1 18.2-20.1 punctuation: angelum,",
+  "Altus v1 20.3-21.3 rest: angelum",
+  "Altus v1 22.2-23.3 rest: suum:",
+  "Altus v1 24.2-26.2 rest: et eripuit me,",
+  "Altus v1 27.1-32.2 rest: et eripuit me de manu",
+  "Altus v1 32.4-35.1 rest: Herodis,",
+  "Altus v1 35.4-38.2 punctuation: et de omni,",
+  "Altus v1 38.3-47.4 rest: et de omni exspectatione",
+  "Altus v1 48.2-49.1 cadence: plebis,",
+  "Altus v1 49.3-51.3 rest: plebis",
+  "Altus v1 52.3-54.3 punctuation: Iudaeorum,",
+  "Altus v1 55.1-56.3 rest: Iudaeorum.",
+  "Altus v1 58.1-69.1 cadence: ",
+  "Altus v1 69.3-69.3 rest: ",
+  "Altus v1 70.2-72.3 cadence: ",
+  "Altus v1 72.4-78.1 rest: ",
+  "Altus v1 79.2-82.3 cadence: ",
+  "Altus v1 83.1-86.3 cadence: ",
+  "Altus v1 87.1-88.1 rest: ",
+  "Altus v2 1.1-9.2 rest: ",
+  "Altus v2 10.1-17.3 rest: ",
+  "Altus v2 18.2-21.3 rest: ",
+  "Altus v2 22.2-23.3 rest: ",
+  "Altus v2 24.2-26.2 rest: ",
+  "Altus v2 27.1-32.2 rest: ",
+  "Altus v2 32.4-35.1 rest: ",
+  "Altus v2 35.4-47.4 rest: ",
+  "Altus v2 48.2-51.3 rest: ",
+  "Altus v2 52.3-56.3 rest: ",
+  "Altus v2 58.1-62.4 punctuation: Gloria Gloria Patri,",
+  "Altus v2 63.1-64.1 punctuation: et Filio,",
+  "Altus v2 64.3-68.4 punctuation: et Spiritui Sancto,",
+  "Altus v2 69.1-69.3 rest: Sancto.",
+  "Altus v2 70.2-72.3 cadence: Sicut erat sicut",
+  "Altus v2 72.4-75.3 punctuation: erat in principio,",
+  "Altus v2 76.1-76.3 punctuation: et nunc,",
+  "Altus v2 77.1-78.1 rest: et semper,",
+  "Altus v2 79.2-82.3 cadence: et in saecula saeculorum,",
+  "Altus v2 83.1-85.3 punctuation: saecula saeculorum.",
+  "Altus v2 85.4-86.2 punctuation: Amen,",
+  "Altus v2 86.3-88.1 rest: Amen.",
+  "Tenor v1 3.3-5.3 cadence: Nunc",
+  "Tenor v1 6.1-9.1 punctuation: scio vere,",
+  "Tenor v1 9.3-11.3 rest: scio vere,",
+  "Tenor v1 12.3-17.3 rest: quia misit Dominus",
+  "Tenor v1 19.1-23.3 rest: angelum suum:",
+  "Tenor v1 24.2-26.4 punctuation: et eripuit me,",
+  "Tenor v1 27.1-29.3 cadence: et eripuit me",
+  "Tenor v1 30.1-33.1 punctuation: de manu Herodis,",
+  "Tenor v1 33.3-35.3 rest: Herodis,",
+  "Tenor v1 38.3-48.3 cadence: et de omni exspectatione exspectatione",
+  "Tenor v1 49.1-50.2 punctuation: plebis,",
+  "Tenor v1 50.4-51.3 cadence: plebis",
+  "Tenor v1 52.3-56.3 rest: Iudaeorum.",
+  "Tenor v1 60.1-68.3 cadence: ",
+  "Tenor v1 69.1-69.1 rest: ",
+  "Tenor v1 69.4-74.1 cadence: ",
+  "Tenor v1 74.4-76.1 rest: ",
+  "Tenor v1 77.1-81.3 cadence: ",
+  "Tenor v1 82.1-84.3 rest: ",
+  "Tenor v1 85.2-87.1 rest: ",
+  "Tenor v2 3.3-11.3 rest: ",
+  "Tenor v2 12.3-17.3 rest: ",
+  "Tenor v2 19.1-23.3 rest: ",
+  "Tenor v2 24.2-35.3 rest: ",
+  "Tenor v2 38.3-56.3 rest: ",
+  "Tenor v2 60.1-62.4 punctuation: Gloria Patri,",
+  "Tenor v2 63.1-64.3 punctuation: et Filio,",
+  "Tenor v2 64.4-69.1 rest: et Spiritui Sancto.",
+  "Tenor v2 69.4-73.1 punctuation: Sicut erat in principio,",
+  "Tenor v2 73.2-73.3 punctuation: et nunc,",
+  "Tenor v2 74.1-74.1 cadence: et",
+  "Tenor v2 74.4-76.1 rest: semper,",
+  "Tenor v2 77.1-81.3 cadence: et in saecula saeculorum,",
+  "Tenor v2 82.1-84.3 rest: saecula saeculorum.",
+  "Tenor v2 85.2-85.4 punctuation: Amen,",
+  "Tenor v2 86.1-87.1 rest: amen.",
+  "Bassus v1 1.3-4.3 punctuation: Nunc scio vere,",
+  "Bassus v1 5.1-6.3 rest: vere,",
+  "Bassus v1 7.2-9.4 punctuation: scio vere,",
+  "Bassus v1 10.1-12.3 punctuation: scio vere,",
+  "Bassus v1 13.1-13.3 punctuation: vere,",
+  "Bassus v1 14.1-17.1 cadence: quia misit Dominus,",
+  "Bassus v1 17.3-17.3 cadence: ",
+  "Bassus v1 17.4-23.1 rest: Dominus angelum suum:",
+  "Bassus v1 23.4-26.3 punctuation: et eripuit me,",
+  "Bassus v1 26.4-34.3 punctuation: et eripuit me de manu Herodis,",
+  "Bassus v1 34.4-35.3 rest: Herodis,",
+  "Bassus v1 36.2-37.3 punctuation: et de omni,",
+  "Bassus v1 38.1-39.1 rest: omni",
+  "Bassus v1 40.4-44.3 rest: exspectatione",
+  "Bassus v1 45.4-47.3 punctuation: plebis,",
+  "Bassus v1 47.4-49.1 cadence: plebis",
+  "Bassus v1 49.3-51.1 rest: Iudaeorum,",
+  "Bassus v1 51.4-53.3 punctuation: Iudaeorum,",
+  "Bassus v1 54.1-56.3 rest: Iudaeorum.",
+  "Bassus v1 63.1-69.1 cadence: ",
+  "Bassus v1 69.3-72.3 cadence: ",
+  "Bassus v1 72.4-74.1 cadence: ",
+  "Bassus v1 74.2-76.1 rest: ",
+  "Bassus v1 77.2-81.3 cadence: ",
+  "Bassus v1 81.4-84.3 cadence: ",
+  "Bassus v1 85.1-86.3 cadence: ",
+  "Bassus v1 87.1-87.1 cadence: ",
+  "Bassus v1 87.3-88.1 rest: ",
+  "Bassus v2 1.3-6.3 rest: ",
+  "Bassus v2 7.2-23.1 rest: ",
+  "Bassus v2 23.4-35.3 rest: ",
+  "Bassus v2 36.2-39.1 rest: ",
+  "Bassus v2 40.4-44.3 rest: ",
+  "Bassus v2 45.4-51.1 rest: ",
+  "Bassus v2 51.4-56.3 rest: ",
+  "Bassus v2 63.1-65.1 punctuation: Gloria Patri,",
+  "Bassus v2 65.3-67.1 punctuation: et Filio,",
+  "Bassus v2 67.3-71.3 punctuation: et Spiritui Sancto.",
+  "Bassus v2 72.1-74.3 punctuation: Sicut erat in principio,",
+  "Bassus v2 74.4-75.1 punctuation: et nunc,",
+  "Bassus v2 75.2-76.1 rest: et semper,",
+  "Bassus v2 77.2-81.1 punctuation: et in saecula saeculorum,",
+  "Bassus v2 81.3-82.2 punctuation: saeculorum,",
+  "Bassus v2 82.3-84.3 cadence: saeculorum.",
+  "Bassus v2 85.1-85.4 punctuation: Amen,",
+  "Bassus v2 86.1-86.3 cadence: Amen,",
+  "Bassus v2 87.1-88.1 rest: Amen."
+ ],
+ "selfcheck": [
+  "Cantus v1 53 53 53 53",
+  "Cantus v2 51 51 51 51",
+  "Altus v1 74 74 74 74",
+  "Altus v2 59 59 59 59",
+  "Tenor v1 66 66 66 66",
+  "Tenor v2 50 50 50 50",
+  "Bassus v1 81 81 81 81",
+  "Bassus v2 53 53 53 53"
+ ]
+}
