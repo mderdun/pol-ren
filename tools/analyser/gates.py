@@ -80,9 +80,22 @@ def against_tactus_mid(a, line, hit) -> bool:
         a.against_tactus(line.voice, line.events[hit.ev].onset, "mid")
 
 
+def cantus_firmus(a, line, hit) -> bool:
+    """The syllable starts inside a cantus firmus span of its voice
+    (editions.yaml: cantus_firmus, the spans the edition marks with
+    \\cfStart/\\cfEnd). There the chant fixes the notes and the edition puts
+    the syllables on the chant's notes, so the runs between them are the
+    chant's ornaments, not the editor's melismas."""
+    if a is None or hit.ev >= len(line.events):
+        return False
+    spans = a.score.config.get("cantus_firmus") or []
+    bar = line.events[hit.ev].bar
+    return any(sp.get("voice") == line.voice and int(sp["from"]) <= bar <= int(sp["to"]) for sp in spans)
+
+
 GATES = {name: globals()[name] for name in
          ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
-          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus", "against_tactus_mid")}
+          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus", "against_tactus_mid", "cantus_firmus")}
 
 
 def applied(rule, a, line, hit) -> list[tuple[str, float]]:

@@ -12,7 +12,7 @@ message: "{nn} notes{time} on '{txt}' of {word} (stress on syllable {st}; vowel 
 # semiminims adds one to the amount. A syllable that can be sung through (open,
 # or closed by a sonorant: con-) counts half (gate sung_through).
 params: {min_time: 8, min_notes: 3, step: 4}
-gates: {cadence_approach: 0.5, older_practice: 0.5, sung_through: 0.5}
+gates: {cadence_approach: 0.5, older_practice: 0.5, sung_through: 0.5, cantus_firmus: 0.5}
 examples:
   flag:
     - {notes: "f4 g2 a1 g1 f1 e1 d1 e1 f2", text: "Do- mi- _ _ _ _ _ _ nus", at: 1}

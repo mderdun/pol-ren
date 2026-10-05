@@ -16,6 +16,7 @@ applies: {lang: [la]}
 # last syllable counts `final` of that: its consonant is sung after the held
 # vowel, and its cadential tail is 10.3's business, so 0 leaves it out.
 params: {two_note_time: 4, unit: 4, final: 0, kinds: {stop: 1.0, fricative: 0.2, sibilant: 0.1}}
+gates: {cantus_firmus: 0.5}
 examples:
   flag:
     - {notes: "f2 g3 f1 e1 d1 e2 f4", text: "no- lu- it _ _ _ con", at: 2, why: "Cantus 34.2, alternatives 2 and 3 of the analyser's first report: a stop"}

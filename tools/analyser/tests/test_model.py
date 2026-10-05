@@ -69,6 +69,31 @@ def test_cadence_gate_halves_the_run_rule():
     assert abs(f.cost - 0.5) < 1e-9          # weight 2.0, a breve long (amount 1), halved twice
 
 
+def test_cantus_firmus_gate_halves_the_run_rules_only_in_its_span():
+    # a run on -mi-: in a cantus firmus span the notes are the chant's, so the
+    # run rule counts half there (gate cantus_firmus, editions.yaml)
+    spec = {"notes": "f4 g2 a1 g1 f1 e1 d1 e1 f2", "text": "Do- mi- _ _ _ _ _ _ nus"}
+    _, free = setup(spec)
+    _, cf = setup({**spec, "config": {"cantus_firmus": [{"voice": "Cantus", "from": 1, "to": 9}]}})
+    _, other = setup({**spec, "config": {"cantus_firmus": [{"voice": "Tenor", "from": 1, "to": 9}]}})
+    f0 = next(f for f in free.findings if f.rule == "U206")
+    f1 = next(f for f in cf.findings if f.rule == "U206")
+    f2 = next(f for f in other.findings if f.rule == "U206")
+    assert "cantus_firmus×0.5" in f1.gates and abs(f1.cost - f0.cost / 2) < 1e-9
+    assert "cantus_firmus×0.5" not in f2.gates and f2.cost == f0.cost
+
+
+def test_cantus_firmus_gate_on_nunc_scio():
+    # Nunc scio: the Cantus carries the chant from bar 13 to 56; its run rules
+    # are gated there, its stress rule (U210) is not
+    from tools.analyser.ingest import ROOT
+    r = run(ROOT / "editions" / "nunc-scio-vere" / "pdf" / "nunc-scio-vere.musicxml")
+    f = next(f for f in r.findings if f.rule == "U208" and f.voice == "Cantus" and f.bar == 28)
+    assert "cantus_firmus×0.5" in f.gates
+    assert not any("cantus_firmus" in g for f in r.findings if f.rule == "U210" for g in f.gates)
+    assert not any("cantus_firmus" in g for f in r.findings if f.voice == "Altus" for g in f.gates)
+
+
 def test_spans_split_at_rests():
     s = fixtures.build({"notes": "f2 g2 r2 a2 b2", "text": "Do- mi- nus et"})
     line = build_lines(s)[0]

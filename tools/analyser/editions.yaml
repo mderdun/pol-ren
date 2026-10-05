@@ -25,22 +25,26 @@ nunc-scio-vere:
   mensuration: cut
   mensuration_note: "editorial sign; the source is a tablature (critical edition, Note values)"
   waclaw_practice: true
+  # The cantus firmus spans the edition marks with \cfStart ... \cfEnd
+  # (music/voices.ily; critical edition, The music): gate cantus_firmus.
+  cantus_firmus:
+    - {voice: Tenor, from: 3, to: 11}       # Nunc scio vere: the chant's opening
+    - {voice: Cantus, from: 13, to: 56}     # quia ... Iudaeorum
+    - {voice: Bassus, from: 63, to: 71}     # the psalm tone on c: Gloria ... Sancto
+  # Proposed line by line for Miki's review (5 Oct 2026); the review page
+  # shows them in the verse with the translation. Not confirmed, so no rule
+  # weight yet. Modest: the words that carry each line's sense; secondary
+  # where a word travels with another (as consolari in Vox).
   key_words:
-    - {word: scio, source: "proposed, not confirmed"}
-    - {word: vere, source: "proposed, not confirmed"}
-    - {word: dominus, source: "proposed, not confirmed"}
-    - {word: angelum, source: "proposed, not confirmed"}
-    - {word: eripuit, source: "proposed, not confirmed"}
-    - {word: herodis, source: "proposed, not confirmed"}
-    - {word: exspectatione, source: "proposed, not confirmed"}
-    - {word: iudaeorum, source: "proposed, not confirmed"}
-    - {word: gloria, source: "proposed, not confirmed"}
-    - {word: patri, source: "proposed, not confirmed"}
-    - {word: filio, source: "proposed, not confirmed"}
-    - {word: spiritui, source: "proposed, not confirmed"}
-    - {word: sancto, source: "proposed, not confirmed"}
-    - {word: principio, source: "proposed, not confirmed"}
-    - {word: saeculorum, source: "proposed, not confirmed"}
+    - {word: scio, source: "proposed, not confirmed"}                       # ant. 1: now I know (Peter's recognition)
+    - {word: vere, rank: secondary, source: "proposed, not confirmed"}      # ant. 1: for certain; travels with scio
+    - {word: angelum, source: "proposed, not confirmed"}                    # ant. 2: the Lord has sent his angel
+    - {word: dominus, rank: secondary, source: "proposed, not confirmed"}   # ant. 2
+    - {word: eripuit, source: "proposed, not confirmed"}                    # ant. 3: and has rescued me
+    - {word: herodis, rank: secondary, source: "proposed, not confirmed"}   # ant. 3: from the hand of Herod
+    - {word: exspectatione, source: "proposed, not confirmed"}              # ant. 4: all that the people expected
+    - {word: gloria, source: "proposed, not confirmed"}                     # dox. 1: the three names are formula
+    - {word: semper, source: "proposed, not confirmed"}                     # dox. 2: now and always
 
 vox-in-rama:
   lang: la
