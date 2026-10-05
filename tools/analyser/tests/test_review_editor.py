@@ -109,3 +109,68 @@ def test_genuine_text_change_is_kept_and_refused(browser, tmp_path):
     n, out = _apply(edits)
     assert n == 1 and "changes the text" in out
     assert not errors
+
+
+def _keys(pg, nid, verse, *seq):
+    """Enter edit mode at a note, then type text or press named keys ("<Space>")."""
+    pg.evaluate("([id, v]) => RV.startEdit(id, v)", [nid, verse])
+    for s in seq:
+        if s.startswith("<"):
+            pg.keyboard.press(s.strip("<>"))
+        else:
+            pg.keyboard.type(s)
+    pg.wait_for_timeout(50)
+
+
+def _custom(pg):
+    return pg.evaluate("() => Object.values(RV.edits).filter(d => !d._seed && d.kind === 'custom')"
+                       ".map(d => JSON.parse(JSON.stringify(d)))")
+
+
+def _id_at(pg, voice, where):
+    return pg.evaluate("([v, w]) => RV.D.vnotes[v].find(id => RV.D.notes[id][0] === w)", [voice, where])
+
+
+def test_nunc_cantus_vere_vere_sequence(browser, tmp_path):
+    # Miki, live use: Cantus "Nunc sci-o ve-re, ve-re, sci-o ve-re". 'vere' on
+    # 4.3-4.4 and the repeat on 5.1/5.3; the repeat's own 've' must not be taken
+    # for the first one, and 'scio vere' at 8-11 stays where it is
+    pg, errors = _page(browser, tmp_path, "nunc-scio-vere")
+    _keys(pg, _id_at(pg, "Cantus", "4.4"), "1", "re", "<Space>", "ve", "<Space>", "<ArrowRight>", "re", "<Escape>")
+    docs = _custom(pg)
+    assert len(docs) == 1, docs
+    got = [(n["where"], n["syllable"]) for n in docs[0]["notes"]]
+    assert got == [("4.4", "re,"), ("5.1", "ve"), ("5.3", "re,"), ("6.2", None)], got
+    n, out = _apply(docs)
+    assert "REFUSED" not in out and "voices.ily is generated" in out, out
+    asks = out.split("asks:")[1].splitlines()[0]
+    assert "4.3 G4:ve-" in asks and "4.4 E4:re," in asks and "5.1 E4:ve-" in asks, asks
+    assert not errors
+
+
+def test_vox_move_later_backspace_and_reset(browser, tmp_path):
+    pg, errors = _page(browser, tmp_path, "vox-in-rama")
+    # a Bassus syllable with two free notes after it
+    a, a1, syl = pg.evaluate("""() => {
+      const v = RV.D.vnotes.Bassus, ly = id => (RV.D.ed[id][2]['1'] || null);
+      for (let k = 1; k + 2 < v.length; k++)
+        if (ly(v[k]) && !ly(v[k + 1]) && !ly(v[k + 2])) return [v[k], v[k + 1], ly(v[k])[0]];
+    }""")
+    # typing the syllable before the caret's slot moves it later, to the caret
+    _keys(pg, a1, "1", syl.rstrip(",.;:!?").lower(), "<Escape>")
+    got = {n["id"]: n["syllable"] for d in _custom(pg) for n in d["notes"]}
+    assert got == {a: None, a1: syl}, got
+    n, out = _apply(_custom(pg))
+    assert n == 0 and "+bassusWords" in out, out
+    # ⌫ on it moves it one note further
+    _keys(pg, a1, "1", "<Backspace>", "<Escape>")
+    got = {n["id"]: n["syllable"] for d in _custom(pg) for n in d["notes"]}
+    assert got[a] is None and a1 not in got and syl in got.values(), got
+    # Reset this voice: an inline confirm, then no custom edits left
+    pg.evaluate("([id]) => RV.startEdit(id, '1')", [a])
+    pg.click("#e-reset")
+    assert "Withdraw" in pg.inner_text("#dock")
+    pg.click("#e-reset-yes")
+    pg.keyboard.press("Escape")
+    assert _custom(pg) == []
+    assert not errors

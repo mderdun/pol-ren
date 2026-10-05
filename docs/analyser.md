@@ -159,13 +159,17 @@ Keyboard: → or J next finding, ← or Shift+J previous (K is *Keep*, so J/K co
 
 E, or a double-click on a note, enters edit mode (a single click selects a note). From a finding, the caret starts on its first note, from the reading on show. The caret is a box under the note on the lyric line; the word being placed is shown small above it, its placed syllables faint and the next one red.
 
-- Type the syllable: it appears under the note in red as you type. Typed without its printed punctuation or capital, it takes the text's own (*dis* is set as *dis,*).
-- Space ends the word and moves to the next note; `-` hyphenates and moves on; `_` or Shift+Space holds the syllable over the next note (a melisma) and moves on; on an empty caret it makes this note part of the previous syllable.
-- Backspace on an empty caret clears the note's syllable and moves back; Delete clears it without moving. ← → move between notes without changing anything; ↑ ↓ move to the voice above or below at the same moment; Tab changes verse (*Nunc*: antiphon and doxology; *Zmierzka*: the stanzas).
-- A syllable on a note too short for one (a fusa; under ¢ a semiminim, which needs a licence of 10.1) is ringed in amber with the reason; nothing is blocked.
-- Esc (or Enter, or *Done*) leaves edit mode. Edits are saved on leaving and after 1.5 s without typing: the voice's changed notes (changes up to four notes apart count as one passage) become one `custom` document each. Editing from a finding also records the finding as decided (`edited: true`).
+The voice's text is fixed; editing re-places it. The text is an ordered list of syllable slots (a repeated word is slots of its own: *ve-re, ve-re*), and a placement maps them to the voice's notes in strictly increasing order. The caret's slot is the first slot on or after the caret note; the word it belongs to is shown small above the caret, its placed syllables faint and that slot red.
 
-The voice's text is fixed: typing re-places it. A typed syllable that the voice sings on another note nearby (the same word or about two words either side; punctuation and capitals ignored) moves here: its old copy is cleared, and when it came from a later note the notes in between become a melisma of the syllable before, so the word re-lays from the caret. The saved document covers the whole span (the new note set, the old one cleared), so `edits apply --dry-run` takes a typical move without `--allow-text` (tests: `test_review_editor.py`, *Nunc* Altus *He-ro-dis* with *ro* drawn back to 33.1, and a *Vox* Bassus syllable drawn back over a melisma). Only a syllable that is not in the voice's text nearby is a text change: it is kept, ringed in amber ("text differs from the source text"), and `apply` still asks for `--allow-text`.
+- Type that slot's syllable (punctuation and capitals ignored; it keeps the text's own): it goes on the caret note, earlier than it was or where it was; the note it leaves becomes part of the syllable before. Typing the syllable *before* the caret's slot moves that one later, to the caret; only if the next slot is then at or before it is it pushed one note on, and so on only as far as the order needs. Nothing is looked up by text anywhere else, and no other slot moves. Anything else typed is a text change for the caret's slot: kept, placed at the caret, ringed in amber ("text differs from the source text"), and `apply` asks for `--allow-text`.
+- Space or `-` moves to the next note; with the move the caret's slot is the next one. `_` or Shift+Space holds the syllable sounding at the caret over the next note (a slot there is pushed on) and the caret follows.
+- Backspace or Delete on an empty caret moves this note's syllable one note later, if the next syllable leaves room (otherwise it says so and nothing changes); with letters typed it deletes the last one.
+- ← → move between notes without changing anything; ↑ ↓ move to the voice above or below at the same moment; Tab changes verse (*Nunc*: antiphon and doxology; *Zmierzka*: the stanzas).
+- A syllable on a note too short for one (a fusa; under ¢ a semiminim, which needs a licence of 10.1) is ringed in amber with the reason; nothing is blocked.
+- Esc (or Enter, or *Done*) leaves edit mode. Edits are saved on leaving and after 1.5 s without typing, as one `custom` document per voice and verse (`<slug>__<voice>-v<verse>`) listing exactly the notes whose syllable differs from the score with the decided readings: old notes cleared, new ones set. `edits apply` therefore sees a re-placement whole and takes it without `--allow-text`. Earlier per-passage documents of that voice are folded into it.
+- *Reset this voice* in the edit panel withdraws every custom edit of the voice, after a confirm in the panel.
+
+Tests (`test_review_editor.py`, Playwright and LilyPond): *Nunc* Cantus *ve-re* on 4.3–4.4 with the repeat on 5.1/5.3 and *sci-o ve-re* at 8–11 untouched (Miki's live case, where a search by text had taken the repeat's *ve*); *Nunc* Altus *ro* of *He-ro-dis* drawn back to 33.1; *Vox* Bassus syllables drawn back over a melisma, moved later by typing and by Backspace, and a voice reset; a genuine text change, refused by `apply`.
 
 Progress counts the findings pending review or new; where there are none (*Vox*, all accepted earlier) it reads "Nothing to review · 10 accepted earlier", and "All findings decided" once every one is.
 
@@ -174,7 +178,7 @@ Progress counts the findings pending review or new; where there are none (*Vox*,
 The page is published with `capabilities: {db: {}, user: {}}`. It asks for the db with `claude.use("db")` once rendered; until it answers, and where it never does (a local copy, a signed-out viewer), decisions and edits stay in the page and in the browser's storage, and the save dot says *Local only*. With a db, each is one document in the collection `edits`, written on every change, and a snapshot listener shows what is saved and the edits made in another view. A document:
 
 ```
-edits/<slug>__<fingerprint without slug, or voice-v<verse>-b<bar>>
+edits/<slug>__<fingerprint without slug, or <voice>-v<verse> (custom; -b<bar> in older documents)>
 { slug, kind: "alternative" | "custom", finding: <fingerprint> | null, rule, voice, verse,
   alternative: <k, 0 = keep the current> | null, edited?: true,
   notes: [{id: "Altus:37", bar: "12", pos: "2", pitch: "D5", where: "12.2", syllable: "di" | null, syllabic}],
@@ -182,7 +186,7 @@ edits/<slug>__<fingerprint without slug, or voice-v<verse>-b<bar>>
   updatedAt: <ISO>, by: <viewer id> | null }
 ```
 
-An alternative's `notes` are every note of the finding's span (null: no syllable starts there); a custom edit's are the notes of one edited passage of a voice and verse (version 2's documents, one per bar, are read the same way). Only ids are stored, never names.
+An alternative's `notes` are every note of the finding's span (null: no syllable starts there); a custom edit's are every note of the voice and verse whose syllable the editor changed (version 2's documents, one per bar, are read the same way). Only ids are stored, never names.
 
 Claude's recommendations are documents whose reason begins `Claude's recommendation:` (seeded into the db, and committed beside the page as `review/<slug>.recommendations.json`, which the page embeds so they show without a db too). They show as *Suggested* until the editor decides: taking or keeping replaces the document with his decision and keeps Claude's reason in `recommendation`; keeping a custom recommendation marks it `status: "declined"`, which `edits apply` skips. Claude reads the documents with the artifact's db (`ArtifactData`, collection `edits`), or the editor pastes the copied JSON into the chat.
 

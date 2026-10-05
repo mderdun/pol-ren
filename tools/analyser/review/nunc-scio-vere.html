@@ -21315,12 +21315,15 @@ c29 20 88 49 185 49z" fill="currentColor"/>
       }
     }
     // gentle validation: a new syllable on a note too short for one
-    var src = {};
-    base.forEach(function (b) { if (b) src[normSyl(b[0])] = true; });
+    // and a slot whose text is not the source text's (slot by slot)
+    var B = slotsOf(base), Pc = slotsOf(r), slotOf = {};
+    Pc.forEach(function (sl, x) { slotOf[sl.n] = x; });
     changed.forEach(function (i) {
       var c = r[i], id = ids[i], p = D.pos[id];
       if (!c || !p) return;
-      var why = src[normSyl(c[0])] ? shortNote(id) : "text differs from the source text";
+      if (E && E.buf && E.voice === v && i === E.i) return;   // still typing
+      var x = slotOf[i], same = x != null && B[x] && normSyl(B[x].t) === normSyl(c[0]);
+      var why = same ? shortNote(id) : "text differs from the source text";
       if (!why) return;
       var g = el(layerOf(p[0], "ed-layer"), "g", {});
       el(g, "title", {}, why);
@@ -21421,19 +21424,18 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     }
   }
 
-  // the base text's syllables, word by word: which word comes next at the caret
+  // the word of the caret's slot (the first slot on or after the caret note):
+  // its placed syllables faint, the one to place next red
   function hint(r) {
-    var base = baseOf(E.voice, E.verse).filter(Boolean);
-    if (!base.length) return null;
-    var k = 0;
-    for (var i = 0; i < E.i; i++) if (r[i]) k++;
-    if (r[E.i] && E.buf) { /* typing here: this syllable is k */ }
-    if (k >= base.length) k = base.length - 1;
+    var P = slotsOf(r);
+    if (!P.length) return null;
+    var k = Math.min(slotAt(P, E.i), P.length - 1);
+    var on = function (x) { return P[x].sb === "begin" || P[x].sb === "middle"; };
     var a = k, b = k;
-    while (a > 0 && (base[a - 1][1] === "begin" || base[a - 1][1] === "middle")) a--;
-    while (b < base.length - 1 && (base[b][1] === "begin" || base[b][1] === "middle")) b++;
+    while (a > 0 && on(a - 1)) a--;
+    while (b < P.length - 1 && on(b)) b++;
     var out = [];
-    for (var j = a; j <= b; j++) out.push([base[j][0], j < k ? "done" : (j === k ? "now" : "")]);
+    for (var j = a; j <= b; j++) out.push([P[j].t, j < k ? "done" : (j === k ? "now" : "")]);
     return out;
   }
 
@@ -21652,20 +21654,23 @@ c29 20 88 49 185 49z" fill="currentColor"/>
   function renderEditDock() {
     var id = D.vnotes[E.voice][E.i], n = D.notes[id];
     var vs = D.verses[E.voice] || ["1"];
+    var nv = voiceEdits(E.voice);
+    var r = readingsOf(E.voice, E.verse), c = r[E.i], warn = "";
+    if (c && !E.buf) {
+      var B = slotsOf(baseOf(E.voice, E.verse)), P = slotsOf(r), x = slotAt(P, E.i);
+      warn = B[x] && normSyl(B[x].t) === normSyl(c[0]) ? shortNote(id) : "Text differs from the source text.";
+    }
     dock.innerHTML =
       '<div class="d1"><span class="mode">Editing lyrics</span><p class="one">' + esc(E.voice) + (verseName(E.verse) ? " · " + esc(verseName(E.verse)) : "") +
       '</p><span class="lab tn">bar ' + esc(n[0]) + " · " + esc(n[1]) + " " + esc(n[2]) + (vs.length > 1 ? " · Tab: " + esc(vs.map(verseName).join(" / ")) : "") + "</span>" +
-      '<span class="lab" id="e-st"></span><button type="button" class="btn" id="e-done" style="margin-left:auto">Done <kbd>Esc</kbd></button></div>' +
-      '<div class="ekeys"><span>type the syllable</span><span><kbd>Space</kbd> word ends, next note</span><span><kbd>-</kbd> hyphen, next note</span>' +
-      '<span><kbd>_</kbd> or <kbd>⇧Space</kbd> hold over the next note</span><span><kbd>⌫</kbd> clear, back</span><span><kbd>Del</kbd> clear</span>' +
+      '<span class="lab" id="e-st">' + esc(E.msg || "") + '</span><span class="acts">' +
+      (E.confirm ? '<span class="lab">Withdraw ' + nv + " edit" + (nv === 1 ? "" : "s") + " in the " + esc(E.voice) + '?</span><button type="button" class="btn pri" id="e-reset-yes">Withdraw</button><button type="button" class="btn" id="e-reset-no">Cancel</button>'
+        : (nv ? '<button type="button" class="btn" id="e-reset">Reset this voice</button>' : "")) +
+      '<button type="button" class="btn" id="e-done">Done <kbd>Esc</kbd></button></span></div>' +
+      '<div class="ekeys"><span>type the next syllable of the text at the caret</span><span><kbd>Space</kbd> / <kbd>-</kbd> next note</span>' +
+      '<span><kbd>_</kbd> or <kbd>⇧Space</kbd> hold over the next note</span><span><kbd>⌫</kbd> / <kbd>Del</kbd> this syllable one note later</span>' +
       '<span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>↑</kbd><kbd>↓</kbd> voice</span></div>' +
-      (function () {
-        var c = readingsOf(E.voice, E.verse)[E.i];
-        if (!c) return "";
-        var inSrc = baseOf(E.voice, E.verse).some(function (b) { return b && normSyl(b[0]) === normSyl(c[0]); });
-        var w = inSrc ? shortNote(id) : "text differs from the source text";
-        return w ? '<div class="warnl">' + esc(w) + "</div>" : "";
-      })();
+      (warn ? '<div class="warnl">' + esc(warn) + "</div>" : "");
   }
 
   dock.addEventListener("click", function (e) {
@@ -21680,6 +21685,9 @@ c29 20 88 49 185 49z" fill="currentColor"/>
       case "add-reason": reasonOpen = true; renderDock(); break;
       case "undecide": undecide(); break;
       case "e-done": endEdit(); break;
+      case "e-reset": E.confirm = true; renderDock(); break;
+      case "e-reset-no": E.confirm = false; renderDock(); break;
+      case "e-reset-yes": resetVoice(E.voice); renderAll(); break;
     }
   });
 
@@ -21855,55 +21863,86 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     if (old && (isSugg(old) || old.recommendation)) { doc.recommendation = old.recommendation || old.reason; doc.recAlternative = old.recAlternative != null ? old.recAlternative : old.alternative; }
     put(doc);
   }
+  // ------------------------------------------------------------ the sequence model
+  // The voice's text is a fixed, ordered list of syllable slots (a repeat is a
+  // slot of its own); a placement maps slot k to a note, strictly increasing.
+  // The caret's slot is the first slot on or after the caret note. Typing places
+  // that slot (or, typing the slot before it, moves that one later); nothing is
+  // looked up by text elsewhere, and only a minimal run of later slots is ever
+  // pushed forward to keep the order.
   function cur_r() { var b = E.buf; E.buf = ""; var r = readingsOf(E.voice, E.verse, { preview: false }); E.buf = b; return r; }
   function setNote(i, val) { E.ch[i] = val; E.dirty = true; E.touched = true; schedule(); }
-  // the typed syllable goes onto the caret note; mode: "end" (word ends), "hy" (word goes on), "keep"
+  function normSyl(s) { return String(s || "").replace(/[*,.;:!?]+$/, "").toLowerCase(); }
+  function slotsOf(r) { var P = []; r.forEach(function (c, i) { if (c) P.push({ n: i, t: c[0], sb: c[1] }); }); return P; }
+  function slotAt(P, c) { for (var k = 0; k < P.length; k++) if (P[k].n >= c) return k; return P.length; }
+  function writeSlots(r, P) {
+    var nr = r.map(function () { return null; });
+    P.forEach(function (s) { nr[s.n] = [s.t, s.sb]; });
+    nr.forEach(function (c, i) {
+      var o = r[i];
+      if ((c ? c.join("|") : "") !== (o ? o.join("|") : "")) setNote(i, c);
+    });
+  }
+  // keep slot j onwards strictly after the slot before it, pushing forward only as far as needed
+  function pushFrom(P, j, N) {
+    for (var x = j; x < P.length; x++) {
+      if (P[x].n > P[x - 1].n) return true;
+      P[x].n = P[x - 1].n + 1;
+      if (P[x].n >= N) return false;
+    }
+    return true;
+  }
+  function say(msg) { E.msg = msg; }
+
   function commitBuf(mode) {
     if (!E) return;
     var typed = E.buf || "";
     E.buf = "";
-    var r = cur_r();
-    var i = E.i, c = r[i];
-    var text = typed || (c ? c[0] : "");
-    if (!text) return;
-    // the voice's text is fixed: typing a syllable that sits on another note
-    // nearby re-places it here (Sibelius-style), the word re-laid from the caret
-    if (typed) {
-      var m = sourceOf(r, i, typed);
-      if (m === i) return;
-      if (m != null) {
-        var syl = r[m];
-        if (m > i) { for (var j = i + 1; j <= m; j++) if (r[j]) setNote(j, null); }
-        else setNote(m, null);
-        setNote(i, [syl[0], syl[1]]);
-        (E.spans = E.spans || []).push([Math.min(i, m), Math.max(i, m)]);
-        return;
-      }
+    if (!typed) return;
+    var r = cur_r(), P = slotsOf(r), c = E.i, N = r.length;
+    var k = slotAt(P, c), t = normSyl(typed);
+    if (k < P.length && normSyl(P[k].t) === t) {
+      P[k].n = c;                                   // this slot, here (earlier, or where it was)
+    } else if (k > 0 && normSyl(P[k - 1].t) === t) {
+      if (P[k - 1].n === c) return;
+      P[k - 1].n = c;                               // the slot before, moved later to the caret
+      if (k < P.length && !pushFrom(P, k, N)) { say("No room after " + q(P[k - 1].t) + "."); return; }
+    } else {
+      // not the next syllable of the text: a text change for this slot, placed here
+      var ph = prevHy(r, c);
+      var sb = mode === "hy" ? (ph ? "middle" : "begin") : (ph ? "end" : "single");
+      if (k < P.length) { P[k].t = typed; P[k].n = c; if (mode === "hy" || mode === "end") P[k].sb = sb; }
+      else P.push({ n: c, t: typed, sb: sb });
+      say("Text differs from the source text.");
     }
-    // typed without the printed punctuation or capital: keep the text's own
-    if (typed) {
-      var h = hint(r), now = h && h.filter(function (x) { return x[1] === "now"; })[0];
-      if (now && now[0].replace(/[,.;:!?]+$/, "").toLowerCase() === typed.toLowerCase()) text = now[0];
-    }
-    var ph = prevHy(r, i), sb;
-    var goesOn = c ? (c[1] === "begin" || c[1] === "middle") : false;
-    if (mode === "hy") goesOn = true;
-    else if (mode === "end") goesOn = false;
-    else if (!typed) return;
-    sb = goesOn ? (ph ? "middle" : "begin") : (ph ? "end" : "single");
-    if (!c || c[0] !== text || c[1] !== sb) setNote(i, [text, sb]);
+    writeSlots(r, P);
   }
-  function normSyl(s) { return String(s || "").replace(/[*,.;:!?]+$/, "").toLowerCase(); }
-  // the note of the voice's reading that carries `typed` nearby: the same word
-  // or about two words either side (syllable order, not note distance); null if none
-  function sourceOf(r, i, typed) {
-    var t = normSyl(typed), k = 0, pos = [], best = null;
-    r.forEach(function (c, j) { if (c) pos.push(j); if (j < i && c) k++; });
-    pos.forEach(function (j, p) {
-      if (normSyl(r[j][0]) !== t || Math.abs(p - k) > 6) return;
-      if (best == null || Math.abs(j - i) < Math.abs(best - i)) best = j;
-    });
-    return best;
+  // ⌫ / Del on an empty caret: the syllable on this note moves one note later
+  // (this note joins the syllable before), if the next syllable leaves room
+  function shiftLater() {
+    var r = cur_r(), P = slotsOf(r), c = E.i;
+    var j = -1;
+    P.forEach(function (s, x) { if (s.n === c) j = x; });
+    if (j < 0) { say("No syllable on this note."); return; }
+    if (j === 0 && c === 0) { say("The first note keeps its syllable."); return; }
+    if (c + 1 >= r.length || (j + 1 < P.length && P[j + 1].n <= c + 1)) {
+      say("No room: " + q(P[j + 1] ? P[j + 1].t : P[j].t) + " is on the next note."); return;
+    }
+    P[j].n = c + 1;
+    writeSlots(r, P);
+  }
+  // _ / ⇧Space: the syllable sounding here holds over the next note; the caret follows
+  function extend() {
+    var r = cur_r(), P = slotsOf(r), c = E.i, N = r.length;
+    if (c + 1 >= N) return;
+    var j = -1;
+    P.forEach(function (s, x) { if (s.n === c + 1) j = x; });
+    if (j > 0) {
+      P[j].n = c + 2;
+      if (P[j].n >= N || !pushFrom(P, j + 1, N)) { say("No room to hold " + q(P[j - 1].t) + " longer."); return; }
+      writeSlots(r, P);
+    }
+    move(1);
   }
   function move(d) {
     var n = D.vnotes[E.voice].length;
@@ -21922,77 +21961,73 @@ c29 20 88 49 185 49z" fill="currentColor"/>
   var idleT = null;
   function schedule() { clearTimeout(idleT); idleT = setTimeout(function () { if (E) { commitBuf("keep"); flush(); renderAll(); } }, 1500); }
 
-  // group the voice's changed notes (against the reading without custom edits) into runs, one doc each
+  // one document per voice and verse: exactly the notes whose syllable differs
+  // from the reading without custom edits (old notes cleared, new ones set), so
+  // `edits apply` sees the whole re-placement at once
+  function voiceDocId(v, verse) { return safeId(D.slug + "__" + v + "-v" + verse); }
   function flush() {
     if (!E || !E.dirty) return;
     var v = E.voice, verse = E.verse;
     var plain = readingsOf(v, verse, { custom: false, preview: false, session: false });
     var full = readingsOf(v, verse, { preview: false });
-    var ids = D.vnotes[v];
-    var old = {}, spans = (E.spans || []).slice();
+    var ids = D.vnotes[v], notes = [], recs = [], reason = "";
+    full.forEach(function (c, i) {
+      var b = plain[i];
+      if ((c ? c.join("|") : "") !== (b ? b.join("|") : "")) notes.push(noteRec(ids[i], c && c[0], c && c[1]));
+    });
+    var id = voiceDocId(v, verse);
     Object.keys(edits).forEach(function (k) {
       var d = edits[k];
       if (d.kind === "custom" && isMine(d) && d.status !== "declined" && d.voice === v && String(d.verse) === String(verse)) {
-        old[k] = d;
-        var xs = (d.notes || []).map(function (n) { return vidx[v][n.id]; }).filter(function (x) { return x != null; });
-        if (xs.length) spans.push([Math.min.apply(null, xs), Math.max.apply(null, xs)]);
+        if (d.reason) reason = reason || d.reason;
+        if (d.recommendation) recs.push(d.recommendation);
+        if (k !== id) withdraw(k);
       }
     });
-    function together(a, b) {
-      return b - a <= 4 || spans.some(function (sp) { return sp[0] <= a && b <= sp[1]; });
-    }
-    var runs = [], run = null;
-    full.forEach(function (c, i) {
-      var b = plain[i];
-      var diff = (c ? c.join("|") : "") !== (b ? b.join("|") : "");
-      // changes a few notes apart, or one re-placed syllable, are one passage: one document
-      if (diff) { if (run && together(run.end, i)) run.end = i; else { run = { start: i, end: i }; runs.push(run); } }
-    });
-    var seen = {};
     E.ch = {}; E.dirty = false;
-    runs.forEach(function (rn) {
-      var id = customId(v, verse, D.ed[ids[rn.start]][0]), n = 2;
-      while (seen[id]) id = customId(v, verse, D.ed[ids[rn.start]][0]) + "-" + (n++);
-      seen[id] = true;
-      var notes = [];
-      for (var i = rn.start; i <= rn.end; i++) notes.push(noteRec(ids[i], full[i] && full[i][0], full[i] && full[i][1]));
-      var prev = edits[id];
-      if (prev && isSugg(prev)) { /* the editor's own edit at a suggestion's place replaces it */ }
-      if (prev && JSON.stringify(prev.notes) === JSON.stringify(notes) && isMine(prev)) return;
+    var prev = edits[id];
+    if (!notes.length) { if (prev) withdraw(id); }
+    else if (!(prev && JSON.stringify(prev.notes) === JSON.stringify(notes))) {
       var doc = { id: id, slug: D.slug, kind: "custom", finding: null, voice: v, verse: verse, alternative: null,
-        notes: notes, reason: (prev && isMine(prev) && prev.reason) || "", status: "proposed" };
-      if (prev && (prev.recommendation || isSugg(prev))) doc.recommendation = prev.recommendation || prev.reason;
+        notes: notes, reason: reason, status: "proposed" };
+      if (recs.length) doc.recommendation = recs.join(" / ");
       put(doc);
+    }
+    say("Saved.");
+  }
+  // "Reset this voice's edits": every custom edit of the voice, after an inline confirm
+  function resetVoice(v) {
+    Object.keys(edits).forEach(function (k) {
+      var d = edits[k];
+      if (d.kind === "custom" && isMine(d) && d.voice === v) withdraw(k);
     });
-    Object.keys(old).forEach(function (k) { if (!seen[k]) withdraw(k); });
-    var st = $("e-st");
-    if (st) st.textContent = "saved";
+    if (E && E.voice === v) { E.ch = {}; E.buf = ""; E.dirty = false; }
+    E.confirm = false;
+    say("Edits in the " + v + " withdrawn.");
+  }
+  function voiceEdits(v) {
+    return Object.keys(edits).filter(function (k) { var d = edits[k]; return d.kind === "custom" && isMine(d) && d.voice === v; }).length;
   }
 
   function editKey(e) {
     var k = e.key;
     if (e.metaKey || e.ctrlKey || e.altKey) return false;
-    var r;
-    if (k === "Escape" || k === "Enter") { endEdit(); return true; }
+    E.msg = "";
+    if (k === "Escape" || k === "Enter") { if (E.confirm) { E.confirm = false; renderDock(); return true; } endEdit(); return true; }
     if (k === "Tab") {
       commitBuf("keep"); flush();
       var vs = D.verses[E.voice] || ["1"];
       E.verse = vs[(vs.indexOf(E.verse) + (e.shiftKey ? vs.length - 1 : 1)) % vs.length];
       E.ch = {}; E.fromF = null;
     } else if (k === " " && e.shiftKey || k === "_") {
-      if (E.buf) { commitBuf("keep"); move(1); setNote(E.i, null); move(1); }
-      else { if (E.i > 0) setNote(E.i, null); move(1); }
+      commitBuf("keep"); extend();
     } else if (k === " ") {
-      if (E.buf) commitBuf("end");
-      move(1);
+      commitBuf("end"); move(1);
     } else if (k === "-") {
-      if (E.buf) commitBuf("hy");
-      move(1);
-    } else if (k === "Backspace") {
+      commitBuf("hy"); move(1);
+    } else if (k === "Backspace" || k === "Delete") {
       if (E.buf) E.buf = E.buf.slice(0, -1);
-      else { if (E.i > 0) setNote(E.i, null); move(-1); }
-    } else if (k === "Delete") {
-      E.buf = ""; if (E.i > 0) setNote(E.i, null);
+      else shiftLater();
     } else if (k === "ArrowLeft" || k === "ArrowRight") {
       commitBuf("keep"); move(k === "ArrowLeft" ? -1 : 1);
     } else if (k === "ArrowUp" || k === "ArrowDown") {
@@ -22079,8 +22114,9 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     "<h4>Findings</h4><dl><dt><kbd>→</kbd> <kbd>J</kbd></dt><dd>next</dd><dt><kbd>←</kbd> <kbd>⇧J</kbd></dt><dd>previous</dd>" +
     "<dt><kbd>1</kbd>–<kbd>4</kbd></dt><dd>show a reading</dd><dt><kbd>↵</kbd></dt><dd>take it</dd><dt><kbd>K</kbd></dt><dd>keep current</dd>" +
     "<dt><kbd>E</kbd> or double-click</dt><dd>edit the lyrics</dd><dt><kbd>W</kbd></dt><dd>why</dd></dl>" +
-    "<h4>Editing</h4><dl><dt>letters</dt><dd>the syllable</dd><dt><kbd>Space</kbd></dt><dd>word ends, next note</dd><dt><kbd>-</kbd></dt><dd>hyphen, next note</dd>" +
-    "<dt><kbd>_</kbd> <kbd>⇧Space</kbd></dt><dd>hold over the next note</dd><dt><kbd>⌫</kbd> / <kbd>Del</kbd></dt><dd>clear (and back)</dd>" +
+    "<h4>Editing</h4><dl><dt>letters</dt><dd>place the text's next syllable here (the one shown red); typing the one before moves it here; anything else is a text change (amber)</dd>" +
+    "<dt><kbd>Space</kbd> <kbd>-</kbd></dt><dd>next note</dd>" +
+    "<dt><kbd>_</kbd> <kbd>⇧Space</kbd></dt><dd>hold over the next note</dd><dt><kbd>⌫</kbd> / <kbd>Del</kbd></dt><dd>this note's syllable one note later</dd>" +
     "<dt><kbd>↑</kbd> <kbd>↓</kbd></dt><dd>voice above, below</dd><dt><kbd>Tab</kbd></dt><dd>other verse</dd><dt><kbd>Esc</kbd></dt><dd>done (saves)</dd></dl>" +
     "<h4>View</h4><dl><dt><kbd>[</kbd></dt><dd>findings list</dd><dt><kbd>L</kbd></dt><dd>layers</dd><dt><kbd>Z</kbd> <kbd>X</kbd> <kbd>F</kbd></dt><dd>zoom out, in, fit</dd><dt><kbd>?</kbd></dt><dd>this list</dd></dl>";
 
