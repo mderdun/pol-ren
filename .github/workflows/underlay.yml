@@ -1,0 +1,76 @@
+# Underlay analyser (docs/analyser.md). Tests the analyser, re-exports the
+# MusicXML with LilyPond 2.24, and checks every edition's underlay against the
+# baseline. Fails only on a new firm-rule break (principles 10.1-10.5); every
+# other finding goes to the job summary, ranked by regret.
+name: underlay
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "editions/**"
+      - "tools/**"
+      - ".github/workflows/underlay.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  underlay:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LilyPond 2.24
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends lilypond
+          lilypond --version | head -1
+          lilypond --version | head -1 | grep -q " 2\.24\." || { echo "::error::LilyPond 2.24 needed"; exit 1; }
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: tools/analyser/requirements.txt
+
+      - name: Install the analyser's dependencies
+        run: pip install -r tools/analyser/requirements.txt
+
+      - name: Test the analyser
+        run: python -m pytest tools/analyser/tests -q
+
+      - name: Export MusicXML
+        run: make musicxml
+
+      - name: Is the committed MusicXML current?
+        run: |
+          if ! git diff --quiet -- 'editions/*/pdf/*.musicxml' 'editions/*/pdf/*.srcmap.tsv'; then
+            echo "::warning::make musicxml changed the committed MusicXML; commit the new export"
+            git diff --stat -- 'editions/*/pdf/*.musicxml' 'editions/*/pdf/*.srcmap.tsv'
+          fi
+
+      - name: Check the underlay
+        id: analyser
+        run: |
+          python -m tools.analyser check editions/*/pdf/*.musicxml \
+            --baseline tools/analyser/baseline.json \
+            --format markdown,github --out analyser-out \
+            --fail-on new-break
+
+      - name: Job summary
+        if: always()
+        run: |
+          if [ -f analyser-out/analyser.md ]; then
+            cat analyser-out/analyser.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: underlay-report
+          path: analyser-out/
+          if-no-files-found: ignore

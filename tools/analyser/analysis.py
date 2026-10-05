@@ -1,0 +1,63 @@
+"""All analysis layers of one edition, built once and shared by the rules."""
+from __future__ import annotations
+
+from bisect import bisect_right
+from dataclasses import dataclass, field
+
+from .ingest import parse
+from .model import Score
+from .text import Line, build_lines
+from .layers import cadence, dissonance, imitation, m21, phrase, sonority, texture
+
+
+@dataclass
+class Analysis:
+    score: Score
+    lines: list
+    stream: object = None
+    slices: list = field(default_factory=list)
+    dissonances: dict = field(default_factory=dict)   # (voice, ev) -> Dis
+    cadences: list = field(default_factory=list)
+    arrivals: dict = field(default_factory=dict)      # (voice, ev) -> Cadence
+    phrases: list = field(default_factory=list)
+    points: list = field(default_factory=list)
+    regions: list = field(default_factory=list)
+    cadential_words: dict = field(default_factory=dict)   # (voice, verse, word) -> Cadence
+    entry_of: dict = field(default_factory=dict)          # (voice, ev of a head note) -> (Point, Entry)
+
+    def homorhythmic(self, t) -> bool:
+        return any(r.contains(t) for r in self.regions)
+
+    def line(self, voice: str, verse: str) -> Line | None:
+        return next((ln for ln in self.lines if ln.voice == voice and ln.verse == verse), None)
+
+
+def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
+    if lines is None:
+        lines = build_lines(score)
+    a = Analysis(score=score, lines=lines)
+    a.stream = m21.build(score)
+    a.slices = sonority.slices(score, a.stream)
+    a.dissonances = dissonance.label(score, a.slices)
+    a.cadences = cadence.find(score, a.dissonances)
+    a.arrivals = cadence.arrivals(a.cadences)
+    a.phrases = phrase.phrases(score, lines, a.stream, a.arrivals)
+    a.points = imitation.points(score)
+    a.regions = texture.regions(score, a.slices)
+    for line in lines:
+        starts = line.starts
+        for (v, idx), cad in a.arrivals.items():
+            if v != line.voice or not starts:
+                continue
+            k = bisect_right(starts, idx) - 1
+            if k >= 0:
+                a.cadential_words[(line.voice, line.verse, line.syls[k].word)] = cad
+    for p in a.points:
+        for e in p.entries:
+            for idx in e.head:
+                a.entry_of[(e.voice, idx)] = (p, e)
+    return a
+
+
+def analyse_path(path) -> Analysis:
+    return analyse(parse(path))

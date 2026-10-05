@@ -1,0 +1,20 @@
+id: U401
+name: dissonance-syllable
+level: info
+weight: 0.5
+tier: idiom
+principle: "10.6"
+authority: "Vicentino rule 12: no syllable on a dissonant note, except a fourth, especially syncopated (Harrán 1973b, 628–629); Towne 1990, R27, calls it impractical"
+message: "'{txt}' starts on a dissonant note ({label}, {interval} against the {against})"
+gates: {suspension: 0.25}
+examples:
+  flag:
+    - voices:
+        Cantus: {notes: "e2 f2 g4", text: "Do- mi- nus"}
+        Tenor:  {notes: "c,8", text: "et"}
+      rule_voice: Cantus
+      why: "f is a passing fourth against the lowest voice"
+  pass:
+    - voices:
+        Cantus: {notes: "e2 f2 g2 a2", text: "Do- _ mi- nus"}
+        Tenor:  {notes: "c,8", text: "et"}

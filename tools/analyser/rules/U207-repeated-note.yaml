@@ -1,0 +1,15 @@
+id: U207
+name: repeated-note
+level: look
+weight: 1.5
+tier: idiom
+principle: "10.9"
+authority: "Stoquerus N4, ch. 15 (Rotola ed., 175–181); Towne 1990, R13"
+message: "'{txt}' runs over a repeated {pitch}; the second note could take the next syllable"
+examples:
+  flag:
+    - {notes: "f2 f2 g2 a2", text: "Do- _ mi- nus", at: 0}
+  pass:
+    - {notes: "f2 f2 g2", text: "Do- mi- nus"}
+    - {notes: "f2 g1 e1 e1 d2 c2", text: "Do- _ _ _ mi- nus", why: "the exception: the first of the pair is a semiminim after a note of its own value"}
+    - {ref: "plaude-euge/Discantus/1/22", why: "the repeated f′ takes -spi- (underlay review, October 2026)"}

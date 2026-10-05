@@ -9,7 +9,8 @@
 %% MusicXML export needs: the voice name, exact rational moments, the bar
 %% number and position, clef/key/time, ties, editorial accidentals (\fi), the
 %% house editorial signs (\ed, \sup), lyric syllables with hyphens and
-%% extenders, explicit bar lines, repeats and rubrics.
+%% extenders, explicit bar lines, repeats and rubrics; and each note's source
+%% location ("origin": file, line, column) for the analyser's source map.
 
 \version "2.24.0"
 
@@ -121,8 +122,13 @@
         (listeners
          ((note-event engraver ev)
           (if (prx-voice-ok? ctx)
-              (let ((p (ly:event-property ev 'pitch)))
+              (let ((p (ly:event-property ev 'pitch))
+                    (loc (ly:event-property ev 'origin #f)))
                 (header!)
+                (if (ly:input-location? loc)
+                    (let ((flc (ly:input-file-line-char-column loc)))
+                      (prx-emit "origin" (ly:context-id ctx) (prx-now ctx)
+                                (car flc) (cadr flc) (cadddr flc))))
                 (apply prx-emit "note" (ly:context-id ctx) (prx-now ctx)
                        (append (prx-timing ctx)
                                (prx-dur (ly:event-property ev 'duration))

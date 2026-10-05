@@ -1,0 +1,124 @@
+# Latin lexicon for the series' texts (principles 10.8: the penultimate rule as
+# taught in Kraków, Sebastian z Felsztyna 1518).
+#
+# One entry per word form, keyed by the form in lower case without accents or
+# punctuation. `syl` gives the syllables as the editions divide them, with the
+# stressed syllable in capitals; a word with no capitals has no stress of its
+# own (a proclitic or a fragment). `class`:
+#   light     proclitics and short particles that lean on the next word (10.6:
+#             et, in, de ...); the old audit's LIGHT list
+#   function  pronouns, auxiliaries, conjunctions and adverbs that carry little
+#             weight in the sentence but have their own accent
+#   content   everything else
+#   fragment  a piece of a word that the source repeats on its own (Plaude: um, lis)
+# Key words (class key) are marked per edition in editions.yaml, not here.
+#
+# `src` says where the stress decision comes from:
+#   q     Latin quantity rule (a long penult takes the stress, otherwise the
+#         antepenult), applied to the word's classical vowel lengths
+#   old   agrees with STRESS in tools/underlay_audit.py, the series' earlier list
+#   rev   stated in the underlay review, docs/reviews/underlay-2026-10.md
+#   chant accent printed in the edition's own chant text (Nunc scio, psalm verse)
+#   mono  monosyllable
+# Every entry was checked by hand on 4 October 2026 (Claude); `ok: MD` marks the
+# ones the editor has confirmed. Unconfirmed entries are listed by
+# `python -m tools.analyser lexicon`.
+
+words:
+  # light words (underlay_audit.py LIGHT)
+  et:      {syl: et, class: light, src: mono}
+  in:      {syl: in, class: light, src: mono}
+  de:      {syl: de, class: light, src: mono}
+  ad:      {syl: ad, class: light, src: mono}
+  a:       {syl: a, class: light, src: mono}
+  ab:      {syl: ab, class: light, src: mono}
+  cum:     {syl: cum, class: light, src: mono}
+  per:     {syl: per, class: light, src: mono}
+  pro:     {syl: pro, class: light, src: mono}
+  sub:     {syl: sub, class: light, src: mono}
+  ex:      {syl: ex, class: light, src: mono}
+  e:       {syl: e, class: light, src: mono}
+  nec:     {syl: nec, class: light, src: mono}
+  sed:     {syl: sed, class: light, src: mono}
+  ut:      {syl: ut, class: light, src: mono}
+  qui:     {syl: qui, class: light, src: mono}
+  quae:    {syl: quae, class: light, src: mono}
+  quod:    {syl: quod, class: light, src: mono}
+  te:      {syl: te, class: light, src: mono}
+  me:      {syl: me, class: light, src: mono}
+  se:      {syl: se, class: light, src: mono}
+  nos:     {syl: nos, class: light, src: mono}
+  vos:     {syl: vos, class: light, src: mono}
+
+  # Nunc scio vere (antiphon, doxology)
+  nunc:            {syl: NUNC, class: function, src: mono}
+  scio:            {syl: SCI-o, class: content, src: "q old"}
+  vere:            {syl: VE-re, class: content, src: "q old"}
+  quia:            {syl: QUI-a, class: function, src: "q old"}
+  misit:           {syl: MI-sit, class: content, src: "q old"}
+  dominus:         {syl: DO-mi-nus, class: content, src: "q old"}
+  angelum:         {syl: AN-ge-lum, class: content, src: "q old"}
+  suum:            {syl: SU-um, class: function, src: "q old"}
+  eripuit:         {syl: e-RI-pu-it, class: content, src: "q old"}
+  manu:            {syl: MA-nu, class: content, src: "q old"}
+  herodis:         {syl: he-RO-dis, class: content, src: "q old"}
+  omni:            {syl: OM-ni, class: content, src: "q old"}
+  exspectatione:   {syl: ex-spe-cta-ti-O-ne, class: content, src: "q old"}
+  plebis:          {syl: PLE-bis, class: content, src: "q old"}
+  iudaeorum:       {syl: iu-dae-O-rum, class: content, src: "q old"}
+  gloria:          {syl: GLO-ri-a, class: content, src: "q old"}
+  patri:           {syl: PA-tri, class: content, src: "q old"}
+  filio:           {syl: FI-li-o, class: content, src: "q old"}
+  spiritui:        {syl: SPI-ri-tu-i, class: content, src: "q old"}
+  sancto:          {syl: SAN-cto, class: content, src: "q old"}
+  sicut:           {syl: SI-cut, class: function, src: "q old"}
+  erat:            {syl: E-rat, class: function, src: "q old"}
+  principio:       {syl: prin-CI-pi-o, class: content, src: "q old"}
+  semper:          {syl: SEM-per, class: content, src: "q old"}
+  saecula:         {syl: SAE-cu-la, class: content, src: "q old"}
+  saeculorum:      {syl: sae-cu-LO-rum, class: content, src: "q old"}
+  amen:            {syl: A-men, class: content, src: "q old"}
+  # Nunc scio vere, psalm verse (chant; not analysed, listed for completeness)
+  tu:              {syl: TU, class: function, src: mono}
+  cognovisti:      {syl: co-gno-VI-sti, class: content, src: "q chant"}
+  sessionem:       {syl: ses-si-O-nem, class: content, src: "q chant"}
+  meam:            {syl: ME-am, class: function, src: q}
+  resurrectionem:  {syl: re-sur-re-cti-O-nem, class: content, src: "q chant"}
+  domine:          {syl: DO-mi-ne, class: content, src: "q chant"}
+  probasti:        {syl: pro-BA-sti, class: content, src: "q chant"}
+
+  # Vox in Rama
+  vox:             {syl: VOX, class: content, src: mono}
+  rama:            {syl: RA-ma, class: content, src: "q old"}
+  audita:          {syl: au-DI-ta, class: content, src: "q old"}
+  est:             {syl: EST, class: function, src: mono}
+  ploratus:        {syl: plo-RA-tus, class: content, src: "q old"}
+  ululatus:        {syl: u-lu-LA-tus, class: content, src: "q old rev"}
+  rachel:          {syl: RA-chel, class: content, src: old, note: "Hebrew name; the penultimate of a two-syllable word"}
+  plorans:         {syl: PLO-rans, class: content, src: "q old"}
+  filios:          {syl: FI-li-os, class: content, src: "q old"}
+  suos:            {syl: SU-os, class: function, src: "q old"}
+  noluit:          {syl: NO-lu-it, class: content, src: "q old"}
+  consolari:       {syl: con-so-LA-ri, class: content, src: "q old rev"}
+  non:             {syl: NON, class: function, src: mono}
+  sunt:            {syl: SUNT, class: function, src: mono}
+
+  # Plaude euge theotocos
+  plaude:          {syl: PLAU-de, class: content, src: "q old"}
+  euge:            {syl: EU-ge, class: content, src: "q old"}
+  theotocos:       {syl: the-o-TO-cos, class: content, src: "old rev", note: "Greek accent (theotókos); the Latin quantity rule would give the-O-to-cos. To confirm."}
+  regina:          {syl: re-GI-na, class: content, src: "q old"}
+  virginum:        {syl: VIR-gi-num, class: content, src: "q old rev"}
+  salus:           {syl: SA-lus, class: content, src: "q old"}
+  hominum:         {syl: HO-mi-num, class: content, src: "q old"}
+  confidencium:    {syl: con-fi-DEN-ci-um, class: content, src: "q old", note: "medieval spelling of confidentium"}
+  laudantes:       {syl: lau-DAN-tes, class: content, src: "q old"}
+  inspice:         {syl: IN-spi-ce, class: content, src: "q old rev"}
+  miseros:         {syl: MI-se-ros, class: content, src: "q old"}
+  despice:         {syl: DE-spi-ce, class: content, src: "q old"}
+  misericordie:    {syl: mi-se-ri-COR-di-e, class: content, src: "q old", note: "medieval spelling of misericordiae"}
+  oculis:          {syl: O-cu-lis, class: content, src: "q old"}
+  hos:             {syl: HOS, class: function, src: mono}
+  respice:         {syl: RE-spi-ce, class: content, src: "q old rev"}
+  um:              {syl: um, class: fragment, src: mono, note: "the source repeats the last syllable of confidencium"}
+  lis:             {syl: lis, class: fragment, src: mono, note: "the source repeats the last syllable of oculis"}

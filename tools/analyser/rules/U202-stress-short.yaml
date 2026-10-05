@@ -1,0 +1,16 @@
+id: U202
+name: stress-short
+level: look
+legacy: true
+weight: 2.0
+tier: stress
+principle: "10.6"
+authority: "Zarlino I (Harrán 1973a, 48–49); Towne 1990, R28–R29; Towne 1991, 164 (the accent tells at semibreve, minim and semiminim level)"
+message: "'{txt}' ({word}) shorter and weaker than the syllable after it"
+gates: {cadence_approach: 0.5, homorhythm: 1.5, older_practice: 0.5}
+examples:
+  flag:
+    - {notes: "r2 f1 g4 a2", text: "Do- mi- nus", at: 0, why: "DO- on an off-beat semiminim, -mi- on a semibreve"}
+  pass:
+    - {notes: "f4 g2 a2", text: "Do- mi- nus"}
+    - {ref: "plaude-euge/Discantus/1/22", why: "in-SPI-ce: the repeated f′ takes -spi- (10.9); underlay review, October 2026"}

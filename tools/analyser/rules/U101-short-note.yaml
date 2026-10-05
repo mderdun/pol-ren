@@ -1,0 +1,24 @@
+id: U101
+name: short-note
+level: break
+hard: true
+legacy: true
+weight: 0
+tier: firm
+principle: "10.1"
+authority: "Lanfranco II, Zarlino I (Harrán 1973a, 35–36); Lanfranco V, Zarlino IV–VI (Harrán 1973a, 40–41); under C, Stoquerus (Rotola ed., 227, 243)"
+message: "'{txt}' on a note shorter than a {unit}"
+examples:
+  flag:
+    - {notes: "f2 g1 a2", text: "Do- mi- nus", at: 1, why: "a semiminim after a plain minim"}
+    - {notes: "f3 g1/2 a1/2 b2", text: "Do- mi- _ nus", at: 1, why: "a fusa after a dotted minim: only the semiminim may take it"}
+    # the underlay review of October 2026, on Vox in Rama before its fixes
+    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/11", why: "au- on a semiminim (review: Altus 11-12)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/12", why: "-di-, -ta on semiminims"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/6", why: "Ra- on a semiminim (review: Tenor 6)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/37", why: "-la- on a semiminim after -so- (review: Tenor 37)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/40", why: "-la- on the repeated e′ semiminim (review: Tenor 40)"}
+  pass:
+    - {notes: "f3 g1 a2", text: "Do- mi- nus", why: "the semiminim after a dotted minim"}
+    - {notes: "f2 g1 a2", text: "Do- mi- nus", sign: C, why: "under C semiminims count as minims"}
+    - {notes: "r2 g1 a2 b2", text: "Do- mi- nus", why: "the first note after a rest (10.2)"}

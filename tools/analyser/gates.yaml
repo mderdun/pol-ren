@@ -1,0 +1,39 @@
+# Context gates: named multipliers that the music layers apply to a rule's
+# weight. A rule lists the gates it accepts, with its factor, in its own YAML
+# (`gates: {cadence_approach: 0.5}`); this file says what each gate means and
+# which layer decides it. Every finding lists the gates that applied.
+
+cadence_approach:
+  layer: cadence
+  when: "the syllable belongs to the last word before a cadence arrival in its voice"
+  why: "Lanfranco VIII: the extra notes go to the penultimate (Harrán 1973a, 44–46); principles 10.3 and 10.7 govern the clausula"
+
+cadence_lower_note:
+  layer: cadence
+  when: "the lower note of a rising octave is a cadence arrival in this voice"
+  why: "principles 10.6: where the lower note is a cadence note carrying a phrase's last syllable, 10.3 wins"
+
+evaded_cadence:
+  layer: cadence
+  when: "the cadence is evaded or abandoned rather than completed"
+  why: "an evaded cadence does not close the sentence, so 10.3 binds less"
+
+suspension:
+  layer: dissonance
+  when: "the dissonant note is a suspension (prepared, resolving down by step)"
+  why: "Vicentino rule 12 exempts the syncopated dissonance (Harrán 1973b, 628–629)"
+
+full_point:
+  layer: imitation
+  when: "the entry belongs to a point of imitation with three or more entries"
+  why: "principles 10.10: a point carries the words of its head motif wherever it recurs"
+
+homorhythm:
+  layer: texture
+  when: "the syllable starts inside a homorhythmic passage"
+  why: "principles 10.6: where the music declaims, the words shape it"
+
+older_practice:
+  layer: edition
+  when: "the edition is set as older practice (editions.yaml: older_practice)"
+  why: "Towne 1990, 285: poor accentuation may be an acceptable result of counterpoint in an older piece; Harrán 1997, 243, 257–260"

@@ -1,0 +1,16 @@
+id: U201
+name: light-on-beat
+level: look
+legacy: true
+weight: 1.0
+tier: light
+principle: "10.6"
+authority: "Towne 1990, R29 (Vicentino ch. 29; Stoquerus ch. 23): accented syllables on accented beats"
+message: "'{txt}' on the {place}, {value}"
+gates: {homorhythm: 1.5, older_practice: 0.5}
+examples:
+  flag:
+    - {notes: "f4 g2 a2 g2 a2", text: "Do- mi- nus et _", at: 3, why: "et on the bar inside moving minims"}
+  pass:
+    - {notes: "f4 g2 a2 g2 a2", text: "Do- mi- nus _ et", why: "et off the beat, leading in"}
+    - {notes: "f4 g2 a2 g4", text: "Do- mi- nus et", why: "on a long note the choice is textural (10.6)"}
