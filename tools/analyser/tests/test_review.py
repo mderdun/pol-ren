@@ -24,12 +24,21 @@ def _common(text):
     assert urls <= {"http://www.w3.org/2000/svg", "http://www.w3.org/1999/xlink"}, urls
     # browser storage only as a convenience, behind try; no dialogs, no downloads;
     # the db only through claude.use(), never window.claude.db
-    assert text.count("window.localStorage") == 2 and "try { window.localStorage" in text.replace("try {\n", "try { ")
+    ls = [ln for ln in text.splitlines() if "window.localStorage" in ln]
+    assert len(ls) == 2 and all(re.search(r"try \{.*window\.localStorage", ln) for ln in ls), ls
     for bad in ("alert(", "confirm(", "prompt(", "download=", "window.claude.db", "fetch("):
         assert bad not in text, bad
     assert 'window.claude.use' in text
     assert ':root:not([data-theme="light"])' in text and ':root[data-theme="dark"]' in text
     assert len(text.encode("utf-8")) < 16 * 1024 * 1024
+    # page contract: content only, the title first; one screen (no document scroll)
+    assert text.startswith("<title>")
+    assert not re.search(r"<(!doctype|html|head|body)[\s>]", text, re.I)
+    assert "html, body { height: 100%; margin: 0; overflow: hidden; }" in text
+    assert "prefers-reduced-motion" in text and "#9a1e1e" in text.lower()
+    # the main view carries no summary tiles, regrets list or edits box
+    for gone in ('class="summary"', 'class="tops"', 'id="ed-list"', 'id="edits"'):
+        assert gone not in text, gone
     d = _data(text)
     assert d["findings"] and all(f["notes"] for f in d["findings"])
     return d
@@ -55,7 +64,7 @@ def test_page_with_the_score(tmp_path):
     assert len(d["pos"]) == len(d["notes"])
     assert text.count('class="nh"') >= len(d["notes"])
     assert "textedit://" not in text
-    for layer in ("cad", "dis", "phr", "imi", "hom"):
+    for layer in ("cad", "dis", "phr", "imi", "hom", "tac", "kw"):
         assert f'class="layer layer-{layer}"' in text
     # every syllable the analyser sees is tagged with its note in the drawing,
     # and each voice's lyric line has a baseline in each system
@@ -82,6 +91,34 @@ def test_edit_data(tmp_path, monkeypatch):
     if alt is not None:
         k = next(i for i, a in enumerate(alt["alternatives"], 1) if a.get("edit") == "drop")
         assert len(alt["pl"][k]) == len(alt["pl"][0]) - 1
+
+
+def test_plain_lines_and_systems(tmp_path, monkeypatch):
+    # v3 (Miki: "so much text on the pages that it all reads as noise"): each
+    # finding has a one-line plain reading, with no rule id or number in it
+    monkeypatch.setattr(review, "render_svg", lambda slug: [])
+    d = _data(review.build(VOX, tmp_path / "vox.html").read_text(encoding="utf-8"))
+    for f in d["findings"]:
+        assert f["plain"] and "\n" not in f["plain"] and not re.search(r"\bU\d{3}\b|\d\.\d\d", f["plain"]), f["plain"]
+        assert isinstance(f["t"], float)
+    u301 = next(f for f in d["findings"] if f["rule"] == "U301")
+    assert re.match(r"‘.+’ comes after the cadence on \w", u301["plain"]), u301["plain"]
+    assert set(d["on"]) == set(d["ed"]) and d["mens"]
+    assert d["sys"] == [] and d["seed"] == []
+
+
+def test_plain_cadence_line():
+    class Fk:
+        rule, text, word = "U301", "ple", "plebis"
+        message = "the arrival carries 'ple', and 'bis,' comes after it (clausula vera cadence on C, full)"
+    assert review.plain(Fk) == "‘bis’ comes after the cadence on C"
+
+
+def test_recommendations_are_seeded():
+    # Claude's recommendations for Nunc travel with the page, as suggestions
+    seeds = review.seeds("nunc-scio-vere")
+    assert seeds and all(s["reason"].startswith("Claude's recommendation:") for s in seeds)
+    assert review.seeds("vox-in-rama") == []
 
 
 def test_key_words_in_context(tmp_path, monkeypatch):

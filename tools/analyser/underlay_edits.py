@@ -414,6 +414,9 @@ def apply_edits(edits: list, *, dry_run: bool = True, allow_text: bool = False, 
                         print(f"REFUSED {eid}: {r}", file=out)
                         refused += 1
                         continue
+                    if e.get("status") == "declined":
+                        print(f"{eid}: declined on the page (nothing to change)", file=out)
+                        continue
                     if e.get("kind") == "alternative" and not e.get("alternative"):
                         print(f"{eid}: keeps the current reading (nothing to change)", file=out)
                         continue

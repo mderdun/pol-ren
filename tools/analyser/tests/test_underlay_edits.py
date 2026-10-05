@@ -70,6 +70,15 @@ def test_custom_edit_vox(vox):
     assert "now:" in out and "asks:" in out
 
 
+def test_declined_suggestion_changes_nothing(vox):
+    # review page v3: a suggestion the editor declines stays in the db, marked declined
+    edit, _ = _move_back(vox, "Bassus")
+    edit["status"] = "declined"
+    edit["recommendation"] = "Claude's recommendation: test"
+    n, out = _apply([edit])
+    assert n == 0 and "declined on the page" in out and "+bassusWords" not in out
+
+
 def test_alternative_vox(vox):
     res = run(ROOT / "editions" / "vox-in-rama" / "pdf" / "vox-in-rama.musicxml")
     f = next(f for f in res.findings if f.alternatives and not f.alternatives[0].get("edit"))
