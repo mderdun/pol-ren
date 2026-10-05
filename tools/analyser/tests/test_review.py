@@ -22,7 +22,12 @@ def _common(text):
     # nothing loads from outside: the only URLs are the SVG namespaces
     urls = set(re.findall(r'https?://[^"\s)<]+', text))
     assert urls <= {"http://www.w3.org/2000/svg", "http://www.w3.org/1999/xlink"}, urls
-    assert "localStorage" not in text
+    # browser storage only as a convenience, behind try; no dialogs, no downloads;
+    # the db only through claude.use(), never window.claude.db
+    assert text.count("window.localStorage") == 2 and "try { window.localStorage" in text.replace("try {\n", "try { ")
+    for bad in ("alert(", "confirm(", "prompt(", "download=", "window.claude.db", "fetch("):
+        assert bad not in text, bad
+    assert 'window.claude.use' in text
     assert ':root:not([data-theme="light"])' in text and ':root[data-theme="dark"]' in text
     assert len(text.encode("utf-8")) < 16 * 1024 * 1024
     d = _data(text)
@@ -52,6 +57,31 @@ def test_page_with_the_score(tmp_path):
     assert "textedit://" not in text
     for layer in ("cad", "dis", "phr", "imi", "hom"):
         assert f'class="layer layer-{layer}"' in text
+    # every syllable the analyser sees is tagged with its note in the drawing,
+    # and each voice's lyric line has a baseline in each system
+    sylls = sum(1 for n in d["ed"].values() for _ in n[2])
+    tagged = re.findall(r'<g class="ly" data-n="([^"]+)" data-verse="(\d+)">', text)
+    assert len(set(tagged)) == sylls
+    assert all(d["tied"].values()) and d["lyb"]
+
+
+def test_edit_data(tmp_path, monkeypatch):
+    monkeypatch.setattr(review, "render_svg", lambda slug: [])
+    d = _data(review.build(VOX, tmp_path / "vox.html").read_text(encoding="utf-8"))
+    assert d["slug"] == "vox-in-rama" and set(d["vnotes"]) == set(d["parts"])
+    f = next(f for f in d["findings"] if len(f["pl"]) > 1)
+    assert len(f["pl"]) == len(f["alternatives"]) + 1
+    # each reading puts its syllables on notes of the span, with a syllabic
+    for row in f["pl"]:
+        assert all(p[0] in f["span"] and p[2] in ("begin", "middle", "end", "single") for p in row)
+    # the current reading is the score's
+    for nid, syl, sb in f["pl"][0]:
+        assert d["ed"][nid][2][f["verse"]] == [syl, sb]
+    # a dropped word: the alternative has one syllable fewer, and the rest keep theirs
+    alt = next((f for f in d["findings"] if any(a.get("edit") == "drop" for a in f["alternatives"])), None)
+    if alt is not None:
+        k = next(i for i, a in enumerate(alt["alternatives"], 1) if a.get("edit") == "drop")
+        assert len(alt["pl"][k]) == len(alt["pl"][0]) - 1
 
 
 def test_key_words_in_context(tmp_path, monkeypatch):

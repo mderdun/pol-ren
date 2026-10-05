@@ -1,4 +1,5 @@
-// Review page behaviour (tools/analyser/review.py). No storage, no requests.
+// Review page behaviour (tools/analyser/review.py): findings, the score, the
+// analysis layers. Underlay editing is in edit.js, which this hands RV to.
 (function () {
   "use strict";
   var D = JSON.parse(document.getElementById("data").textContent);
@@ -108,7 +109,8 @@
         (current === f.n ? ' aria-current="true"' : "") + '>' +
         '<span class="stripe"></span><span class="rgn" title="regret">' + rg + "</span>" +
         '<span class="t1"><b>' + esc(f.rule) + "</b>" + esc(f.voice) + (f.verse !== "1" ? " v" + esc(f.verse) : "") +
-        " · " + esc(f.where) + " · " + esc(f.level) + " " + st + "</span>" +
+        " · " + esc(f.where) + " · " + esc(f.level) + " " + st +
+        (window.RVmark ? window.RVmark(f) : "") + "</span>" +
         '<span class="t2">' + esc(f.message) + "</span></button></li>";
     }).join("") || '<li class="note">No findings match.</li>';
   }
@@ -202,9 +204,10 @@
       "<dt>Authority</dt><dd>" + esc(r.authority || "") + "</dd>" +
       (f.baseline ? "<dt>Baseline</dt><dd>" + esc(f.baseline.replace(/^pending: /, "")) + "</dd>" : "") +
       '<dt>Fingerprint</dt><dd class="mono">' + esc(f.fingerprint) + "</dd></dl>" +
-      principle + explain(f) +
+      '<div class="ed-box" id="ed-box"></div>' + principle + explain(f) +
       "<h3>The notes, as they stand and as the alternatives would set them</h3>" + gridHtml(f) + altsHtml(f) +
       "</div>";
+    document.dispatchEvent(new CustomEvent("rv:finding", { detail: { n: n } }));
     var found = highlight(f.notes, scroll);
     if (!found && scroll) detail.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   }
@@ -233,6 +236,8 @@
     tr.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
   });
 
+  window.RV = { D: D, show: show, highlight: highlight, pitch: pitch, esc: esc, renderList: renderList,
+                current: function () { return current; } };
   renderList();
   var open = D.findings.filter(function (f) { return f.level !== "info" && f.status !== "accepted"; })
     .sort(function (a, b) { return (b.regret || 0) - (a.regret || 0); });

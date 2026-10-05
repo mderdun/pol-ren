@@ -7,6 +7,7 @@
     python -m tools.analyser golden [--update]
     python -m tools.analyser legacy <musicxml>      # the old audit's output
     python -m tools.analyser review <musicxml> --html OUT.html
+    python -m tools.analyser edits apply EDITS.json [--dry-run]   # edits from the review page
 
 See docs/analyser.md. The analyser advises; it never changes an edition.
 """
@@ -21,7 +22,7 @@ from . import baseline as B
 from . import report
 from .ingest import ROOT, editions_config, slug_of
 
-COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy", "review")
+COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy", "review", "edits")
 DEFAULT_BASELINE = Path(__file__).resolve().parent / "baseline.json"
 GOLDEN = Path(__file__).resolve().parent / "tests" / "golden"
 
@@ -186,6 +187,9 @@ def cmd_review(a) -> int:
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "edits":
+        from .underlay_edits import main as edits_main
+        return edits_main(argv[1:])
     if not argv or argv[0] not in COMMANDS + ("-h", "--help"):
         argv.insert(0, "check")
     ap = argparse.ArgumentParser(prog="python -m tools.analyser", description=__doc__.split("\n\n")[0])

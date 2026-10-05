@@ -15,7 +15,10 @@ under each system for the analysis bands. LilyPond 2.24 is needed; without it
 the page is written with the findings and the tables, and a note in place of
 the score.
 
-Everything is inlined: no external requests, no storage. See docs/analyser.md.
+Everything is inlined: no external requests. Underlay edits made on the page
+(edit.js) are saved to the artifact's db when the page is served with one,
+kept in the browser otherwise, and can be copied as JSON for
+`python -m tools.analyser edits apply` (underlay_edits.py). See docs/analyser.md.
 """
 from __future__ import annotations
 
@@ -38,6 +41,7 @@ from .findings import LEVEL_ORDER, run
 from .ingest import ROOT
 from .rules import load, settings
 from .text import coverage, key_word_entries, lexicon
+from . import underlay_edits as UE
 
 HERE = Path(__file__).resolve().parent
 ASSETS = HERE / "review_assets"
@@ -128,9 +132,14 @@ def _value(d) -> str:
     return str(d)
 
 
-def map_svg(svg: str, keys: dict, page: int):
+def map_svg(svg: str, keys: dict, page: int, lyr: dict | None = None, voices_ily: str = ""):
     """Replace the textedit links by groups that carry the analyser's note ids.
-    Returns the new SVG, note positions {id: (page, x, y)} and the staves.
+    Returns the new SVG, note positions {id: (page, x, y)}, the staves, and
+    the lyric syllables found [(voice, verse, note id, x, y)].
+
+    The lyrics' links point at their tokens in voices.ily; `lyr` (from
+    underlay_edits.svg_tags) says which note each syllable, hyphen and
+    extender belongs to, so the page can hide and redraw them.
 
     A note's link can appear on several grobs: its head, an accidental, a
     dot, and the ambitus at the start of the staff. The head is taken from
@@ -156,16 +165,32 @@ def map_svg(svg: str, keys: dict, page: int):
         for nid in keys[key]:
             pos.setdefault(nid, (page, links[head][2][0], links[head][2][1]))
     out, last = [], 0
+    lyr = lyr or {}
+    found = []
     for n, (m, key, xy) in enumerate(links):
         out.append(svg[last:m.start()])
-        out.append(f'<g class="nh" data-n="{" ".join(keys[key])}">' if n in chosen else "<g>")
+        tag = lyr.get((key[1], key[2])) if key[0] == voices_ily else None
+        if n in chosen:
+            out.append(f'<g class="nh" data-n="{" ".join(keys[key])}">')
+        elif tag is not None:
+            kind, v, verse, ev, nx = tag
+            nid = f"{v}:{ev}"
+            if kind == "syl":
+                out.append(f'<g class="ly" data-n="{_esc(nid)}" data-verse="{_esc(verse)}">')
+                if xy is not None:
+                    found.append((v, verse, nid, xy[0], xy[1]))
+            else:
+                nxa = f' data-nx="{_esc(v)}:{nx}"' if nx is not None else ""
+                out.append(f'<g class="lyc" data-n="{_esc(nid)}" data-verse="{_esc(verse)}"{nxa}>')
+        else:
+            out.append("<g>")
         last = m.end()
     out.append(svg[last:])
     s = "".join(out).replace("</a>", "</g>")
     s = re.sub(r'<svg ([^>]*?)width="[^"]*" height="[^"]*"', r'<svg \1', s, count=1)
     s = s.replace('<svg ', f'<svg class="score-page" data-page="{page}" role="img" '
                   f'aria-label="Critical score, page {page + 1}" ', 1)
-    return s, pos, staves(svg)
+    return s, pos, staves(svg), found
 
 
 def staves(svg: str) -> list[dict]:
@@ -476,6 +501,54 @@ def _grid(f, a) -> dict | None:
     return {"cols": cols, "rows": rows}
 
 
+def _syllabics(cur: list, texts: list) -> list:
+    """Syllabic (begin, middle, end, single) for an alternative's syllables:
+    the current reading's, in order; a text edit's dropped word is matched
+    out, and a repeated word (marked *) is divided afresh."""
+    if len(texts) == len(cur):
+        return [c[1] for c in cur]
+    import difflib
+    a = [c[0] for c in cur]
+    b = [t.rstrip("*") for t in texts]
+    out = [None] * len(b)
+    for blk in difflib.SequenceMatcher(a=a, b=b, autojunk=False).get_matching_blocks():
+        for k in range(blk.size):
+            if not texts[blk.b + k].endswith("*"):
+                out[blk.b + k] = cur[blk.a + k][1]
+    j = 0
+    while j < len(out):
+        if out[j] is None:
+            k = j
+            while k < len(out) and out[k] is None:
+                k += 1
+            n = k - j
+            for i in range(j, k):
+                out[i] = "single" if n == 1 else ("begin" if i == j else ("end" if i == k - 1 else "middle"))
+            j = k
+        else:
+            j += 1
+    return out
+
+
+def _placements(f, a) -> tuple[list, list]:
+    """The finding's span (note ids) and its readings: [current, alt 1, ...],
+    each [[note id, syllable, syllabic], ...] for the syllables of the span."""
+    if not f.span or not f.placement:
+        return [], []
+    evs = a.score.voices[f.voice]
+    span = [f"{f.voice}:{j}" for j in range(f.span[0], f.span[1]) if not evs[j].rest]
+    cur = []
+    for e, t in f.placement:
+        ly = evs[e].lyrics.get(f.verse)
+        cur.append((t, ly.syllabic if ly else "single"))
+    rows = [[[f"{f.voice}:{e}", t, sb] for (e, t), (_, sb) in zip(f.placement, cur)]]
+    for alt in f.alternatives:
+        texts = [t for _, t in alt["placement"]]
+        sbs = _syllabics(cur, texts)
+        rows.append([[f"{f.voice}:{e}", t.rstrip("*"), sb] for (e, t), sb in zip(alt["placement"], sbs)])
+    return span, rows
+
+
 def page_data(res, a, base: dict) -> dict:
     rules = load()
     gates_doc = yaml.safe_load((HERE / "gates.yaml").read_text(encoding="utf-8"))
@@ -486,6 +559,7 @@ def page_data(res, a, base: dict) -> dict:
         if f.baseline:
             status = "accepted" if f.baseline.startswith("accepted") else "pending"
         r = rules[f.rule]
+        span, pl = _placements(f, a)
         findings.append({
             "n": n, "rule": f.rule, "name": f.name, "level": f.level, "voice": f.voice, "verse": f.verse,
             "where": f.where, "bar": f.bar, "word": f.word, "text": f.text, "message": f.message,
@@ -495,7 +569,7 @@ def page_data(res, a, base: dict) -> dict:
                 {k: v for k, v in alt.items() if k != "placement"} for alt in f.alternatives],
             "src": f.src, "fingerprint": f.fingerprint, "status": status, "baseline": f.baseline or "",
             "notes": [f"{f.voice}:{j}" for j in f.notes],
-            "grid": _grid(f, a), "weight": r.weight, "tier": r.tier})
+            "grid": _grid(f, a), "weight": r.weight, "tier": r.tier, "span": span, "pl": pl})
     used = sorted({f.rule for f in res.findings})
     rule_info = {rid: {"name": rules[rid].name, "principle": rules[rid].principle,
                        "authority": rules[rid].authority, "weight": rules[rid].weight, "tier": rules[rid].tier,
@@ -713,6 +787,35 @@ def lexicon_html(rows: list) -> str:
     return "".join(out)
 
 
+def edit_data(sc, all_sys: list, lyr_found: list, aligned: dict) -> dict:
+    """What the page needs to show and record underlay edits: each note's bar,
+    position and syllables; each voice's notes in order; where each system's
+    lyric lines and staves lie; which voices' lyrics are tied to voices.ily."""
+    nsys, lyb, stb = {}, defaultdict(list), {}
+    for i, s in enumerate(all_sys):
+        for st in s["staves"]:
+            if st.get("voice"):
+                stb[f"{i}|{st['voice']}"] = round(st["bot"], 3)
+            for n in st["notes"]:
+                nsys[n] = i
+    for v, verse, nid, x, y in lyr_found:
+        if nid in nsys:
+            lyb[f"{nsys[nid]}|{v}|{verse}"].append(y)
+    ed = {}
+    for v in sc.parts:
+        for e in sc.voices[v]:
+            if e.rest:
+                continue
+            ed[f"{v}:{e.idx}"] = [str(e.measure), str(F(e.pos)),
+                                  {k: [l.text, l.syllabic] for k, l in e.lyrics.items()}]
+    return {"slug": sc.slug, "parts": sc.parts, "ed": ed,
+            "vnotes": {v: [f"{v}:{e.idx}" for e in sc.voices[v] if not e.rest] for v in sc.parts},
+            "verses": {v: sorted({k for e in sc.voices[v] for k in e.lyrics}, key=int) for v in sc.parts},
+            "nsys": nsys, "lyb": {k: round(sorted(ys)[len(ys) // 2], 3) for k, ys in lyb.items()}, "stb": stb,
+            "tied": {f"{v}|{verse}": vl.ok for (v, verse), vl in aligned.items()},
+            "generated": UE.GENERATED.get(sc.slug, "")}
+
+
 def _git_rev() -> str:
     try:
         return subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True,
@@ -737,9 +840,14 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
         raw, note = [], str(e)
     all_sys = []
     mapped = []
+    lyr_found = []
+    voices_ily = f"editions/{sc.slug}/music/voices.ily"
+    aligned = UE.align(sc)
+    lyr = UE.svg_tags(sc)
     for i, svg in enumerate(raw):
-        s, p, st = map_svg(svg, keys, i)
+        s, p, st, fl = map_svg(svg, keys, i, lyr, voices_ily)
         pos.update(p)
+        lyr_found.extend(fl)
         syss = systems(st, pos, notes_by_id, sc.parts, i)
         all_sys.extend(syss)
         mapped.append(s)
@@ -751,6 +859,7 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
     data = page_data(res, a, base)
     data["pos"] = {k: [v[0], round(v[1], 2), round(v[2], 2)] for k, v in pos.items()}
     data["notes"] = {n["id"]: [n["where"], n["name"], n["dur"]] for n in notes}
+    data.update(edit_data(sc, all_sys, lyr_found, aligned))
 
     c = Counter(f.level for f in res.findings)
     st = Counter(f["status"] for f in data["findings"])
@@ -761,8 +870,8 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
     tops = [f for f in data["findings"] if f["regret"] and f["status"] != "accepted"]
     tops = sorted(tops, key=lambda f: -f["regret"])[:5]
 
-    css = (ASSETS / "page.css").read_text(encoding="utf-8")
-    js = (ASSETS / "page.js").read_text(encoding="utf-8")
+    css = (ASSETS / "page.css").read_text(encoding="utf-8") + "\n" + (ASSETS / "edit.css").read_text(encoding="utf-8")
+    js = (ASSETS / "page.js").read_text(encoding="utf-8") + "\n" + (ASSETS / "edit.js").read_text(encoding="utf-8")
     level_cards = "".join(
         f'<button type="button" class="lvl lvl-{lv}" data-level="{lv}"><span class="lvl-n">{c.get(lv, 0)}</span>'
         f'<span class="lvl-l">{lv}</span></button>' for lv in ("break", "warn", "look", "info"))
@@ -819,6 +928,20 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
   </div>
 </section>
 
+<section class="edits" id="edits" aria-label="Underlay edits">
+  <div class="edits-head">
+    <h2 class="h-small">Underlay edits <span id="ed-count"></span></h2>
+    <div class="edits-actions">
+      <button type="button" class="btn primary" id="ed-copy">Copy edits as JSON</button>
+      <button type="button" class="btn" id="ed-showjson">Show JSON</button>
+      <span class="note" id="ed-copied" role="status"></span>
+    </div>
+  </div>
+  <p class="note ed-db" id="ed-db" role="status"></p>
+  <ol class="ed-list" id="ed-list"></ol>
+  <textarea id="ed-json" class="ed-json mono" rows="8" readonly hidden aria-label="Edits as JSON"></textarea>
+</section>
+
 <div class="work">
 <aside class="list" aria-label="Findings">
   <div class="filters">
@@ -844,9 +967,11 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
   <section class="score" aria-label="Score">
     <div class="toolbar">
       <div class="togs">{layer_boxes}</div>
+      <button type="button" class="btn" id="ed-mode" aria-pressed="false">Edit underlay</button>
       <div class="zoom"><button type="button" id="z-out" aria-label="Smaller">−</button>
         <button type="button" id="z-in" aria-label="Larger">+</button></div>
     </div>
+    <div class="ed-note" id="ed-note" hidden></div>
     <div class="paper" id="paper">{score_html}</div>
     <p class="note">Critical score, rendered by LilyPond from editions/{_esc(sc.slug)}/music/score.ly. Hover a mark for
     its detail. Bands under each system: cadences (◆, with type and tone), entries of each point of imitation,
