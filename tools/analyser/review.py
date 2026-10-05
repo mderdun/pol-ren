@@ -15,10 +15,13 @@ under each system for the analysis bands. LilyPond 2.24 is needed; without it
 the page is written with the findings and the tables, and a note in place of
 the score.
 
-Everything is inlined: no external requests. Underlay edits made on the page
-(edit.js) are saved to the artifact's db when the page is served with one,
-kept in the browser otherwise, and can be copied as JSON for
-`python -m tools.analyser edits apply` (underlay_edits.py). See docs/analyser.md.
+Everything is inlined (review_assets/app.css, app.js): no external requests.
+The page is one screen: a top bar, the score canvas, a findings rail and an
+inspector dock showing one finding at a time, in plain words (`plain`).
+Decisions and lyric edits made on the page are saved to the artifact's db when
+the page is served with one, kept in the browser otherwise, and can be copied
+as JSON for `python -m tools.analyser edits apply` (underlay_edits.py). See
+docs/analyser.md.
 """
 from __future__ import annotations
 
@@ -277,7 +280,7 @@ def _t(x, y, text, cls, anchor="middle", title=None):
             f'{html.escape(text)}</text>')
 
 
-def overlays(a, pos, syss, notes_by_id) -> dict:
+def overlays(a, pos, syss, notes_by_id, lyr_found=()) -> dict:
     """page -> SVG fragment with one group per layer."""
     sc = a.score
     sys_of = {}
@@ -431,6 +434,39 @@ def overlays(a, pos, syss, notes_by_id) -> dict:
                 f'height="{s["bot"] - s["top"] + 2:.2f}" class="ov-hom-area"/>'
                 f'<rect x="{x0:.2f}" y="{y0 - 0.5:.2f}" width="{max(0.5, x1 - x0):.2f}" height="1"/></g>')
 
+    # against the tactus: a thin line over each displaced note
+    for d in a.displaced:
+        title = f"against the tactus from {d.where} ({d.kind}): {', '.join(d.voices)}"
+        for v, i in d.notes:
+            n = nid(v, i)
+            if n not in pos:
+                continue
+            pg, x, y = pos[n]
+            st = staff_of(n)
+            ys = (min(st["top"], y) if st else y) - 1.6
+            layers[pg]["tac"].append(f'<g class="ov-tac"><title>{html.escape(title)}</title>'
+                                     f'<path d="M{x - 0.2:.2f} {ys + 0.5:.2f} V{ys:.2f} H{x + 2.6:.2f}"/></g>')
+
+    # key words: a line under the word's syllables in the lyrics
+    keys = KT.key_entries(sc.config, sc.lang)
+    lxy = {(nid_, verse): (x, y) for _v, verse, nid_, x, y in lyr_found}
+    for ln in a.lines:
+        for w in ln.words:
+            k = keys.get(w.norm)
+            if not k:
+                continue
+            conf = k.get("confirmed", True)
+            title = f"key word: {w.text} ({k.get('source', '')})"
+            for si in w.syls:
+                n = nid(ln.voice, ln.syls[si].ev)
+                if (n, ln.verse) not in lxy or n not in pos:
+                    continue
+                x, y = lxy[(n, ln.verse)]
+                pg = pos[n][0]
+                layers[pg]["kw"].append(
+                    f'<g class="ov-kw{"" if conf else " prop"}"><title>{html.escape(title)}</title>'
+                    f'<line x1="{x - 0.2:.2f}" x2="{x + 2.2:.2f}" y1="{y + 0.6:.2f}" y2="{y + 0.6:.2f}"/></g>')
+
     out = {}
     for pg, L in layers.items():
         out[pg] = "".join(f'<g class="layer layer-{k}">{"".join(v)}</g>' for k, v in L.items()) \
@@ -549,6 +585,48 @@ def _placements(f, a) -> tuple[list, list]:
     return span, rows
 
 
+def _q(t) -> str:
+    return "\u2018" + str(t).strip(",.;:!?") + "\u2019"
+
+
+PLAIN = {
+    "U101": lambda f, m: f"{_q(f.text)} sits on a note too short for a new syllable",
+    "U102": lambda f, m: f"{_q(f.text)} on a semiminim, but the next note has no syllable",
+    "U103": lambda f, m: f"After the rest, the first note has no new syllable",
+    "U104": lambda f, m: f"A rest falls inside the word {f.word}",
+    "U105": lambda f, m: f"Elision at {_q(f.text)}",
+    "U106": lambda f, m: f"{_q(f.text)} on a semiminim, under a licence",
+    "U201": lambda f, m: f"Light word {_q(f.text)} on the strong beat",
+    "U202": lambda f, m: f"Stressed {_q(f.text)} is shorter than the syllable after it",
+    "U203": lambda f, m: f"{_q(f.text)} straight after a run of short notes",
+    "U204": lambda f, m: f"{_q(f.text)} starts on the top of a leap up an octave",
+    "U205": lambda f, m: f"Light word {_q(f.text)} carries a long run",
+    "U206": lambda f, m: f"Long run on unstressed {_q(f.text)} of {f.word}",
+    "U207": lambda f, m: f"{_q(f.text)} runs over a repeated note",
+    "U208": lambda f, m: f"{_q(f.text)} ends in a consonant but is held over a melisma",
+    "U209": lambda f, m: f"Consonants pile up on a short note at {_q(f.text)}",
+    "U210": lambda f, m: f"Stressed {_q(f.text)} of {f.word} falls off the beat",
+    "U301": lambda f, m: (f"{_q(m.group(2))} comes after the cadence on {m.group(4)}" if m
+                          else f"{_q(f.text)} is off the cadence"),
+    "U302": lambda f, m: f"Long melisma on {_q(f.text)} just before the cadence",
+    "U303": lambda f, m: f"This entry sets {_q(f.word)} differently from the one it imitates",
+    "U304": lambda f, m: f"{_q(f.text)} goes its own way in a homorhythmic passage",
+    "U305": lambda f, m: f"The stanzas set {_q(f.text)} differently",
+    "U306": lambda f, m: f"The motif carries different words at {_q(f.text)}",
+    "U401": lambda f, m: f"{_q(f.text)} starts on a dissonance",
+    "U501": lambda f, m: f"{_q(f.word)} is not in the lexicon",
+}
+CADENCE_MSG = re.compile(r"carries '(.+?)', and '(.+?)' comes after it \((.+?) cadence on ([^,)]+)")
+
+
+def plain(f) -> str:
+    """The finding in a singer's words, one line: no rule ids, no numbers."""
+    fn = PLAIN.get(f.rule)
+    if fn is None:
+        return f.message.replace("'", "\u2019")
+    return fn(f, CADENCE_MSG.search(f.message) if f.rule == "U301" else None)
+
+
 def page_data(res, a, base: dict) -> dict:
     rules = load()
     gates_doc = yaml.safe_load((HERE / "gates.yaml").read_text(encoding="utf-8"))
@@ -569,7 +647,9 @@ def page_data(res, a, base: dict) -> dict:
                 {k: v for k, v in alt.items() if k != "placement"} for alt in f.alternatives],
             "src": f.src, "fingerprint": f.fingerprint, "status": status, "baseline": f.baseline or "",
             "notes": [f"{f.voice}:{j}" for j in f.notes],
-            "grid": _grid(f, a), "weight": r.weight, "tier": r.tier, "span": span, "pl": pl})
+            "grid": _grid(f, a), "weight": r.weight, "tier": r.tier, "span": span, "pl": pl,
+            "plain": plain(f), "firm": r.hard,
+            "t": float(min((sc.voices[f.voice][j].onset for j in f.notes), default=0))})
     used = sorted({f.rule for f in res.findings})
     rule_info = {rid: {"name": rules[rid].name, "principle": rules[rid].principle,
                        "authority": rules[rid].authority, "weight": rules[rid].weight, "tier": rules[rid].tier,
@@ -811,6 +891,7 @@ def edit_data(sc, all_sys: list, lyr_found: list, aligned: dict) -> dict:
     return {"slug": sc.slug, "parts": sc.parts, "ed": ed,
             "vnotes": {v: [f"{v}:{e.idx}" for e in sc.voices[v] if not e.rest] for v in sc.parts},
             "verses": {v: sorted({k for e in sc.voices[v] for k in e.lyrics}, key=int) for v in sc.parts},
+            "on": {f"{v}:{e.idx}": float(e.onset) for v in sc.parts for e in sc.voices[v] if not e.rest},
             "nsys": nsys, "lyb": {k: round(sorted(ys)[len(ys) // 2], 3) for k, ys in lyb.items()}, "stb": stb,
             "tied": {f"{v}|{verse}": vl.ok for (v, verse), vl in aligned.items()},
             "generated": UE.GENERATED.get(sc.slug, "")}
@@ -851,7 +932,7 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
         syss = systems(st, pos, notes_by_id, sc.parts, i)
         all_sys.extend(syss)
         mapped.append(s)
-    ov = overlays(a, pos, all_sys, notes_by_id) if mapped else {}
+    ov = overlays(a, pos, all_sys, notes_by_id, lyr_found) if mapped else {}
     for i, s in enumerate(mapped):
         k = s.rfind("</svg>")
         pages_svg.append(s[:k] + ov.get(i, "") + s[k:])
@@ -861,149 +942,56 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
     data["notes"] = {n["id"]: [n["where"], n["name"], n["dur"]] for n in notes}
     data.update(edit_data(sc, all_sys, lyr_found, aligned))
 
-    c = Counter(f.level for f in res.findings)
-    st = Counter(f["status"] for f in data["findings"])
-    kinds = Counter(cd.kind for cd in a.cadences)
-    lex = lexicon_rows(a)
-    kws = key_word_entries(sc.config)
-    title = f"{sc.title} underlay"
-    tops = [f for f in data["findings"] if f["regret"] and f["status"] != "accepted"]
-    tops = sorted(tops, key=lambda f: -f["regret"])[:5]
+    data["sys"] = [[sy["page"], round(sy["top"], 2), round(sy["bot"], 2), round(sy["x0"], 2), round(sy["x1"], 2)]
+                   for sy in all_sys]
+    data["mens"] = sc.config.get("mensuration", "")
+    data["title"] = sc.title
+    data["seed"] = seeds(sc.slug)
+    data["verseNames"] = VERSE_NAMES.get(sc.slug, {})
 
-    css = (ASSETS / "page.css").read_text(encoding="utf-8") + "\n" + (ASSETS / "edit.css").read_text(encoding="utf-8")
-    js = (ASSETS / "page.js").read_text(encoding="utf-8") + "\n" + (ASSETS / "edit.js").read_text(encoding="utf-8")
-    level_cards = "".join(
-        f'<button type="button" class="lvl lvl-{lv}" data-level="{lv}"><span class="lvl-n">{c.get(lv, 0)}</span>'
-        f'<span class="lvl-l">{lv}</span></button>' for lv in ("break", "warn", "look", "info"))
-    top_html = "".join(
-        f'<li><button type="button" class="link" data-f="{f["n"]}"><span class="rg">{f["regret"]:.2f}</span> '
-        f'{_esc(f["rule"])} {_esc(f["voice"])} {_esc(f["where"])}: {_esc(f["message"])}</button></li>' for f in tops)
-    kw_conf = [k["word"] for k in kws if k["confirmed"]]
-    kw_prop = [k["word"] for k in kws if not k["confirmed"]]
-    rules_opts = "".join(f'<option value="{rid}">{rid} {_esc(r["name"])}</option>' for rid, r in data["rules"].items())
-    voice_opts = "".join(f'<option value="{_esc(v)}">{_esc(v)}</option>' for v in sc.parts)
+    css = (ASSETS / "app.css").read_text(encoding="utf-8")
+    js = (ASSETS / "app.js").read_text(encoding="utf-8")
+    title = f"{sc.title} review"
     score_html = ("".join(f'<div class="page">{s}</div>' for s in pages_svg) if pages_svg else
-                  f'<p class="note pad">The score could not be rendered here (LilyPond 2.24 is needed). {_esc(note)}</p>')
-    layer_boxes = "".join(
-        f'<label class="tog"><input type="checkbox" id="lay-{k}" data-layer="{k}"{" checked" if on else ""}>'
-        f'<span class="sw sw-{k}"></span>{label}</label>'
-        for k, label, on in (("cad", "Cadences", True), ("dis", "Dissonance", False), ("phr", "Phrases", False),
-                             ("imi", "Imitation", True), ("hom", "Homorhythm", True)))
-    mens = sc.config.get("mensuration_note", "")
-
+                  f'<p class="noscore">The score could not be rendered here (LilyPond 2.24 is needed). {_esc(note)}</p>')
     doc = f"""<title>{_esc(title)}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 {css}
 </style>
-<div class="wrap">
-<header class="head">
-  <p class="eyebrow">Polish Early Music · underlay analyser · review</p>
-  <h1>{_esc(sc.title)}</h1>
-  <p class="sub">{_esc(sc.slug)} · generated {date.today().isoformat()}{(' from ' + _esc(_git_rev())) if _git_rev() else ''} ·
-  mensuration {_esc(sc.config.get('mensuration', ''))}{(' (' + _esc(mens) + ')') if mens else ''}</p>
+<div class="app" id="app">
+<header class="bar" role="toolbar" aria-label="Review">
+  <button type="button" class="ib" id="b-rail" aria-label="Findings list" aria-expanded="true" title="Findings ( [ )"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
+  <button type="button" class="ttl" id="b-about" aria-haspopup="dialog" title="About this piece">{_esc(sc.title)}</button>
+  <div class="prog" title="Findings decided"><span id="prog-n" class="tn">0 / 0</span><span class="prog-l">decided</span><span class="prog-bar"><i id="prog-bar"></i></span></div>
+  <div class="nav"><button type="button" class="ib" id="b-prev" aria-label="Previous finding" title="Previous ( J or ← )">‹</button><button type="button" class="ib" id="b-next" aria-label="Next finding" title="Next ( K… → )">›</button></div>
+  <span class="grow"></span>
+  <div class="zoom" role="group" aria-label="Zoom"><button type="button" class="ib" id="z-out" aria-label="Zoom out" title="Zoom out (Z)">−</button><button type="button" class="ib txt" id="z-fit" title="Fit width (F)">Fit</button><button type="button" class="ib" id="z-in" aria-label="Zoom in" title="Zoom in (X)">+</button></div>
+  <div class="pop-wrap"><button type="button" class="ib txt" id="b-layers" aria-haspopup="true" aria-expanded="false" title="Layers (L)">Layers</button>
+    <div class="pop" id="p-layers" hidden></div></div>
+  <div class="pop-wrap"><button type="button" class="ib" id="b-keys" aria-haspopup="true" aria-expanded="false" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button>
+    <div class="pop keys" id="p-keys" hidden></div></div>
+  <span class="save" id="save" tabindex="0" role="status"><i></i><span class="save-l">Local only</span></span>
+  <div class="pop-wrap"><button type="button" class="ib" id="b-menu" aria-haspopup="true" aria-expanded="false" aria-label="More" title="More">⋯</button>
+    <div class="pop menu" id="p-menu" hidden><button type="button" id="m-copy">Copy edits as JSON</button><p class="pop-n" id="m-msg" role="status"></p><textarea id="m-json" rows="6" readonly hidden aria-label="Edits as JSON"></textarea></div></div>
 </header>
-
-<section class="summary" aria-label="Summary">
-  <div class="sum-block">
-    <h2 class="h-small">Findings by level</h2>
-    <div class="lvls">{level_cards}</div>
-    <p class="note">Levels are set by regret (warn {data['levels']['warn']}, look {data['levels']['look']}); a break
-    is a firm rule (10.1, 10.2, 10.4, 10.5). Baseline: {st.get('accepted', 0)} accepted, {st.get('pending', 0)} pending
-    review, {st.get('new', 0)} new (information findings are not tracked).</p>
-  </div>
-  <div class="sum-block">
-    <h2 class="h-small">Biggest regrets, open</h2>
-    <ol class="tops">{top_html or '<li class="note">None.</li>'}</ol>
-  </div>
-  <div class="sum-block">
-    <h2 class="h-small">Analysis</h2>
-    <p class="facts">{kinds.get('full', 0)} cadences, {kinds.get('evaded', 0) + kinds.get('abandoned', 0)} evaded or
-    abandoned, {kinds.get('weak', 0)} weak figures · {len(a.points)} points of imitation ·
-    {len(a.regions)} homorhythmic passages · {len(a.displaced)} spans against the tactus · {len(a.duos)} upper-voice duos · {sum(1 for d in a.dissonances.values() if d.label == 'suspension')} suspensions ·
-    {len(lex)} words, {sum(1 for r in lex if not r['known'])} not in the lexicon.</p>
-    <p class="note">Key words: {len(kw_conf)} confirmed, {len(kw_prop)} proposed (not yet in effect);
-    <a href="#keywords">read them in the text, with the translation</a>.</p>
-  </div>
-</section>
-
-<section class="edits" id="edits" aria-label="Underlay edits">
-  <div class="edits-head">
-    <h2 class="h-small">Underlay edits <span id="ed-count"></span></h2>
-    <div class="edits-actions">
-      <button type="button" class="btn primary" id="ed-copy">Copy edits as JSON</button>
-      <button type="button" class="btn" id="ed-showjson">Show JSON</button>
-      <span class="note" id="ed-copied" role="status"></span>
-    </div>
-  </div>
-  <p class="note ed-db" id="ed-db" role="status"></p>
-  <ol class="ed-list" id="ed-list"></ol>
-  <textarea id="ed-json" class="ed-json mono" rows="8" readonly hidden aria-label="Edits as JSON"></textarea>
-</section>
-
-<div class="work">
-<aside class="list" aria-label="Findings">
-  <div class="filters">
-    <label for="f-level">Level</label>
-    <select id="f-level"><option value="open">look or worse</option><option value="all">all</option>
-      <option value="break">break</option><option value="warn">warn</option><option value="look">look</option>
-      <option value="info">info</option></select>
-    <label for="f-rule">Rule</label>
-    <select id="f-rule"><option value="">all rules</option>{rules_opts}</select>
-    <label for="f-voice">Voice</label>
-    <select id="f-voice"><option value="">all voices</option>{voice_opts}</select>
-    <label class="tog small"><input type="checkbox" id="f-acc"> hide accepted</label>
-  </div>
-  <p class="note" id="f-count"></p>
-  <ol class="findings" id="findings"></ol>
+<aside class="rail" id="rail" aria-label="Findings">
+  <div class="chips" id="chips"></div>
+  <div class="rows" id="rows"></div>
 </aside>
-
-<main class="main">
-  <section class="detail" id="detail" aria-live="polite">
-    <p class="note pad">Choose a finding to see its rule, why it costs what it costs, and the readings the
-    analyser would sing instead. Its notes light up in the score.</p>
-  </section>
-  <section class="score" aria-label="Score">
-    <div class="toolbar">
-      <div class="togs">{layer_boxes}</div>
-      <button type="button" class="btn" id="ed-mode" aria-pressed="false">Edit underlay</button>
-      <div class="zoom"><button type="button" id="z-out" aria-label="Smaller">−</button>
-        <button type="button" id="z-in" aria-label="Larger">+</button></div>
-    </div>
-    <div class="ed-note" id="ed-note" hidden></div>
-    <div class="paper" id="paper">{score_html}</div>
-    <p class="note">Critical score, rendered by LilyPond from editions/{_esc(sc.slug)}/music/score.ly. Hover a mark for
-    its detail. Bands under each system: cadences (◆, with type and tone), entries of each point of imitation,
-    homorhythmic passages. On the staff: rings at cadence arrivals with the voice's function, dissonance labels
-    above the notes (S suspension with its figure and an arc to the resolution, p passing, ap accented passing,
-    n neighbour, c cambiata, a anticipation, e échappée, ? unexplained), phrase brackets under each staff.
-    {len(unmapped)} of {len(notes)} notes could not be tied to the drawing.</p>
-  </section>
+<main class="canvas" id="canvas" aria-label="Score">
+  <div class="paper" id="paper">{score_html}</div>
 </main>
+<section class="dock" id="dock" aria-label="Finding"></section>
+<div class="scrim" id="scrim" hidden></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<div class="about" id="about" role="dialog" aria-labelledby="about-h" hidden>
+  <div class="about-in">
+  <div class="about-head"><h2 id="about-h">{_esc(sc.title)}</h2><button type="button" class="ib" id="about-x" aria-label="Close">×</button></div>
+  {about_html(sc, a, data, res)}
+  </div>
 </div>
-
-<section class="layers" aria-label="Analysis layers">
-  <h2>Analysis layers</h2>
-  <p class="note">Positions are bar.minim (16.3 is the third minim of bar 16). Click a row to find its notes in the score.</p>
-  {tables(a)}
-  {metre_tables(a)}
-</section>
-
-<section class="keywords" id="keywords" aria-label="Key words in context">
-  <h2>Key words in context</h2>
-  {key_context_html(a)}
-</section>
-
-<section class="lexicon" aria-label="Lexicon">
-  <h2>Words and their stress</h2>
-  <p class="note">Every word the piece sings, as the lexicon divides it, the stressed syllable in capitals. Check the
-  stresses: the stress rules (U202, U206, U302) rest on them.</p>
-  {lexicon_html(lex)}
-</section>
-
-<footer class="foot"><p class="note">The analyser advises; it never changes an edition. Alternatives are readings to
-sing (principles 10.6). docs/analyser.md explains the rules, the costs and the regret.</p></footer>
 </div>
 <script type="application/json" id="data">{json.dumps(data, ensure_ascii=False).replace("</", "<\\/")}</script>
 <script>
@@ -1014,3 +1002,51 @@ sing (principles 10.6). docs/analyser.md explains the rules, the costs and the r
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(doc, encoding="utf-8")
     return out
+
+
+# Nunc: the antiphon and the doxology are lyric verses 1 and 2
+VERSE_NAMES = {"nunc-scio-vere": {"1": "Antiphon", "2": "Doxology"}}
+
+
+def seeds(slug: str) -> list:
+    """Claude's recommendations committed beside the page
+    (review/<slug>.recommendations.json): shown as suggestions until the
+    editor takes or declines them, also where the page has no db."""
+    p = HERE / "review" / f"{slug}.recommendations.json"
+    if not p.exists():
+        return []
+    try:
+        d = json.loads(p.read_text(encoding="utf-8"))
+    except ValueError:
+        return []
+    return [x for x in (d.get("edits", []) if isinstance(d, dict) else d) if isinstance(x, dict)]
+
+
+def about_html(sc, a, data, res) -> str:
+    """The "About this piece" panel: counts, analysis, key words in context,
+    and the layer tables and the lexicon folded away."""
+    c = Counter(f.level for f in res.findings)
+    st = Counter(f["status"] for f in data["findings"])
+    kinds = Counter(cd.kind for cd in a.cadences)
+    lex = lexicon_rows(a)
+    kws = key_word_entries(sc.config)
+    mens = sc.config.get("mensuration_note", "")
+    rev = _git_rev()
+    facts = [
+        ("Findings", f"{c.get('break', 0)} break · {c.get('warn', 0)} warn · {c.get('look', 0)} look · {c.get('info', 0)} info"),
+        ("Earlier review", f"{st.get('accepted', 0)} accepted · {st.get('pending', 0)} pending · {st.get('new', 0)} new"),
+        ("Cadences", f"{kinds.get('full', 0)} full · {kinds.get('evaded', 0) + kinds.get('abandoned', 0)} evaded or "
+                     f"abandoned · {kinds.get('weak', 0)} weak"),
+        ("Texture", f"{len(a.points)} points of imitation · {len(a.regions)} homorhythmic · {len(a.duos)} duos"),
+        ("Metre", f"{sc.config.get('mensuration', '')}{(' (' + mens + ')') if mens else ''} · "
+                  f"{len(a.displaced)} spans against the tactus"),
+        ("Words", f"{len(lex)} · {sum(1 for r in lex if not r['known'])} not in the lexicon · key words "
+                  f"{sum(1 for k in kws if k['confirmed'])} confirmed, {sum(1 for k in kws if not k['confirmed'])} proposed"),
+        ("Built", f"{date.today().isoformat()}{(' · ' + rev) if rev else ''}"),
+    ]
+    dl = "".join(f"<dt>{_esc(k)}</dt><dd>{_esc(v)}</dd>" for k, v in facts)
+    return (f'<dl class="facts">{dl}</dl>'
+            f'<section class="keywords" id="keywords" aria-label="Key words in context"><h3>Key words in context</h3>'
+            f'{key_context_html(a)}</section>'
+            f'<details class="more"><summary>Layers as tables</summary>{tables(a)}{metre_tables(a)}</details>'
+            f'<details class="more"><summary>Words and their stress</summary>{lexicon_html(lex)}</details>')
