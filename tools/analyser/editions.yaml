@@ -48,15 +48,16 @@ vox-in-rama:
   mensuration_note: "printed in the 1611 Tenor"
   waclaw_practice: false
   key_words:
-    - {word: vox, source: "proposed, not confirmed"}
-    - {word: rama, source: "proposed, not confirmed"}
-    - {word: ploratus, source: "proposed, not confirmed"}
-    - {word: ululatus, source: "proposed, not confirmed"}
-    - {word: rachel, source: "proposed, not confirmed"}
-    - {word: plorans, source: "proposed, not confirmed"}
-    - {word: filios, source: "proposed, not confirmed"}
-    - {word: consolari, source: "proposed, not confirmed"}
-    - {word: non, source: "proposed, not confirmed"}
+    # confirmed line by line (books/MIKI-VOX-REVIEW-3-2026-10-05.txt); Rama is not a key word
+    - {word: vox, source: "Miki, 5 Oct 2026"}                  # 1: the voice is heard
+    - {word: audita, source: "Miki, 5 Oct 2026"}               # 1
+    - {word: ploratus, source: "Miki, 5 Oct 2026"}             # 2
+    - {word: ululatus, source: "Miki, 5 Oct 2026"}             # 2
+    - {word: plorans, source: "Miki, 5 Oct 2026"}              # 3: the main key word of the piece
+    - {word: suos, source: "Miki, 5 Oct 2026"}                 # 3: her own children
+    - {word: noluit, source: "Miki, 5 Oct 2026"}               # 4
+    - {word: consolari, rank: secondary, source: "Miki, 5 Oct 2026"}   # 4: travels with noluit; no rule weight
+    - {word: non, source: "Miki, 5 Oct 2026"}                  # 5
 
 plaude-euge:
   lang: la

@@ -247,10 +247,10 @@ second (bar 17) the second note is black; corner brackets mark it.
 writes \textit{ij} four times for a repeated phrase (bars 21–22, 33–35, 35–37,
 43–45); there the Tenor's words are in angle brackets (principles 11.9). Its words fall where \sig{M}’s do. Where
 \sig{M} puts a new syllable on a semiminim, it is kept if principles 10.1
-allows it, and the critical note names the clause; in bar 12 of the Altus an
-older licence is used, for the reason given there. One light word is left
-out: the Tenor’s second \la{in} in bar 6 (principles 10.13). No word is left
-out of the head of an imitation: every statement of ‘et noluit’ is sung
+allows it, and the critical note names the clause. In bar 12 of the Altus
+the underlay departs from 10.1 for the singer’s sake, on the ground given in
+the note. No word of the text is left out (principles 10.13), and every
+statement of ‘et noluit’ is sung
 syllabically, on the same rhythm in each voice (principles 10.6, 10.10).
 One departure from the series rules is kept because the print shows it
 (principles 10.12): most statements set the unstressed ‘con-’ of ‘consolari’
@@ -290,8 +290,9 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
   g\sh′, ‘-ma’ on a′ (bar 6). \sig{N} is followed. Its melisma falls on the
   stressed syllable, and the Altus then says ‘vox in Rama, in Rama’ as the
   Cantus (bars 4–7) and Tenor (bars 3–9) do.}
-\cn{6}{T}{Underlay. \sig{M}: ‘in’ on e′, ‘Ra-’ on the semiminim a. Here the second
-  ‘in’ is left out and ‘Ra-’ takes e′ and the whole run.}
+\cn{6}{T}{Underlay. As \sig{M}: ‘in’ on e′, ‘Ra-’ on the semiminim a, the first
+  of the run, on the minim beat (principles 10.1(a)); the run keeps it. The
+  Tenor sings ‘vox in Rama, in Rama’ as the Cantus and Altus do.}
 \cn{8}{T}{Fusae g\sh′ f\sh′: \sig{T} without sharps; the minim g\sh′ that follows
   has its sharp in \sig{T}. \sig{N} and \sig{M} sharpen all three.}
 \cn{11–13}{A}{Underlay. \sig{M}: ‘au-di-ta est’ twice, with ‘au’, ‘di’ and ‘ta’ on
@@ -299,12 +300,17 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
   and out of its rhythm, so both are kept, with \la{est}. The first stands as
   in \sig{M}: ‘au-’ on the semiminim c″, which the next note repeats
   (principles 10.1(b)), ‘-di-’ c″ with the fusae, ‘-ta’ b′ straight after
-  them, at the phrase end (10.1(d)), ‘est’ c″. In the second, ‘au-’ e″,
-  ‘-di-’ on the semiminim d″ under the Cantus’s ‘-di-’, ‘-ta’ c″ and b′,
-  ‘est’ c″ (bar 13). \sig{M} has ‘-ta’ on the semiminim b′; here it moves
-  to c″, so that the semiminim d″ passes its syllable to the next note. A
-  syllable on that lone semiminim is none of the licences of 10.1; it is an
-  older licence, used for the imitation with the Cantus.}
+  them, at the phrase end (10.1(d)), ‘est’ c″. The second is also as
+  \sig{M}: ‘au-’ e″, ‘-di-’ on the semiminim d″ under the Cantus’s ‘-di-’
+  and through the c″, ‘-ta’ on the semiminim b′, ‘est’ c″ (bar 13). This
+  is an editorial departure from principles 10.1: a syllable on a lone
+  semiminim is none of its licences, and ‘-di-’ does not pass a syllable
+  to the next note. It is kept for singability. ‘-di-’ takes the falling
+  d″–c″, so that the line does not break into ‘au-di-ta-a est’ on two
+  separate vowel onsets. The reading chooses lyrical flow over the
+  play against the tactus, which Zieleński only hints at here; the
+  disorder comes with ‘ploratus et ululatus’ and the homorhythm of
+  ‘Rachel plorans’ (bars 23–27). (MD, 5 October 2026)}
 \cn{15}{T}{e′–d′ in ligature, e′ without flat in \sig{T}. \sig{N} and \sig{M} have
   e\fl′. With e\na′ the Tenor sounds a sixth below c″ and then a fifth below
   b′; with e\fl′ it forms a minor 6/3 and then the augmented triad
@@ -328,8 +334,11 @@ given at this edition’s pitch, with c′ as middle C. Voices: \voice{C},
   ‘-lu-’ e, ‘-la-’ d, ‘-tus’ a. The stressed ‘-la-’ (\la{ululātus}) has the
   d at the half-bar, and the Bassus answers the Cantus’s ‘ploratus et
   ululatus’ (bars 17–20) word for word (principles 10.10).}
-\cn{27}{B}{Underlay. \sig{M}: ‘su-’ on the semiminim d. Here on the semibreve a, with
-  the Tenor; ‘-os’ of ‘filios’ takes the run.}
+\cn{27}{B}{Underlay. As \sig{M}: ‘su-’ on the semiminim d, the first of the
+  run, on the minim beat (principles 10.1(a)); the run and the semibreve a
+  keep it. The Bassus then changes syllable with the other voices in the
+  homorhythm of bars 23–27, and ‘-os’ of ‘filios’ does not pass s–s into
+  ‘su-’ on the last fusa of a run (principles 10.6).}
 \cn{25, 31}{T}{The figure c\sh′–b–c′–d′ at the cadence: \sig{T} prints the sharp on
   the fusa and not on the minim. The minim’s sharp is editorial. \sig{N} and \sig{M}
   have it before the note.}
