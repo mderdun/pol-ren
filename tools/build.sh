@@ -59,7 +59,7 @@ build_dir() {  # $1 = directory, $2 = optional kind filter
       fi
     fi
     cp "$out/$name.pdf" "$src/pdf/"
-    rm -f "$src"/tmp*.out "$src"/tmp*.pdf "$src"/tmp*.aux "$src"/tmp*.log   # lilypond-book page probes
+    rm -f "$src"/tmp*.out "$src"/tmp*.pdf "$src"/tmp*.aux "$src"/tmp*.log "$src"/tmp*.prsys   # lilypond-book page probes
     echo "built ${src#$ROOT/}/pdf/$name.pdf ($(pdfinfo "$src/pdf/$name.pdf" | awk '/^Pages/{print $2}') pp.)"
     python3 "$ROOT/tools/check_pages.py" "$src/pdf/$name.pdf"
     # house finish: plate-and-paper texture, vector, text kept searchable
