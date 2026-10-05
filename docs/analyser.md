@@ -94,6 +94,7 @@ A gate is a named multiplier that a music layer applies to a rule's weight (`gat
 | tail_voice | cadence | the cadence-syllable rule counts half where other voices have begun new text during the last syllable |
 | against_tactus | meter | light-on-beat and stress-short count half where the voice plays against the tactus (`meter.displaced_spans`) in a span that begins a phrase for it; U210 instead accepts the displaced pulse as a beat there |
 | against_tactus_mid | meter | the same, at 0.75, where the span starts in the middle of the voice's phrase: there the play is a hint (Miki, 5 Oct 2026) |
+| cantus_firmus | edition | the run, repeated-note, short-melisma and clausula rules (U205–U208, U302) and imitation text (U303) count half inside a voice's cantus firmus span (`editions.yaml: cantus_firmus`; *Nunc scio*: Tenor 3–11, Cantus 13–56, Bassus 63–71), where the notes and syllable positions are the chant's; stress rules are not gated |
 
 ## The layers
 

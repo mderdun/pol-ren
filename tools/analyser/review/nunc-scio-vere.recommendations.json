@@ -1,0 +1,2142 @@
+[
+ {
+  "id": "nunc-scio-vere__Altus-v1-U301-plebis-0-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Altus|v1|U301|plebis#0|1",
+  "rule": "U301",
+  "voice": "Altus",
+  "verse": "1",
+  "alternative": 1,
+  "notes": [
+   {
+    "id": "Altus:152",
+    "bar": "48",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "48.2",
+    "syllable": "ple",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:153",
+    "bar": "48",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "48.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:154",
+    "bar": "49",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "49.1",
+    "syllable": "bis,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:155",
+    "bar": "49",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "49.3",
+    "syllable": "ple",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:156",
+    "bar": "49",
+    "pos": "6",
+    "pitch": "C4",
+    "where": "49.4",
+    "syllable": "bis,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:157",
+    "bar": "50",
+    "pos": "1",
+    "pitch": "B3",
+    "where": "50.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:158",
+    "bar": "50",
+    "pos": "2",
+    "pitch": "A3",
+    "where": "50.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:159",
+    "bar": "50",
+    "pos": "3",
+    "pitch": "G3",
+    "where": "50.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:160",
+    "bar": "50",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "50.3",
+    "syllable": "ple",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:161",
+    "bar": "51",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "51.3",
+    "syllable": "bis",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: the Altus is the cantizans of the full cadence on C at 49.1, and now its last syllable 'bis' lands on the arrival (10.3) instead of the stressed 'ple' of the next statement; each repeated C still takes its own syllable, and the third 'PLE-bis' gets the long A breve (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Tenor-v2-b78",
+  "slug": "nunc-scio-vere",
+  "kind": "custom",
+  "finding": null,
+  "voice": "Tenor",
+  "verse": "2",
+  "alternative": null,
+  "notes": [
+   {
+    "id": "Tenor:219",
+    "bar": "78",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "78.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:220",
+    "bar": "78",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "78.3",
+    "syllable": null,
+    "syllabic": null
+   }
+  ],
+  "reason": "Claude's recommendation: U303 at Tenor 77.1, alternative 1 ('sae' 78.3 -> 78.1): the Tenor answers the Cantus's 'et in saecula' an octave lower (76-77); with 'sae' on the A it is texted note for note like the Cantus (10.10), and the repeated Cs take 'cu' and 'la' (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:01Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Tenor-v2-U301-saeculorum-3-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Tenor|v2|U301|saeculorum#3|1",
+  "rule": "U301",
+  "voice": "Tenor",
+  "verse": "2",
+  "alternative": 3,
+  "notes": [
+   {
+    "id": "Tenor:217",
+    "bar": "77",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "77.1",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:218",
+    "bar": "77",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "77.3",
+    "syllable": "in",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:219",
+    "bar": "78",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "78.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:220",
+    "bar": "78",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "78.3",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:221",
+    "bar": "79",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "79.1",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:222",
+    "bar": "79",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "79.3",
+    "syllable": "la",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:223",
+    "bar": "80",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "80.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:224",
+    "bar": "80",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "80.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:225",
+    "bar": "80",
+    "pos": "6",
+    "pitch": "G3",
+    "where": "80.4",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:226",
+    "bar": "81",
+    "pos": "0",
+    "pitch": "G3",
+    "where": "81.1",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:227",
+    "bar": "81",
+    "pos": "2",
+    "pitch": "F#3",
+    "where": "81.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:228",
+    "bar": "81",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "81.3",
+    "syllable": "rum,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:229",
+    "bar": "82",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "82.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:230",
+    "bar": "82",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "82.3",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:231",
+    "bar": "83",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "83.1",
+    "syllable": "la",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:232",
+    "bar": "83",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "83.3",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:233",
+    "bar": "83",
+    "pos": "6",
+    "pitch": "A3",
+    "where": "83.4",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:234",
+    "bar": "84",
+    "pos": "2",
+    "pitch": "G#3",
+    "where": "84.2",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:235",
+    "bar": "84",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "84.3",
+    "syllable": "rum.",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: each repeated G still takes a syllable (10.9), but now 'cu' leads off the beat into the stressed 'LO' on the downbeat, and 'rum' arrives with the cadence on G; the critical note's departure 'Tenor -rum in bar 81' then goes (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Altus-v1-U302-herodis-0-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Altus|v1|U302|herodis#0|1",
+  "rule": "U302",
+  "voice": "Altus",
+  "verse": "1",
+  "alternative": 1,
+  "notes": [
+   {
+    "id": "Altus:108",
+    "bar": "32",
+    "pos": "6",
+    "pitch": "F4",
+    "where": "32.4",
+    "syllable": "He",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:109",
+    "bar": "33",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "33.1",
+    "syllable": "ro",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:110",
+    "bar": "33",
+    "pos": "1",
+    "pitch": "D4",
+    "where": "33.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:111",
+    "bar": "33",
+    "pos": "2",
+    "pitch": "E4",
+    "where": "33.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:112",
+    "bar": "33",
+    "pos": "4",
+    "pitch": "F4",
+    "where": "33.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:113",
+    "bar": "34",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "34.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:114",
+    "bar": "34",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "34.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:115",
+    "bar": "35",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "35.1",
+    "syllable": "dis,",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: 'He' on the lone minim after the rest leads into 'RO' on the downbeat, and the stressed syllable takes the run and the long notes into the cadence: your Vox Altus 32.4 'con-' pattern, licence 10.1(a) (a new syllable on the first semiminim of a run on the beat), to be named in the critical note; it also clears the U210 at 33.2 (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Altus-v1-U210-iudaeorum-2-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Altus|v1|U210|iudaeorum#2|1",
+  "rule": "U210",
+  "voice": "Altus",
+  "verse": "1",
+  "alternative": 1,
+  "notes": [
+   {
+    "id": "Altus:163",
+    "bar": "52",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "52.3",
+    "syllable": "Iu",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:164",
+    "bar": "52",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "52.4",
+    "syllable": "dae",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:165",
+    "bar": "53",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "53.1",
+    "syllable": "o",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:166",
+    "bar": "53",
+    "pos": "2",
+    "pitch": "E4",
+    "where": "53.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:167",
+    "bar": "53",
+    "pos": "4",
+    "pitch": "F4",
+    "where": "53.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:168",
+    "bar": "53",
+    "pos": "5",
+    "pitch": "E4",
+    "where": "53.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:169",
+    "bar": "53",
+    "pos": "6",
+    "pitch": "D4",
+    "where": "53.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:170",
+    "bar": "53",
+    "pos": "7",
+    "pitch": "C4",
+    "where": "53.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:171",
+    "bar": "54",
+    "pos": "0",
+    "pitch": "D4",
+    "where": "54.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:172",
+    "bar": "54",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "54.3",
+    "syllable": "rum,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:173",
+    "bar": "55",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "55.1",
+    "syllable": "Iu",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:174",
+    "bar": "55",
+    "pos": "3",
+    "pitch": "B3",
+    "where": "55.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:175",
+    "bar": "55",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "55.3",
+    "syllable": "dae",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:176",
+    "bar": "56",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "56.1",
+    "syllable": "o",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:177",
+    "bar": "56",
+    "pos": "4",
+    "pitch": "B3",
+    "where": "56.3",
+    "syllable": "rum.",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: the other three voices all sing 'o' of Iudaeorum on the downbeat of 53; this puts the Altus with them, with 'dae' off the beat leading in (10.6) and the leap to the high E inside the stressed syllable (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Altus-v2-U210-principio-1-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Altus|v2|U210|principio#1|1",
+  "rule": "U210",
+  "voice": "Altus",
+  "verse": "2",
+  "alternative": 2,
+  "notes": [
+   {
+    "id": "Altus:221",
+    "bar": "70",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "70.2",
+    "syllable": "Si",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:222",
+    "bar": "70",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "70.3",
+    "syllable": "cut",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:223",
+    "bar": "70",
+    "pos": "6",
+    "pitch": "C4",
+    "where": "70.4",
+    "syllable": "e",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:224",
+    "bar": "71",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "71.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:225",
+    "bar": "71",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "71.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:226",
+    "bar": "71",
+    "pos": "5",
+    "pitch": "D4",
+    "where": "71.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:227",
+    "bar": "71",
+    "pos": "6",
+    "pitch": "E4",
+    "where": "71.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:228",
+    "bar": "71",
+    "pos": "7",
+    "pitch": "F4",
+    "where": "71.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:229",
+    "bar": "72",
+    "pos": "0",
+    "pitch": "G4",
+    "where": "72.1",
+    "syllable": "rat",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:230",
+    "bar": "72",
+    "pos": "2",
+    "pitch": "F4",
+    "where": "72.2",
+    "syllable": "in",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:231",
+    "bar": "72",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "72.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:232",
+    "bar": "72",
+    "pos": "6",
+    "pitch": "C4",
+    "where": "72.4",
+    "syllable": "prin",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:233",
+    "bar": "73",
+    "pos": "0",
+    "pitch": "G4",
+    "where": "73.1",
+    "syllable": "ci",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:234",
+    "bar": "73",
+    "pos": "2",
+    "pitch": "F4",
+    "where": "73.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:235",
+    "bar": "73",
+    "pos": "4",
+    "pitch": "G4",
+    "where": "73.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:236",
+    "bar": "74",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "74.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:237",
+    "bar": "74",
+    "pos": "1",
+    "pitch": "D4",
+    "where": "74.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:238",
+    "bar": "74",
+    "pos": "2",
+    "pitch": "E4",
+    "where": "74.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:239",
+    "bar": "74",
+    "pos": "3",
+    "pitch": "F4",
+    "where": "74.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:240",
+    "bar": "74",
+    "pos": "4",
+    "pitch": "G4",
+    "where": "74.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:241",
+    "bar": "74",
+    "pos": "6",
+    "pitch": "A4",
+    "where": "74.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:242",
+    "bar": "75",
+    "pos": "2",
+    "pitch": "G4",
+    "where": "75.2",
+    "syllable": "pi",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:243",
+    "bar": "75",
+    "pos": "4",
+    "pitch": "F4",
+    "where": "75.3",
+    "syllable": "o,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:244",
+    "bar": "76",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "76.1",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:245",
+    "bar": "76",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "76.3",
+    "syllable": "nunc,",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:246",
+    "bar": "77",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "77.1",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:247",
+    "bar": "77",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "77.3",
+    "syllable": "sem",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:248",
+    "bar": "78",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "78.1",
+    "syllable": "per,",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: 'prin' leads off the beat into 'CI' on the downbeat and the leap up to G, and the stressed syllable takes the run to the cadence (10.7); 'in' keeps two minims (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Tenor-v1-U210-vere-0-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Tenor|v1|U210|vere#0|1",
+  "rule": "U210",
+  "voice": "Tenor",
+  "verse": "1",
+  "alternative": 1,
+  "notes": [
+   {
+    "id": "Tenor:3",
+    "bar": "3",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "3.3",
+    "syllable": "Nunc",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:4",
+    "bar": "4",
+    "pos": "0",
+    "pitch": "D3",
+    "where": "4.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:5",
+    "bar": "4",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "4.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:6",
+    "bar": "5",
+    "pos": "0",
+    "pitch": "F3",
+    "where": "5.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:7",
+    "bar": "5",
+    "pos": "4",
+    "pitch": "E3",
+    "where": "5.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:8",
+    "bar": "6",
+    "pos": "0",
+    "pitch": "G3",
+    "where": "6.1",
+    "syllable": "sci",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:9",
+    "bar": "6",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "6.3",
+    "syllable": "o",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:10",
+    "bar": "7",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "7.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:11",
+    "bar": "7",
+    "pos": "1",
+    "pitch": "G3",
+    "where": "7.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:12",
+    "bar": "7",
+    "pos": "2",
+    "pitch": "A3",
+    "where": "7.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:13",
+    "bar": "7",
+    "pos": "3",
+    "pitch": "B3",
+    "where": "7.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:14",
+    "bar": "7",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "7.3",
+    "syllable": "ve",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:15",
+    "bar": "7",
+    "pos": "6",
+    "pitch": "D4",
+    "where": "7.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:16",
+    "bar": "8",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "8.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:17",
+    "bar": "8",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "8.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:18",
+    "bar": "9",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "9.1",
+    "syllable": "re,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:19",
+    "bar": "9",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "9.3",
+    "syllable": "sci",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:20",
+    "bar": "9",
+    "pos": "6",
+    "pitch": "C4",
+    "where": "9.4",
+    "syllable": "o",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:21",
+    "bar": "10",
+    "pos": "2",
+    "pitch": "B3",
+    "where": "10.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:22",
+    "bar": "10",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "10.3",
+    "syllable": "ve",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:23",
+    "bar": "11",
+    "pos": "0",
+    "pitch": "D4",
+    "where": "11.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:24",
+    "bar": "11",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "11.3",
+    "syllable": "re,",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: the Tenor carries the chant here (c.f. 3-11): the chant's 've-' is the c' at 10.3, as in the first statement (critical note 3-12), and that note is also on the beat; the B before it is an ornament (clear)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Tenor-v1-U302-eripuit-2-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Tenor|v1|U302|eripuit#2|1",
+  "rule": "U302",
+  "voice": "Tenor",
+  "verse": "1",
+  "alternative": 2,
+  "notes": [
+   {
+    "id": "Tenor:64",
+    "bar": "24",
+    "pos": "2",
+    "pitch": "A3",
+    "where": "24.2",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:65",
+    "bar": "24",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "24.4",
+    "syllable": "e",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:66",
+    "bar": "25",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "25.1",
+    "syllable": "ri",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:67",
+    "bar": "25",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "25.3",
+    "syllable": "pu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:68",
+    "bar": "26",
+    "pos": "0",
+    "pitch": "G3",
+    "where": "26.1",
+    "syllable": "it",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:69",
+    "bar": "26",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "26.2",
+    "syllable": "me,",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:70",
+    "bar": "26",
+    "pos": "6",
+    "pitch": "B3",
+    "where": "26.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:71",
+    "bar": "27",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "27.1",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:72",
+    "bar": "27",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "27.3",
+    "syllable": "e",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:73",
+    "bar": "28",
+    "pos": "0",
+    "pitch": "B3",
+    "where": "28.1",
+    "syllable": "ri",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:74",
+    "bar": "28",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "28.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:75",
+    "bar": "28",
+    "pos": "5",
+    "pitch": "B3",
+    "where": "28.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:76",
+    "bar": "28",
+    "pos": "6",
+    "pitch": "A3",
+    "where": "28.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:77",
+    "bar": "28",
+    "pos": "7",
+    "pitch": "G3",
+    "where": "28.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:78",
+    "bar": "29",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "29.1",
+    "syllable": "pu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:79",
+    "bar": "29",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "29.3",
+    "syllable": "it",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:80",
+    "bar": "30",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "30.1",
+    "syllable": "me",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:81",
+    "bar": "30",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "30.3",
+    "syllable": "de",
+    "syllabic": "single"
+   },
+   {
+    "id": "Tenor:82",
+    "bar": "30",
+    "pos": "7",
+    "pitch": "B3",
+    "where": "30.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:83",
+    "bar": "31",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "31.1",
+    "syllable": "ma",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:84",
+    "bar": "31",
+    "pos": "2",
+    "pitch": "F3",
+    "where": "31.2",
+    "syllable": "nu",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:85",
+    "bar": "31",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "31.3",
+    "syllable": "He",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:86",
+    "bar": "32",
+    "pos": "0",
+    "pitch": "F3",
+    "where": "32.1",
+    "syllable": "ro",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:87",
+    "bar": "32",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "32.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:88",
+    "bar": "32",
+    "pos": "5",
+    "pitch": "G3",
+    "where": "32.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:89",
+    "bar": "32",
+    "pos": "6",
+    "pitch": "A3",
+    "where": "32.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:90",
+    "bar": "32",
+    "pos": "7",
+    "pitch": "B3",
+    "where": "32.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:91",
+    "bar": "33",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "33.1",
+    "syllable": "dis,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:92",
+    "bar": "33",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "33.3",
+    "syllable": "He",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:93",
+    "bar": "33",
+    "pos": "6",
+    "pitch": "A3",
+    "where": "33.4",
+    "syllable": "ro",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:94",
+    "bar": "34",
+    "pos": "2",
+    "pitch": "G3",
+    "where": "34.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:95",
+    "bar": "34",
+    "pos": "3",
+    "pitch": "F3",
+    "where": "34.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:96",
+    "bar": "34",
+    "pos": "4",
+    "pitch": "E3",
+    "where": "34.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:97",
+    "bar": "34",
+    "pos": "6",
+    "pitch": "F3",
+    "where": "34.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:98",
+    "bar": "35",
+    "pos": "0",
+    "pitch": "G3",
+    "where": "35.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:99",
+    "bar": "35",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "35.3",
+    "syllable": "dis,",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: e-RI-pu-it: the stressed 'ri' then carries the high C and the run before the cadence (Wacław's one melisma, 10.7) instead of 'pu'; against it, 'pu' then changes on the white A straight after the run (the 'before the run' tendency), and the Tenor no longer changes to 'pu' with the Cantus at 28.2 (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Tenor-v1-U206-angelum-1-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Tenor|v1|U206|angelum#1|1",
+  "rule": "U206",
+  "voice": "Tenor",
+  "verse": "1",
+  "alternative": 3,
+  "notes": [
+   {
+    "id": "Tenor:45",
+    "bar": "19",
+    "pos": "0",
+    "pitch": "A3",
+    "where": "19.1",
+    "syllable": "an",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:46",
+    "bar": "19",
+    "pos": "4",
+    "pitch": "G3",
+    "where": "19.3",
+    "syllable": "ge",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Tenor:47",
+    "bar": "20",
+    "pos": "0",
+    "pitch": "F3",
+    "where": "20.1",
+    "syllable": "lum",
+    "syllabic": "end"
+   },
+   {
+    "id": "Tenor:48",
+    "bar": "20",
+    "pos": "1",
+    "pitch": "G3",
+    "where": "20.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:49",
+    "bar": "20",
+    "pos": "2",
+    "pitch": "A3",
+    "where": "20.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:50",
+    "bar": "20",
+    "pos": "3",
+    "pitch": "B3",
+    "where": "20.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:51",
+    "bar": "20",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "20.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:52",
+    "bar": "20",
+    "pos": "6",
+    "pitch": "D4",
+    "where": "20.4",
+    "syllable": "su",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Tenor:53",
+    "bar": "21",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "21.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:54",
+    "bar": "21",
+    "pos": "3",
+    "pitch": "B3",
+    "where": "21.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:55",
+    "bar": "21",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "21.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:56",
+    "bar": "22",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "22.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:57",
+    "bar": "22",
+    "pos": "3",
+    "pitch": "B3",
+    "where": "22.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:58",
+    "bar": "22",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "22.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:59",
+    "bar": "22",
+    "pos": "6",
+    "pitch": "G3",
+    "where": "22.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:60",
+    "bar": "22",
+    "pos": "7",
+    "pitch": "F3",
+    "where": "22.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:61",
+    "bar": "23",
+    "pos": "0",
+    "pitch": "G3",
+    "where": "23.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Tenor:62",
+    "bar": "23",
+    "pos": "4",
+    "pitch": "F3",
+    "where": "23.3",
+    "syllable": "um:",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: 'SU-um' on the high syncopated D at 20.4, the line's high point, together with the Bassus's 'su' on the same syncopation (the voices play against the tactus there); 'lum' takes the run from its first semiminim on the beat (10.1(a)) and can sing through it on the m; against it, the Tenor leaves the Cantus's 'su' at 21.3 (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Cantus-v2-U210-saeculorum-2-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Cantus|v2|U210|saeculorum#2|1",
+  "rule": "U210",
+  "voice": "Cantus",
+  "verse": "2",
+  "alternative": 2,
+  "notes": [
+   {
+    "id": "Cantus:213",
+    "bar": "76",
+    "pos": "0",
+    "pitch": "C5",
+    "where": "76.1",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Cantus:214",
+    "bar": "76",
+    "pos": "4",
+    "pitch": "G4",
+    "where": "76.3",
+    "syllable": "in",
+    "syllabic": "single"
+   },
+   {
+    "id": "Cantus:215",
+    "bar": "77",
+    "pos": "0",
+    "pitch": "A4",
+    "where": "77.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Cantus:216",
+    "bar": "77",
+    "pos": "2",
+    "pitch": "C5",
+    "where": "77.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:217",
+    "bar": "77",
+    "pos": "6",
+    "pitch": "B4",
+    "where": "77.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:218",
+    "bar": "78",
+    "pos": "0",
+    "pitch": "C5",
+    "where": "78.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:219",
+    "bar": "78",
+    "pos": "6",
+    "pitch": "B4",
+    "where": "78.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:220",
+    "bar": "78",
+    "pos": "7",
+    "pitch": "A4",
+    "where": "78.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:221",
+    "bar": "79",
+    "pos": "0",
+    "pitch": "G4",
+    "where": "79.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:222",
+    "bar": "79",
+    "pos": "2",
+    "pitch": "A4",
+    "where": "79.2",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Cantus:223",
+    "bar": "79",
+    "pos": "4",
+    "pitch": "G4",
+    "where": "79.3",
+    "syllable": "la",
+    "syllabic": "end"
+   },
+   {
+    "id": "Cantus:224",
+    "bar": "80",
+    "pos": "0",
+    "pitch": "A4",
+    "where": "80.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:225",
+    "bar": "80",
+    "pos": "2",
+    "pitch": "E5",
+    "where": "80.2",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Cantus:226",
+    "bar": "80",
+    "pos": "5",
+    "pitch": "D5",
+    "where": "80.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:227",
+    "bar": "80",
+    "pos": "6",
+    "pitch": "C5",
+    "where": "80.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:228",
+    "bar": "80",
+    "pos": "7",
+    "pitch": "B4",
+    "where": "80.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:229",
+    "bar": "81",
+    "pos": "0",
+    "pitch": "C5",
+    "where": "81.1",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Cantus:230",
+    "bar": "81",
+    "pos": "2",
+    "pitch": "A4",
+    "where": "81.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:231",
+    "bar": "81",
+    "pos": "4",
+    "pitch": "B4",
+    "where": "81.3",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Cantus:232",
+    "bar": "81",
+    "pos": "6",
+    "pitch": "G4",
+    "where": "81.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:233",
+    "bar": "82",
+    "pos": "0",
+    "pitch": "F4",
+    "where": "82.1",
+    "syllable": "rum,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Cantus:234",
+    "bar": "82",
+    "pos": "2",
+    "pitch": "A4",
+    "where": "82.2",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Cantus:235",
+    "bar": "82",
+    "pos": "4",
+    "pitch": "B4",
+    "where": "82.3",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Cantus:236",
+    "bar": "83",
+    "pos": "0",
+    "pitch": "C5",
+    "where": "83.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:237",
+    "bar": "83",
+    "pos": "4",
+    "pitch": "C5",
+    "where": "83.3",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Cantus:238",
+    "bar": "83",
+    "pos": "6",
+    "pitch": "A4",
+    "where": "83.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Cantus:239",
+    "bar": "84",
+    "pos": "0",
+    "pitch": "B4",
+    "where": "84.1",
+    "syllable": "rum.",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: 'sae' keeps the high E (the method's choice) and 'LO' moves from the off-beat A to the B on the beat; the method's '-ló- takes the three minims' would become two (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Altus-v2-U210-amen-0-1",
+  "slug": "nunc-scio-vere",
+  "kind": "alternative",
+  "finding": "nunc-scio-vere|Altus|v2|U210|amen#0|1",
+  "rule": "U210",
+  "voice": "Altus",
+  "verse": "2",
+  "alternative": 1,
+  "notes": [
+   {
+    "id": "Altus:250",
+    "bar": "79",
+    "pos": "2",
+    "pitch": "F4",
+    "where": "79.2",
+    "syllable": "et",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:251",
+    "bar": "79",
+    "pos": "6",
+    "pitch": "E4",
+    "where": "79.4",
+    "syllable": "in",
+    "syllabic": "single"
+   },
+   {
+    "id": "Altus:252",
+    "bar": "80",
+    "pos": "0",
+    "pitch": "F4",
+    "where": "80.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:253",
+    "bar": "80",
+    "pos": "2",
+    "pitch": "G4",
+    "where": "80.2",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:254",
+    "bar": "80",
+    "pos": "4",
+    "pitch": "C4",
+    "where": "80.3",
+    "syllable": "la",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:255",
+    "bar": "81",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "81.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:256",
+    "bar": "81",
+    "pos": "4",
+    "pitch": "D4",
+    "where": "81.3",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:257",
+    "bar": "82",
+    "pos": "0",
+    "pitch": "D4",
+    "where": "82.1",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:258",
+    "bar": "82",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "82.2",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:259",
+    "bar": "82",
+    "pos": "4",
+    "pitch": "B3",
+    "where": "82.3",
+    "syllable": "rum,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:260",
+    "bar": "83",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "83.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:261",
+    "bar": "83",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "83.3",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:262",
+    "bar": "83",
+    "pos": "6",
+    "pitch": "F4",
+    "where": "83.4",
+    "syllable": "la",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:263",
+    "bar": "84",
+    "pos": "0",
+    "pitch": "D4",
+    "where": "84.1",
+    "syllable": "sae",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:264",
+    "bar": "84",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "84.3",
+    "syllable": "cu",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:265",
+    "bar": "85",
+    "pos": "0",
+    "pitch": "E4",
+    "where": "85.1",
+    "syllable": "lo",
+    "syllabic": "middle"
+   },
+   {
+    "id": "Altus:266",
+    "bar": "85",
+    "pos": "4",
+    "pitch": "D4",
+    "where": "85.3",
+    "syllable": "rum.",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:267",
+    "bar": "85",
+    "pos": "6",
+    "pitch": "E4",
+    "where": "85.4",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:268",
+    "bar": "86",
+    "pos": "0",
+    "pitch": "C4",
+    "where": "86.1",
+    "syllable": "A",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:269",
+    "bar": "86",
+    "pos": "2",
+    "pitch": "D4",
+    "where": "86.2",
+    "syllable": "men,",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:270",
+    "bar": "86",
+    "pos": "4",
+    "pitch": "E4",
+    "where": "86.3",
+    "syllable": "A",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:271",
+    "bar": "87",
+    "pos": "0",
+    "pitch": "C#4",
+    "where": "87.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:272",
+    "bar": "87",
+    "pos": "4",
+    "pitch": "D4",
+    "where": "87.3",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:273",
+    "bar": "88",
+    "pos": "0",
+    "pitch": "C#4",
+    "where": "88.1",
+    "syllable": "men.",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: 'A' on the beat and 'men' off it, and 'saeculorum.' gets its full stop before Amen begins; a small change (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Bassus-v1-b17",
+  "slug": "nunc-scio-vere",
+  "kind": "custom",
+  "finding": null,
+  "voice": "Bassus",
+  "verse": "1",
+  "alternative": null,
+  "notes": [
+   {
+    "id": "Bassus:50",
+    "bar": "17",
+    "pos": "0",
+    "pitch": "E3",
+    "where": "17.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Bassus:51",
+    "bar": "17",
+    "pos": "4",
+    "pitch": "A2",
+    "where": "17.3",
+    "syllable": "nus,",
+    "syllabic": "end"
+   }
+  ],
+  "reason": "Claude's recommendation: move 'nus' of the first 'Dominus' from the E to the low A at 17.3, the bass's arrival at the cadence on A, so the last syllable is on the final move (10.3; your Vox Bassus 18 pattern: the held syllable is the one before, here 'mi' over D-E by step); 'Do' of the repeat stays at the top of the octave, which 10.6 allows where the lower note carries the phrase's last syllable. Settles the U301 at 17.3; the U210 at 17.4 is kept (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ },
+ {
+  "id": "nunc-scio-vere__Altus-v1-b2",
+  "slug": "nunc-scio-vere",
+  "kind": "custom",
+  "finding": null,
+  "voice": "Altus",
+  "verse": "1",
+  "alternative": null,
+  "notes": [
+   {
+    "id": "Altus:2",
+    "bar": "2",
+    "pos": "0",
+    "pitch": "D4",
+    "where": "2.1",
+    "syllable": null,
+    "syllabic": null
+   },
+   {
+    "id": "Altus:7",
+    "bar": "3",
+    "pos": "2",
+    "pitch": "C4",
+    "where": "3.2",
+    "syllable": "sci",
+    "syllabic": "begin"
+   },
+   {
+    "id": "Altus:8",
+    "bar": "3",
+    "pos": "4",
+    "pitch": "A3",
+    "where": "3.3",
+    "syllable": "o",
+    "syllabic": "end"
+   },
+   {
+    "id": "Altus:9",
+    "bar": "4",
+    "pos": "2",
+    "pitch": "D4",
+    "where": "4.2",
+    "syllable": "ve",
+    "syllabic": "begin"
+   }
+  ],
+  "reason": "Claude's recommendation: long 'Nunc' in the Altus too, as agreed for every voice: 'Nunc' over its whole statement of the opening motif C-A-D-C-B-A-B (the chant's f-d-g-f-e), 'sci' on the C at 3.2, 'o' on the long A, 've' on the D before the run; the Altus would then set the motif as the others do (U303 at 1.3, 2.1, 3.3), and the critical method's 'every voice' would be true; against it, the Altus loses 'SCI' on the dotted high D (judgement call)",
+  "status": "proposed",
+  "updatedAt": "2026-10-05T18:00:00Z",
+  "by": null
+ }
+]
