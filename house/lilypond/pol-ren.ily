@@ -27,12 +27,26 @@
 #(set-global-staff-size
    (if (eq? (ly:parser-lookup 'prPerformance) #t) 19 17))
 \paper {
-  %% the pinned Junicode from tools/get-fonts.sh, if fetched
-  #(let ((d (string-append (dirname (ly:find-file "pol-ren.ily")) "/../fonts/junicode")))
-     (if (file-exists? d) (ly:font-config-add-directory d)))
+  %% the pinned Junicode from tools/get-fonts.sh, if fetched; in the finished
+  %% build (unless NOVELLO=0) the pressed fonts from tools/make-pressed-fonts.sh:
+  %% Junicode Pressed for words, the pressed Emmentaler ("pressed-NN.otf", found
+  %% on the include path that tools/build.sh passes) for the music.
+  #(define pr-fonts-dir (string-append (dirname (ly:find-file "pol-ren.ily")) "/../fonts/"))
+  #(define pr-pressed?
+     (and (not (equal? (getenv "NOVELLO") "0"))
+          (file-exists? (string-append pr-fonts-dir "pressed/JunicodePressed-Regular.otf"))
+          (ly:find-file "pressed-20.otf")))
+  #(for-each (lambda (d) (if (file-exists? d) (ly:font-config-add-directory d)))
+     (list (string-append pr-fonts-dir "junicode")
+           (string-append pr-fonts-dir "pressed")))
   #(define fonts
-     (make-pango-font-tree "Junicode" "Junicode" "DejaVu Sans Mono"
-                           (/ staff-height pt 20)))
+     (if pr-pressed?
+         (set-global-fonts #:music "pressed" #:brace "emmentaler"
+                           #:roman "Junicode Pressed" #:sans "Junicode Pressed"
+                           #:typewriter "DejaVu Sans Mono"
+                           #:factor (/ staff-height pt 20))
+         (make-pango-font-tree "Junicode" "Junicode" "DejaVu Sans Mono"
+                               (/ staff-height pt 20))))
   indent = 27\mm
   short-indent = 7\mm
   incipit-width = 12\mm
