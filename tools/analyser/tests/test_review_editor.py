@@ -174,3 +174,39 @@ def test_vox_move_later_backspace_and_reset(browser, tmp_path):
     pg.keyboard.press("Escape")
     assert _custom(pg) == []
     assert not errors
+
+
+def _reading(pg, voice, verse="1"):
+    return dict((w, s) for w, s in pg.evaluate("([v, x]) => RV.reading(v, x)", [voice, verse]))
+
+
+def test_nunc_cantus_extra_vere_never_takes_scio_vere(browser, tmp_path):
+    # Miki, 5 Oct 2026 (second report): writing 'vere' on 4.3-4.4, 'vere' on
+    # bar 5 and then once more on bar 6 renamed and pulled back the 'sci', 'o'
+    # of the next phrase, leaving bars 8-11 empty. Text that is not the next
+    # syllable is inserted (or replaces the syllable on that note); nothing else moves.
+    pg, errors = _page(browser, tmp_path, "nunc-scio-vere")
+    _keys(pg, _id_at(pg, "Cantus", "4.3"), "1", "ve", "-", "re", "<Space>", "ve", "-", "<ArrowRight>", "re",
+          "<Space>", "ve", "-", "re", "<Escape>")
+    got = _reading(pg, "Cantus")
+    assert (got["4.3"], got["4.4"], got["5.1"], got["5.3"]) == ("ve", "re,", "ve", "re,"), got
+    assert got["6.2"] == "ve", got
+    assert got["8.3"] == "sci" and got["10.1"] == "o" and got["10.2"] == "ve" and got["11.3"] == "re,", got
+    assert not errors
+
+
+def test_pause_mid_syllable_does_not_commit_it(browser, tmp_path):
+    # a pause after 'v' must not save 'v' as the syllable (idle saving keeps the buffer)
+    pg, errors = _page(browser, tmp_path, "nunc-scio-vere")
+    nid = _id_at(pg, "Cantus", "4.3")
+    pg.evaluate("([id, v]) => RV.startEdit(id, v)", [nid, "1"])
+    pg.keyboard.type("v")
+    pg.wait_for_timeout(1800)
+    pg.keyboard.type("e")
+    pg.keyboard.press("-")
+    pg.keyboard.type("re")
+    pg.keyboard.press("Escape")
+    got = _reading(pg, "Cantus")
+    assert got["4.3"] == "ve" and got["4.4"] == "re,", got
+    assert got["8.3"] == "sci", got
+    assert not errors

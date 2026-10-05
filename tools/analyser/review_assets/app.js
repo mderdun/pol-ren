@@ -962,11 +962,17 @@
       P[k - 1].n = c;                               // the slot before, moved later to the caret
       if (k < P.length && !pushFrom(P, k, N)) { say("No room after " + q(P[k - 1].t) + "."); return; }
     } else {
-      // not the next syllable of the text: a text change for this slot, placed here
+      // not the next syllable of the text: new text, never another slot's.
+      // On a note that already carries a syllable, that syllable's text is
+      // replaced in place; on an empty note, a syllable is inserted here. No
+      // other syllable is renamed or moved (Miki, 5 Oct 2026: typing an extra
+      // 'vere' must not take over the 'scio vere' that follows).
       var ph = prevHy(r, c);
       var sb = mode === "hy" ? (ph ? "middle" : "begin") : (ph ? "end" : "single");
-      if (k < P.length) { P[k].t = typed; P[k].n = c; if (mode === "hy" || mode === "end") P[k].sb = sb; }
-      else P.push({ n: c, t: typed, sb: sb });
+      var here = -1;
+      P.forEach(function (s2, x) { if (s2.n === c) here = x; });
+      if (here >= 0) { P[here].t = typed; if (mode === "hy" || mode === "end") P[here].sb = sb; }
+      else P.splice(k, 0, { n: c, t: typed, sb: sb });
       say("Text differs from the source text.");
     }
     writeSlots(r, P);
@@ -1013,7 +1019,9 @@
     E = { voice: v, verse: vs.indexOf(E.verse) >= 0 ? E.verse : vs[0], i: best, buf: "", ch: {}, fromF: null, dirty: false, touched: E.touched };
   }
   var idleT = null;
-  function schedule() { clearTimeout(idleT); idleT = setTimeout(function () { if (E) { commitBuf("keep"); flush(); renderAll(); } }, 1500); }
+  // idle saving keeps what is already placed; a half-typed syllable stays in the
+  // buffer until Space, -, _, an arrow or Esc ends it (a pause must never commit "v")
+  function schedule() { clearTimeout(idleT); idleT = setTimeout(function () { if (E && !E.buf) { flush(); renderAll(); } }, 1500); }
 
   // one document per voice and verse: exactly the notes whose syllable differs
   // from the reading without custom edits (old notes cleared, new ones set), so
@@ -1292,5 +1300,6 @@
   if (start != null) activate(start, false);
   else renderAll();
   requestAnimationFrame(function () { centre(focusIds().concat(spanIds()), false); });
-  window.RV = { D: D, edits: edits, activate: activate, startEdit: function (id, verse) { tab = 0; startEdit(id, verse); } };
+  window.RV = { D: D, edits: edits, activate: activate, startEdit: function (id, verse) { tab = 0; startEdit(id, verse); },
+    reading: function (v, verse) { return readingsOf(v, String(verse), { preview: false }).map(function (c, i) { return [D.notes[D.vnotes[v][i]][0], c ? c[0] : null]; }); } };
 })();
