@@ -141,7 +141,7 @@ The self-check (`selfcheck.py`). For every voice and verse it counts the syllabl
 python -m tools.analyser review editions/vox-in-rama/pdf/vox-in-rama.musicxml --html tools/analyser/review/vox-in-rama.html
 ```
 
-writes one self-contained HTML page for one piece (`review.py`, with `review_assets/page.css` and `page.js` inlined). The pages for *Vox in Rama* and *Nunc scio vere* are committed in `tools/analyser/review/`, and CI keeps fresh ones with its report. Regenerate them after a change to an edition or to the analyser.
+writes one self-contained HTML page for one piece (`review.py`, with `review_assets/page.css`, `edit.css`, `page.js` and `edit.js` inlined). The pages for *Vox in Rama* and *Nunc scio vere* are committed in `tools/analyser/review/`, and CI keeps fresh ones with its report. Regenerate them after a change to an edition or to the analyser.
 
 - The score is the critical score as notation. LilyPond 2.24 renders a small file that `\include`s the edition's `music/score.ly` with the SVG backend and point-and-click links, on one tall page with room under each system for the analysis bands, and without the ambitus (whose heads carry the same links as the notes they show). Every note's link names its line and column in `voices.ily`; the source map gives the analyser's notes the same, so each drawn note carries its analyser id. The page says how many notes could not be tied (none in either piece). The score stays on a white paper panel in dark mode and scrolls sideways when it is wider than the screen; − and + change its size.
 - The findings are ranked by level and regret and filtered by level, rule and voice. Choosing one lights up its notes in the score and scrolls to them, and shows the rule, its principle (the text of §10) and authority, how the cost is made (weight, tier, the gates that applied, the costs around it) and how the regret is shared, the baseline status, and a note-by-note grid: the notes (bar, pitch, value) with the syllables as they stand and under each of up to three alternatives, changes in red. Each alternative lists its change in cost, what it fixes and costs, and whether it drops or repeats a word.
@@ -151,6 +151,36 @@ writes one self-contained HTML page for one piece (`review.py`, with `review_ass
 - Two more tables among the layers: the spans against the tactus and the upper-voice duos. At the foot, every word the piece sings, with its syllables, the stressed one in capitals, its class and the source of the stress, so that a wrong stress shows.
 
 Without LilyPond the page is written without the score.
+
+### Reviewing and editing the underlay on the page
+
+`review_assets/edit.js` and `edit.css` make the page a light editing tool; `underlay_edits.py` ties the drawing's lyrics to `voices.ily` and applies what the editor decides.
+
+- The lyrics in the drawing are tied to the analyser's notes. Each syllable's link names its token in `voices.ily` (a quoted syllable, its closing quote; a hyphen or extender, its `--` or `__`). `underlay_edits.align` reads each voice's `\lyricmode` blocks (`cantusWords`, `cantusWordsTwo` for the second stanza; *Nunc*'s `cantusAntText` and `cantusDoxText`, numbered in file order as the export numbers them, the second starting on its first syllable), gives the k-th syllable or `_` the k-th sounding note, and checks every syllable against the analyser's. All voices of the five editions agree, and every block is rebuilt from its slots token for token.
+- Readings in the score. A finding with alternatives shows a stepper above its rule: Current, Alt 1, Alt 2, Alt 3, with ‹ › or the arrow keys. The score's syllables for that voice, verse and span change in place: the printed syllables that move are hidden, with the hyphens and extenders across them, and the reading's syllables are drawn centred under the notes it gives them, on the lyric line's baseline, with their own hyphens and extenders, in the house red. A text edit's dropped word simply disappears; a repeated word is drawn where the alternative sings it.
+- Firming. *Firm alternative k* (or *Keep the current reading*), with an optional reason, records the decision; the stepper and the findings list mark it (✓ once saved).
+- Custom underlay. *Edit underlay* on the score's toolbar; a click on a note (the nearest head) opens a small form: the syllable that starts there (end it with `-` when the word goes on; empty for none), the verse, a reason. The score follows the typing; *Set* records it, *Clear syllable* takes the syllable off. Moving a syllable is two edits: set it on the new note, clear the old.
+- *Underlay edits*, under the summary, lists every edit with its notes and reason, saved state, *Show* and *Withdraw*, and *Copy edits as JSON* (the clipboard, or the text selected in a box where the clipboard is refused).
+
+Saving. The page is published with `capabilities: {db: {}, user: {}}`. It asks for the db with `claude.use("db")` once rendered; until it answers, and where it never does (a local copy, a signed-out viewer: `null` after about ten seconds), edits stay in the page and in the browser's storage, and the edits panel says to copy them as JSON. With a db, each edit is one document in the collection `edits`, written on every change, and a snapshot listener shows what is saved and the edits made in another view. A document:
+
+```
+edits/<slug>__<fingerprint without slug, or voice-v<verse>-b<bar>>
+{ slug, kind: "alternative" | "custom", finding: <fingerprint> | null, rule, voice, verse,
+  alternative: <k, 0 = keep the current> | null,
+  notes: [{id: "Altus:37", bar: "12", pos: "2", pitch: "D5", where: "12.2", syllable: "di" | null, syllabic}],
+  reason, status: "proposed", updatedAt: <ISO>, by: <viewer id> | null }
+```
+
+An alternative's `notes` are every note of the finding's span (null: no syllable starts there); a custom edit's are the notes the editor set in that bar of that voice and verse. Only ids are stored, never names. Claude reads the documents with the artifact's db (`ArtifactData`, collection `edits`), or the editor pastes the copied JSON into the chat.
+
+Applying.
+
+```
+python -m tools.analyser edits apply edits.json --dry-run
+```
+
+takes the documents (a JSON list, or `{"edits": [...]}`), groups them by piece, voice and verse, and for each prints the syllables as they stand and as the edit asks (`bar pitch:syllable`, `-` where the word goes on, `·` for none), then the diff of `voices.ily`. Without `--dry-run` it writes the file. It refuses, saying why, an edit whose notes are not in the score, one that changes the words (a dropped or added syllable: `--allow-text` when that is meant, 10.13), one that leaves the first note without its syllable, and a voice whose lyrics do not tie or do not rebuild. *Nunc*'s `voices.ily` is generated by `music/build.py` from `music/underlay.py`, so for *Nunc* it prints what to change and leaves the file alone. The analyser still never changes an edition by itself: `apply` writes only what the editor decided on the page.
 
 ## Tests
 
