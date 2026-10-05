@@ -25,7 +25,8 @@
     ["imi", "Imitation", "A bracket over each entry's head notes; hover for the point."],
     ["hom", "Homorhythm", "A tint over passages where the voices move together."],
     ["tac", "Against the tactus", "A short line over each note that plays against the tactus."],
-    ["kw", "Key words", "A line under the key words' syllables; dashed if only proposed."]
+    ["kw", "Key words", "A line under the key words' syllables; dashed if only proposed."],
+    ["src", "Text source", "Where each syllable's placement comes from. Blue, solid line: the source. Green, dashed: a modern edition. Violet, dotted: the chant of the c.f. Grey, no line: ours (editorial or supplied). About has the counts and the evidence."]
   ];
 
   function esc(s) {
@@ -622,6 +623,39 @@
     var d = it.d;
     return "bar " + (d.notes[0] ? d.notes[0].where : "") + " · " + d.voice + (verseName(String(d.verse)) ? " · " + verseName(String(d.verse)) : "");
   }
+  // ---------------------------------------------------------------- text source (provenance.py)
+  var PROV = D.prov || { labels: [], syl: {} }, srcDone = false;
+  function provOf(id, verse) { var k = PROV.syl[id + "|" + verse]; return k == null ? null : PROV.labels[k]; }
+  // tag every lyric syllable with its category; underline it inside its own group,
+  // so that a syllable the editor hides takes its line with it
+  function srcMarks() {
+    if (srcDone) return;
+    srcDone = true;
+    each("g.ly", function (g) {
+      var p = provOf(g.getAttribute("data-n"), g.getAttribute("data-verse"));
+      if (!p) return;
+      g.setAttribute("data-src", p[0]);
+      if (p[0] === "ours") return;
+      var b;
+      try { b = g.getBBox(); } catch (e) { return; }
+      if (!b || !b.width) return;
+      el(g, "line", { x1: b.x.toFixed(2), x2: (b.x + b.width).toFixed(2), y1: (b.y + b.height + 0.25).toFixed(2), y2: (b.y + b.height + 0.25).toFixed(2), "class": "src-u" });
+    }, paper);
+  }
+  // one short line for the finding's syllables: "Source: as M", or the mix
+  function srcLine(voice, verse, ids) {
+    var c = {}, order = [];
+    ids.forEach(function (id) {
+      var p = provOf(id, verse);
+      if (!p) return;
+      if (!c[p[1]]) { c[p[1]] = 0; order.push(p); }
+      c[p[1]]++;
+    });
+    if (!order.length) return "";
+    if (order.length === 1) return '<span class="srcl src-' + order[0][0] + '">' + esc(order[0][1]) + "</span>";
+    return '<span class="srcl">' + order.map(function (p) { return '<span class="src-' + p[0] + '">' + esc(p[1]) + " ×" + c[p[1]] + "</span>"; }).join(" · ") + "</span>";
+  }
+
   function recReason(d) { return String((d && (isSugg(d) ? d.reason : d.recommendation)) || "").replace(REC, "").trim(); }
 
   function renderDock() {
@@ -651,6 +685,8 @@
       tabs.push('<button type="button" role="tab" class="tab' + (d.status === "declined" ? " firm" : "") + '" data-t="0" aria-selected="' + (tab === 0) + '">Current<span class="k">1</span></button>');
       tabs.push('<button type="button" role="tab" class="tab' + (dec && d.status !== "declined" ? " firm" : "") + '" data-t="1" aria-selected="' + (tab === 1) + '">Suggested<span class="k">2</span></button>');
     }
+    var srcL = it.type === "f" ? srcLine(it.f.voice, String(it.f.verse), it.f.notes)
+      : srcLine(it.d.voice, String(it.d.verse), it.d.notes.map(function (n) { return n.id; }));
     var takeLab = tab === 0 ? "Keep current" : "Take " + (it.type === "f" ? LETTERS[tab] : "this");
     var st = "";
     if (dec) {
@@ -667,6 +703,7 @@
       '<div class="acts"><button type="button" class="btn" id="a-keep">Keep current <kbd>K</kbd></button>' +
       (tab > 0 ? '<button type="button" class="btn pri" id="a-take">' + esc(takeLab) + " <kbd>↵</kbd></button>" : "") +
       '<button type="button" class="btn" id="a-edit">Edit <kbd>E</kbd></button></div></div>' +
+      (srcL ? '<div class="dsrc" title="Text source of these syllables">' + srcL + "</div>" : "") +
       (st ? '<div class="d3">' + st + "</div>" : "") +
       (whyOpen ? '<div class="why">' + whyHtml(it, sug || dec) + "</div>" : "");
     var r = $("reason");
@@ -1167,7 +1204,10 @@
   $("p-layers").innerHTML = LAYERS.map(function (l) {
     return '<label title="' + esc(l[2]) + '"><input type="checkbox" data-layer="' + l[0] + '"' + (layersOn[l[0]] ? " checked" : "") + '><span class="sw sw-' + l[0] + '"></span>' + esc(l[1]) + "</label>";
   }).join("");
-  function applyLayers() { LAYERS.forEach(function (l) { paper.classList.toggle("show-" + l[0], !!layersOn[l[0]]); }); }
+  function applyLayers() {
+    if (layersOn.src) srcMarks();
+    LAYERS.forEach(function (l) { paper.classList.toggle("show-" + l[0], !!layersOn[l[0]]); });
+  }
   $("p-layers").addEventListener("change", function (e) {
     var b = e.target; layersOn[b.dataset.layer] = b.checked; prefs.layers = layersOn; persist(); applyLayers();
   });

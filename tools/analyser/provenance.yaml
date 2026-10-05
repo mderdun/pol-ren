@@ -1,0 +1,90 @@
+# Where each edition's underlay comes from: the evidence per voice, read by
+# provenance.py, which works out every syllable's source when the review page
+# is built (review.py: the "Text source" layer, the inspector's source line,
+# the About panel's table). Nothing here changes an edition.
+#
+# Categories (provenance.py: CATS):
+#   source   the syllable sits where the primary source places it
+#   edition  where a named modern edition places it
+#   chant    in a cantus firmus span, on the note that carries the same
+#            syllable in the chant (the c.f. voice's notes aligned to the chant)
+#   ours     editorial: no source places it, or we moved it; and the text we
+#            supply (⟨ ⟩ for ij, italic repeats)
+#
+# Per edition:
+#   default: the label for a syllable no rule below reaches
+#   compare: a modern edition's MusicXML with lyrics, matched note by note
+#            (same voice, same onset after `scale`; same syllable = `same`,
+#            otherwise `differs`); `parts` names its parts in order
+#   voices:  per voice: label (all its syllables), or same/differs (with
+#            compare), or one_per_note (a syllable on one note = `label`, a
+#            syllable held over a melisma = `differs`); `note` says why
+#   spans:   {voice, bars: [from, to], label, siglum, when: differs, note}:
+#            overrides inside the bars (only where the compare differs, with when)
+#   supplied: ij  - the ⟨ ⟩ passages of voices.ily (\ijOpen ... \ijClose)
+#             italic - italic syllables (\rep, \edText): repeats we supply
+#   chant:   gabc of the chant the c.f. paraphrases, and per voice whether
+#            its \cfStart ... \cfEnd span is compared with it
+#   evidence: the notes shown in the review page's About panel
+#
+# Labels: source, edition, changed, notext, unplaced, supplied_ij,
+# supplied_rep, chant, cf_off, cf_pending (provenance.py: LABELS).
+
+vox-in-rama:
+  default: changed
+  compare:
+    file: editions/vox-in-rama/music/src_M_Marchesano.xml
+    siglum: M
+    scale: 2          # M's note values are halved
+    parts: [Cantus, Altus, Tenor, Bassus]
+  voices:
+    Cantus: {same: edition, siglum: M, differs: changed,
+             note: "Base text M (critical edition, Sources). Compared note by note with M's lyrics."}
+    Altus: {same: edition, siglum: M, differs: changed,
+            note: "Base text M. Compared note by note with M's lyrics; bars 5–6 follow N (critical note)."}
+    Tenor: {same: source, siglum: T, differs: changed, compare_siglum: M,
+            note: "Base text T, the 1611 print. T places its text loosely; its words fall where M's do (critical edition, Underlay), so T's syllables are read from M's Tenor: as M = as T. ⟨ ⟩ passages are T's ij, supplied."}
+    Bassus: {same: edition, siglum: M, differs: changed,
+             note: "Base text M. Compared note by note with M's lyrics."}
+  spans:
+    - {voice: Altus, bars: [5, 6], label: edition, siglum: N, when: differs,
+       note: "critical note 5–6 A: N's underlay ('in Ra-ma') is followed; N's lyrics are not in the repository, so taken from the note"}
+  supplied: [ij]
+  evidence:
+    - "Tenor: the 1611 print (T) gives the words under the notes but loosely and writes ij four times (bars 21–22, 33–35, 35–37, 43–45); the edition reads T's placement from M (critical edition, Underlay)."
+    - "Cantus, Altus, Bassus: compared with Marchesano's edition (M, music/src_M_Marchesano.xml) note by note. The departures found are the ones the critical notes give: C 38–39, A 5–6 (as N), A 36–37, T 38–40."
+
+nunc-scio-vere:
+  default: notext
+  supplied: [italic]
+  voices: {}
+  chant:
+    gabc: tools/analyser/chant/nunc-scio-vere.gabc
+    source: "Graduale Romanum (Solesmes, 1961), p. 532, the book the critical edition cites; GregoBase no. 478, transcribed by Andrew Hinkley"
+    compare:
+      Tenor: true
+      Cantus: true
+      Bassus: false   # the psalm tone; the gabc gives the tone with the verse and the euouae, not the Gloria Patri
+  evidence:
+    - "The source is an organ tablature with no text: every syllable is editorial (critical edition, The reconstruction)."
+    - "Repeated words are editorial and in italics: supplied."
+    - "Cantus firmus spans (\\cfStart … \\cfEnd: Tenor 3–11, Cantus 13–56, Bassus 63–71): the Tenor and Cantus notes are aligned to the introit chant (Graduale Romanum 1961, p. 532; GregoBase 478), and a syllable on the note that carries the same syllable in the chant is marked chant."
+    - "The chant is the Graduale Romanum's; the tablature's c.f. may follow a Polish reading of it (the Cantus has d′ for ex- and puts three syllables of exspectatione on the repeated g′, bars 42–43). So a syllable off the chant can mean a different chant reading, not a moved syllable: read those spans against the critical notes."
+    - "The Bassus span recites the psalm tone; its Gloria Patri is not written out in the chant source used, so it is marked as a c.f. line not yet compared."
+
+juz-sie-zmierzka:
+  default: unplaced
+  voices:
+    Tenor: {one_per_note: source, siglum: A, differs: changed, inferred: true,
+            note: "A's Tenor text fits its notes exactly, one syllable to a note (critical edition, Underlay); the edition keeps one to a note, so its placement is inferred to be A's."}
+  evidence:
+    - "The print (A, known from the 1880 facsimile F) set each voice's text as a block under the staff, so Cantus, Altus and Bassus have the source's words but not their placement: editorial."
+    - "Tenor: an inference, not a transcription. A's Tenor text fits its notes one syllable to a note, and so does the edition's; no record of F's placement note by note is kept."
+
+plaude-euge:
+  default: unplaced
+  voices:
+    Tenor: {label: notext, note: "The Tenor's text is wholly editorial, in italics (critical edition, Text)."}
+  evidence:
+    - "The source does not align syllables with notes in any voice: the Discantus and Medius words are the source's, their placement editorial (critical edition, Text)."
+    - "The Tenor is untexted in the source; its text is supplied, in italics."
