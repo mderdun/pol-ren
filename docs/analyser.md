@@ -165,7 +165,9 @@ E, or a double-click on a note, enters edit mode (a single click selects a note)
 - A syllable on a note too short for one (a fusa; under ¢ a semiminim, which needs a licence of 10.1) is ringed in amber with the reason; nothing is blocked.
 - Esc (or Enter, or *Done*) leaves edit mode. Edits are saved on leaving and after 1.5 s without typing: the voice's changed notes (changes up to four notes apart count as one passage) become one `custom` document each. Editing from a finding also records the finding as decided (`edited: true`).
 
-Moving a syllable does not reflow the rest of the word: a syllable left on its old note stays there, and `edits apply` refuses an edit that ends up adding or dropping text.
+The voice's text is fixed: typing re-places it. A typed syllable that the voice sings on another note nearby (the same word or about two words either side; punctuation and capitals ignored) moves here: its old copy is cleared, and when it came from a later note the notes in between become a melisma of the syllable before, so the word re-lays from the caret. The saved document covers the whole span (the new note set, the old one cleared), so `edits apply --dry-run` takes a typical move without `--allow-text` (tests: `test_review_editor.py`, *Nunc* Altus *He-ro-dis* with *ro* drawn back to 33.1, and a *Vox* Bassus syllable drawn back over a melisma). Only a syllable that is not in the voice's text nearby is a text change: it is kept, ringed in amber ("text differs from the source text"), and `apply` still asks for `--allow-text`.
+
+Progress counts the findings pending review or new; where there are none (*Vox*, all accepted earlier) it reads "Nothing to review · 10 accepted earlier", and "All findings decided" once every one is.
 
 ### Saving
 

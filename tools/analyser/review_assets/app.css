@@ -71,7 +71,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ttl { border: 0; background: none; cursor: pointer; font: italic 600 16px/1 var(--serif); padding: 6px 6px; border-radius: 6px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 22ch; }
 .ttl:hover { background: var(--hover); }
-.prog { display: flex; align-items: baseline; gap: 5px; position: relative; padding: 0 8px 4px; font-size: 13px; white-space: nowrap; }
+.prog { display: flex; align-items: baseline; gap: 5px; position: relative; min-width: 0; overflow: hidden; padding: 0 8px 4px; font-size: 13px; white-space: nowrap; }
 .prog-l { color: var(--muted); }
 .prog-bar { position: absolute; left: 8px; right: 8px; bottom: 0; height: 2px; background: var(--rule); border-radius: 2px; overflow: hidden; }
 .prog-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }

@@ -75,7 +75,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .ttl { border: 0; background: none; cursor: pointer; font: italic 600 16px/1 var(--serif); padding: 6px 6px; border-radius: 6px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 22ch; }
 .ttl:hover { background: var(--hover); }
-.prog { display: flex; align-items: baseline; gap: 5px; position: relative; padding: 0 8px 4px; font-size: 13px; white-space: nowrap; }
+.prog { display: flex; align-items: baseline; gap: 5px; position: relative; min-width: 0; overflow: hidden; padding: 0 8px 4px; font-size: 13px; white-space: nowrap; }
 .prog-l { color: var(--muted); }
 .prog-bar { position: absolute; left: 8px; right: 8px; bottom: 0; height: 2px; background: var(--rule); border-radius: 2px; overflow: hidden; }
 .prog-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
@@ -21315,10 +21315,12 @@ c29 20 88 49 185 49z" fill="currentColor"/>
       }
     }
     // gentle validation: a new syllable on a note too short for one
+    var src = {};
+    base.forEach(function (b) { if (b) src[normSyl(b[0])] = true; });
     changed.forEach(function (i) {
       var c = r[i], id = ids[i], p = D.pos[id];
       if (!c || !p) return;
-      var why = shortNote(id);
+      var why = src[normSyl(c[0])] ? shortNote(id) : "text differs from the source text";
       if (!why) return;
       var g = el(layerOf(p[0], "ed-layer"), "g", {});
       el(g, "title", {}, why);
@@ -21534,7 +21536,10 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     var c = rows.querySelector('[aria-current="true"]');
     if (c) { var rb = c.getBoundingClientRect(), pb = rows.getBoundingClientRect(); if (rb.top < pb.top || rb.bottom > pb.bottom) c.scrollIntoView({ block: "nearest" }); }
     var tr = F.filter(tracked), dn = tr.filter(function (f) { return !!decision(f); }).length;
-    $("prog-n").textContent = dn + " / " + tr.length;
+    var nAcc = F.filter(function (f) { return f.status === "accepted"; }).length;
+    $("prog-n").textContent = !tr.length ? "Nothing to review" + (nAcc ? " · " + nAcc + " accepted earlier" : "")
+      : (dn === tr.length ? "All findings decided" : dn + " / " + tr.length);
+    $("prog-n").nextElementSibling.hidden = !tr.length || dn === tr.length;
     $("prog-bar").style.width = (tr.length ? 100 * dn / tr.length : 0) + "%";
   }
   rows.addEventListener("click", function (e) {
@@ -21654,7 +21659,13 @@ c29 20 88 49 185 49z" fill="currentColor"/>
       '<div class="ekeys"><span>type the syllable</span><span><kbd>Space</kbd> word ends, next note</span><span><kbd>-</kbd> hyphen, next note</span>' +
       '<span><kbd>_</kbd> or <kbd>⇧Space</kbd> hold over the next note</span><span><kbd>⌫</kbd> clear, back</span><span><kbd>Del</kbd> clear</span>' +
       '<span><kbd>←</kbd><kbd>→</kbd> move</span><span><kbd>↑</kbd><kbd>↓</kbd> voice</span></div>' +
-      (shortNote(id) && readingsOf(E.voice, E.verse)[E.i] ? '<div class="warnl">' + esc(shortNote(id)) + "</div>" : "");
+      (function () {
+        var c = readingsOf(E.voice, E.verse)[E.i];
+        if (!c) return "";
+        var inSrc = baseOf(E.voice, E.verse).some(function (b) { return b && normSyl(b[0]) === normSyl(c[0]); });
+        var w = inSrc ? shortNote(id) : "text differs from the source text";
+        return w ? '<div class="warnl">' + esc(w) + "</div>" : "";
+      })();
   }
 
   dock.addEventListener("click", function (e) {
@@ -21820,7 +21831,7 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     if (v == null || i == null) return;
     if (!verse) verse = (D.verses[v] || ["1"])[0];
     if (!E) E = { voice: v, verse: verse, i: i, buf: "", ch: {}, dirty: false,
-      fromF: it && it.type === "f" && it.f.voice === v && String(it.f.verse) === String(verse) ? cur : null };
+      fromF: !id && it && it.type === "f" && it.f.voice === v && String(it.f.verse) === String(verse) ? cur : null };
     paper.classList.add("editing");
     renderDock(); draw(); ensureVisible(D.vnotes[v][i]);
   }
@@ -21855,6 +21866,20 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     var i = E.i, c = r[i];
     var text = typed || (c ? c[0] : "");
     if (!text) return;
+    // the voice's text is fixed: typing a syllable that sits on another note
+    // nearby re-places it here (Sibelius-style), the word re-laid from the caret
+    if (typed) {
+      var m = sourceOf(r, i, typed);
+      if (m === i) return;
+      if (m != null) {
+        var syl = r[m];
+        if (m > i) { for (var j = i + 1; j <= m; j++) if (r[j]) setNote(j, null); }
+        else setNote(m, null);
+        setNote(i, [syl[0], syl[1]]);
+        (E.spans = E.spans || []).push([Math.min(i, m), Math.max(i, m)]);
+        return;
+      }
+    }
     // typed without the printed punctuation or capital: keep the text's own
     if (typed) {
       var h = hint(r), now = h && h.filter(function (x) { return x[1] === "now"; })[0];
@@ -21867,6 +21892,18 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     else if (!typed) return;
     sb = goesOn ? (ph ? "middle" : "begin") : (ph ? "end" : "single");
     if (!c || c[0] !== text || c[1] !== sb) setNote(i, [text, sb]);
+  }
+  function normSyl(s) { return String(s || "").replace(/[*,.;:!?]+$/, "").toLowerCase(); }
+  // the note of the voice's reading that carries `typed` nearby: the same word
+  // or about two words either side (syllable order, not note distance); null if none
+  function sourceOf(r, i, typed) {
+    var t = normSyl(typed), k = 0, pos = [], best = null;
+    r.forEach(function (c, j) { if (c) pos.push(j); if (j < i && c) k++; });
+    pos.forEach(function (j, p) {
+      if (normSyl(r[j][0]) !== t || Math.abs(p - k) > 6) return;
+      if (best == null || Math.abs(j - i) < Math.abs(best - i)) best = j;
+    });
+    return best;
   }
   function move(d) {
     var n = D.vnotes[E.voice].length;
@@ -21892,17 +21929,24 @@ c29 20 88 49 185 49z" fill="currentColor"/>
     var plain = readingsOf(v, verse, { custom: false, preview: false, session: false });
     var full = readingsOf(v, verse, { preview: false });
     var ids = D.vnotes[v];
+    var old = {}, spans = (E.spans || []).slice();
+    Object.keys(edits).forEach(function (k) {
+      var d = edits[k];
+      if (d.kind === "custom" && isMine(d) && d.status !== "declined" && d.voice === v && String(d.verse) === String(verse)) {
+        old[k] = d;
+        var xs = (d.notes || []).map(function (n) { return vidx[v][n.id]; }).filter(function (x) { return x != null; });
+        if (xs.length) spans.push([Math.min.apply(null, xs), Math.max.apply(null, xs)]);
+      }
+    });
+    function together(a, b) {
+      return b - a <= 4 || spans.some(function (sp) { return sp[0] <= a && b <= sp[1]; });
+    }
     var runs = [], run = null;
     full.forEach(function (c, i) {
       var b = plain[i];
       var diff = (c ? c.join("|") : "") !== (b ? b.join("|") : "");
-      // changes a few notes apart are one passage: one document
-      if (diff) { if (run && i - run.end <= 4) run.end = i; else { run = { start: i, end: i }; runs.push(run); } }
-    });
-    var old = {};
-    Object.keys(edits).forEach(function (k) {
-      var d = edits[k];
-      if (d.kind === "custom" && isMine(d) && d.status !== "declined" && d.voice === v && String(d.verse) === String(verse)) old[k] = d;
+      // changes a few notes apart, or one re-placed syllable, are one passage: one document
+      if (diff) { if (run && together(run.end, i)) run.end = i; else { run = { start: i, end: i }; runs.push(run); } }
     });
     var seen = {};
     E.ch = {}; E.dirty = false;
@@ -22158,7 +22202,7 @@ c29 20 88 49 185 49z" fill="currentColor"/>
   if (start != null) activate(start, false);
   else renderAll();
   requestAnimationFrame(function () { centre(focusIds().concat(spanIds()), false); });
-  window.RV = { D: D, edits: edits, activate: activate };
+  window.RV = { D: D, edits: edits, activate: activate, startEdit: function (id, verse) { tab = 0; startEdit(id, verse); } };
 })();
 
 </script>
