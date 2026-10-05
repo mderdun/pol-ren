@@ -93,14 +93,13 @@ def _all_voices_short(analysis, e, unit: F) -> bool:
     return sounding > 0
 
 
-_ONSETS: dict = {}
-
-
 def _onsets(analysis, v):
-    key = (id(analysis), v)
-    if key not in _ONSETS:
-        _ONSETS[key] = [x.onset for x in analysis.score.voices[v]]
-    return _ONSETS[key]
+    """Onsets of voice v, cached on the analysis itself (an id()-keyed cache
+    goes stale when a freed analysis's id is reused)."""
+    cache = analysis.__dict__.setdefault("_shortnote_onsets", {})
+    if v not in cache:
+        cache[v] = [x.onset for x in analysis.score.voices[v]]
+    return cache[v]
 
 
 def classify(ctx):
