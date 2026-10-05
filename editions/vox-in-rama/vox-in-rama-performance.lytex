@@ -4,6 +4,7 @@
 \composer[fl.\,1604–1611]{Mikołaj Zieleński}
 \title{Vox in Rama}
 \subtitle{Communio in festo SS. Innocentium}
+\poet{Matthew 2:18, after Jeremiah 31:15}
 \pitchline{A fifth below the printed pitch}
 \edition{First edition}{2026}
 
@@ -18,6 +19,9 @@
 \begin{textcols}
 & \lines{\textLatin} & \lines{\textEnglish}\\
 \end{textcols}
+
+\noindent Matthew 2:18, after Jeremiah 31:15. Text of the communion for the
+feast of the Holy Innocents in the \la{Missale Romanum} (Venice, 1570).
 
 \begin{rehearsal}
 \pnote{About the piece} The communion for the Mass of the Holy Innocents

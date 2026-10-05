@@ -609,15 +609,34 @@ prMens = {
        (let ((l (ly:parser-lookup 'prRegularRests)))
          (and (list? l) (member vname l) #t))))
 
-%% Whole-bar rests (performance editions; Gould 159): a rest, or the part of
-%% a rest, that fills a whole bar becomes a whole-bar rest, centred in the
-%% bar like any modern part's. The music is walked in time order; a change
-%% of bar length (\finalis) is followed. If anything does not add up, the
-%% music is left as it was.
+%% Whole-bar rests (performance editions, and the regularised voices of a
+%% critical edition; principles 5.8, Gould 159): a run of consecutive rests
+%% is taken as one rest and cut at the bar lines; every bar it fills wholly
+%% becomes ONE whole-bar rest, centred in the bar like any modern part's, and
+%% the remainders before and after are left to the Completion_rest_engraver,
+%% which groups them by the half-bar. (A rest from mid-bar 14 to mid-bar 15
+%% followed by one to mid-bar 16 thus gives bar 15 one centred rest, not two
+%% semibreves.) The music is walked in time order; a change of bar length
+%% (\finalis) is followed. If anything does not add up, the music is left as
+%% it was.
 #(define (pr-whole-bar-rests music bar)
    (let ((len bar) (anchor 0))
      (define (dur l) (ly:make-duration 0 0 l))
      (define (rest l) (make-music 'RestEvent 'duration (dur l)))
+     (define (plain-rests l)
+       ;; rests of plain (unscaled) values adding up to l, longest first; a
+       ;; scaled rest would confuse the Completion_rest_engraver
+       (let loop ((l l) (k -1) (acc '()))
+         (cond ((<= l 0) (reverse acc))
+               ((> k 6) (reverse (cons (rest l) acc)))
+               ((>= l (expt 2 (- k)))
+                (loop (- l (expt 2 (- k))) k
+                      (cons (make-music 'RestEvent 'duration (ly:make-duration k)) acc)))
+               (else (loop l (+ k 1) acc)))))
+     (define (plain-rest? m)
+       (and (music-is-of-type? m 'rest-event)
+            (null? (ly:music-property m 'articulations))
+            (not (ly:pitch? (ly:music-property m 'pitch #f)))))
      (define (split m pos)
        ;; the rest m starting at pos, as rest / whole bars / rest
        (let* ((l (ly:moment-main (ly:music-length m)))
@@ -627,25 +646,36 @@ prMens = {
               (tail (- l head (* n len))))
          (if (zero? n)
              (list m)
-             (append (if (zero? head) '() (list (rest head)))
+             (append (reverse (plain-rests head))
                      (map (lambda (i) (make-music 'MultiMeasureRestMusic 'duration (dur len)))
                           (iota n))
-                     (if (zero? tail) '() (list (rest tail)))))))
+                     (plain-rests tail)))))
      (define (walk m pos)
        ;; returns (new-music . end-pos)
        (cond
-        ((and (music-is-of-type? m 'rest-event)
-              (null? (ly:music-property m 'articulations))
-              (not (ly:pitch? (ly:music-property m 'pitch #f))))
+        ((plain-rest? m)
          (let ((parts (split m pos)))
            (cons (if (= 1 (length parts)) (car parts) (make-sequential-music parts))
                  (+ pos (ly:moment-main (ly:music-length m))))))
         ((music-is-of-type? m 'sequential-music)
          (let loop ((es (ly:music-property m 'elements)) (pos pos) (acc '()))
-           (if (null? es)
-               (begin (ly:music-set-property! m 'elements (reverse acc)) (cons m pos))
-               (let ((r (walk (car es) pos)))
-                 (loop (cdr es) (cdr r) (cons (car r) acc))))))
+           (cond
+            ((null? es)
+             (ly:music-set-property! m 'elements (reverse acc)) (cons m pos))
+            ((and (plain-rest? (car es)) (pair? (cdr es)) (plain-rest? (cadr es)))
+             ;; a run of rests: split it as one rest; if no whole bar is
+             ;; inside it, keep the rests as they were
+             (let* ((run (let take ((l es) (r '()))
+                           (if (and (pair? l) (plain-rest? (car l)))
+                               (take (cdr l) (cons (car l) r))
+                               (reverse r))))
+                    (l (apply + (map (lambda (x) (ly:moment-main (ly:music-length x))) run)))
+                    (parts (split (rest l) pos))
+                    (new (if (= 1 (length parts)) (reverse run) (reverse parts))))
+               (loop (list-tail es (length run)) (+ pos l) (append new acc))))
+            (else
+             (let ((r (walk (car es) pos)))
+               (loop (cdr es) (cdr r) (cons (car r) acc)))))))
         ((music-is-of-type? m 'simultaneous-music)
          (let ((rs (map (lambda (e) (walk e pos)) (ly:music-property m 'elements))))
            (ly:music-set-property! m 'elements (map car rs))
@@ -695,7 +725,7 @@ prStaff =
           (sign (pr-lookup 'prSign "timesig.C22"))
           (vid (string-downcase long))
           (music (pr-fix-opt (if transposed #{ \transpose #from #to #notes #} notes)))
-          (rmusic (if (pr-critical?) music
+          (rmusic (if (not (pr-regular-rests? vid)) music
                       (pr-whole-bar-rests music
                         (ly:moment-main (pr-lookup 'prBarLength (ly:make-moment 2/1))))))
           (incipit (if (or transposed (null? (ly:music-property inc 'elements)))
