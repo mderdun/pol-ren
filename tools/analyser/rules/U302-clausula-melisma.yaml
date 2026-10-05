@@ -6,6 +6,7 @@ tier: phrase
 principle: "10.7"
 authority: "Wacław z Szamotuł's own practice (Kraków Lamentationes, 1553); Stoquerus O1 (Rotola ed., 203–207); Lanfranco's phrase model (Harrán 1997, 239)"
 message: "{nn} notes on '{txt}' of {word}, the last word before the cadence; its stress is on syllable {st}"
+gates: {cantus_firmus: 0.5}
 examples:
   flag:
     - config: {waclaw_practice: true}

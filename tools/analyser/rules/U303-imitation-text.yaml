@@ -7,7 +7,7 @@ scope: piece
 principle: "10.10"
 authority: "MD (Nunc scio); Towne 1991, principles 52–53; but Zarlino lets each part have its own underlay (Harrán 1973a, 50–51; Towne 1990, R26)"
 message: "the {ptype} entry ({entry}) sets {word} differently from the leading entry ({leader}): syllables {pattern} against {lead_pattern}"
-gates: {full_point: 1.5}
+gates: {full_point: 1.5, cantus_firmus: 0.5}
 examples:
   flag:
     - voices:

@@ -73,3 +73,8 @@ against_tactus_mid:
   layer: meter
   when: "as against_tactus, but the span starts in the middle of the voice's phrase"
   why: "Miki, third review of 5 Oct 2026 (Vox Altus 12): mid-phrase the play against the tactus is a hint, not meant to be brought out; the gate is half as strong (0.75 where against_tactus has 0.5)"
+
+cantus_firmus:
+  layer: edition
+  when: "the syllable starts inside a span where its voice carries the cantus firmus (editions.yaml: cantus_firmus; the edition's \\cfStart ... \\cfEnd)"
+  why: "Nunc scio, critical method: the voice with the chant takes the chant's words in the chant's order, and its syllables fall on the chant's notes; the short notes between them are the chant's ornaments. The run, repeated-note, short-melisma and clausula rules (U205-U208, U302) and the imitation rule (U303, whose model entry is a free voice) count half there. Stress rules (U202, U210) are not gated: within a word the stresses place the syllables, not the chant's neumes."
