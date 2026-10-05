@@ -59,6 +59,94 @@ class Syl:
     def punct(self) -> bool:
         return self.text[-1:] in PUNCT
 
+    @property
+    def coda(self) -> str:
+        """open | sonorant | obstruent: what closes the syllable's vowel
+        (`coda_class`)."""
+        return coda_class(self.text)
+
+    @property
+    def short(self) -> bool:
+        """A short syllable for melisma purposes (Miki, review of 4 October
+        2026): its vowel is stopped by a plosive or fricative (it, et, est,
+        -tus), so it cannot be sung through. An open syllable or one closed by
+        a sonorant (con, in, non) can carry a run."""
+        return self.coda == "obstruent"
+
+
+# Syllable codas (Miki, review of 4 October 2026). The first consonant after
+# the syllable's last vowel decides: a sonorant (m n l r, Polish ń ł j) can be
+# sung through, a plosive or fricative stops the vowel. Polish digraphs: rz is
+# a fricative (ż), sz cz ch dz are obstruents.
+VOWELS = set("aeiouyąęó")
+SONORANTS = set("mnlrjńł")
+
+
+def _letters(text: str) -> str:
+    return re.sub(r"[^a-ząćęłńóśźż]", "", strip_accents(text.lower()))
+
+
+def coda_class(text: str) -> str:
+    s = _letters(text)
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    if v < 0:
+        return "open"
+    coda = s[v + 1:]
+    if not coda:
+        return "open"
+    if coda.startswith("rz"):
+        return "obstruent"
+    return "sonorant" if coda[0] in SONORANTS else "obstruent"
+
+
+STOPS = set("tdkgpbcq")
+SIBILANTS = set("sśzź")
+
+
+def coda_kind(text: str) -> str:
+    """open | sonorant | stop | fricative | sibilant: the coda refined for
+    U208 (Miki, second review, 4 October 2026: "penalise fricatives far less
+    than stops ... particularly s"). The first consonant after the vowel
+    decides between sonorant and obstruent (`coda_class`); an obstruent coda
+    with a stop anywhere in it (it, et, est, nec: Latin c is /k/) is a stop,
+    one of fricatives only is a fricative (x, f, ch, rz), and an s alone the
+    mildest of all."""
+    cls = coda_class(text)
+    if cls != "obstruent":
+        return cls
+    s = _letters(text)
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    coda = s[v + 1:]
+    if coda.startswith("rz") or coda.startswith("ch") or coda.startswith("sz"):
+        return "fricative"
+    if any(c in STOPS for c in coda):
+        return "stop"
+    if all(c in SIBILANTS for c in coda):
+        return "sibilant"
+    return "fricative"
+
+
+def onset_consonants(text: str) -> int:
+    """Consonants before the syllable's first vowel, counting qu, ch, sz, cz,
+    rz, dz as one sound."""
+    s = _letters(text)
+    for d in ("qu", "ch", "sz", "cz", "rz", "dz", "ph", "th"):
+        s = s.replace(d, "C")
+    n = 0
+    for c in s:
+        if c in VOWELS:
+            break
+        n += 1
+    return n
+
+
+def coda_consonants(text: str) -> int:
+    s = _letters(text)
+    for d in ("ch", "sz", "cz", "rz", "dz", "x"):
+        s = s.replace(d, "CC" if d == "x" else "C")
+    v = max((i for i, c in enumerate(s) if c in VOWELS), default=-1)
+    return 0 if v < 0 else len(s) - v - 1
+
 
 @dataclass
 class Word:
@@ -149,11 +237,35 @@ def _caps_ok(syl: str) -> bool:
     return all(p.isupper() or p.islower() for p in syl.split("-"))
 
 
+def key_word_entries(config: dict) -> list[dict]:
+    """editions.yaml key_words as {word, source, confirmed, rank}.
+
+    `rank: secondary` marks a confirmed word that travels with a key word
+    (Vox: consolari with noluit, Miki 5 Oct 2026); it is listed but carries
+    no rule weight."""
+    out = []
+    for e in config.get("key_words") or []:
+        if isinstance(e, str):
+            e = {"word": e, "source": "MD"}
+        src = str(e.get("source", ""))
+        out.append({"word": str(e["word"]), "source": src,
+                    "confirmed": not src.lower().startswith("proposed"),
+                    "rank": str(e.get("rank", "key"))})
+    return out
+
+
+def key_words(config: dict, *, proposed: bool = False) -> list[str]:
+    """The confirmed key words that weigh in the rules (with proposed=True,
+    the proposals too). Secondary words are left out."""
+    return [e["word"] for e in key_word_entries(config)
+            if (e["confirmed"] or proposed) and e["rank"] != "secondary"]
+
+
 def build_lines(score: Score, *, legacy: bool = False) -> list[Line]:
     out = []
     lang = score.lang
     lex = lexicon(lang)
-    keys = {normalise(w, lang) for w in (score.config.get("key_words") or [])}
+    keys = {normalise(w, lang) for w in key_words(score.config)}
     for voice in score.parts:
         evs = score.voices[voice]
         for verse in score.verses(voice):

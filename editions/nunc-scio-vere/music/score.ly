@@ -7,7 +7,13 @@
 \include "engraving.ily"
 \include "voices.ily"
 
-%% No incipits: the source is a tablature. Voice names and clefs are editorial.
+%% No incipits: the source is a tablature. Voice names, clefs and the
+%% mensuration sign are editorial (square brackets in the critical edition).
+prEditorialNames = ##t
+prEditorialSign = ##t
+%% Note values are twice those of the tablature (critical text, Pitch and
+%% note values): a semibreve here stands for a minim there.
+prValues = \prEquiv 1 2 "of the tablature"
 
 \prSection #'Ant #1
 \score {

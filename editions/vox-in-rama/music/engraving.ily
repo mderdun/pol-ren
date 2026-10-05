@@ -1,7 +1,7 @@
 %% Engraving decisions for this score only (breaks, spacing, local signs).
 
 %% Editorial suggestion at the final (performance edition only): the house
-%% \sugg, in round brackets, set in the same column as the voice's own note.
+%% \sugg, in square brackets, set in the same column as the voice's own note.
 suggFinal =
 #(define-music-function (note) (ly:music?)
    #{ \voiceTwo \sugg
@@ -14,9 +14,29 @@ suggFinal =
 %% 'filios suos' (25-28), 'et noluit consolari' (29-39), 'quia non sunt'
 %% (40-45). The Cantus begins each new phrase at the start of a system.
 prBreaksCritical = #'(5 10 15 20 24 28 34 39)
-prBreaksPerformance = #'(5 10 15 20 24 28 34 39)
+%% The performance edition sets two systems a page, the masthead page
+%% included (the gap between systems stays wider than any staff gap, Gould
+%% 488): eight systems on four pages. At staff size 19 a system holds six
+%% bars at most (21-28, 33-39 and 7-12 overrun the line), so only the breaks
+%% at 28, 34 and 39 keep to the phrases; before bar 28 the systems take five
+%% or six bars each.
+prBreaksPerformance = #'(6 11 17 22 28 34 39)
 
 %% Rests: only the Tenor is a primary source (T), so its rests stand as printed
 %% in the critical edition; the other voices come from M and are cut at the
 %% bar lines as in the performance edition (principles 5.8).
 prRegularRests = #'("cantus" "altus" "bassus")
+
+%% Text the source gives by ij (principles 8, 11.9): written out in angle
+%% brackets, opened on the first syllable of the passage (\ijOpen) and closed
+%% on its last (\ijClose). The bracket hangs outside the syllable, so that the
+%% syllable keeps its alignment under the note. Not yet in the house file;
+%% the four passages of T are listed in the method.
+#(define (pr-ij-bracket grob glyph side)
+   (let* ((s (lyric-text::print grob))
+          (b (grob-interpret-markup grob (make-simple-markup glyph)))
+          (c (ly:stencil-combine-at-edge s X side b 0.05)))
+     (ly:make-stencil (ly:stencil-expr c)
+                      (ly:stencil-extent s X) (ly:stencil-extent c Y))))
+ijOpen  = \once \override LyricText.stencil = #(lambda (grob) (pr-ij-bracket grob "⟨" LEFT))
+ijClose = \once \override LyricText.stencil = #(lambda (grob) (pr-ij-bracket grob "⟩" RIGHT))

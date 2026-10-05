@@ -1,0 +1,13 @@
+id: P208
+name: system-gap
+kind: pdf
+level: error
+rule: "decision of 4 Oct 2026 (staff spacing); house style 7"
+authority: "Gould, Behind Bars, 488: the gap between systems must be larger than the widest staff gap inside either neighbouring system (decided 4 Oct 2026: a build check; measured line to line, in staff spaces, as in the Gould reading notes)"
+message: "p.{page}: the gap between systems {a} and {b} is {gap:.1f} spaces, not more than the widest staff gap beside it ({inner:.1f}); give the spare height to the staff gaps (Ross 69) or to the system gap"
+applies: [critical, performance]
+examples:
+  flag:
+    - {fixture: gould-fail, why: "system gap 8 spaces against staff gaps of 10"}
+  pass:
+    - {fixture: gould-pass, why: "system gap 12 against staff gaps of 7"}

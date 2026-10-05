@@ -5,11 +5,18 @@ legacy: true
 weight: 2.0
 tier: stress
 principle: "10.6"
-authority: "Zarlino IX: a melisma on a short syllable is a barbarism (Harrán 1973a, 44–45); Stoquerus O1 (Rotola ed., 203–207); Calvisius 1592 (Towne 1990, 271)"
-message: "{nn} notes on '{txt}' of {word} (stress on syllable {st}; vowel {vowel})"
-gates: {cadence_approach: 0.5, older_practice: 0.5}
+authority: "Miki, review of 4 Oct 2026 (length in time; con- can be sung through); Zarlino IX: a melisma on a short syllable is a barbarism (Harrán 1973a, 44–45); Stoquerus O1 (Rotola ed., 203–207); Calvisius 1592 (Towne 1990, 271)"
+message: "{nn} notes{time} on '{txt}' of {word} (stress on syllable {st}; vowel {vowel})"
+# Length in time, not notes (Miki, review of 4 Oct 2026): a run counts from
+# min_time semiminims (a breve) over min_notes notes; each further `step`
+# semiminims adds one to the amount. A syllable that can be sung through (open,
+# or closed by a sonorant: con-) counts half (gate sung_through).
+params: {min_time: 8, min_notes: 3, step: 4}
+gates: {cadence_approach: 0.5, older_practice: 0.5, sung_through: 0.5, cantus_firmus: 0.5}
 examples:
   flag:
     - {notes: "f4 g2 a1 g1 f1 e1 d1 e1 f2", text: "Do- mi- _ _ _ _ _ _ nus", at: 1}
+    - {notes: "f4 g4 a2 g2 f2 e2 f4", text: "Do- mi- _ _ _ _ nus", at: 1, why: "five notes, but three semibreves long"}
   pass:
     - {notes: "f2 g1 a1 g1 f1 e1 d1 e2 f2", text: "Do- _ _ _ _ _ _ mi- nus", why: "the run is on the stressed syllable"}
+    - {notes: "f4 g1 a1 g1 f1 e1 d1 e1 f4", text: "Do- mi- _ _ _ _ _ _ nus", why: "seven notes, but a fast run under a breve long (Miki, review of 4 Oct 2026)"}

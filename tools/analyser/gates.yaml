@@ -18,6 +18,16 @@ evaded_cadence:
   when: "the cadence is evaded or abandoned rather than completed"
   why: "an evaded cadence does not close the sentence, so 10.3 binds less"
 
+weak_cadence:
+  layer: cadence
+  when: "the clausula is complete but closes weakly (fewer than full_closure points: short arrival notes, no rest, no suspension, no bass, no clause end; layers/cadence_tables.yaml)"
+  why: "a passing clausula figure inside a phrase does not close the sentence, so 10.3 binds less; survey §3.2 item 6 (strength)"
+
+key_word:
+  layer: text
+  when: "the word is a key word the editor has confirmed (editions.yaml: key_words)"
+  why: "principles 10.6: the stressed syllable or the key word takes the long note or the high point"
+
 suspension:
   layer: dissonance
   when: "the dissonant note is a suspension (prepared, resolving down by step)"
@@ -37,3 +47,34 @@ older_practice:
   layer: edition
   when: "the edition is set as older practice (editions.yaml: older_practice)"
   why: "Towne 1990, 285: poor accentuation may be an acceptable result of counterpoint in an older piece; Harrán 1997, 243, 257–260"
+
+sung_through:
+  layer: text
+  when: "the syllable is open or closed by a sonorant (m n l r; text.coda_class), so the vowel can be sung through a run"
+  why: "Miki, review of 4 Oct 2026: con- 'even though shortened by the n, can easily become a long syllable', where it- cannot"
+
+melodic_resolution:
+  layer: cadence
+  when: "the voice's own line resolves after the harmonic arrival (its last melodic move, before a rest), and the phrase's last syllable is on that note"
+  why: "Miki, review of 4 Oct 2026 (Cantus 28.1, Bassus 18.3): the last syllable on the voice's own resolution, the final move acting as a full stop"
+
+tail_voice:
+  layer: cadence
+  when: "other voices have begun new text while this voice still sings its phrase's last syllable"
+  why: "Miki, review of 4 Oct 2026 (Cantus 28.1): an outer voice that carries the old phrase across the join keeps the momentum of the tail transition"
+
+against_tactus:
+  layer: meter
+  when: "the syllable starts inside a span where its voice plays against the tactus (meter.displaced_spans: syncopation declaimed by two or more voices together, or a hemiola-like chain of syncopated semibreves in one voice)"
+  why: "Miki, second review of 4 Oct 2026 (Vox Altus 10.4: 'the 3 top parts are clearly playing against the tactus here'; Altus 15: 'the intention is for the strong beat of the word to play against the tactus here given the note values suggesting hemiola'): there the tactus is not the accent, so a rule that measures stress or lightness against it counts half. U210 measures against the displaced pulse instead"
+  # Miki, third review of 5 Oct 2026: "often when the play is most obvious, is when it begins a phrase (and its doubly obvious when these phrases are in homorhythm)"; so the gate applies fully where the span begins a phrase for the voice (meter.mark_phrase_starts) and half as strongly (against_tactus_mid) where it starts mid-phrase
+
+against_tactus_mid:
+  layer: meter
+  when: "as against_tactus, but the span starts in the middle of the voice's phrase"
+  why: "Miki, third review of 5 Oct 2026 (Vox Altus 12): mid-phrase the play against the tactus is a hint, not meant to be brought out; the gate is half as strong (0.75 where against_tactus has 0.5)"
+
+cantus_firmus:
+  layer: edition
+  when: "the syllable starts inside a span where its voice carries the cantus firmus (editions.yaml: cantus_firmus; the edition's \\cfStart ... \\cfEnd)"
+  why: "Nunc scio, critical method: the voice with the chant takes the chant's words in the chant's order, and its syllables fall on the chant's notes; the short notes between them are the chant's ornaments. The run, repeated-note, short-melisma and clausula rules (U205-U208, U302) and the imitation rule (U303, whose model entry is a free voice) count half there. Stress rules (U202, U210) are not gated: within a word the stresses place the syllables, not the chant's neumes."

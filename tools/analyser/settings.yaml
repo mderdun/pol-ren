@@ -17,3 +17,30 @@ window: 2          # syllables either side of a finding that the search may move
 alternatives: 3    # alternatives listed per finding
 kbest: 12          # candidates kept per state in the k-best search before re-ranking
 max_span_notes: 160
+
+# Text edits offered as alternatives (edits.py): a word dropped from an
+# editorially texted lower voice (principles 10.13), or a word sung again in
+# place of a long melisma (10.9). Each is flagged in the alternative and costs
+# this much on top of the rules, so a reading that keeps the text wins when it
+# is about as good.
+text_edits:
+  enabled: true
+  drop_light: 1.0      # a word on the droppable list
+  drop: 1.5            # one of a word sung twice in a row (plebis, plebis)
+  repeat: 1.0
+  # conjunctions and auxiliaries whose loss leaves the clause's sense; no
+  # prepositions (vox Rama is not Latin), no content words
+  droppable: [et, est, ac, atque, sed, nec, i, a, oraz]
+
+# Principles 10.1 (rewritten 4 October 2026): a new syllable on a semiminim
+# (under C, on a fusa) is legal only under a licence, and each licence costs a
+# little, so that the default (a minim or longer) wins where it is about as
+# good and the search can still propose a licensed placement. Outside these
+# the firm core holds and U101/U102 break. The critical note names the clause.
+licences_10_1:
+  a: 0.5          # the first semiminim of a run, on a minim beat (U106)
+  b_dotted: 0.25  # straight after a dotted minim (U106)
+  b_repeat: 0.25  # a lone semiminim on a repeated pitch, after a longer note (U106)
+  c: 0.5          # a later note of a run: all voices in semiminims, or a leap (U106)
+  d: 0.25         # the white note straight after a run, at a phrase end (U203)
+  # (e) a placement the period source shows (10.12): accepted beside the note

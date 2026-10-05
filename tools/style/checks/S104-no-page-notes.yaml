@@ -1,0 +1,16 @@
+id: S104
+name: no-page-notes
+kind: source
+level: error
+heuristic: true
+rule: "house style 9"
+authority: "House style 9: 'No notes on the music page' (tried in Vox in Rama, October 2026, and dropped; editor's rule)"
+message: "{what} on a music page; a sign the score marks as editorial needs no gloss there (rehearsal or critical notes instead)"
+applies: [critical, performance]
+examples:
+  flag:
+    - {path: editions/x/x-performance.lytex, text: "\\lilypondfile{music/score.ly}\n\\pagenote{Small notes are editorial.}", why: "a footnote on the music page"}
+    - {path: editions/x/x-critical.tex, text: "\\gregorioscore[a]{x}\n\\musicnote{Bar lines are editorial.}", why: "a note straight after the score"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\includegraphics{facs.pdf}\n\\musicnote{Leipzig, Ms 1236, f. 139v.}", why: "a facsimile caption"}
+    - {path: editions/x/x-critical.lytex, text: "\\lilypondfile{music/score.ly}\n\n\\opensection{Critical notes}", why: "no note"}

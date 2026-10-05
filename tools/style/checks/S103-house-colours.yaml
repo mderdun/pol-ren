@@ -1,0 +1,18 @@
+id: S103
+name: house-colours
+kind: source
+level: error
+rule: "house style 5"
+authority: "House style 5: 'Black, white and one red; no other colour, grey included: #9A1E1E'"
+message: "colour {colour} is not in the house palette (black, white, #9A1E1E)"
+applies: [critical, performance, text, music, guide, house]
+examples:
+  flag:
+    - {path: house/latex/pol-ren.cls, text: "\\definecolor{rubric}{RGB}{160,30,30}", why: "a red that is not the rubric"}
+    - {path: house/lilypond/pol-ren.ily, text: "\\tweak color #(rgb-color 0.5 0.5 0.5)", why: "grey"}
+    - {path: editions/x/x-critical.lytex, text: "\\textcolor{black!60}{note}", why: "a tint of black is grey"}
+    - {path: editions/x/music/voices.ily, text: "\\with-color #blue \"x\"", why: "a named LilyPond colour"}
+  pass:
+    - {path: house/latex/pol-ren.cls, text: "\\definecolor{rubric}{RGB}{154,30,30}   % #9A1E1E", why: "the house red"}
+    - {path: house/lilypond/pol-ren.ily, text: "\\tweak color #(rgb-color 0.604 0.118 0.118)", why: "the house red as fractions"}
+    - {path: editions/x/x-critical.lytex, text: "\\red{Antiphona}", why: "the house macro"}

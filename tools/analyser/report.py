@@ -30,8 +30,8 @@ def text(res: Result, *, show_info: bool = False, verbose: bool = False) -> str:
             if f.breakdown:
                 out.append("      costs here: " + "; ".join(f.breakdown))
             if f.level == "break" and not f.alternatives:
-                out.append("      no legal underlay here moves syllables only; a text change may be needed "
-                           "(10.13: a repeated word dropped)")
+                out.append("      no legal underlay here, moving syllables or dropping a word (10.13); "
+                           "the text or the notes may need changing")
             for a in f.alternatives:
                 cost = f"cost {a['cost']:.2f}" if a.get("basis") == "total" else f"{a['cost']:+.2f}"
                 out.append(f"      try: {', '.join(a['moves'])} ({cost}"
@@ -49,21 +49,12 @@ def to_json(res: Result) -> dict:
     return {"edition": res.slug, "findings": [f.to_json() for f in res.findings]}
 
 
-def _dedupe_top(findings: list[Finding], n: int) -> list[Finding]:
-    """The biggest regrets, one per window (findings that share an
-    alternative are one problem)."""
-    seen, out = set(), []
-    for f in sorted(findings, key=lambda f: -(f.regret or 0)):
-        if f.regret is None or f.regret <= 0:
-            continue
-        key = (f.voice, f.verse, tuple(f.alternatives[0]["moves"]) if f.alternatives else f.where)
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append(f)
-        if len(out) >= n:
-            break
-    return out
+def _top(findings: list[Finding], n: int) -> list[Finding]:
+    """The biggest regrets. Each finding's regret is its own share of the
+    improvement (findings.attributable), so findings that one alternative
+    solves together are listed with their parts, which add up to the whole."""
+    return [f for f in sorted(findings, key=lambda f: -(f.regret or 0))
+            if f.regret is not None and f.regret > 0][:n]
 
 
 def markdown(results: list[Result], *, new: dict | None = None, top: int = 8) -> str:
@@ -88,7 +79,7 @@ def markdown(results: list[Result], *, new: dict | None = None, top: int = 8) ->
             for f in new_here:
                 out.append(f"- {f.level}: {f.rule} {f.voice} v{f.verse} bar {f.where}: {f.message}"
                            + (f" (`{f.src}`)" if f.src else ""))
-        tops = _dedupe_top(fs, top)
+        tops = _top(fs, top)
         if tops:
             out += ["", f"### {r.slug}: biggest regrets (open findings)", "",
                     "| Regret | Rule | Voice | Bar | Finding | Try | Status |",
@@ -121,6 +112,58 @@ def github(results: list[Result], new: dict, limit: int = 40) -> list[str]:
     return out
 
 
+def sarif(results: list[Result], new: dict | None = None) -> dict:
+    """SARIF 2.1.0: one run, the rules as the tool's rules, every finding of
+    look level or worse (information findings too, as notes) with its source
+    line, regret and fingerprint. baselineState is "unchanged" for a finding
+    the baseline or an inline comment accepts or keeps pending, else "new"."""
+    from .rules import load
+    rules = load()
+    used = sorted({f.rule for r in results for f in r.findings})
+    index = {rid: n for n, rid in enumerate(used)}
+    level = {"break": "error", "warn": "warning", "look": "note", "info": "none"}
+    out_results = []
+    for r in results:
+        for f in r.findings:
+            res = {
+                "ruleId": f.rule, "ruleIndex": index[f.rule], "level": level[f.level],
+                "message": {"text": f"{f.voice} v{f.verse} bar {f.where}: {f.message}"},
+                "partialFingerprints": {"underlay/v1": f.fingerprint},
+                "baselineState": "unchanged" if f.baseline else "new",
+                "properties": {"edition": f.slug, "voice": f.voice, "verse": f.verse, "where": f.where,
+                               "analyserLevel": f.level, "cost": round(f.cost, 3),
+                               "regret": None if f.regret is None else round(f.regret, 3),
+                               "gates": f.gates, "alternatives": f.alternatives,
+                               "baseline": f.baseline},
+            }
+            if f.src:
+                file, line = f.src.rsplit(":", 1)
+                res["locations"] = [{"physicalLocation": {
+                    "artifactLocation": {"uri": file, "uriBaseId": "%SRCROOT%"},
+                    "region": {"startLine": int(line)}}}]
+            out_results.append(res)
+    driver_rules = []
+    for rid in used:
+        ru = rules[rid]
+        driver_rules.append({
+            "id": rid, "name": ru.name,
+            "shortDescription": {"text": f"{ru.name} (principles {ru.principle})"},
+            "fullDescription": {"text": f"{ru.message} Authority: {ru.authority}"},
+            "help": {"text": f"Principles {ru.principle}; {ru.authority}. Rule file: {ru.path}"},
+            "properties": {"tier": ru.tier, "weight": ru.weight, "firm": ru.hard},
+            "defaultConfiguration": {"level": level.get(ru.level, "note")}})
+    return {
+        "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [{
+            "tool": {"driver": {"name": "pol-ren underlay analyser",
+                                "informationUri": "https://github.com/mderdun/pol-ren/blob/main/docs/analyser.md",
+                                "rules": driver_rules}},
+            "results": out_results,
+        }],
+    }
+
+
 # ------------------------------------------------------------------ layers
 
 def layers(res_or_analysis) -> str:
@@ -139,11 +182,24 @@ def layers(res_or_analysis) -> str:
         if row["known"] and row["lex_syllables"] and row["lex_syllables"] != row["syllables"]:
             flag = f"   lexicon has {row['lex_syllables']} syllables, sung with {row['syllables']}"
         out.append(f"  {row['word']:18} x{row['count']}{flag}")
-    out += ["", f"CADENCES ({len(a.cadences)})",
-            "  functions: C cantizans, T tenorizans, B bassizans, A altizans, b evaded bass, c/t prepared but not arriving"]
+    from .text import key_word_entries
+    kws = key_word_entries(sc.config)
+    if kws:
+        conf = [k["word"] + (" (secondary)" if k.get("rank") == "secondary" else "") for k in kws if k["confirmed"]]
+        prop = [k["word"] for k in kws if not k["confirmed"]]
+        out += ["", "KEY WORDS (editions.yaml)"]
+        out.append("  confirmed: " + (", ".join(conf) if conf else "none"))
+        if prop:
+            out.append("  proposed, not confirmed (no effect yet): " + ", ".join(prop))
+    kinds = Counter(c.kind for c in a.cadences)
+    out += ["", f"CADENCES ({kinds.get('full', 0)} full, {kinds.get('evaded', 0)} evaded, "
+                f"{kinds.get('abandoned', 0)} abandoned; {kinds.get('weak', 0)} weak figures not counted)",
+            "  functions: C cantizans, T tenorizans, B bassizans, A altizans, b evaded bass, c/t prepared but not arriving,",
+            "  P plagal bass, H holds the final; closure: points for long arrival, rest after, suspension, bass, clause end"]
     for c in a.cadences:
         fs = ", ".join(f"{v} {f}" for v, f in sorted(c.functions.items()))
-        out.append(f"  {c.where:7} {c.type:14} on {c.tone:3} {'(after a suspension) ' if c.prepared else ''}[{fs}]")
+        out.append(f"  {c.where:7} {c.type:14} on {c.tone:3} {c.kind:9} closure {c.closure} "
+                   f"{'(after a suspension) ' if c.prepared else ''}[{fs}]")
     out += ["", "DISSONANCE"]
     cnt = Counter(d.label for d in a.dissonances.values())
     out.append("  " + ", ".join(f"{k} {v}" for k, v in sorted(cnt.items())))
@@ -160,7 +216,8 @@ def layers(res_or_analysis) -> str:
     for ph in a.phrases:
         ln = a.line(ph.voice, ph.verse)
         cad = f"  -> {ph.cadence.type} on {ph.cadence.tone}" if ph.cadence else ""
-        out.append(f"  {ph.voice:9} v{ph.verse} {ph.label(ln):13} ends at {ph.ends:11} {ph.text}{cad}")
+        land = f"  [lands {ln.events[ph.landing].where}]" if ph.landing is not None else ""
+        out.append(f"  {ph.voice:9} v{ph.verse} {ph.label(ln):13} ends at {ph.ends:11} {ph.text}{cad}{land}")
     out += ["", f"IMITATION ({len(a.points)} points)"]
     for p in a.points:
         out.append(f"  {p.type:4} head {p.motif} (steps), led by {p.leader.voice} at {p.leader.where}")
@@ -176,6 +233,13 @@ def layers(res_or_analysis) -> str:
     for r in a.regions:
         out.append(f"  {r.first_where}-{r.last_where}  {r.slices} slices, voices {', '.join(r.voices)}; "
                    f"syllables together: " + ", ".join(f"v{k} {int(v * 100)}%" for k, v in r.syllable_match.items()))
+    out += ["", f"AGAINST THE TACTUS ({len(a.displaced)} spans; * begins a phrase for the voice)"]
+    for d in a.displaced:
+        vs = ", ".join(v + ("*" if v in d.phrase_start else "") for v in d.voices)
+        out.append(f"  {d.where:7} {d.kind:8} {vs}")
+    out += ["", f"CONTOUR ACCENTS ({len(a.contours)}; information, under investigation)"]
+    for c in a.contours:
+        out.append(f"  {c.where:7} {c.voice:9} {', '.join(c.kinds)}{'' if c.on_tactus else '  (off the tactus)'}")
     return "\n".join(out) + "\n"
 
 

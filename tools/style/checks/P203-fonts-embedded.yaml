@@ -1,0 +1,13 @@
+id: P203
+name: fonts-embedded
+kind: pdf
+level: error
+rule: "house style 3, 5a"
+authority: "House style 3 (Junicode 2 throughout) and 5a (the pressed fonts carry the finish in their outlines): a font that is not embedded prints in whatever the reader's machine substitutes"
+message: "font {font} is not embedded (p.{pages})"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: unembedded-font, why: "a base-14 font referenced, not embedded"}
+  pass:
+    - {fixture: no-text, why: "no fonts at all"}

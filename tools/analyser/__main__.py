@@ -6,6 +6,8 @@
     python -m tools.analyser lexicon
     python -m tools.analyser golden [--update]
     python -m tools.analyser legacy <musicxml>      # the old audit's output
+    python -m tools.analyser review <musicxml> --html OUT.html
+    python -m tools.analyser edits apply EDITS.json [--dry-run]   # edits from the review page
 
 See docs/analyser.md. The analyser advises; it never changes an edition.
 """
@@ -20,7 +22,7 @@ from . import baseline as B
 from . import report
 from .ingest import ROOT, editions_config, slug_of
 
-COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy")
+COMMANDS = ("check", "analyse", "selfcheck", "lexicon", "golden", "legacy", "review", "edits")
 DEFAULT_BASELINE = Path(__file__).resolve().parent / "baseline.json"
 GOLDEN = Path(__file__).resolve().parent / "tests" / "golden"
 
@@ -36,6 +38,9 @@ def cmd_check(a) -> int:
     results = [run(p) for p in _paths(a.paths)]
     base = B.load(a.baseline)
     new = B.apply(results, base)
+    from .inline import problems
+    for p in problems(results):
+        print(f"analyser: {p}", file=sys.stderr)
     if a.update_baseline:
         n = B.update(a.baseline, results, base)
         print(f"baseline {a.baseline}: {n} new entries added as pending")
@@ -58,6 +63,12 @@ def cmd_check(a) -> int:
             (out / "analyser.md").write_text(md, encoding="utf-8")
         else:
             print(md)
+    if "sarif" in fmts:
+        data = report.sarif(results, new)
+        if out:
+            (out / "analyser.sarif").write_text(report.dumps(data), encoding="utf-8")
+        else:
+            print(report.dumps(data))
     if "github" in fmts:
         for line in report.github(results, new):
             print(line)
@@ -163,15 +174,29 @@ def cmd_legacy(a) -> int:
     return 0
 
 
+def cmd_review(a) -> int:
+    from .review import build
+    paths = _paths(a.paths)
+    if len(paths) != 1:
+        print("review: one MusicXML file at a time", file=sys.stderr)
+        return 2
+    out = build(paths[0], Path(a.html), baseline=a.baseline)
+    print(f"wrote {out} ({out.stat().st_size // 1024} KB)")
+    return 0
+
+
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "edits":
+        from .underlay_edits import main as edits_main
+        return edits_main(argv[1:])
     if not argv or argv[0] not in COMMANDS + ("-h", "--help"):
         argv.insert(0, "check")
     ap = argparse.ArgumentParser(prog="python -m tools.analyser", description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd")
     c = sub.add_parser("check", help="findings for one or more editions")
     c.add_argument("paths", nargs="+")
-    c.add_argument("--format", default="text", help="comma list: text, json, markdown, github")
+    c.add_argument("--format", default="text", help="comma list: text, json, markdown, github, sarif")
     c.add_argument("--out", help="directory for analyser.json and analyser.md")
     c.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
     c.add_argument("--update-baseline", action="store_true")
@@ -196,6 +221,11 @@ def main(argv=None) -> int:
     lg = sub.add_parser("legacy", help="the old audit's output, from the ported rules")
     lg.add_argument("paths", nargs="+")
     lg.set_defaults(fn=cmd_legacy)
+    rv = sub.add_parser("review", help="one self-contained HTML page for reviewing one piece")
+    rv.add_argument("paths", nargs=1)
+    rv.add_argument("--html", required=True, help="the page to write")
+    rv.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
+    rv.set_defaults(fn=cmd_review)
     a = ap.parse_args(argv)
     return a.fn(a)
 

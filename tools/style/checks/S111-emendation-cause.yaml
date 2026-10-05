@@ -1,0 +1,15 @@
+id: S111
+name: emendation-cause
+kind: source
+level: warn
+heuristic: true
+rule: "decision 6 (4 Oct 2026); principles 8"
+authority: "Decision 6 of 4 Oct 2026: emendation notes say how the error arose (Grier 72, 99-100; Caldwell 5); principles 8: the critical note opens 'Emended.'"
+message: "the emendation note at {where} does not say how the error arose (a misread clef, a slip of a third, an octave lost in transcription ...)"
+applies: [critical]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17}{A}{Emended. M has a; here d′.}", why: "the reading, but not how the error came about"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17–18}{A}{Emended. N and M have a–c′–d′–e′ an octave lower, probably a transcription error in their common parent.}", why: "says how the error arose"}
+    - {path: editions/x/x-critical.lytex, text: "\\cn{17}{A}{Underlay. M sets ‘Ra-ma’.}", why: "not an emendation"}

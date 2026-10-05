@@ -1,0 +1,17 @@
+id: S102
+name: no-bold
+kind: source
+level: error
+rule: "house style 3"
+authority: "House style 3: 'Bold: Not used. Emphasis is italic; labels are small capitals'"
+message: "bold ({cmd}); use italic for emphasis, small capitals for labels"
+applies: [critical, performance, text, music, guide, house]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\textbf{Base text.}", why: "a bold label"}
+    - {path: editions/x/music/voices.ily, text: "^\\markup \\bold \"1.\"", why: "bold markup in the score"}
+    - {path: house/lilypond/pol-ren.ily, text: "\\override StanzaNumber.font-series = #'bold", why: "a bold default set in the house"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\textit{Base text.}", why: "italic"}
+    - {path: house/latex/pol-ren.cls, text: "%% small capitals, not bold.", why: "a comment"}
+    - {path: house/lilypond/pol-ren.ily, text: "\\override StanzaNumber.font-series = #'medium", why: "explicitly not bold"}

@@ -45,7 +45,7 @@ def load_srcmap(path: Path) -> dict:
     out = {}
     with side.open(encoding="utf-8") as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
-            key = (row["part"], row["measure"], F(row["position"]))
+            key = (row["part"].strip("[]"), row["measure"], F(row["position"]))
             out.setdefault(key, (row["file"], int(row["line"]), int(row["column"]) + 1))
     return out
 
@@ -55,7 +55,7 @@ def parse(path: str | Path, *, legacy: bool = False, config: dict | None = None)
     slug = slug_of(path)
     cfg = (config if config is not None else editions_config()).get(slug, {}) or {}
     root = ET.parse(path).getroot()
-    names = {p.get("id"): p.findtext("part-name") for p in root.iter("score-part")}
+    names = {p.get("id"): (p.findtext("part-name") or "").strip("[]") for p in root.iter("score-part")}
     title = root.findtext("work/work-title") or slug
     srcmap = {} if legacy else load_srcmap(path)
     score = Score(slug=slug, path=str(path), title=title, config=cfg, lang=cfg.get("lang", "la"))
@@ -131,6 +131,10 @@ def parse(path: str | Path, *, legacy: bool = False, config: dict | None = None)
             tied_in = last is not None and not r["rest"] and "stop" in r["ties"] and not last.rest
             if tied_in and (legacy or not prev_dashed):
                 last.dur += r["d"]
+                if srcmap:
+                    extra = srcmap.get((name, r["measure"], r["pos"] / 4))
+                    if extra and extra not in last.srcs:
+                        last.srcs.append(extra)
                 for k, v in r["ly"].items():
                     last.lyrics.setdefault(k, v)
                 prev_dashed = r["dashed_out"]
@@ -142,6 +146,8 @@ def parse(path: str | Path, *, legacy: bool = False, config: dict | None = None)
                       after_break=r["brk"] and not legacy)
             if srcmap and not e.rest:
                 e.src = srcmap.get((name, e.measure, e.pos / 4))
+                if e.src:
+                    e.srcs = [e.src]
             events.append(e)
             prev_dashed = r["dashed_out"]
         score.voices[name] = events

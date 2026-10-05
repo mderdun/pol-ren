@@ -14,3 +14,7 @@ house/fonts/
 __pycache__/
 .pytest_cache/
 analyser-out/
+
+# style checks
+style-out/
+guides/*/build/*.prsys

@@ -274,22 +274,27 @@
 
 %% Performance edition: a masthead at the top of the first page; the
 %% music follows on the same page.
+%% The series line stands where the running head stands on the other pages,
+%% so the text block starts with the title and page 1 keeps its height for
+%% the music.
+\fancypagestyle{pr@mast}{%
+  \fancyhf{}\renewcommand\headrulewidth{0pt}%
+  \fancyhead[C]{\footnotesize\red{\spacedsc{\pr@series}}\enspace\red{\ornfont ·}\enspace\spacedsc{Performance edition}}}
 \newcommand\makemasthead{%
-  \thispagestyle{pr@plain}%
+  \thispagestyle{pr@mast}%
   \begin{center}
-    {\footnotesize\red{\spacedsc{\pr@series}}\enspace\red{\ornfont ·}\enspace\footnotesize\spacedsc{Performance edition}\par}
-    \vspace{5mm}
     {\fontsize{24}{28}\selectfont\pr@title\par}
     \ifx\pr@subtitle\@empty\else\vspace{1.5mm}{\large\itshape\pr@subtitle\par}\fi
     \vspace{3mm}
   \end{center}
+  %% Poet left, composer right; the pitch line of a transposed score in the
+  %% middle of the same line, so the music starts one line higher.
   {\small\noindent
-   \begin{tabularx}{\textwidth}{@{}X r@{}}
+   \begin{tabularx}{\textwidth}{@{}X c >{\raggedleft\arraybackslash}X@{}}
    \ifx\pr@poet\@empty\else\pr@poet\fi &
+   \ifx\pr@pitchline\@empty\else{\footnotesize\itshape\pr@pitchline}\fi &
    \spacedsc{\pr@composer}\ifx\pr@composerdates\@empty\else\ \pr@composerdates\fi
    \end{tabularx}\par}
-  \ifx\pr@pitchline\@empty\else
-    \vspace{1mm}{\centering\footnotesize\itshape\pr@pitchline\par}\fi
   \vspace{4mm}}
 
 %% Score heading inside the critical edition (title page already given).
@@ -329,12 +334,38 @@
 \NewDocumentCommand\pr@sysbreak{m}{
   \clist_if_in:NnTF \g_pr_pbreaks_clist {#1} {\newpage} {}}
 \ExplSyntaxOff
-\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}\pr@sysbreak{#1}\noindent}
+\def\betweenLilyPondSystem#1{\par\vspace{\systemskip}%
+  \ifcsname pr@sysskip@\the\numexpr#1+1\endcsname
+    \vspace{\csname pr@sysskip@\the\numexpr#1+1\endcsname}\fi
+  \pr@sysbreak{#1}\noindent
+  \expandafter\pr@sysmark\expandafter{\the\numexpr#1+1\relax}}
+%% Extra space before system n, from the page-fill pass (see below).
+\def\prsysskip#1#2{\expandafter\def\csname pr@sysskip@#1\endcsname{#2}}
+\AtBeginDocument{\InputIfFileExists{\jobname.prskip}{}{}}
+\def\preLilyPondExample{\pr@sysmark{1}}
+%% Page fill (house-style §9, Ross 69): for tools/stretch_systems.py, record
+%% in \jobname.prsys which page each system lands on (S page system) and how
+%% much height each page leaves unused at natural spacing (P page slack).
+%% The build then gives most of that slack to the staff gaps inside the
+%% systems (pol-ren.ily, PR_STRETCH) and builds again.
+\newwrite\pr@sysout
+\AtBeginDocument{\immediate\openout\pr@sysout=\jobname.prsys\relax}
+\def\pr@sysmark#1{\write\pr@sysout{S \thepage\space #1}}
+\let\pr@makecol\@makecol
+\def\@makecol{%
+  \setbox\z@\vbox{\unvcopy\@cclv}%
+  \immediate\write\pr@sysout{P \thepage\space\the\dimexpr\textheight-\ht\z@\relax}%
+  \pr@makecol}
 %% A note at the foot of a music page, for a sign on that page that singers
 %% cannot read without it. Use sparingly: house-style §9.
 \newcommand\pagenote[1]{{\renewcommand\thefootnote{}\renewcommand\@makefntext[1]{\noindent\itshape##1}%
   \footnotetext{#1}}}
 \newcommand\musicnote[1]{\par{\small\itshape\centering #1\par}}
+%% A statement about the score as a whole, on the score page of a critical
+%% edition (house-style §9, on-score annotation): small italic, left-aligned
+%% above the first system, where the note-value equivalence stands in a
+%% LilyPond score. Put it between \scorehead and the score.
+\newcommand\scorenote[1]{\par\noindent{\footnotesize\itshape #1\par}\nopagebreak\vspace{1mm}}
 
 %% ------------------------------------------------------------ apparatus
 %% Sources: siglum in a hanging column of small capitals.
@@ -465,6 +496,8 @@
 \AtBeginDocument{%
   \@ifpackageloaded{gregoriotex}{%
     \grechangestyle{annotation}{\small\color{rubric}}%
+    %% stanza numbers in the chant, <c>2.</c> in the gabc: red, regular weight
+    \definecolor{gregoriocolor}{RGB}{154,30,30}%
     \grechangestyle{initial}{\color{rubric}\fontsize{38}{38}\selectfont}%
     \ifpr@critical\grechangestaffsize{18}\else\grechangestaffsize{21}\fi
     %% the pressed copy of greciliae (tools/make-pressed-fonts.sh; TTFONTS from tools/build.sh)

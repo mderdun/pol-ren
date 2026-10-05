@@ -96,7 +96,7 @@ def music21_counts(path: Path) -> dict:
     s = converter.parse(str(path), forceSource=True)
     out: dict = {}
     for p in s.parts:
-        name = p.partName
+        name = (p.partName or "").strip("[]")   # editorial names print as [Cantus] (principles 6.1)
         for n in p.recurse().notes:
             for ly in n.lyrics:
                 if ly.text:

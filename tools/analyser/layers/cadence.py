@@ -12,7 +12,19 @@
 3. Prepared clausulae that do not arrive: a 7-6 suspension resolving into a
    major sixth whose voices then do not open to the octave. These give
    evaded or abandoned cadences.
-4. The type comes from the set of functions and the tables.
+4. Plagal endings: at the end of a section, the lowest voice rises a fifth
+   or falls a fourth onto a held final while an upper voice keeps the tone,
+   and no clausula arrives there.
+5. The type comes from the set of functions and the tables.
+6. Closure (`closure`, after the text is known): how strongly the figure
+   closes. A point each for arrival notes of a semibreve or more (a minim
+   under C), a rest (or
+   the end) after the arrival in a voice of the clausula, a suspension
+   leading into it, a bassizans (or the plagal bass), and the end of a
+   clause in the text (a punctuated word ending on or just after the arrival
+   in a voice of the clausula). A complete clausula with fewer than
+   `full_closure` points (cadence_tables.yaml) is a weak figure, not a full
+   cadence: `kind` is full, weak, evaded or abandoned.
 """
 from __future__ import annotations
 
@@ -24,6 +36,7 @@ from pathlib import Path
 import yaml
 from music21 import note, voiceLeading
 
+from ..meter import syllable_unit
 from ..model import Event, Score
 from .dissonance import Dis, neighbours
 from .sonority import interval_name
@@ -50,10 +63,13 @@ class Cadence:
     phrygian: bool = False
     prepared: bool = False                           # a suspension led into it
     bass_on_tone: bool = True
+    closure: int = 0                                 # points of closure (find's docstring)
+    closure_why: list = field(default_factory=list)
+    kind: str = "full"                               # full | weak | evaded | abandoned
 
     def summary(self) -> str:
         fs = "".join(sorted(self.functions.values()))
-        return f"{self.where} {self.type} on {self.tone} ({fs})"
+        return f"{self.where} {self.type} on {self.tone} ({fs}) {self.kind} {self.closure}"
 
 
 def _note_at(evs: list[Event], t: F) -> Event | None:
@@ -189,14 +205,143 @@ def find(score: Score, dis: dict) -> list[Cadence]:
         cad.tone = PC_NAMES[(r.midi + 1) % 12]
         _type(cad)
         found[t] = cad
+    _plagal(score, found)
     return [found[t] for t in sorted(found)]
 
 
+def _ends_section(evs: list[Event], e: Event) -> bool:
+    n = evs[e.idx + 1] if e.idx + 1 < len(evs) else None
+    return n is None or n.after_break or (n.rest and all(x.rest for x in evs[n.idx:])) \
+        or (n.rest and any(x.after_break for x in evs[n.idx:n.idx + 2]))
+
+
+def _plagal(score: Score, found: dict) -> None:
+    """A final approached by the lowest voice a fifth up or a fourth down,
+    the tone held above it, with no clausula at or after its onset."""
+    voices = score.parts
+    for v in voices:
+        evs = score.voices[v]
+        for e in evs:
+            if e.rest or e.dur < 4 or not _ends_section(evs, e):
+                continue
+            p, _ = neighbours(evs, e)
+            if p is None:
+                continue
+            up = e.midi - p.midi
+            if up not in (7, -5):
+                continue
+            t = e.onset
+            # the lowest voice at the arrival
+            sounding = [z for z in (_note_at(score.voices[w], t) for w in voices) if z is not None and not z.rest]
+            if not sounding or min(z.midi for z in sounding) != e.midi:
+                continue
+            # an upper voice keeps the tone across the bass's move
+            held = [w for w in voices if w != v and _has_tone(score.voices[w], t - F(1, 64), e.midi)
+                    and _has_tone(score.voices[w], t, e.midi)]
+            if not held:
+                continue
+            if any(t - 8 <= u <= e.end for u in found):
+                continue
+            cad = Cadence(onset=t, measure=e.measure, where=e.where, tone=PC_NAMES[e.midi % 12])
+            cad.functions[v], cad.arrivals[v] = "P", e.idx
+            for w in held:
+                cad.functions[w] = "H"
+            cad.type, cad.strength = "plagal", 2
+            found[t] = cad
+
+
+def _has_tone(evs: list[Event], t: F, midi: int) -> bool:
+    z = _note_at(evs, t)
+    return z is not None and not z.rest and z.midi % 12 == midi % 12
+
+
+def closure(score: Score, lines: list, cads: list[Cadence]) -> None:
+    """Score how strongly each cadence closes, and set its kind."""
+    need = int(tables().get("full_closure", 2))
+    by_voice: dict = {}
+    for ln in lines:
+        by_voice.setdefault(ln.voice, []).append(ln)
+    for c in cads:
+        why = []
+        core = [v for v, f in c.functions.items() if f in ("C", "T", "B", "P")]
+        evs = {v: score.voices[v][c.arrivals[v]] for v in core if v in c.arrivals}
+        ct = [e for v, e in evs.items() if c.functions[v] in ("C", "T", "P")]
+        if ct and all(e.dur >= 2 * syllable_unit(e) for e in ct):
+            why.append("long arrival")
+        if any(_rest_after(score.voices[e.voice], e) for e in evs.values()):
+            why.append("rest after")
+        if c.prepared:
+            why.append("suspension")
+        if "B" in c.functions.values() or "P" in c.functions.values():
+            why.append("bass")
+        if any(_clause_ends(ln, e.idx) for e in evs.values() for ln in by_voice.get(e.voice, [])):
+            why.append("clause ends")
+        c.closure, c.closure_why = len(why), why
+        if c.type in ("evaded", "abandoned"):
+            c.kind = c.type
+        elif c.closure >= need:
+            c.kind = "full"
+        else:
+            c.kind = "weak"
+
+
+def _rest_after(evs: list[Event], e: Event) -> bool:
+    n = evs[e.idx + 1] if e.idx + 1 < len(evs) else None
+    return n is None or n.rest or n.after_break
+
+
+def _clause_ends(line, j: int) -> bool:
+    """A punctuated word ends on event j's syllable, or its last syllable
+    starts on the note straight after j (a late placement, which 10.3 judges)."""
+    cur = None
+    for sy in line.syls:
+        if sy.ev <= j:
+            cur = sy
+        else:
+            if sy.ev == j + 1 and sy.punct and sy.syllabic in ("end", "single"):
+                return True
+            break
+    return cur is not None and cur.punct and cur.syllabic in ("end", "single")
+
+
 def arrivals(cads: list[Cadence]) -> dict:
-    """(voice, event index) -> Cadence, for the voices that arrive (C, T, B)."""
+    """(voice, event index) -> Cadence, for the voices that arrive (C, T, B,
+    and the bass of a plagal ending)."""
     out = {}
     for c in cads:
         for v, idx in c.arrivals.items():
-            if c.functions.get(v) in ("C", "T", "B"):
+            if c.functions.get(v) in ("C", "T", "B", "P"):
                 out[(v, idx)] = c
+    return out
+
+
+RESOLUTION_NOTES = 2        # notes a voice may add after the arrival before its phrase ends
+RESOLUTION_TIME = F(8)      # within a breve
+
+
+def melodic_resolutions(score: Score, arr: dict) -> dict:
+    """(voice, arrival ev) -> ev of the voice's own melodic resolution, where it
+    comes after the harmonic arrival (Miki, review of 4 October 2026: the
+    Cantus at 28.1 of *Vox in Rama* arrives on D with the other voices but
+    resolves its own line on the A after it). It is the last note of the
+    voice's phrase: at most RESOLUTION_NOTES notes after the arrival, within
+    RESOLUTION_TIME, before a rest or a section break, on another pitch. An
+    arrival that ends its voice's phrase, or that the voice runs on from, has
+    no entry: there the arrival is the resolution."""
+    out = {}
+    for (v, j), _ in arr.items():
+        evs = score.voices[v]
+        a = evs[j]
+        k = j + 1
+        tail = []
+        while k < len(evs) and not evs[k].rest and not evs[k].after_break:
+            tail.append(evs[k])
+            k += 1
+            if len(tail) > RESOLUTION_NOTES:
+                break
+        if not tail or len(tail) > RESOLUTION_NOTES:
+            continue
+        if tail[-1].end - a.end > RESOLUTION_TIME or tail[-1].midi == a.midi:
+            continue
+        out[(v, j)] = tail[-1].idx
     return out

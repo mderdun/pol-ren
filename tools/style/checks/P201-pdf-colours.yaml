@@ -1,0 +1,14 @@
+id: P201
+name: pdf-colours
+kind: pdf
+level: error
+rule: "house style 5, 5a"
+authority: "House style 5: 'Black, white and one red; no other colour, grey included: #9A1E1E'; 5a: the finish stays 'in black and the one red'"
+message: "{what} in {colour} on p.{pages}; the house palette is black, white and #9A1E1E"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: grey-text, why: "grey text"}
+    - {fixture: blue-line, why: "a blue rule"}
+  pass:
+    - {fixture: house-colours, why: "black text, a red rubric, a black rule, a white box"}

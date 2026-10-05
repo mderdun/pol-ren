@@ -30,6 +30,14 @@ def evaded_cadence(a, line, hit) -> bool:
     return hit.values.get("cadence_type") in ("evaded", "abandoned")
 
 
+def weak_cadence(a, line, hit) -> bool:
+    return hit.values.get("cadence_kind") == "weak"
+
+
+def key_word(a, line, hit) -> bool:
+    return hit.syl < len(line.syls) and line.word_of(hit.syl).cls == "key"
+
+
 def suspension(a, line, hit) -> bool:
     return hit.values.get("label") == "suspension"
 
@@ -46,9 +54,48 @@ def older_practice(a, line, hit) -> bool:
     return a is not None and bool(a.score.config.get("older_practice"))
 
 
+def sung_through(a, line, hit) -> bool:
+    return hit.syl < len(line.syls) and not line.syls[hit.syl].short
+
+
+def melodic_resolution(a, line, hit) -> bool:
+    return bool(hit.values.get("melodic"))
+
+
+def tail_voice(a, line, hit) -> bool:
+    return bool(hit.values.get("tail"))
+
+
+def against_tactus(a, line, hit) -> bool:
+    """A span against the tactus that begins a phrase for this voice: the
+    play is meant to be heard (Miki, third review of 5 Oct 2026)."""
+    return a is not None and bool(getattr(a, "displaced", None)) and \
+        a.against_tactus(line.voice, line.events[hit.ev].onset, "start")
+
+
+def against_tactus_mid(a, line, hit) -> bool:
+    """A span against the tactus that starts mid-phrase: a hint, so it
+    counts half as much."""
+    return a is not None and bool(getattr(a, "displaced", None)) and \
+        a.against_tactus(line.voice, line.events[hit.ev].onset, "mid")
+
+
+def cantus_firmus(a, line, hit) -> bool:
+    """The syllable starts inside a cantus firmus span of its voice
+    (editions.yaml: cantus_firmus, the spans the edition marks with
+    \\cfStart/\\cfEnd). There the chant fixes the notes and the edition puts
+    the syllables on the chant's notes, so the runs between them are the
+    chant's ornaments, not the editor's melismas."""
+    if a is None or hit.ev >= len(line.events):
+        return False
+    spans = a.score.config.get("cantus_firmus") or []
+    bar = line.events[hit.ev].bar
+    return any(sp.get("voice") == line.voice and int(sp["from"]) <= bar <= int(sp["to"]) for sp in spans)
+
+
 GATES = {name: globals()[name] for name in
-         ("cadence_approach", "cadence_lower_note", "evaded_cadence", "suspension", "full_point",
-          "homorhythm", "older_practice")}
+         ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
+          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus", "against_tactus_mid", "cantus_firmus")}
 
 
 def applied(rule, a, line, hit) -> list[tuple[str, float]]:

@@ -123,8 +123,25 @@ def drawing_geom(d):
     if not geoms: return None
     return unary_union(geoms) if len(geoms) > 1 else geoms[0]
 
+def stroke_axis(geom):
+    """(centre, unit axis) if the mark is a thin straight stroke (stem, bar
+    line, staff or ledger line), else None."""
+    if geom.geom_type != 'Polygon': return None
+    r = geom.minimum_rotated_rectangle
+    if r.geom_type != 'Polygon': return None
+    q = np.asarray(r.exterior.coords)[:4]
+    e1, e2 = q[1] - q[0], q[2] - q[1]
+    l1, l2 = np.hypot(*e1), np.hypot(*e2)
+    w, L, u = (l1, l2, e2 / l2) if l1 < l2 else (l2, l1, e1 / max(l1, 1e-9))
+    if w > 0.35 * MM or L < 5 * w: return None
+    if geom.area < 0.85 * r.area: return None       # not straight (a slur, a curve)
+    return np.asarray(r.centroid.coords[0]), u
+
 def treat(geom, k, press, fib, wander, rng):
+    """Ink gain, rounded inner corners and edge wander for one mark. Pores are
+    added later (pores()), after the marks of a page are joined."""
     if geom.is_empty: return geom
+    axis = stroke_axis(geom)
     c = geom.centroid
     gain = (0.016 * MM) * k * (1 + 0.6 * float(press(np.array([[c.x, c.y]]))[0]))
     g = geom.buffer(gain, join_style='round', resolution=4)
@@ -134,9 +151,18 @@ def treat(geom, k, press, fib, wander, rng):
     g = segmentize(g, 0.25 * MM)
     def move(coords):
         pts = np.asarray(coords)
-        d1 = fib(pts) * 0.016 * MM * k
-        d2 = wander(pts) * 0.022 * MM * k
-        d3 = fib(pts[:, ::-1] * 1.7) * 0.016 * MM * k
+        if axis is None:
+            at, cap = pts, 1.0
+        else:
+            # A straight stroke keeps one weight along its length (Ross 82): both
+            # edges take the displacement of the centre line beside them, so the
+            # line may waver a little but never thickens or thins, and the
+            # fibre wander is halved.
+            o, u = axis
+            at, cap = o + np.outer((pts - o) @ u, u), 0.5
+        d1 = fib(at) * 0.016 * MM * k * cap
+        d2 = wander(at) * 0.022 * MM * k
+        d3 = fib(at[:, ::-1] * 1.7) * 0.016 * MM * k * cap
         return np.column_stack([pts[:, 0] + d2 + d1, pts[:, 1] + d3 - d2 * 0.5])
     def warp(p):
         if p.geom_type == 'Polygon':
@@ -150,8 +176,26 @@ def treat(geom, k, press, fib, wander, rng):
             except Exception:                  # rare topology clash: keep the parts as they are
                 return shapely.MultiPolygon([x for q in parts for x in (q.geoms if hasattr(q, 'geoms') else [q]) if x.geom_type == 'Polygon'])
         return p
-    g = make_valid(warp(g))
-    # pores in solid areas
+    return make_valid(warp(g))
+
+def join(geoms, k):
+    """The marks of one colour on a page as one shape, with ink filling the
+    small acute white wedges where different marks meet (beam or stem against
+    a staff line, a slur end on a stem): plate engravers avoided them because
+    in printing they 'became filled with ink' (Ross 98-99). A closing of
+    0.035 mm x strength fills those and leaves every larger white."""
+    geoms = [g for g in geoms if not g.is_empty]
+    if not geoms: return None
+    try:
+        g = unary_union(geoms)
+        r = 0.035 * MM * k
+        g = make_valid(g.buffer(r, join_style='round', resolution=4).buffer(-r, join_style='round', resolution=4))
+        return g if not g.is_empty else None
+    except Exception:                          # topology trouble: the marks as they are
+        return None
+
+def pores(g, k, rng):
+    """Pores in solid areas: the odd small void where ink did not take."""
     core = g.buffer(-0.12 * MM)
     if not core.is_empty and core.area > (0.3 * MM) ** 2:
         minx, miny, maxx, maxy = core.bounds
@@ -207,14 +251,19 @@ def do_page(args):
     press = field(w, h, 50 * MM, rng)
     fib = field(w, h, 0.22 * MM, rng)
     wander = field(w, h, 1.1 * MM, rng)
-    layers = {'black': [], 'red': []}
+    marks = {'black': [], 'red': []}
     for dr in sp.get_drawings():
         key = colour_key(dr)
         if key in (None, 'white'): continue
         g = drawing_geom(dr)
         if g is None or g.is_empty: continue
-        g = treat(g, strength, press, fib, wander, rng)
-        layers[key] += path_ops(g, h)
+        marks[key].append(treat(g, strength, press, fib, wander, rng))
+    layers = {'black': [], 'red': []}
+    for key, gs in marks.items():
+        joined = join(gs, strength)
+        parts = gs if joined is None else (list(joined.geoms) if hasattr(joined, 'geoms') else [joined])
+        for g in parts:
+            layers[key] += path_ops(pores(g, strength, rng), h)
     return w, h, layers
 
 def main():

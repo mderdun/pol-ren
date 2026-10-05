@@ -1,0 +1,16 @@
+id: S118
+name: names
+kind: source
+level: error
+rule: "principles 14.1, 14.3"
+authority: "Principles 14.3: 'Editor: Mikołaj Derduń, with ń'; 14.1: composers by their vernacular names only (Piotr z Grudziądza, Wacław z Szamotuł, Mikołaj Zieleński), an anonymous work credited to Anonymous"
+message: "{what}"
+applies: [critical, performance, text, guide, house]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\editor{Mikolaj Derdun}", why: "the editor without diacritics"}
+    - {path: editions/x/x-critical.lytex, text: "\\composer[c.\\,1500–1560]{Venceslaus Samotuliensis}", why: "a Latin form in the composer line"}
+    - {path: editions/x/x-performance.lytex, text: "\\composer{Zielenski}", why: "a vernacular name without its diacritics"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\composer[c.\\,1520–1560]{Wacław z Szamotuł} The print signs him ‘Venceslaus Samotuliensis’.", why: "the Latin form discussed in prose"}
+    - {path: editions/x/x-critical.lytex, text: "\\composer[c.\\,1450]{Anonymous}", why: "an anonymous work"}

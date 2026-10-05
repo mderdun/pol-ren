@@ -4,19 +4,24 @@
 \composer[fl.\,1604–1611]{Mikołaj Zieleński}
 \title{Vox in Rama}
 \subtitle{Communio in festo SS. Innocentium}
+\poet{Matthew 2:18, after Jeremiah 31:15}
 \pitchline{A fifth below the printed pitch}
 \edition{First edition}{2026}
 
 \begin{document}
 \makemasthead
-\scorepagebreaks{}
+\scorepagebreaks{2,4,6}
 \lilypondfile[noindent]{music/score-performance.ly}
 
+\newpage   % text, translation and notes share the last page
 \section*{Text and translation}
 
 \begin{textcols}
 & \lines{\textLatin} & \lines{\textEnglish}\\
 \end{textcols}
+
+\noindent Matthew 2:18, after Jeremiah 31:15. Text of the communion for the
+feast of the Holy Innocents in the \la{Missale Romanum} (Venice, 1570).
 
 \begin{rehearsal}
 \pnote{About the piece} The communion for the Mass of the Holy Innocents
@@ -46,7 +51,7 @@ none. \la{Vox in Rama} has none, and Banchieri’s own example of the
 fifth-lower case has its Tenor in the same C2 clef as the Tenor of this piece.
 Down a fifth, it ends on D, with one flat, and the ranges are Cantus c′–d″,
 Altus g–b\fl′, Tenor c–d′, Bassus D–f, an ordinary four-part choir. A fourth
-down, ending on E, also works. The small notes in round brackets
+down, ending on E, also works. The small notes in square brackets
 in the last bar are an editorial suggestion and are not in the print. When
 the Altus reaches its final note, Tenor and Bassus may drop to the lower
 octave, as an organ accompanying them would probably have done.
@@ -56,9 +61,11 @@ pitch has been changed, and the one-flat signature comes from the
 transposition. The beat is the semibreve (whole note), about 50–60 to the
 minute; the cut-C sign means a semibreve beat, not a fast one. A bar is two
 beats. A note that crosses a bar line is held for its full value. An
-accidental applies only to the note it stands before. A small accidental
+accidental applies only to the note it stands before; one in round brackets
+is a reminder that the note is not altered. A small accidental
 above the staff is the editor’s. Square brackets over the Tenor mark ligatures, and
-the corner brackets in bar 17 mark a blackened note in the print. The range
+the corner brackets in bar 17 mark a blackened note in the print. Tenor words
+in angle brackets ⟨ ⟩ stand for the print’s \textit{ij} (‘again’). The range
 of each voice is shown at the start of its staff.
 \end{rehearsal}
 \footcolophon

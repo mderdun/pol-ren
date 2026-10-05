@@ -2,34 +2,6 @@
  "edition": "plaude-euge",
  "findings": [
   {
-   "fingerprint": "plaude-euge|Discantus|v1|U201|sed#0|1",
-   "level": "look",
-   "where": "28.1",
-   "message": "'sed' on the bar, minim",
-   "cost": 0.75,
-   "regret": 1.0,
-   "alternative": [
-    "'spi' 26.3 -> 26.2",
-    "'ce' 27.1 -> 26.3",
-    "'sed' 28.1 -> 26.4",
-    "'mi' 28.2 -> 27.1"
-   ]
-  },
-  {
-   "fingerprint": "plaude-euge|Discantus|v1|U401|sed#0|1",
-   "level": "info",
-   "where": "28.1",
-   "message": "'sed' starts on a dissonant note (accented-passing, P4 against the Tenor)",
-   "cost": 0.5,
-   "regret": 1.0,
-   "alternative": [
-    "'spi' 26.3 -> 26.2",
-    "'ce' 27.1 -> 26.3",
-    "'sed' 28.1 -> 26.4",
-    "'mi' 28.2 -> 27.1"
-   ]
-  },
-  {
    "fingerprint": "plaude-euge|Discantus|v1|U401|virginum#1|1",
    "level": "info",
    "where": "8.2",
@@ -41,6 +13,19 @@
    ]
   },
   {
+   "fingerprint": "plaude-euge|Discantus|v1|U206|inspice#1|1",
+   "level": "info",
+   "where": "22.3",
+   "message": "3 notes, 8 semiminims, on 'spi' of inspice (stress on syllable 1; vowel i)",
+   "cost": 0.5,
+   "regret": 0.5,
+   "alternative": [
+    "'spi' 22.3 -> 22.2",
+    "'ce' 23.3 -> 22.3",
+    "'mi' 24.1 -> 23.1"
+   ]
+  },
+  {
    "fingerprint": "plaude-euge|Medius|v1|U401|virginum#1|1",
    "level": "info",
    "where": "9.2",
@@ -48,9 +33,8 @@
    "cost": 0.5,
    "regret": 0.5,
    "alternative": [
-    "'vir' 9.1 -> 8.4",
-    "'gi' 9.2 -> 9.1",
-    "'sa' 10.3 -> 10.1"
+    "'gi' 9.2 -> 9.3",
+    "'num' 9.3 -> 10.1"
    ]
   },
   {
@@ -66,6 +50,46 @@
    ]
   },
   {
+   "fingerprint": "plaude-euge|Discantus|v1|U201|sed#0|1",
+   "level": "info",
+   "where": "28.1",
+   "message": "'sed' on the bar, minim",
+   "cost": 0.75,
+   "regret": 0.45,
+   "alternative": [
+    "'spi' 26.3 -> 26.2",
+    "'ce' 27.1 -> 26.3",
+    "'sed' 28.1 -> 27.1",
+    "'mi' 28.2 -> 28.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Tenor|v1|U208|hos#0|1",
+   "level": "info",
+   "where": "29.1",
+   "message": "'hos' is closed by 's' (sibilant), and carries 2 notes (8 semiminims)",
+   "cost": 0.6,
+   "regret": 0.424,
+   "alternative": [
+    "'o' 30.1 -> 29.3",
+    "'cu' 30.3 -> 30.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Discantus|v1|U401|sed#0|1",
+   "level": "info",
+   "where": "28.1",
+   "message": "'sed' starts on a dissonant note (accented-passing, P4 against the Tenor)",
+   "cost": 0.5,
+   "regret": 0.3,
+   "alternative": [
+    "'spi' 26.3 -> 26.2",
+    "'ce' 27.1 -> 26.3",
+    "'sed' 28.1 -> 27.1",
+    "'mi' 28.2 -> 28.1"
+   ]
+  },
+  {
    "fingerprint": "plaude-euge|Discantus|v1|U401|respice#1|1",
    "level": "info",
    "where": "35.3",
@@ -77,19 +101,6 @@
    ]
   },
   {
-   "fingerprint": "plaude-euge|Medius|v1|U401|confidencium#2|1",
-   "level": "info",
-   "where": "18.3",
-   "message": "'den' starts on a dissonant note (anticipation, m7 against the Discantus)",
-   "cost": 0.5,
-   "regret": 0.25,
-   "alternative": [
-    "'con' 18.1 -> 17.3",
-    "'fi' 18.2 -> 18.1",
-    "'den' 18.3 -> 18.2"
-   ]
-  },
-  {
    "fingerprint": "plaude-euge|Medius|v1|U401|respice#1|1",
    "level": "info",
    "where": "35.3",
@@ -97,20 +108,33 @@
    "cost": 0.5,
    "regret": 0.25,
    "alternative": [
-    "'re' 35.1 -> 34.4",
-    "'spi' 35.3 -> 35.1"
+    "'spi' 35.3 -> 35.4"
    ]
   },
   {
    "fingerprint": "plaude-euge|Tenor|v1|U304|hos#0|1",
    "level": "info",
    "where": "29.3",
-   "message": "in the homorhythmic passage 27.1-30.1, 'hos' holds its syllable where the other voices change",
+   "message": "in the homorhythmic passage 27.1-36.1, 'hos' holds its syllable where the other voices change",
    "cost": 0.25,
-   "regret": 0.25,
+   "regret": 0.176,
    "alternative": [
     "'o' 30.1 -> 29.3",
     "'cu' 30.3 -> 30.1"
+   ]
+  },
+  {
+   "fingerprint": "plaude-euge|Tenor|v1|U401|despice#1|1",
+   "level": "info",
+   "where": "26.3",
+   "message": "'spi' starts on a dissonant note (neighbour, m7 against the Discantus)",
+   "cost": 0.5,
+   "regret": 0.037,
+   "alternative": [
+    "drop 'sed' at 28.1 (10.13)",
+    "'spi' 26.3 -> 27.1",
+    "'ce' 27.1 -> 28.1",
+    "'o' 30.1 -> 29.3"
    ]
   },
   {
@@ -177,6 +201,15 @@
    "alternative": []
   },
   {
+   "fingerprint": "plaude-euge|Medius|v1|U401|confidencium#2|1",
+   "level": "info",
+   "where": "18.3",
+   "message": "'den' starts on a dissonant note (anticipation, m7 against the Discantus)",
+   "cost": 0.5,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
    "fingerprint": "plaude-euge|Medius|v1|U401|nec#0|1",
    "level": "info",
    "where": "25.4",
@@ -204,15 +237,6 @@
    "alternative": []
   },
   {
-   "fingerprint": "plaude-euge|Tenor|v1|U401|despice#1|1",
-   "level": "info",
-   "where": "26.3",
-   "message": "'spi' starts on a dissonant note (neighbour, m7 against the Discantus)",
-   "cost": 0.5,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "plaude-euge|Tenor|v1|U401|respice#1|1",
    "level": "info",
    "where": "35.3",
@@ -223,9 +247,9 @@
   }
  ],
  "cadences": [
-  "4.1 phrygian on A (CTb)",
-  "19.1 phrygian on A (ACT)",
-  "21.1 clausula vera on C (ACT)"
+  "4.1 phrygian on A (CTb) weak 1",
+  "19.1 phrygian on A (ACT) weak 1",
+  "21.1 clausula vera on C (ACT) weak 1"
  ],
  "dissonance": [
   "10.4 Discantus echappee",
@@ -256,11 +280,8 @@
  ],
  "points": [],
  "homorhythm": [
-  "10.3-17.1",
-  "18.1-22.1",
-  "27.1-30.1",
-  "31.1-34.3",
-  "35.1-36.1"
+  "10.3-22.1",
+  "27.1-36.1"
  ],
  "phrases": [
   "Discantus v1 1.1-5.1 rest: Plaude euge theotocos",

@@ -265,7 +265,7 @@ supplied in square brackets. These are the last notes of the Discantus in
 the two second endings, each printed as a long like the final notes of the
 other voices (see Final notes).
 
-\subsection{Text} Spelling follows the source; capitals and punctuation are
+\subsection{Text} Spelling follows the source (principles 11.1); capitals and punctuation are
 editorial. The source does not align syllables with notes in any voice, so the
 underlay throughout is editorial. It follows the phrase structure. Each line
 of the poem ends at a cadence, with its last syllable on the arrival note: in
@@ -356,9 +356,10 @@ the final notes of the Medius and Tenor. The Tenor's b\fl{}–a and
   diminished fifth on a passing minim. In bar 1 the Discantus moves
   differently (f′ held over a–b\fl{}, then e′) and no fifths arise, so the
   flat stands there.}
-\cn{25}{M 1–4}{\sig{MS} writes these four notes as semibreves, without stems.
-  As written, the Medius would run two semibreves longer than the other
-  voices; read as minims, as in \sig{R}.}
+\cn{25}{M 1–4}{Emended. \sig{MS} writes these four notes as semibreves,
+  without stems. As written, the Medius would run two semibreves longer than
+  the other voices; read as minims, as in \sig{R}. The scribe probably left
+  out the stems.}
 \cn{29}{M 3}{This b\fl{} forms a fourth with the Tenor's f for a whole
   semibreve, the only such place in the piece. \sig{MS} and \sig{R} agree; it
   may be a copying error, but no simple emendation removes it.}

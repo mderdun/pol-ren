@@ -68,6 +68,9 @@ critical notes list every decision, so any of them can be reversed.
 \section*{Sources}
 
 \begin{sigla}
+% SHELFMARK MISSING (principles 3.9): T's last shelfmark in the Biblioteka
+% Narodowa before 1944, and the shelfmark of the IMuzUJ photographs (the
+% leads doc gives "prints at F.IV 11"; confirm). For Miki.
 \siglum{T} Organ tablature, c.\,1590 (‘Castle’ or ‘Small Warsaw’
   tablature; Poliński collection), fols.\,7v–8r: \la{In die Apostolorum
   Petri et Pauli. Nunc scio vere W. S.} Text incipit only. Destroyed 1944.
@@ -94,15 +97,15 @@ which no source of the period uses. Written pitch was not sounding pitch,
 though (see Performance).
 
 Note values are twice those of \sig{T} and \sig{P} (principles 5.1). As
-Perz transcribes it, \sig{T} moves in semiminims and fusae, with semifusae
+Perz transcribes it, \sig{T} moved in semiminims and fusae, with semifusae
 at cadences, values a vocal motet of about 1550 would hardly use. Doubled,
 the music moves in semibreves and minims under ¢, like Wacław’s two printed
 motets. The bar is a breve, so bar numbers match \sig{P}. The mensuration
-sign is editorial, since \sig{T} has none (principles 5.4). A tablature
+sign is editorial, since \sig{T} had none (principles 5.4). A tablature
 divides a long note at its own bar lines and beats; here such a note is
 written as one value wherever one note can show it (principles 5.3).
 
-\subsection{Score} Voice names and clefs are editorial, since \sig{T} has
+\subsection{Score} Voice names and clefs are editorial, since \sig{T} had
 neither. Rests at entries follow \sig{P}, because a tablature notates rests
 only in part. The antiphon ends on semibreves under \sig{P}’s corona
 (bar 56). The \la{Gloria Patri} ends on longs (principles 5.7).
@@ -111,7 +114,7 @@ only in part. The antiphon ends on semibreves under \sig{P}’s corona
 before notes come from \sig{T}. Accidentals above the staff are editorial,
 and Perz suggested all of them (principles 7.2).
 
-\subsection{Underlay} \sig{T} gives only the text incipit, so every
+\subsection{Underlay} \sig{T} gave only the text incipit, so every
 syllable under the notes is editorial. The series rules apply throughout
 (principles 10.1–10.10). What follows is particular to this piece.
 
@@ -149,7 +152,7 @@ often change syllable at different times.
 Some are placed for the stress. The Cantus sings \la{et eripuit} once on
 the chant’s semibreves and then repeats \la{eripuit me}, so that the
 repeat’s \la{-rí-} takes the run from c″ (bars 24–29). Altus and Bassus
-sing \la{omni} twice (bars 37–39), so that the second \la{óm-} takes the
+sing \la{omni} twice (bars 37–39), so that the second \la{ó-} takes the
 run. The Cantus sings \la{Sancto} once, with a single run before the
 cadence (bars 65–68).
 
@@ -228,7 +231,9 @@ decision in small capitals.
 Perz’s changes fall into three groups. Some cure a fault of counterpoint,
 such as parallel octaves, a mishandled dissonance or an inner voice given to
 the wrong part. These are \verdict{accepted}, because restoring \sig{T}
-brings the fault back. Others remove a figure Perz thought instrumental. He
+brings the fault back. An exchange of Altus and Tenor notes (bars 25, 31,
+71) sounds the same on the keyboard, so the intabulator had no reason to
+keep the voices apart; for the other faults the cause is unclear. Others remove a figure Perz thought instrumental. He
 judged it at the halved values of the tablature. At this edition’s values
 the figures are ordinary vocal ornaments, so \sig{T} is \verdict{restored}
 unless it creates a fault. The last group joins repeated notes ‘for the
@@ -248,7 +253,7 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
   five repeated f′ to the four syllables of \la{-lum an-ge-lum}.
   \verdict{P accepted.}}
 \cn{25}{A, T}{\sig{T}: \voice{A} c′, \voice{T} g. \sig{P} exchanges them,
-  to avoid octaves and fifths with \voice{B}. \sig{T} gives octaves
+  to avoid octaves and fifths with \voice{B}. \sig{T} gave octaves
   \voice{A}–\voice{B} twice and fifths \voice{T}–\voice{B}. \verdict{P
   accepted.}}
 \cn{26}{A}{\sig{T}: e′ in place of the rest. Omitted in \sig{P} for octaves
@@ -288,7 +293,7 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
   each, for the underlay. The split gives \la{et nunc, et semper} in the
   declamation the other voices have. \verdict{P accepted.}}
 \cn{81}{T}{\sig{T}: third note b. \sig{P}: g, for the cadence. \sig{T}’s b
-  sounds the resolution against the Cantus’s suspended c″. \verdict{P
+  sounded the resolution against the Cantus’s suspended c″. \verdict{P
   accepted.}}
 \cn{81–83}{C}{\sig{T}: minims c″ a′ b′ g′ f′ a′, semibreves b′ c″, minims
   c″ a′. \sig{P}: dotted semibreve c″, minim b′, semibreves a′ b′, dotted
@@ -309,7 +314,7 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
   \sig{T}, following \sig{P}.}
 \cn{44}{C}{b′ as in \sig{T}, a tritone above the bass F on the third minim;
   \sig{P} does not alter it. b\fl′, as in bar 45, is printed in brackets as an option.}
-\cn{44}{B}{The flat is \sig{P}’s; \sig{T} has B, against b\fl\ in the Tenor
+\cn{44}{B}{The flat is \sig{P}’s; \sig{T} had B, against b\fl\ in the Tenor
   a minim later.}
 \cn{54}{A, T}{Parallel fifths on the first minim, as in \sig{P}.}
 \cn{56}{A}{e′ (small note) is \sig{P}’s addition, in square brackets in
@@ -318,7 +323,7 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
   alternative.}
 \cn{57–62}{B, T}{Bassus rests for six bars, Tenor for three; the \la{Gloria
   Patri} opens in two voices, as in \sig{T}.}
-\cn{88}{A}{c\sh′ (major final chord) is in \sig{T}; at bar 87 the sharp is
+\cn{88}{A}{c\sh′ (major final chord) was in \sig{T}; at bar 87 the sharp is
   \sig{P}’s.}
 \end{apparatus}
 
@@ -329,7 +334,7 @@ as Stoquerus requires (principles 10.9), and \sig{P} stands where they cannot.
   neume f–d–g–f–e, \la{sci-} g, \la{-o} a and the run after it, \la{ve-} c′,
   and \la{-re} the cadence note c′ of bar 9. The clause is then repeated.}
 \cn{13–56}{C}{Cantus firmus. Syllables fall on the chant’s notes, e.g.
-  \la{om-} on g′ (bar 40), \la{-ni} on g′–a′ (bar 41), and three syllables
+  \la{o-} on g′ (bar 40), \la{-mni} on g′–a′ (bar 41), and three syllables
   of \la{exspectatione} on the repeated g′ of bars 42–43. In \la{Dominus}
   the run is on \la{Do-}, and \la{-mi-} takes the g\sh′ before the cadence
   (bar 17).}

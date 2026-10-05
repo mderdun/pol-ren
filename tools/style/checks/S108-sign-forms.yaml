@@ -1,0 +1,20 @@
+id: S108
+name: sign-forms
+kind: source
+level: error
+rule: "decisions of 4 Oct 2026 (accidentals; 3, 9); principles 8"
+authority: "Decisions of 4 Oct 2026: editorial suggestions (\\optFlat, \\optSharp, \\optNatural) in SQUARE brackets, because editorial matter is square-bracketed; round brackets for cautionaries; text written out from the source's ij in angle brackets ⟨ ⟩ (Caldwell 63, 103)"
+message: "{what}"
+applies: [house, music, critical, performance, text]
+examples:
+  flag:
+    - path: house/lilypond/pol-ren.ily
+      text: "#(define (pr-opt-markup glyph)\n   (markup #:fontsize -2.5\n     #:concat (#:musicglyph \"accidentals.leftparen\"\n               #:musicglyph glyph\n               #:musicglyph \"accidentals.rightparen\")))"
+      why: "optional accidentals in round brackets"
+    - {path: editions/x/music/voices.ily, text: "\\lyricmode { 〈Ra -- ma〉 }", why: "angle brackets from the wrong block (U+3008)"}
+    - {path: editions/x/x-critical.lytex, text: "the repeated words are given in <angle brackets>", why: "ASCII less-than as a bracket"}
+  pass:
+    - path: house/lilypond/pol-ren.ily
+      text: "#(define (pr-opt-markup glyph)\n   (markup #:fontsize -2.5\n     #:concat (#:musicglyph \"accidentals.leftbracket\"\n               #:musicglyph glyph\n               #:musicglyph \"accidentals.rightbracket\")))"
+      why: "square brackets"
+    - {path: editions/x/music/voices.ily, text: "\\lyricmode { \"⟨Ra\" -- \"ma⟩\" }", why: "mathematical angle brackets, U+27E8/27E9"}

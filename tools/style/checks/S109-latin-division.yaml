@@ -1,0 +1,18 @@
+id: S109
+name: latin-division
+kind: source
+level: error
+rule: "decision 2 (4 Oct 2026)"
+authority: "Decision 2 of 4 Oct 2026: Latin syllable division by carry-over (o-mnis, San-cto, co-gno), one system throughout (Caldwell 42; Gould 445-446: one system, not a mix)"
+message: "'{found}' divides {word} against carry-over division; write '{expected}'"
+applies: [music]
+examples:
+  flag:
+    - {path: editions/nunc-scio-vere/music/voices.ily, text: "t = \\lyricmode { de om -- ni ex -- spe -- cta -- ti -- o -- ne }", why: "om-ni: mn begins a syllable"}
+    - {path: editions/vox-in-rama/music/voices.ily, text: "t = \\lyricmode { San -- ctus, Chris -- tus }", why: "Chris-tus: st begins a syllable"}
+    - {path: editions/vox-in-rama/music/voices.ily, text: "t = \\lyricmode { pat -- ris }", why: "tr begins a syllable"}
+    - {path: editions/vox-in-rama/music/voices.ily, text: "t = \\lyricmode { Sa -- nctus }", why: "nct cannot begin a syllable"}
+  pass:
+    - {path: editions/nunc-scio-vere/music/voices.ily, text: "t = \\lyricmode { o -- mni ex -- spe -- cta -- ti -- o -- ne San -- cto co -- gno -- vi }", why: "carry-over, with ex- divided at the prefix"}
+    - {path: editions/vox-in-rama/music/voices.ily, text: "t = \\lyricmode { Is -- ra -- el, san -- cti -- fi -- ca, il -- le, Iu -- dae -- o -- rum, e -- ius, \\rep ple -- \\rep bis __ _ }", why: "sr, ll and consonantal i divide as they must"}
+    - {path: editions/juz-sie-zmierzka/music/voices.ily, text: "t = \\lyricmode { Już się zmierz -- ka }", why: "Polish is not checked"}

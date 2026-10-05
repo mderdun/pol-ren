@@ -1,0 +1,13 @@
+id: S119
+name: series-rules-line
+kind: source
+level: error
+rule: "principles 13.4"
+authority: "Principles 13.4: the rules live in one place and an edition's method cites them; the class's \\seriesrules opens every Editorial method section with that statement (house/latex/pol-ren.cls)"
+message: "{what}"
+applies: [critical]
+examples:
+  flag:
+    - {path: editions/x/x-critical.lytex, text: "\\section*{Editorial method}\n\\subsection{Pitch} As in the source.", why: "no \\seriesrules"}
+  pass:
+    - {path: editions/x/x-critical.lytex, text: "\\section*{Editorial method}\n\\seriesrules\n\n\\subsection{Pitch} As in the source.", why: "the series line first"}

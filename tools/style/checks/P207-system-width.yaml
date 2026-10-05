@@ -1,0 +1,13 @@
+id: P207
+name: system-width
+kind: pdf
+level: error
+rule: "house style 2"
+authority: "House style 2: A4, 20 mm side margins, text block 170 mm; tools/build.sh's system-width check (482 pt), measured here on the staff lines of the committed PDF"
+message: "p.{page}: staff lines run {side} the text block ({x:.1f} pt; the block is {lo:.1f}-{hi:.1f} pt); reset this score's breaks"
+applies: [critical, performance]
+examples:
+  flag:
+    - {fixture: wide-system, why: "staff lines into the right margin"}
+  pass:
+    - {fixture: gould-pass, why: "staves inside the block"}

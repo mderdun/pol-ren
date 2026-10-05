@@ -6,19 +6,25 @@ legacy: true
 weight: 0
 tier: firm
 principle: "10.1"
-authority: "Lanfranco II, Zarlino I (Harrán 1973a, 35–36); Lanfranco V, Zarlino IV–VI (Harrán 1973a, 40–41); under C, Stoquerus (Rotola ed., 227, 243)"
-message: "'{txt}' on a note shorter than a {unit}"
+authority: "Firm core of 10.1 (4 Oct 2026): Lanfranco IV–VI, Zarlino I, III, V–VI (Harrán 1973a, 35–41); Stoquerus (Rotola ed., 171–175, 201, 223); Towne 1991, 155–156; under C, Stoquerus 227, 243. The licences are U106 (a)–(c) and U203 (d)"
+message: "'{txt}' on a note shorter than a {unit}{why}"
 examples:
   flag:
-    - {notes: "f2 g1 a2", text: "Do- mi- nus", at: 1, why: "a semiminim after a plain minim"}
-    - {notes: "f3 g1/2 a1/2 b2", text: "Do- mi- _ nus", at: 1, why: "a fusa after a dotted minim: only the semiminim may take it"}
-    # the underlay review of October 2026, on Vox in Rama before its fixes
-    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/11", why: "au- on a semiminim (review: Altus 11-12)"}
-    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/12", why: "-di-, -ta on semiminims"}
-    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/6", why: "Ra- on a semiminim (review: Tenor 6)"}
-    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/37", why: "-la- on a semiminim after -so- (review: Tenor 37)"}
-    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/40", why: "-la- on the repeated e′ semiminim (review: Tenor 40)"}
+    - {notes: "f2 g1 a2", text: "Do- mi- nus", at: 1, why: "a lone semiminim after a plain minim, no repeated pitch: outside (a)-(c)"}
+    - {notes: "f3 g1/2 a1/2 b2", text: "Do- mi- _ nus", at: 1, why: "a fusa after a dotted minim, smaller than the dot"}
+    - {notes: "f2 g1 a1 b2", text: "Do- _ mi- nus", at: 1, why: "the run's last note, by step, the other voices silent"}
+    - {notes: "f2 g1/2 a1/2 b1 c'2", text: "Do- mi- _ _ nus", at: 1, why: "a fusa"}
+    - {notes: "f6 g1 a1 b4", text: "Do- mi- _ nus", at: 1, why: "a semiminim after a dotted semibreve: smaller than the dot"}
+    - {notes: "f2 e2 g1 a1 b1 c'1 d'4", text: "Do- _ _ mi- _ _ nus", at: 1, why: "the run's second note, by step"}
+    # Miki's reading of the Altus at bar 12 (Marchesano's): -di-, -ta on lone semiminims after plain minims
+    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/12", why: "-di-, -ta on lone semiminims after plain minims"}
   pass:
-    - {notes: "f3 g1 a2", text: "Do- mi- nus", why: "the semiminim after a dotted minim"}
+    - {notes: "f3 g1 a2", text: "Do- mi- nus", why: "the semiminim after a dotted minim: (b)"}
     - {notes: "f2 g1 a2", text: "Do- mi- nus", sign: C, why: "under C semiminims count as minims"}
     - {notes: "r2 g1 a2 b2", text: "Do- mi- nus", why: "the first note after a rest (10.2)"}
+    - {notes: "f2 g1 a1 b2", text: "Do- mi- _ nus", why: "the first semiminim of a run on a minim beat: (a)"}
+    - {notes: "f2 g1 g2", text: "Do- mi- nus", why: "a lone semiminim on a repeated pitch: (b)"}
+    - {notes: "f2 g1 c'1 b2", text: "Do- _ mi- nus", why: "the line leaps to it: (c)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/37", why: "-la- on d′, first of the run on the beat: (a) (Miki, 4 Oct 2026)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/40", why: "-la- on the repeated e′ on the downbeat: (a), (b)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/11", why: "au- on the c″ struck again: (b)"}

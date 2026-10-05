@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from .ingest import parse
 from .model import Score
 from .text import Line, build_lines
+from . import meter
 from .layers import cadence, dissonance, imitation, m21, phrase, sonority, texture
 
 
@@ -24,6 +25,28 @@ class Analysis:
     regions: list = field(default_factory=list)
     cadential_words: dict = field(default_factory=dict)   # (voice, verse, word) -> Cadence
     entry_of: dict = field(default_factory=dict)          # (voice, ev of a head note) -> (Point, Entry)
+    resolutions: dict = field(default_factory=dict)       # (voice, arrival ev) -> ev of the voice's own resolution
+    new_text: dict = field(default_factory=dict)          # verse -> [(onset, voice)] where new text begins
+    motifs: list = field(default_factory=list)            # imitation.Point(type MOTIF): recurring texted motifs
+    displaced: list = field(default_factory=list)         # meter.Displaced: spans played against the tactus
+    duos: list = field(default_factory=list)              # texture.Duo: paired upper voices
+    landing: dict = field(default_factory=dict)           # (voice, ev) -> Phrase whose landing note it is
+    contours: list = field(default_factory=list)          # meter.Contour: contour accents (information)
+
+    def against_tactus(self, voice: str, t, where: str | None = None) -> bool:
+        """Inside a span against the tactus for this voice; with where='start'
+        only a span that begins a phrase for it, with where='mid' only one
+        that does not (meter.mark_phrase_starts)."""
+        for d in self.displaced:
+            if not d.contains(voice, t):
+                continue
+            if where is None or (where == "start") == (voice in d.phrase_start):
+                return True
+        return False
+
+    def tail_voice(self, voice: str, verse: str, t0, t1) -> bool:
+        """Has another voice begun new text strictly between t0 and t1?"""
+        return any(t0 < t < t1 and v != voice for t, v in self.new_text.get(verse, ()))
 
     def homorhythmic(self, t) -> bool:
         return any(r.contains(t) for r in self.regions)
@@ -40,9 +63,11 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
     a.slices = sonority.slices(score, a.stream)
     a.dissonances = dissonance.label(score, a.slices)
     a.cadences = cadence.find(score, a.dissonances)
+    cadence.closure(score, lines, a.cadences)
     a.arrivals = cadence.arrivals(a.cadences)
     a.phrases = phrase.phrases(score, lines, a.stream, a.arrivals)
-    a.points = imitation.points(score)
+    a.landing = {(ph.voice, ph.landing): ph for ph in a.phrases if ph.landing is not None}
+    a.points = imitation.points(score, lines, a.arrivals)
     a.regions = texture.regions(score, a.slices)
     for line in lines:
         starts = line.starts
@@ -56,7 +81,32 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
         for e in p.entries:
             for idx in e.head:
                 a.entry_of[(e.voice, idx)] = (p, e)
+    a.resolutions = cadence.melodic_resolutions(score, a.arrivals)
+    a.new_text = _new_text(lines)
+    a.motifs = imitation.motifs(score)
+    a.displaced = meter.displaced_spans(score)
+    meter.mark_phrase_starts(score, a.displaced, a.new_text)
+    a.contours = meter.contour_accents(score)
+    a.duos = texture.duos(score)
     return a
+
+
+def _new_text(lines) -> dict:
+    """verse -> sorted (onset, voice) of each syllable that begins new text:
+    the first after a rest, or after a syllable ending with punctuation."""
+    out: dict = {}
+    for ln in lines:
+        evs = ln.events
+        prev = None
+        for s in ln.syls:
+            e = evs[s.ev]
+            after_rest = s.ev == 0 or evs[s.ev - 1].rest or e.after_break
+            if prev is None or prev.punct or after_rest:
+                out.setdefault(ln.verse, []).append((e.onset, ln.voice))
+            prev = s
+    for v in out.values():
+        v.sort()
+    return out
 
 
 def analyse_path(path) -> Analysis:

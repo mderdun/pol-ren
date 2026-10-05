@@ -26,10 +26,16 @@ def load(path: Path | None) -> dict:
 
 
 def apply(results: list[Result], base: dict) -> dict:
-    """Mark baselined findings; return slug -> new findings (look or worse)."""
+    """Mark baselined findings (and those accepted by a comment in the
+    LilyPond source, inline.py); return slug -> new findings (look or worse)."""
+    from . import inline
     new = {}
     for r in results:
         for f in r.findings:
+            acc = inline.find(f)
+            if acc is not None:
+                f.baseline = f"accepted: {acc.reason} (inline, {acc.file}:{acc.at})"
+                continue
             e = base.get(f.fingerprint)
             if e is not None:
                 f.baseline = f"{e.get('status', 'accepted')}: {e.get('reason', '')}"

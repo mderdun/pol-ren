@@ -1,0 +1,30 @@
+id: U106
+name: short-note-licence
+level: look
+weight: 1.0
+tier: firm
+principle: "10.1"
+authority: "(a) Lanfranco VI (Harrán 1973a, 41); Stoquerus (Rotola ed., 221, 249); Towne 1990, 271. (b) Lanfranco V, Vicentino, Zarlino V–VI (Harrán 1973a, 40–41; 1973b, 623); repeated pitch, Stoquerus N4 (Rotola ed., 179–181); split dotted figure, Towne 1991, 156 (19f). (c) Stoquerus R1 (Rotola ed., 243); Towne 1990, 272"
+message: "'{txt}' on a semiminim under 10.1{clause}: {why}"
+examples:
+  flag:
+    - {notes: "f2 g1 a1 b2", text: "Do- mi- _ nus", at: 1, why: "(a) the first semiminim of a run, on a minim beat"}
+    - {notes: "f3 g1 a2", text: "Do- mi- nus", at: 1, why: "(b) straight after a dotted minim"}
+    - {notes: "f2 g1 g2", text: "Do- mi- nus", at: 1, why: "(b) a lone semiminim on a repeated pitch after a minim"}
+    - {notes: "e2 e1 d2", text: "Do- mi- nus", at: 1, why: "(b) the repeated pitch is the note before"}
+    - {notes: "f2 g1 c'1 b2", text: "Do- _ mi- nus", at: 1, why: "(c) the line leaps to the run's second note"}
+    - voices:
+        Cantus: {notes: "f2 g1 a1 b1 c'1", text: "Do- _ mi- nus et"}
+        Tenor: {notes: "f2 e1 d1 c1 b,1", text: "Do- _ mi- nus et"}
+      rule_voice: Cantus
+      why: "(c) every voice declaims in semiminims"
+    # Miki's edits of 4 October 2026, on the pre-review Vox in Rama
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/37", why: "-la- on d′, the first of a two-note run on the beat: (a)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Tenor/1/40", why: "-la- on the repeated e′, first of the run on the downbeat: (a)"}
+    - {ref: "fixture:vox-in-rama-bb75083/Altus/1/11", why: "au- on the c″ struck again by the next note: (b)"}
+  pass:
+    - {notes: "f2 g2 a2", text: "Do- mi- nus", why: "minims: the default"}
+    - {notes: "f2 g1 a2", text: "Do- mi- nus", why: "a lone semiminim after a plain minim is no licence (U101 breaks it)"}
+    - {notes: "f2 g1 a1 b2", text: "Do- _ mi- nus", why: "the run's second note, by step, voices not all short (U101)"}
+    - {notes: "f2 g1 a2", text: "Do- mi- nus", sign: C, why: "under C semiminims count as minims"}
+    - {notes: "r2 g1 a2 b2", text: "Do- mi- nus", why: "the first note after a rest (10.2)"}

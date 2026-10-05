@@ -95,6 +95,11 @@ class SegCtx:
         """The first note of the next syllable."""
         return self.events[self.next_start] if self.next_start is not None else None
 
+    @property
+    def time(self):
+        """How long the syllable sounds, in semiminims (its notes' values)."""
+        return sum((e.dur for e in self.notes), 0)
+
     def has_syl(self, j: int) -> bool:
         """Does event j start a syllable under this candidate? Defined for
         start <= j <= next_start."""

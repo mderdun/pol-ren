@@ -1,0 +1,13 @@
+id: P211
+name: searchable-text
+kind: pdf
+level: error
+rule: "house style 5a"
+authority: "House style 5a: the finish stays vector and 'The text stays live and searchable'"
+message: "{what}"
+applies: [critical, performance, guide]
+examples:
+  flag:
+    - {fixture: no-text, why: "a page of drawn marks only: the text was outlined"}
+  pass:
+    - {fixture: house-colours, why: "text on every page"}

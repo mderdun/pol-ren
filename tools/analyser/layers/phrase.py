@@ -25,6 +25,7 @@ class Phrase:
     text: str = ""
     cadence: object = None      # the Cadence its last note arrives on, if any
     ends: str = ""              # rest | cadence | punctuation | end
+    landing: int | None = None  # event index of its temporal centre (landing_note)
 
     def label(self, line: Line) -> str:
         a, b = line.events[self.first], line.events[self.last]
@@ -94,4 +95,23 @@ def _mk(line, a, b, starts, arrivals, why):
     ph.text = " ".join(line.syls[i].text + ("-" if line.syls[i].syllabic in ("begin", "middle") else "")
                        for i in ph.syls).replace("- ", "")
     ph.cadence = arrivals.get((line.voice, b))
+    ph.landing = landing_note(line.events, a, b)
     return ph
+
+
+def landing_note(evs, a: int, b: int) -> int | None:
+    """The phrase's temporal centre (Miki, third review of 5 October 2026,
+    Vox Cantus 39.3: "the 'landing' semibreve in a phrase of minims or
+    shorter"): its longest note, if it is at least a semibreve (a minim
+    under C) and strictly longer than every other note of the phrase. The
+    stressed syllable of the key or last word belongs on it."""
+    from ..meter import syllable_unit
+    notes = [e for e in evs[a:b + 1] if not e.rest]
+    if len(notes) < 3:
+        return None
+    top = max(notes, key=lambda e: e.dur)
+    if top.dur < 2 * syllable_unit(top):
+        return None
+    if any(e is not top and e.dur >= top.dur for e in notes):
+        return None
+    return top.idx
