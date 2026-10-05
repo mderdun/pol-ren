@@ -2,18 +2,6 @@
  "edition": "plaude-euge",
  "findings": [
   {
-   "fingerprint": "plaude-euge|Tenor|v1|U208|hos#0|1",
-   "level": "info",
-   "where": "29.1",
-   "message": "'hos' is closed by 's' (sibilant), and carries 2 notes (8 semiminims)",
-   "cost": 0.6,
-   "regret": 0.6,
-   "alternative": [
-    "'o' 30.1 -> 29.3",
-    "'cu' 30.3 -> 30.1"
-   ]
-  },
-  {
    "fingerprint": "plaude-euge|Discantus|v1|U401|virginum#1|1",
    "level": "info",
    "where": "8.2",
@@ -76,6 +64,18 @@
    ]
   },
   {
+   "fingerprint": "plaude-euge|Tenor|v1|U208|hos#0|1",
+   "level": "info",
+   "where": "29.1",
+   "message": "'hos' is closed by 's' (sibilant), and carries 2 notes (8 semiminims)",
+   "cost": 0.6,
+   "regret": 0.424,
+   "alternative": [
+    "'o' 30.1 -> 29.3",
+    "'cu' 30.3 -> 30.1"
+   ]
+  },
+  {
    "fingerprint": "plaude-euge|Discantus|v1|U401|sed#0|1",
    "level": "info",
    "where": "28.1",
@@ -115,9 +115,9 @@
    "fingerprint": "plaude-euge|Tenor|v1|U304|hos#0|1",
    "level": "info",
    "where": "29.3",
-   "message": "in the homorhythmic passage 27.1-30.1, 'hos' holds its syllable where the other voices change",
+   "message": "in the homorhythmic passage 27.1-36.1, 'hos' holds its syllable where the other voices change",
    "cost": 0.25,
-   "regret": 0.25,
+   "regret": 0.176,
    "alternative": [
     "'o' 30.1 -> 29.3",
     "'cu' 30.3 -> 30.1"
@@ -280,11 +280,8 @@
  ],
  "points": [],
  "homorhythm": [
-  "10.3-17.1",
-  "18.1-22.1",
-  "27.1-30.1",
-  "31.1-34.3",
-  "35.1-36.1"
+  "10.3-22.1",
+  "27.1-36.1"
  ],
  "phrases": [
   "Discantus v1 1.1-5.1 rest: Plaude euge theotocos",

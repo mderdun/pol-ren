@@ -30,9 +30,19 @@ class Analysis:
     motifs: list = field(default_factory=list)            # imitation.Point(type MOTIF): recurring texted motifs
     displaced: list = field(default_factory=list)         # meter.Displaced: spans played against the tactus
     duos: list = field(default_factory=list)              # texture.Duo: paired upper voices
+    landing: dict = field(default_factory=dict)           # (voice, ev) -> Phrase whose landing note it is
+    contours: list = field(default_factory=list)          # meter.Contour: contour accents (information)
 
-    def against_tactus(self, voice: str, t) -> bool:
-        return any(d.contains(voice, t) for d in self.displaced)
+    def against_tactus(self, voice: str, t, where: str | None = None) -> bool:
+        """Inside a span against the tactus for this voice; with where='start'
+        only a span that begins a phrase for it, with where='mid' only one
+        that does not (meter.mark_phrase_starts)."""
+        for d in self.displaced:
+            if not d.contains(voice, t):
+                continue
+            if where is None or (where == "start") == (voice in d.phrase_start):
+                return True
+        return False
 
     def tail_voice(self, voice: str, verse: str, t0, t1) -> bool:
         """Has another voice begun new text strictly between t0 and t1?"""
@@ -56,6 +66,7 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
     cadence.closure(score, lines, a.cadences)
     a.arrivals = cadence.arrivals(a.cadences)
     a.phrases = phrase.phrases(score, lines, a.stream, a.arrivals)
+    a.landing = {(ph.voice, ph.landing): ph for ph in a.phrases if ph.landing is not None}
     a.points = imitation.points(score, lines, a.arrivals)
     a.regions = texture.regions(score, a.slices)
     for line in lines:
@@ -74,6 +85,8 @@ def analyse(score: Score, lines: list[Line] | None = None) -> Analysis:
     a.new_text = _new_text(lines)
     a.motifs = imitation.motifs(score)
     a.displaced = meter.displaced_spans(score)
+    meter.mark_phrase_starts(score, a.displaced, a.new_text)
+    a.contours = meter.contour_accents(score)
     a.duos = texture.duos(score)
     return a
 

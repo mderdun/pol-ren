@@ -239,3 +239,60 @@ def test_miki2_upper_duo():
     # starting together": the top two voices are labelled as a duo
     assert NA.duos and all(d.voices == ("Cantus", "Altus") for d in NA.duos)
     assert all(d.apart for d in NA.duos)
+
+
+# ------------------------------------------------- Miki's third review (5 Oct 2026)
+# On the Vox of commit 9227043 (tests/fixtures/vox-in-rama-9227043.musicxml),
+# before this round's edits; books/MIKI-VOX-REVIEW-3-2026-10-05.txt.
+
+M3 = run(FIXTURES / "vox-in-rama-9227043.musicxml")
+M3A = M3.analysis
+
+
+def _m3_onset(voice, where):
+    return next(e.onset for e in M3A.score.voices[voice] if e.where == where and not e.rest)
+
+
+def test_miki3_cantus_39_landing_note_is_not_a_late_last_syllable():
+    # "Stress syllable 'la' arrives on cadence and strong beat (and the
+    # temporal centre of the phrase, that being the 'landing' semibreve ...),
+    # and the final syllable 'ri' occurs on the last minim of the phrase"
+    ph = next(p for p in M3A.phrases if p.voice == "Cantus" and "consolari" in p.text
+              and M3A.score.voices["Cantus"][p.last].where == "40.1")
+    assert ph.landing is not None and M3A.score.voices["Cantus"][ph.landing].where == "39.3"
+    assert not [f for f in M3.findings if f.rule == "U301" and f.voice == "Cantus" and f.where == "39.3"]
+
+
+def test_miki3_cantus_40_qui_lands_on_the_semibreve():
+    # "'Qui' in the following must land on 40.2 again as it's the stress of the
+    # word and that's the temporal centre of the phrase"
+    ph = next(p for p in M3A.phrases if p.voice == "Cantus" and p.text.startswith("quia"))
+    assert M3A.score.voices["Cantus"][ph.first].where == "40.2"
+    assert not [f for f in M3.findings if f.voice == "Cantus" and f.where == "40.2" and f.level != "info"]
+
+
+def test_miki3_rachel_plorans_homorhythm_from_the_offbeat_tutti_entry():
+    # "the homorhythmic section of Rachel pleading that I would argue runs from
+    # 23.2 (with the offbeat tutti entry) through to the end of 27"
+    r = next(r for r in M3A.regions if r.contains(_m3_onset("Cantus", "25.2")))
+    assert r.first_where == "23.2"
+    assert r.contains(_m3_onset("Bassus", "27.3"))
+
+
+def test_miki3_altus_33_contour_centre():
+    # Altus 33.3 (his '34.4'): "the G the centre of gravity that side of the
+    # run"; information only, no rule reads it
+    c = [c for c in M3A.contours if c.voice == "Altus" and c.where == "33.3"]
+    assert c and "centre" in c[0].kinds
+
+
+def test_miki3_tactus_play_counts_fully_at_a_phrase_start():
+    # "when the play is most obvious, is when it begins a phrase (and its
+    # doubly obvious when these phrases are in homorhythm)"; mid-phrase a hint
+    t = _m3_onset("Cantus", "24.4")
+    span = next(d for d in M3A.displaced if d.contains("Cantus", t))
+    assert set(span.phrase_start) == {"Cantus", "Altus", "Tenor", "Bassus"}
+    mid = next(d for d in M3A.displaced if d.where == "38.4")
+    assert not mid.phrase_start
+    from tools.analyser.gates import definitions
+    assert "against_tactus_mid" in definitions()

@@ -238,19 +238,27 @@ def _caps_ok(syl: str) -> bool:
 
 
 def key_word_entries(config: dict) -> list[dict]:
-    """editions.yaml key_words as {word, source, confirmed}."""
+    """editions.yaml key_words as {word, source, confirmed, rank}.
+
+    `rank: secondary` marks a confirmed word that travels with a key word
+    (Vox: consolari with noluit, Miki 5 Oct 2026); it is listed but carries
+    no rule weight."""
     out = []
     for e in config.get("key_words") or []:
         if isinstance(e, str):
             e = {"word": e, "source": "MD"}
         src = str(e.get("source", ""))
-        out.append({"word": str(e["word"]), "source": src, "confirmed": not src.lower().startswith("proposed")})
+        out.append({"word": str(e["word"]), "source": src,
+                    "confirmed": not src.lower().startswith("proposed"),
+                    "rank": str(e.get("rank", "key"))})
     return out
 
 
 def key_words(config: dict, *, proposed: bool = False) -> list[str]:
-    """The confirmed key words (with proposed=True, the proposals too)."""
-    return [e["word"] for e in key_word_entries(config) if e["confirmed"] or proposed]
+    """The confirmed key words that weigh in the rules (with proposed=True,
+    the proposals too). Secondary words are left out."""
+    return [e["word"] for e in key_word_entries(config)
+            if (e["confirmed"] or proposed) and e["rank"] != "secondary"]
 
 
 def build_lines(score: Score, *, legacy: bool = False) -> list[Line]:

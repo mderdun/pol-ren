@@ -54,6 +54,20 @@
    ]
   },
   {
+   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|iudaeorum#0|1",
+   "level": "warn",
+   "where": "51.4",
+   "message": "4 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3",
+   "cost": 2.667,
+   "regret": 2.667,
+   "alternative": [
+    "'bis' 51.3 -> 52.3",
+    "'Iu' 51.4 -> 53.1",
+    "'dae' 52.3 -> 53.2",
+    "'o' 53.1 -> 53.3"
+   ]
+  },
+  {
    "fingerprint": "nunc-scio-vere|Cantus|v1|U302|dominus#1|1",
    "level": "warn",
    "where": "16.4",
@@ -69,54 +83,15 @@
    ]
   },
   {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U302|iudaeorum#0|1",
-   "level": "warn",
-   "where": "51.4",
-   "message": "4 notes on 'Iu' of iudaeorum, the last word before the cadence; its stress is on syllable 3",
-   "cost": 2.667,
-   "regret": 2.667,
-   "alternative": [
-    "'bis' 51.3 -> 52.3",
-    "'Iu' 51.4 -> 53.1",
-    "'dae' 52.3 -> 53.2",
-    "'o' 53.1 -> 53.3"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Cantus|v1|U301|iudaeorum#2|1",
-   "level": "warn",
-   "where": "55.3",
-   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E, full)",
-   "cost": 4.0,
-   "regret": 2.56,
-   "alternative": [
-    "'Iu' 51.4 -> 53.1",
-    "'dae' 52.3 -> 53.2",
-    "'o' 53.1 -> 53.3",
-    "'rum.' 56.3 -> 55.3"
-   ]
-  },
-  {
    "fingerprint": "nunc-scio-vere|Tenor|v1|U302|eripuit#2|1",
    "level": "warn",
    "where": "28.2",
    "message": "5 notes on 'pu' of eripuit, the last word before the cadence; its stress is on syllable 2",
    "cost": 3.333,
-   "regret": 2.5,
+   "regret": 2.333,
    "alternative": [
     "'ri' 28.1 -> 28.2",
     "'pu' 28.2 -> 29.1"
-   ]
-  },
-  {
-   "fingerprint": "nunc-scio-vere|Tenor|v1|U301|iudaeorum#2|1",
-   "level": "warn",
-   "where": "55.3",
-   "message": "the arrival carries 'o', and 'rum.' comes after it (phrygian cadence on E, full)",
-   "cost": 4.0,
-   "regret": 2.5,
-   "alternative": [
-    "'rum.' 56.3 -> 55.3"
    ]
   },
   {

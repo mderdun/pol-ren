@@ -40,39 +40,106 @@ def score_slice(sl, nvoices: int) -> float:
     return 0.0
 
 
-def regions(score: Score, slices: list) -> list[Region]:
+# A homorhythmic passage reaches back to the shared entry that starts it
+# (Miki, third review of 5 October 2026, Vox: the 'Rachel plorans' section
+# "runs from 23.2 (with the offbeat tutti entry) through to the end of 27";
+# the slice score alone began it at 24.3, because one passing minim at 24.2
+# breaks the run). A tutti entry is a slice where every voice of the piece
+# attacks and at least two begin new text (after a rest or a punctuated
+# syllable), on the tactus or off it. A region whose first slice lies within
+# ENTRY_REACH of such an entry, with every voice sounding in between, starts
+# there; and two regions with no rest between them and a gap of at most
+# MERGE_GAP are one passage.
+ENTRY_REACH = F(12)     # a breve and a semibreve
+MERGE_GAP = F(4)        # a semibreve
+
+
+def _new_text(score: Score, e, verse: str = "1") -> bool:
+    """Does event e begin new text: a syllable after a rest, a section break
+    or a syllable that ends with punctuation?"""
+    if verse not in e.lyrics:
+        return False
+    if e.after_break:
+        return True
+    for p in reversed(score.voices[e.voice][:e.idx]):
+        if p.rest:
+            return True
+        if verse in p.lyrics:
+            return p.lyrics[verse].text.rstrip()[-1:] in ",.;:!?"
+    return True
+
+
+def tutti_entries(score: Score, slices: list) -> list:
     nv = len(score.parts)
     out = []
-    run, total = [], 0.0
+    for sl in slices:
+        if len(sl.sounding) == nv and len(sl.attacks) == nv and nv >= 2:
+            if sum(_new_text(score, sl.sounding[v]) for v in sl.attacks) >= 2:
+                out.append(sl)
+    return out
 
-    def close():
-        if total >= THRESHOLD and run:
-            first, last = run[0], run[-1]
-            end = max(e.end for e in last.sounding.values())
-            r = Region(start=first.onset, end=end, first_where=_where(first), last_where=_where(last),
-                       voices=sorted({v for s in run for v in s.attacks}), slices=len(run))
-            for verse in sorted({k for s in run for e in s.sounding.values() for k in e.lyrics}, key=int):
-                together = 0
-                counted = 0
-                for s in run:
-                    starts = [v for v in s.attacks if verse in s.sounding[v].lyrics]
-                    if not starts:
-                        continue
-                    counted += 1
-                    if len(starts) == len(s.attacks):
-                        together += 1
-                r.syllable_match[verse] = round(together / counted, 2) if counted else 0.0
-            out.append(r)
 
+def _all_sound(slices, t0, t1, nv) -> bool:
+    return all(len(sl.sounding) == nv for sl in slices if t0 <= sl.onset < t1)
+
+
+def regions(score: Score, slices: list) -> list[Region]:
+    nv = len(score.parts)
+    runs, run, total = [], [], 0.0
     for sl in slices:
         sc = score_slice(sl, nv)
         if sc > 0:
             run.append(sl)
             total += sc
         else:
-            close()
+            if total >= THRESHOLD and run:
+                runs.append(run)
             run, total = [], 0.0
-    close()
+    if total >= THRESHOLD and run:
+        runs.append(run)
+
+    def span(r0, r1):
+        return [sl for sl in slices if r0 <= sl.onset <= r1]
+
+    entries = tutti_entries(score, slices)
+    # reach back to a shared entry
+    for k, r in enumerate(runs):
+        start = r[0].onset
+        prev_end = runs[k - 1][-1].onset if k else F(-1)
+        back = [en for en in entries if prev_end < en.onset < start and start - en.onset <= ENTRY_REACH
+                and _all_sound(slices, en.onset, start, nv)]
+        if back:
+            runs[k] = span(back[-1].onset, r[-1].onset)
+    # merge across a short gap with no rest
+    merged = []
+    for r in runs:
+        if merged:
+            last = merged[-1]
+            end = max(e.end for e in last[-1].sounding.values())
+            if r[0].onset - end <= MERGE_GAP and _all_sound(slices, last[0].onset, r[0].onset, nv) \
+                    and r[0].onset >= last[-1].onset:
+                merged[-1] = span(last[0].onset, r[-1].onset)
+                continue
+        merged.append(r)
+
+    out = []
+    for run in merged:
+        first, last = run[0], run[-1]
+        end = max(e.end for e in last.sounding.values())
+        r = Region(start=first.onset, end=end, first_where=_where(first), last_where=_where(last),
+                   voices=sorted({v for s in run for v in s.attacks}), slices=len(run))
+        for verse in sorted({k for s in run for e in s.sounding.values() for k in e.lyrics}, key=int):
+            together = 0
+            counted = 0
+            for s in run:
+                starts = [v for v in s.attacks if verse in s.sounding[v].lyrics]
+                if not starts:
+                    continue
+                counted += 1
+                if len(starts) == len(s.attacks):
+                    together += 1
+            r.syllable_match[verse] = round(together / counted, 2) if counted else 0.0
+        out.append(r)
     return out
 
 

@@ -64,8 +64,9 @@ def test_key_words_in_context(tmp_path, monkeypatch):
     assert len(lines) == 5
     assert lines[0][1] == "A voice was heard in Rama," and "Rama" in re.sub(r"<[^>]+>", "", lines[0][0])
     assert lines[3][1] == "and she would not be comforted,"
-    # consolari: proposed, the stress on -la- underlined, in the text's order
-    assert '<span class="kw kw-prop"' in lines[3][0] and "<u>la</u>" in lines[3][0]
+    # consolari: confirmed (Miki, 5 Oct 2026, secondary to noluit), the stress
+    # on -la- underlined, in the text's order
+    assert '<span class="kw kw-conf"' in lines[3][0] and "<u>la</u>" in lines[3][0]
     assert sec.index("A voice was heard") < sec.index("because they are not.")
 
 

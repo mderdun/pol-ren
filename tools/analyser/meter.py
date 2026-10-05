@@ -71,9 +71,90 @@ class Displaced:
     shift: F
     where: str              # bar.minim of the first displaced note
     notes: list = field(default_factory=list)   # (voice, event idx)
+    phrase_start: tuple = ()    # voices for which the span begins a phrase (mark_phrase_starts)
 
     def contains(self, voice: str, t) -> bool:
         return voice in self.voices and self.t0 <= t < self.t1
+
+
+def mark_phrase_starts(score, spans, new_text: dict, verse: str = "1") -> None:
+    """Miki, third review of 5 October 2026: the play against the tactus is
+    most obvious, and so meant to be brought out, when it begins a phrase
+    (doubly so in homorhythm); in the middle of a phrase it is a hint. A
+    span begins a phrase for a voice when that voice's first displaced note
+    in it, or the note up to a minim before it, begins new text."""
+    starts = {(t, v) for t, v in new_text.get(verse, ())}
+    for d in spans:
+        out = []
+        for v in d.voices:
+            mine = [score.voices[vv][i] for vv, i in d.notes if vv == v]
+            if not mine:
+                continue
+            e = min(mine, key=lambda x: x.onset)
+            if any((t, v) in starts for t in {e.onset, *[p.onset for p in score.voices[v][max(0, e.idx - 2):e.idx]
+                                                        if not p.rest and e.onset - p.onset <= 2]}):
+                out.append(v)
+        d.phrase_start = tuple(out)
+
+
+@dataclass
+class Contour:
+    """A contour accent (information only, under investigation): after a run
+    of short notes, a longer note that the melody leans on, so that it can
+    carry an agogic accent against the tactus (Miki, third review of
+    5 October 2026, Vox Altus 33.3, his '34.4': "something about the melodic
+    shape that makes the G the centre of gravity that side of the run, which
+    also when sung actually encourages a strong beat against the tactus
+    there"). Kinds: goal (the first longer note after the run), turn (a
+    local high or low point), centre (the pitch the run circles: its most
+    frequent pitch, counting the note before it)."""
+    voice: str
+    ev: int
+    where: str
+    kinds: tuple
+    on_tactus: bool
+
+
+def contour_accents(score, voices=None) -> list[Contour]:
+    out = []
+    for v in voices or score.parts:
+        evs = score.voices[v]
+        i = 0
+        while i < len(evs):
+            e = evs[i]
+            if e.rest or e.dur >= syllable_unit(e):
+                i += 1
+                continue
+            j = i
+            while j < len(evs) and not evs[j].rest and evs[j].dur < syllable_unit(evs[j]):
+                j += 1
+            run = evs[i:j]
+            if len(run) >= 2:
+                before = [evs[i - 1]] if i > 0 and not evs[i - 1].rest else []
+                pitches = [x.midi for x in before + run]
+                centre = max(set(pitches), key=lambda p: (pitches.count(p), -pitches.index(p)))
+                centre = centre if pitches.count(centre) >= 2 else None
+                after = []
+                for k in range(j, min(j + 3, len(evs))):
+                    if evs[k].rest or evs[k].dur < syllable_unit(evs[k]):
+                        break
+                    after.append(k)
+                for n, k in enumerate(after):
+                    x = evs[k]
+                    kinds = []
+                    if n == 0:
+                        kinds.append("goal")
+                    prv, nxt = evs[k - 1], evs[k + 1] if k + 1 < len(evs) else None
+                    if nxt is not None and not nxt.rest and not prv.rest and \
+                            ((x.midi > prv.midi and x.midi > nxt.midi) or (x.midi < prv.midi and x.midi < nxt.midi)):
+                        kinds.append("turn")
+                    if centre is not None and x.midi == centre:
+                        kinds.append("centre")
+                    if kinds:
+                        out.append(Contour(voice=v, ev=x.idx, where=x.where, kinds=tuple(kinds),
+                                           on_tactus=x.pos % TACTUS == 0))
+            i = max(j, i + 1)
+    return out
 
 
 def _displaced_long(e: Event) -> bool:

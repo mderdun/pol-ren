@@ -67,3 +67,9 @@ against_tactus:
   layer: meter
   when: "the syllable starts inside a span where its voice plays against the tactus (meter.displaced_spans: syncopation declaimed by two or more voices together, or a hemiola-like chain of syncopated semibreves in one voice)"
   why: "Miki, second review of 4 Oct 2026 (Vox Altus 10.4: 'the 3 top parts are clearly playing against the tactus here'; Altus 15: 'the intention is for the strong beat of the word to play against the tactus here given the note values suggesting hemiola'): there the tactus is not the accent, so a rule that measures stress or lightness against it counts half. U210 measures against the displaced pulse instead"
+  # Miki, third review of 5 Oct 2026: "often when the play is most obvious, is when it begins a phrase (and its doubly obvious when these phrases are in homorhythm)"; so the gate applies fully where the span begins a phrase for the voice (meter.mark_phrase_starts) and half as strongly (against_tactus_mid) where it starts mid-phrase
+
+against_tactus_mid:
+  layer: meter
+  when: "as against_tactus, but the span starts in the middle of the voice's phrase"
+  why: "Miki, third review of 5 Oct 2026 (Vox Altus 12): mid-phrase the play against the tactus is a hint, not meant to be brought out; the gate is half as strong (0.75 where against_tactus has 0.5)"

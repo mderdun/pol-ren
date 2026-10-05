@@ -11,32 +11,36 @@
    "alternative": [
     "drop 'est' at 12.1 (10.13)",
     "'au' 12.2 -> 12.1",
-    "'di' 12.3 -> 12.2"
+    "'di' 12.3 -> 12.2",
+    "'ta' 12.4+ -> 12.3+"
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Cantus|v1|U301|consolari#2|2",
-   "level": "look",
-   "where": "39.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it (phrygian cadence on B, weak)",
-   "cost": 2.0,
-   "regret": 1.25,
+   "fingerprint": "vox-in-rama|Altus|v1|U101|audita#2|1",
+   "level": "break",
+   "where": "12.4",
+   "message": "'ta' on a note shorter than a minim: a lone short note",
+   "cost": 0.0,
+   "regret": null,
    "alternative": [
-    "'so' 39.2 -> 39.1+",
-    "'la' 39.3 -> 39.2",
-    "'ri,' 40.1 -> 39.3",
-    "'qui' 40.2 -> 40.1"
+    "drop 'est' at 12.1 (10.13)",
+    "'au' 12.2 -> 12.1",
+    "'di' 12.3 -> 12.2",
+    "'ta' 12.4+ -> 12.3+"
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U209|filios#2|1",
-   "level": "look",
-   "where": "27.3",
-   "message": "'os' to 'su' passes 2 consonants on a fusa",
-   "cost": 1.5,
-   "regret": 1.159,
+   "fingerprint": "vox-in-rama|Altus|v1|U102|audita#1|1",
+   "level": "break",
+   "where": "12.3",
+   "message": "'di' on the semiminim, but no syllable on the note after it",
+   "cost": 0.0,
+   "regret": null,
    "alternative": [
-    "'su' 27.3 -> 27.1"
+    "drop 'est' at 12.1 (10.13)",
+    "'au' 12.2 -> 12.1",
+    "'di' 12.3 -> 12.2",
+    "'ta' 12.4+ -> 12.3+"
    ]
   },
   {
@@ -131,17 +135,6 @@
    ]
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U208|filios#2|1",
-   "level": "info",
-   "where": "26.4",
-   "message": "'os' is closed by 's' (sibilant), and carries 6 notes (6 semiminims)",
-   "cost": 0.45,
-   "regret": 0.348,
-   "alternative": [
-    "'su' 27.3 -> 27.1"
-   ]
-  },
-  {
    "fingerprint": "vox-in-rama|Altus|v1|U206|consolari#0|1",
    "level": "info",
    "where": "29.2",
@@ -197,17 +190,6 @@
     "'in' 9.4 -> 9.3+",
     "'Ra' 10.4 -> 9.4",
     "'ma' 11.1 -> 10.4"
-   ]
-  },
-  {
-   "fingerprint": "vox-in-rama|Bassus|v1|U304|filios#2|1",
-   "level": "info",
-   "where": "27.1",
-   "message": "in the homorhythmic passage 26.1-27.1, 'os' holds its syllable where the other voices change",
-   "cost": 0.25,
-   "regret": 0.193,
-   "alternative": [
-    "'su' 27.3 -> 27.1"
    ]
   },
   {
@@ -309,19 +291,6 @@
    "cost": 0.125,
    "regret": 0.0,
    "alternative": []
-  },
-  {
-   "fingerprint": "vox-in-rama|Altus|v1|U401|audita#2|1",
-   "level": "info",
-   "where": "12.3",
-   "message": "'ta' starts on a dissonant note (suspension, P4 against the Bassus)",
-   "cost": 0.125,
-   "regret": null,
-   "alternative": [
-    "drop 'est' at 12.1 (10.13)",
-    "'au' 12.2 -> 12.1",
-    "'di' 12.3 -> 12.2"
-   ]
   },
   {
    "fingerprint": "vox-in-rama|Altus|v1|U401|ploratus#2|1",
@@ -450,20 +419,20 @@
    "alternative": []
   },
   {
-   "fingerprint": "vox-in-rama|Bassus|v1|U301|suos#0|1",
-   "level": "info",
-   "where": "25.3",
-   "message": "the arrival carries 'su', and 'os,' comes after it (phrygian cadence on E, full)",
-   "cost": 4.0,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "vox-in-rama|Bassus|v1|U106|filios#1|2",
    "level": "info",
    "where": "26.3",
    "message": "'li' on a semiminim under 10.1(b): straight after a dotted note",
    "cost": 0.25,
+   "regret": 0.0,
+   "alternative": []
+  },
+  {
+   "fingerprint": "vox-in-rama|Bassus|v1|U106|suos#0|1",
+   "level": "info",
+   "where": "27.1",
+   "message": "'su' on a semiminim under 10.1(a): the first of a run, on a beat",
+   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -509,15 +478,6 @@
    "where": "37.2",
    "message": "in the homorhythmic passage 36.4-38.1, 'lu' changes syllable where the other voices hold theirs",
    "cost": 0.25,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
-   "fingerprint": "vox-in-rama|Bassus|v1|U301|consolari#2|1",
-   "level": "info",
-   "where": "38.3",
-   "message": "the arrival carries 'la', and 'ri,' comes after it, on the voice's own resolution, while other voices begin new text (phrygian cadence on E, weak)",
-   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -594,15 +554,6 @@
    "alternative": []
   },
   {
-   "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|1",
-   "level": "info",
-   "where": "25.3",
-   "message": "the arrival carries 'su', and 'os,' comes after it (phrygian cadence on E, full)",
-   "cost": 4.0,
-   "regret": 0.0,
-   "alternative": []
-  },
-  {
    "fingerprint": "vox-in-rama|Cantus|v1|U106|filios#1|2",
    "level": "info",
    "where": "26.3",
@@ -630,7 +581,7 @@
    "alternative": []
   },
   {
-   "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|2",
+   "fingerprint": "vox-in-rama|Cantus|v1|U301|suos#0|1",
    "level": "info",
    "where": "28.1",
    "message": "the arrival carries 'su', and 'os,' comes after it, on the voice's own resolution, while other voices begin new text (authentic cadence on D, full)",
@@ -738,11 +689,11 @@
    "alternative": []
   },
   {
-   "fingerprint": "vox-in-rama|Tenor|v1|U210|rama#0|1",
+   "fingerprint": "vox-in-rama|Tenor|v1|U106|rama#0|1",
    "level": "info",
-   "where": "6.2",
-   "message": "'Ra' (rama) off the beat of the tactus, though 8.4 could take it",
-   "cost": 1.5,
+   "where": "6.3",
+   "message": "'Ra' on a semiminim under 10.1(a): the first of a run, on a beat",
+   "cost": 0.5,
    "regret": 0.0,
    "alternative": []
   },
@@ -1001,8 +952,7 @@
   "DUO +3 +0 -1: Altus 35.2, Cantus 37.4"
  ],
  "homorhythm": [
-  "24.3-25.3",
-  "26.1-27.1",
+  "23.2-27.1",
   "29.3-30.2",
   "36.4-38.1"
  ],
@@ -1044,7 +994,7 @@
   "Altus v1 40.2-41.3 punctuation: quia non sunt,",
   "Altus v1 41.4-45.3 rest: quia non sunt.",
   "Tenor v1 3.3-5.3 punctuation: Vox in Rama,",
-  "Tenor v1 6.2-9.1 punctuation: Rama,",
+  "Tenor v1 6.2-9.1 punctuation: in Rama,",
   "Tenor v1 9.2-10.1 punctuation: vox in Rama,",
   "Tenor v1 10.2-11.1 rest: in Rama",
   "Tenor v1 11.2-12.1 rest: audita est,",
@@ -1077,7 +1027,7 @@
  "selfcheck": [
   "Cantus v1 92 92 92 92",
   "Altus v1 96 96 96 96",
-  "Tenor v1 87 87 87 87",
+  "Tenor v1 88 88 88 88",
   "Bassus v1 70 70 70 70"
  ]
 }

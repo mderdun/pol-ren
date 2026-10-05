@@ -185,7 +185,7 @@ def layers(res_or_analysis) -> str:
     from .text import key_word_entries
     kws = key_word_entries(sc.config)
     if kws:
-        conf = [k["word"] for k in kws if k["confirmed"]]
+        conf = [k["word"] + (" (secondary)" if k.get("rank") == "secondary" else "") for k in kws if k["confirmed"]]
         prop = [k["word"] for k in kws if not k["confirmed"]]
         out += ["", "KEY WORDS (editions.yaml)"]
         out.append("  confirmed: " + (", ".join(conf) if conf else "none"))
@@ -216,7 +216,8 @@ def layers(res_or_analysis) -> str:
     for ph in a.phrases:
         ln = a.line(ph.voice, ph.verse)
         cad = f"  -> {ph.cadence.type} on {ph.cadence.tone}" if ph.cadence else ""
-        out.append(f"  {ph.voice:9} v{ph.verse} {ph.label(ln):13} ends at {ph.ends:11} {ph.text}{cad}")
+        land = f"  [lands {ln.events[ph.landing].where}]" if ph.landing is not None else ""
+        out.append(f"  {ph.voice:9} v{ph.verse} {ph.label(ln):13} ends at {ph.ends:11} {ph.text}{cad}{land}")
     out += ["", f"IMITATION ({len(a.points)} points)"]
     for p in a.points:
         out.append(f"  {p.type:4} head {p.motif} (steps), led by {p.leader.voice} at {p.leader.where}")
@@ -232,6 +233,13 @@ def layers(res_or_analysis) -> str:
     for r in a.regions:
         out.append(f"  {r.first_where}-{r.last_where}  {r.slices} slices, voices {', '.join(r.voices)}; "
                    f"syllables together: " + ", ".join(f"v{k} {int(v * 100)}%" for k, v in r.syllable_match.items()))
+    out += ["", f"AGAINST THE TACTUS ({len(a.displaced)} spans; * begins a phrase for the voice)"]
+    for d in a.displaced:
+        vs = ", ".join(v + ("*" if v in d.phrase_start else "") for v in d.voices)
+        out.append(f"  {d.where:7} {d.kind:8} {vs}")
+    out += ["", f"CONTOUR ACCENTS ({len(a.contours)}; information, under investigation)"]
+    for c in a.contours:
+        out.append(f"  {c.where:7} {c.voice:9} {', '.join(c.kinds)}{'' if c.on_tactus else '  (off the tactus)'}")
     return "\n".join(out) + "\n"
 
 

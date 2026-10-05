@@ -67,13 +67,22 @@ def tail_voice(a, line, hit) -> bool:
 
 
 def against_tactus(a, line, hit) -> bool:
+    """A span against the tactus that begins a phrase for this voice: the
+    play is meant to be heard (Miki, third review of 5 Oct 2026)."""
     return a is not None and bool(getattr(a, "displaced", None)) and \
-        a.against_tactus(line.voice, line.events[hit.ev].onset)
+        a.against_tactus(line.voice, line.events[hit.ev].onset, "start")
+
+
+def against_tactus_mid(a, line, hit) -> bool:
+    """A span against the tactus that starts mid-phrase: a hint, so it
+    counts half as much."""
+    return a is not None and bool(getattr(a, "displaced", None)) and \
+        a.against_tactus(line.voice, line.events[hit.ev].onset, "mid")
 
 
 GATES = {name: globals()[name] for name in
          ("cadence_approach", "cadence_lower_note", "evaded_cadence", "weak_cadence", "key_word", "suspension", "full_point",
-          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus")}
+          "homorhythm", "older_practice", "sung_through", "melodic_resolution", "tail_voice", "against_tactus", "against_tactus_mid")}
 
 
 def applied(rule, a, line, hit) -> list[tuple[str, float]]:

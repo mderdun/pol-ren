@@ -38,7 +38,13 @@ def test_cli_fails_only_on_new_breaks(tmp_path):
     path = str(ROOT / "editions" / "vox-in-rama" / "pdf" / "vox-in-rama.musicxml")
     assert main(["check", path, "--baseline", str(empty), "--fail-on", "new-break", "--format", "json",
                  "--out", str(tmp_path)]) == 0
+    # the finished Vox (5 Oct 2026) has no open finding left: every look and
+    # break is accepted beside the note; the Vox before the third review has
+    # one (Bassus 27.3, U209)
     assert main(["check", path, "--baseline", str(empty), "--fail-on", "new", "--format", "json",
+                 "--out", str(tmp_path)]) == 0
+    before = str(ROOT / "tools" / "analyser" / "tests" / "fixtures" / "vox-in-rama-9227043.musicxml")
+    assert main(["check", before, "--baseline", str(empty), "--fail-on", "new", "--format", "json",
                  "--out", str(tmp_path)]) == 1
     bad = str(ROOT / "tools" / "analyser" / "tests" / "fixtures" / "vox-in-rama-bb75083.musicxml")
     assert main(["check", bad, "--baseline", str(empty), "--fail-on", "new-break", "--format", "json",

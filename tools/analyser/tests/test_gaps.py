@@ -117,6 +117,8 @@ def test_zmierzka_stanzas_agree_where_the_words_fall_alike():
 
 def test_key_word_proposals_have_no_effect_until_confirmed():
     for slug in EDITIONS:
+        if slug == "vox-in-rama":   # confirmed by Miki, 5 Oct 2026 (test below)
+            continue
         s = parse(ROOT / "editions" / slug / "pdf" / f"{slug}.musicxml")
         entries = key_word_entries(s.config)
         assert entries and all(not e["confirmed"] for e in entries), slug
@@ -126,6 +128,19 @@ def test_key_word_proposals_have_no_effect_until_confirmed():
         # every proposal is a word of the edition's text
         words = {w.norm for ln in lines for w in ln.words}
         assert {e["word"] for e in entries} <= words, (slug, {e["word"] for e in entries} - words)
+
+
+def test_vox_key_words_confirmed_by_miki():
+    s = parse(ROOT / "editions" / "vox-in-rama" / "pdf" / "vox-in-rama.musicxml")
+    entries = {e["word"]: e for e in key_word_entries(s.config)}
+    assert set(entries) == {"vox", "audita", "ploratus", "ululatus", "plorans", "suos",
+                            "noluit", "consolari", "non"}
+    assert "rama" not in entries
+    assert all(e["confirmed"] and e["source"] == "Miki, 5 Oct 2026" for e in entries.values())
+    assert entries["consolari"]["rank"] == "secondary"
+    keyed = {w.norm for ln in build_lines(s) for w in ln.words if w.cls == "key"}
+    assert "plorans" in keyed and "noluit" in keyed
+    assert "consolari" not in keyed      # secondary: listed, no rule weight
 
 
 def test_a_confirmed_key_word_weighs_more():

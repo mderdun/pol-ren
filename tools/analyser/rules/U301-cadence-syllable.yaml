@@ -4,7 +4,7 @@ level: look
 weight: 4.0
 tier: phrase
 principle: "10.3"
-authority: "Lanfranco VIII, Zarlino X (Harrán 1973a, 44–46); after a run, its first note or the longer note before it (Stoquerus R3, Rotola ed., 251; Towne 1990, R10, R16); the voice's own resolution and the tail voice: Miki, review of 4 Oct 2026 (Cantus 28.1, Bassus 18.3)"
+authority: "Miki, third review of 5 Oct 2026 (Cantus 39.3): the stressed syllable on the phrase's landing note at the arrival and the last on its last minim is right; Lanfranco VIII, Zarlino X (Harrán 1973a, 44–46); after a run, its first note or the longer note before it (Stoquerus R3, Rotola ed., 251; Towne 1990, R10, R16); the voice's own resolution and the tail voice: Miki, review of 4 Oct 2026 (Cantus 28.1, Bassus 18.3)"
 message: "{problem} ({cadence_type} cadence on {tone}, {cadence_kind})"
 # The voice's own melodic resolution after the harmonic arrival, and a voice
 # that carries its phrase's last syllable while the others begin new text (a
@@ -35,3 +35,7 @@ examples:
         Cantus: {notes: "a4 g4 b2 a1 b1 c'8", text: "Do- mi- nus. _ _ _"}
         Tenor:  {notes: "f4 e4 d4 c8", text: "Do- mi- _ nus."}
       why: "the last syllable starts on the longer note before a run into the arrival (Stoquerus R3; Towne R16)"
+    - voices:
+        Cantus: {notes: "a2 g2 b2 c'8 b2", text: "con- so- _ la- ri."}
+        Tenor:  {notes: "f2 e2 d2 c8 d2", text: "con- so- _ la- ri."}
+      why: "the stressed -la- on the phrase's landing breve at the arrival, -ri alone on its last minim (Miki, 5 Oct 2026, Cantus 39.3)"
