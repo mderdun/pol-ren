@@ -45,6 +45,7 @@ from .ingest import ROOT
 from .rules import load, settings
 from .text import coverage, key_word_entries, lexicon
 from . import underlay_edits as UE
+from . import provenance as PV
 
 HERE = Path(__file__).resolve().parent
 ASSETS = HERE / "review_assets"
@@ -948,6 +949,8 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
     data["title"] = sc.title
     data["seed"] = seeds(sc.slug)
     data["verseNames"] = VERSE_NAMES.get(sc.slug, {})
+    prov, prov_notes = PV.compute(sc)
+    data["prov"] = prov_data(prov)
 
     css = (ASSETS / "app.css").read_text(encoding="utf-8")
     js = (ASSETS / "app.js").read_text(encoding="utf-8")
@@ -989,7 +992,7 @@ def build(path: str | Path, out: Path, *, baseline: Path | None = None) -> Path:
 <div class="about" id="about" role="dialog" aria-labelledby="about-h" hidden>
   <div class="about-in">
   <div class="about-head"><h2 id="about-h">{_esc(sc.title)}</h2><button type="button" class="ib" id="about-x" aria-label="Close">×</button></div>
-  {about_html(sc, a, data, res)}
+  {about_html(sc, a, data, res, prov_html(sc, prov, prov_notes))}
   </div>
 </div>
 </div>
@@ -1022,7 +1025,45 @@ def seeds(slug: str) -> list:
     return [x for x in (d.get("edits", []) if isinstance(d, dict) else d) if isinstance(x, dict)]
 
 
-def about_html(sc, a, data, res) -> str:
+def prov_data(prov: dict) -> dict:
+    """The text source of each syllable for the page: labels [category,
+    inspector text] and "voice:idx|verse" -> label index."""
+    labels, syl = [], {}
+    for (v, i, verse), p in sorted(prov.items()):
+        lab = [p.cat, p.text]
+        if lab not in labels:
+            labels.append(lab)
+        syl[f"{v}:{i}|{verse}"] = labels.index(lab)
+    return {"cats": PV.CATS, "labels": labels, "syl": syl}
+
+
+def prov_html(sc, prov: dict, notes: dict) -> str:
+    """The About panel's text-source section: counts by category per voice,
+    the evidence notes from provenance.yaml and the chant comparison."""
+    if not prov:
+        return ""
+    cnt = PV.summary(sc, prov)
+    cats = list(PV.CATS)
+    head = "".join(f'<th class="num"><span class="src-k src-{c}">{_esc(PV.CATS[c])}</span></th>' for c in cats)
+    rows = "".join(f'<tr><td>{_esc(v)}</td>' + "".join(f'<td class="num">{cnt[v].get(c, 0) or "·"}</td>' for c in cats)
+                   + "</tr>" for v in sc.parts)
+    ev = [f"{v}: {n}" for v, n in notes.items() if not v.startswith("_")]
+    ev += list((PV.rules(sc.slug) or {}).get("evidence") or [])
+    for v, cs in (notes.get("_chant") or {}).items():
+        if cs.get("compared"):
+            ev.append(f"{v}, c.f. span: {cs['on_chant']} of {cs['syllables']} syllables (italic repeats left out) "
+                      f"fall on a note the chant gives the same syllable ({cs['chant_range']}; {cs['aligned_notes']} "
+                      f"of {cs['notes']} notes aligned to the chant by pitch).")
+    ours = Counter(p.text for p in prov.values() if p.cat == "ours")
+    if ours:
+        ev.append("Ours: " + "; ".join(f"{t.replace('Ours', '').strip(' ,;()')}: {k}" for t, k in ours.most_common()) + ".")
+    lis = "".join(f"<li>{_esc(x)}</li>" for x in ev)
+    return (f'<section class="prov" id="prov" aria-label="Text source"><h3>Text source</h3>'
+            f'<table class="src-t"><thead><tr><th>Syllables</th>{head}</tr></thead><tbody>{rows}</tbody></table>'
+            f'<ul class="src-ev">{lis}</ul></section>')
+
+
+def about_html(sc, a, data, res, prov: str = "") -> str:
     """The "About this piece" panel: counts, analysis, key words in context,
     and the layer tables and the lexicon folded away."""
     c = Counter(f.level for f in res.findings)
@@ -1045,7 +1086,7 @@ def about_html(sc, a, data, res) -> str:
         ("Built", f"{date.today().isoformat()}{(' · ' + rev) if rev else ''}"),
     ]
     dl = "".join(f"<dt>{_esc(k)}</dt><dd>{_esc(v)}</dd>" for k, v in facts)
-    return (f'<dl class="facts">{dl}</dl>'
+    return (f'<dl class="facts">{dl}</dl>{prov}'
             f'<section class="keywords" id="keywords" aria-label="Key words in context"><h3>Key words in context</h3>'
             f'{key_context_html(a)}</section>'
             f'<details class="more"><summary>Layers as tables</summary>{tables(a)}{metre_tables(a)}</details>'
